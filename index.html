@@ -11,9 +11,9 @@
       --brycer-orange: #e17f49;
       --brycer-blue-light: #e9f1f8;
       --brycer-grey-light: #f5f5f7;
-      --brycer-border: #d5dde5;
-      --text-main: #1f2933;
-      --text-muted: #6b7280;
+      --brycer-border: #94a3b8;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
     }
 
     * {
@@ -24,42 +24,48 @@
 
     body {
       font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #ffffff;
+      background: radial-gradient(circle at top left, #0b345c 0, #020617 55%, #000000 100%);
       color: var(--text-main);
       line-height: 1.6;
-      padding: 32px 16px;
+      padding: 40px 16px;
     }
 
     .page {
       max-width: 1200px;
       margin: 0 auto;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.98));
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
+      padding: 24px 22px 26px;
+      backdrop-filter: blur(18px);
     }
 
     header {
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--brycer-border);
-      padding-bottom: 16px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+      padding-bottom: 14px;
     }
 
     .eyebrow {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--brycer-orange);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     h1 {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: 700;
-      color: var(--brycer-navy);
+      color: #f9fafb;
       margin-bottom: 6px;
     }
 
     .subheading {
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: #e5e7eb;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
@@ -81,39 +87,41 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      align-items: center;
     }
 
     .meta-pill {
       padding: 4px 10px;
       border-radius: 999px;
-      background: var(--brycer-blue-light);
-      color: var(--brycer-navy);
+      background: rgba(37, 99, 235, 0.2);
+      color: #e5f0ff;
       font-weight: 500;
+      border: 1px solid rgba(191, 219, 254, 0.6);
     }
 
     .section-label {
       font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin: 16px 0 8px;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin: 18px 0 8px;
     }
 
     .legend-card,
     .quarter-card {
-      background: #ffffff;
-      border-radius: 14px;
-      border: 1px solid var(--brycer-border);
-      padding: 14px 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 4px 12px rgba(3, 35, 61, 0.04);
+      background: linear-gradient(135deg, rgba(12, 30, 60, 0.96), rgba(6, 18, 36, 0.98));
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
     }
 
     .legend-title {
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--brycer-navy);
+      color: #f3f4f6;
       margin-bottom: 6px;
     }
 
@@ -128,9 +136,9 @@
       font-size: 0.75rem;
       padding: 4px 8px;
       border-radius: 999px;
-      border: 1px solid var(--brycer-border);
-      background: var(--brycer-grey-light);
-      color: var(--text-main);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
     }
 
     .quarter-header {
@@ -142,9 +150,9 @@
     }
 
     .quarter-name {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 700;
-      color: var(--brycer-navy);
+      color: #f3f4f6;
     }
 
     .quarter-theme {
@@ -152,12 +160,13 @@
       font-weight: 600;
       color: var(--brycer-orange);
       text-transform: uppercase;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.12em;
+      text-align: right;
     }
 
     .quarter-tagline {
       font-size: 0.82rem;
-      color: var(--text-muted);
+      color: #d1d5db;
       margin-top: 2px;
     }
 
@@ -175,12 +184,19 @@
     }
 
     .month-card {
-      border-radius: 10px;
-      border: 1px solid var(--brycer-border);
-      background: #ffffff;
-      padding: 8px 9px;
-      box-shadow: 0 2px 8px rgba(3, 35, 61, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: radial-gradient(circle at top left, rgba(17, 35, 71, 0.98), rgba(10, 22, 45, 0.98));
+      padding: 9px 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
       font-size: 0.8rem;
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, border-color 0.16s ease-out;
+    }
+
+    .month-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      border-color: var(--brycer-orange);
     }
 
     .month-header {
@@ -194,27 +210,28 @@
     .month-name {
       font-size: 0.78rem;
       font-weight: 700;
-      color: var(--brycer-navy);
+      color: #e5e7eb;
       text-transform: uppercase;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.09em;
     }
 
     .month-theme-pill {
       font-size: 0.7rem;
       font-weight: 600;
-      padding: 2px 6px;
+      padding: 2px 8px;
       border-radius: 999px;
-      background: var(--brycer-blue-light);
-      color: var(--brycer-navy);
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(191, 219, 254, 0.6);
+      color: #e5f0ff;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       white-space: nowrap;
     }
 
     .stream-row {
       margin-top: 4px;
       padding-top: 4px;
-      border-top: 1px dashed rgba(213, 221, 229, 0.7);
+      border-top: 1px dashed rgba(148, 163, 184, 0.6);
     }
 
     .stream-label {
@@ -222,48 +239,49 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--text-muted);
+      color: #9ca3af;
       margin-bottom: 1px;
     }
 
     .stream-text {
       font-size: 0.78rem;
-      color: var(--text-main);
+      color: #e5e7eb;
     }
 
     .stream-text strong {
       font-weight: 600;
-      color: var(--brycer-navy);
+      color: #f9fafb;
     }
 
     /* Drip rows under each quarter */
     .drip-row {
-      margin-top: 4px;
-      margin-bottom: 8px;
-      border-radius: 10px;
-      border: 1px dashed var(--brycer-border);
-      background: var(--brycer-grey-light);
-      padding: 8px 10px;
+      margin-top: 6px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(59, 130, 246, 0.7);
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.95), rgba(30, 64, 175, 0.9));
+      padding: 9px 11px;
       font-size: 0.78rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
     }
 
     .drip-title {
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--brycer-navy);
+      color: #e5e7eb;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       margin-bottom: 4px;
     }
 
     .drip-line {
       margin-top: 2px;
-      color: var(--text-main);
+      color: #e5e7eb;
     }
 
     .drip-line strong {
       font-weight: 600;
-      color: var(--brycer-navy);
+      color: #f9fafb;
     }
 
     .drip-pill {
@@ -272,25 +290,20 @@
       gap: 4px;
       font-size: 0.75rem;
       font-weight: 600;
-      color: var(--brycer-navy);
-      background: var(--brycer-blue-light);
+      color: #e5f0ff;
+      background: rgba(37, 99, 235, 0.25);
       border-radius: 999px;
-      padding: 2px 8px;
+      padding: 3px 9px;
+      border: 1px solid rgba(129, 140, 248, 0.8);
       margin-right: 6px;
-    }
-
-    .drip-note {
-      margin-top: 3px;
-      color: var(--text-muted);
-      font-size: 0.76rem;
     }
 
     footer {
       margin-top: 22px;
       padding-top: 10px;
-      border-top: 1px solid var(--brycer-border);
+      border-top: 1px solid rgba(148, 163, 184, 0.5);
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: #9ca3af;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
@@ -298,7 +311,7 @@
     }
 
     footer strong {
-      color: var(--brycer-navy);
+      color: #e5e7eb;
     }
   </style>
 </head>
@@ -323,7 +336,7 @@
       <div class="section-label">Segmentation Frame</div>
       <div class="legend-card">
         <div class="legend-title">How every box on this calendar is targeted</div>
-        <p style="font-size:0.84rem; color:var(--text-muted); margin-top:2px;">
+        <p style="font-size:0.84rem; color:#d1d5db; margin-top:2px;">
           Every prospect touch is filtered through region, population, and quarterly theme so messaging stays relevant and consistent.
         </p>
         <div class="chip-row">
@@ -736,7 +749,7 @@
 
     <footer>
       <div><strong>Backed by BRYCER.</strong> Turning Reports into Results.</div>
-      <div></div>
+      <div>Thank you for building this calendar around one problem – lack of compliance.</div>
     </footer>
   </div>
 </body>
