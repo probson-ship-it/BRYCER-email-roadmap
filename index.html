@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BRYCER Quarterly Email Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brycer-navy: #03233d;
+      --brycer-orange: #e17f49;
+      --brycer-blue-light: #e9f1f8;
+      --brycer-grey-light: #f5f5f7;
+      --brycer-border: #d5dde5;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 32px 16px;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--brycer-border);
+      padding-bottom: 16px;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brycer-orange);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brycer-navy);
+      margin-bottom: 6px;
+    }
+
+    .subheading {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .subheading span.dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--brycer-orange);
+      display: inline-block;
+    }
+
+    .meta-row {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meta-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--brycer-blue-light);
+      color: var(--brycer-navy);
+      font-weight: 500;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin: 16px 0 8px;
+    }
+
+    .legend-card,
+    .quarter-card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid var(--brycer-border);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(3, 35, 61, 0.04);
+    }
+
+    .legend-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--brycer-navy);
+      margin-bottom: 6px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--brycer-border);
+      background: var(--brycer-grey-light);
+      color: var(--text-main);
+    }
+
+    .quarter-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .quarter-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--brycer-navy);
+    }
+
+    .quarter-theme {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--brycer-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .quarter-tagline {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .month-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 800px) {
+      .month-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .month-card {
+      border-radius: 10px;
+      border: 1px solid var(--brycer-border);
+      background: #ffffff;
+      padding: 8px 9px;
+      box-shadow: 0 2px 8px rgba(3, 35, 61, 0.03);
+      font-size: 0.8rem;
+    }
+
+    .month-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .month-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--brycer-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .month-theme-pill {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--brycer-blue-light);
+      color: var(--brycer-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .stream-row {
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1px dashed rgba(213, 221, 229, 0.7);
+    }
+
+    .stream-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 1px;
+    }
+
+    .stream-text {
+      font-size: 0.78rem;
+      color: var(--text-main);
+    }
+
+    .stream-text strong {
+      font-weight: 600;
+      color: var(--brycer-navy);
+    }
+
+    footer {
+      margin-top: 22px;
+      padding-top: 10px;
+      border-top: 1px solid var(--brycer-border);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer strong {
+      color: var(--brycer-navy);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="eyebrow">Backed by BRYCER</div>
+      <h1>BRYCER Quarterly Email Calendar</h1>
+      <div class="subheading">
+        <span>Turning Reports into Results</span>
+        <span class="dot"></span>
+        <span>12-month roadmap organized as a quarterly calendar.</span>
+      </div>
+      <div class="meta-row">
+        <div class="meta-pill">National Marketing Engine</div>
+        <div>6 Regions · 4 Population Tiers · 4 Quarterly Themes</div>
+      </div>
+    </header>
+
+    <!-- Segmentation legend -->
+    <section>
+      <div class="section-label">Segmentation Frame</div>
+      <div class="legend-card">
+        <div class="legend-title">How every box on this calendar is targeted</div>
+        <p style="font-size:0.84rem; color:var(--text-muted); margin-top:2px;">
+          Every prospect touch is filtered through region, population, and quarterly theme so messaging stays relevant and consistent.
+        </p>
+        <div class="chip-row">
+          <div class="chip"><strong>Regions</strong> – South · Midwest · West · Northeast · Mountain · Plains</div>
+          <div class="chip"><strong>Population tiers</strong> – &lt;25k · 25–50k · 50–250k · 250k+</div>
+          <div class="chip"><strong>Quarterly themes</strong> – Q1 Visibility · Q2 Efficiency · Q3 Compliance · Q4 Modernization</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q1 -->
+    <section>
+      <div class="section-label">Quarter 1 · January – March</div>
+      <div class="quarter-card">
+        <div class="quarter-header">
+          <div class="quarter-name">Q1 – Visibility</div>
+          <div class="quarter-theme">“You cannot fix what you cannot see.”</div>
+        </div>
+        <div class="quarter-tagline">
+          Focused on uncovering hidden systems and unseen compliance gaps, especially as population and complexity increase.
+        </div>
+
+        <div class="month-grid">
+          <!-- January -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">January</div>
+              <div class="month-theme-pill">Visibility</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                <strong>State outreach – Visibility</strong> launch for all regions & population tiers. A/B on “blind spots” messaging + discovery load.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>How to submit clean reports</strong> – educate contractors & ITM companies on BRYCER-first workflows.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell theme (Fire Ext / RR / Multi-System) aligned to “see everything in one place.”
+              </div>
+            </div>
+          </div>
+
+          <!-- February -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">February</div>
+              <div class="month-theme-pill">Visibility</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Continue Q1 Visibility A/B – resend winning variant + begin <strong>cold / warm / high intent drips</strong> by region & tier.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                No dedicated SP campaign – leverage January content in SDR & AM conversations with contractors.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – position BRYCER as the single source of truth for fire and life-safety systems.
+              </div>
+            </div>
+          </div>
+
+          <!-- March -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">March</div>
+              <div class="month-theme-pill">Visibility</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Final Q1 Visibility wave + drips reinforcing discovery load (“cities like Huntsville uncovered 4,369 systems…”).
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>How to reduce rejections</strong> – align contractors to AHJ requirements and reduce manual back-and-forth.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell mapped to visibility outcomes (more systems actively tracked).
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Newsletter</div>
+              <div class="stream-text">
+                Q1 newsletter – product updates, training, case studies focused on visibility & discovery load.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2 -->
+    <section>
+      <div class="section-label">Quarter 2 · April – June</div>
+      <div class="quarter-card">
+        <div class="quarter-header">
+          <div class="quarter-name">Q2 – Efficiency</div>
+          <div class="quarter-theme">“Give inspectors their time back.”</div>
+        </div>
+        <div class="quarter-tagline">
+          Reduce administrative burden and return hours to inspectors and admins using BRYCER and Report Reviewer.
+        </div>
+
+        <div class="month-grid">
+          <!-- April -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">April</div>
+              <div class="month-theme-pill">Efficiency</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Launch <strong>Q2 Efficiency outreach</strong> – A/B emails by region & tier focused on admin overload and manual review.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                No new SP campaign – reference Q1 content when discussing rejection reduction and cleaner submissions.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – spotlight <strong>Report Reviewer upgrade</strong> and automation value.
+              </div>
+            </div>
+          </div>
+
+          <!-- May -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">May</div>
+              <div class="month-theme-pill">Efficiency</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Continue Q2 A/B + resend winners; highlight reduced admin hours and inspection backlog stories.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>Clear requirements improve performance</strong> – show contractors how clarity in BRYCER reduces delays.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – efficiency-focused message (do more with the same team).
+              </div>
+            </div>
+          </div>
+
+          <!-- June -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">June</div>
+              <div class="month-theme-pill">Efficiency</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Wrap Q2 outreach + drips – reinforce “remove admin burden” and RR success stories.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                No new SP campaign – share May content in AM/SDR follow-ups with key contractors.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell around automation and freeing up internal admin resources.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Newsletter</div>
+              <div class="stream-text">
+                Q2 newsletter – efficiency wins, RR impact, and “give inspectors their time back” narrative.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q3 -->
+    <section>
+      <div class="section-label">Quarter 3 · July – September</div>
+      <div class="quarter-card">
+        <div class="quarter-header">
+          <div class="quarter-name">Q3 – Compliance Outcomes</div>
+          <div class="quarter-theme">“Better data creates better community safety.”</div>
+        </div>
+        <div class="quarter-tagline">
+          Connect BRYCER directly to measurable compliance lift, ISO/accreditation support, and community risk reduction.
+        </div>
+
+        <div class="month-grid">
+          <!-- July -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">July</div>
+              <div class="month-theme-pill">Compliance</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Launch <strong>Q3 Compliance outreach</strong> – region × population messaging around jurisdiction-wide compliance.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>How to avoid common mistakes</strong> – help contractors improve report quality before busy season ramps.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – tie add-ons to raising compliance percentages.
+              </div>
+            </div>
+          </div>
+
+          <!-- August -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">August</div>
+              <div class="month-theme-pill">Compliance</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                A/B variants around “results your leadership cares about”; resend winners and deepen outcome-focused drips.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                No new SP campaign – extend July education in AM and SDR conversations.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – pull in Huntsville-style outcomes (e.g., 86% compliance) as proof points.
+              </div>
+            </div>
+          </div>
+
+          <!-- September -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">September</div>
+              <div class="month-theme-pill">Compliance</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Final Q3 wave – emphasize data for leadership, ISO and accreditation readiness.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>Preparing for busy season</strong> – keep inspections flowing and reports clean as volume spikes.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – strengthen the compliance ecosystem across systems (Backflow, Hoods, Suppression, Hydrants).
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Newsletter</div>
+              <div class="stream-text">
+                Q3 newsletter – compliance case studies, community-risk reduction content, ISO/accreditation-focused messaging.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4 -->
+    <section>
+      <div class="section-label">Quarter 4 · October – December</div>
+      <div class="quarter-card">
+        <div class="quarter-header">
+          <div class="quarter-name">Q4 – Modernization</div>
+          <div class="quarter-theme">“Prepare your compliance program for 2026.”</div>
+        </div>
+        <div class="quarter-tagline">
+          Position BRYCER as the modernization layer for future-ready fire and life safety programs.
+        </div>
+
+        <div class="month-grid">
+          <!-- October -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">October</div>
+              <div class="month-theme-pill">Modernization</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Launch <strong>Q4 Modernization outreach</strong> – future-proofing message across regions and population tiers.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                No new SP campaign – use prior content to show how modernization benefits contractors as well.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – modernization as the case for adding systems and RR automation.
+              </div>
+            </div>
+          </div>
+
+          <!-- November -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">November</div>
+              <div class="month-theme-pill">Modernization</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Regional + population A/B variants emphasizing readiness for the next budget and planning cycle.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>Close the year strong</strong> – SP campaign focused on finishing inspections and reporting cleanly.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – positioning BRYCER as the modern backbone of their compliance tech stack.
+              </div>
+            </div>
+          </div>
+
+          <!-- December -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">December</div>
+              <div class="month-theme-pill">Modernization</div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Prospects</div>
+              <div class="stream-text">
+                Final Q4 touches – “prepare your compliance program for 2026” narrative and planning CTAs.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                No new SP send – focus on follow-through and prep for January education.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Upsell</div>
+              <div class="stream-text">
+                Monthly upsell – frame add-ons as part of modernizing for the new year.
+              </div>
+            </div>
+            <div class="stream-row">
+              <div class="stream-label">Customer Newsletter</div>
+              <div class="stream-text">
+                Q4 / Year-end newsletter – recap visibility, efficiency, compliance wins and map the modernization roadmap into 2026.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div><strong>Backed by BRYCER.</strong> Turning Reports into Results.</div>
+      <div>Thank you for building this calendar around one problem – lack of compliance.</div>
+    </footer>
+  </div>
+</body>
+</html>
