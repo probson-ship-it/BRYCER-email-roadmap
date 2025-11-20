@@ -239,7 +239,7 @@
     /* Drip rows under each quarter */
     .drip-row {
       margin-top: 4px;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       border-radius: 10px;
       border: 1px dashed var(--brycer-border);
       background: var(--brycer-grey-light);
@@ -253,7 +253,7 @@
       color: var(--brycer-navy);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .drip-line {
@@ -266,7 +266,71 @@
       color: var(--brycer-navy);
     }
 
+    .drip-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brycer-navy);
+      background: var(--brycer-blue-light);
+      border-radius: 999px;
+      padding: 2px 8px;
+      margin-right: 6px;
+    }
+
     .drip-note {
+      margin-top: 3px;
+      color: var(--text-muted);
+      font-size: 0.76rem;
+    }
+
+    /* Service Provider rows under each quarter */
+    .sp-row {
+      margin-top: 6px;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--brycer-border);
+      background: #ffffff;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      box-shadow: 0 3px 10px rgba(3, 35, 61, 0.04);
+    }
+
+    .sp-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--brycer-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .sp-line {
+      margin-top: 3px;
+      color: var(--text-main);
+    }
+
+    .sp-line strong {
+      font-weight: 600;
+      color: var(--brycer-navy);
+    }
+
+    .sp-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brycer-navy);
+      background: var(--brycer-blue-light);
+      border-radius: 999px;
+      padding: 2px 8px;
+      margin-right: 6px;
+      margin-top: 2px;
+    }
+
+    .sp-note {
       margin-top: 3px;
       color: var(--text-muted);
       font-size: 0.76rem;
@@ -347,12 +411,6 @@
               </div>
             </div>
             <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>How to submit clean reports</strong> – educate contractors & ITM companies on BRYCER-first workflows.
-              </div>
-            </div>
-            <div class="stream-row">
               <div class="stream-label">Customer Upsell</div>
               <div class="stream-text">
                 Monthly upsell theme (Fire Ext / RR / Multi-System) aligned to “see everything in one place.”
@@ -373,12 +431,6 @@
               </div>
             </div>
             <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                No dedicated SP campaign – leverage January content in SDR & AM conversations with contractors.
-              </div>
-            </div>
-            <div class="stream-row">
               <div class="stream-label">Customer Upsell</div>
               <div class="stream-text">
                 Monthly upsell – position BRYCER as the single source of truth for fire and life-safety systems.
@@ -395,13 +447,7 @@
             <div class="stream-row">
               <div class="stream-label">Prospects</div>
               <div class="stream-text">
-                Final Q1 Visibility outreach plus <strong>Q1 VISIBILITY drips</strong> to move leads into Q2.
-              </div>
-            </div>
-            <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>How to reduce rejections</strong> – align contractors to AHJ requirements and reduce manual back-and-forth.
+                Final Q1 Visibility outreach plus end-of-quarter drips to move leads into Q2 Efficiency.
               </div>
             </div>
             <div class="stream-row">
@@ -424,16 +470,20 @@
       <div class="drip-row">
         <div class="drip-title">Q1 Drip Campaigns – Visibility</div>
         <div class="drip-line">
-          <strong>January:</strong> No drip – focus on state outreach only (region × population).
+          <span class="drip-pill">March · Weeks 10–12</span>
+          <strong>Cold, Warm, and High Intent Visibility drips</strong> all run in the last 2–3 weeks of March to close out Q1 and transition leads into Q2 Efficiency.
         </div>
-        <div class="drip-line">
-          <strong>February:</strong> No drip – continue state outreach and A/B testing.
+      </div>
+
+      <!-- Q1 Service Provider row -->
+      <div class="sp-row">
+        <div class="sp-title">Q1 Service Provider Campaigns – Visibility</div>
+        <div class="sp-line">
+          <span class="sp-pill">February</span>
+          <strong>Systems Growth = More Opportunity for You.</strong> When a city turns on BRYCER, they uncover previously untracked systems that now must be tested and maintained. For service providers, that visibility creates new, qualified opportunity inside markets you already serve — more systems eligible for inspections, more chances to deepen existing relationships, and more recurring work tied to required testing.
         </div>
-        <div class="drip-line">
-          <strong>March:</strong> Cold, Warm, and High Intent <strong>Visibility drips</strong> all run in Weeks 10–12 (last 2–3 weeks of the quarter).
-        </div>
-        <div class="drip-note">
-          All three drips close out Q1 and move engaged and non-engaged leads into Q2 Efficiency messaging.
+        <div class="sp-note">
+          Focus: Visibility as opportunity expansion, not extra burden — more systems to protect, more value you can deliver.
         </div>
       </div>
     </section>
@@ -464,12 +514,6 @@
               </div>
             </div>
             <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                No new SP campaign – reference Q1 content when discussing rejection reduction and cleaner submissions.
-              </div>
-            </div>
-            <div class="stream-row">
               <div class="stream-label">Customer Upsell</div>
               <div class="stream-text">
                 Monthly upsell – spotlight <strong>Report Reviewer upgrade</strong> and automation value.
@@ -490,12 +534,6 @@
               </div>
             </div>
             <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>Clear requirements improve performance</strong> – show contractors how clarity in BRYCER reduces delays.
-              </div>
-            </div>
-            <div class="stream-row">
               <div class="stream-label">Customer Upsell</div>
               <div class="stream-text">
                 Monthly upsell – efficiency-focused message (do more with the same team).
@@ -512,13 +550,7 @@
             <div class="stream-row">
               <div class="stream-label">Prospects</div>
               <div class="stream-text">
-                Wrap Q2 outreach plus <strong>Q2 EFFICIENCY drips</strong> at the end of the quarter.
-              </div>
-            </div>
-            <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                No new SP campaign – share May content in AM/SDR follow-ups with key contractors.
+                Wrap Q2 outreach plus end-of-quarter drips focused on removing administrative burden and backlog.
               </div>
             </div>
             <div class="stream-row">
@@ -541,16 +573,24 @@
       <div class="drip-row">
         <div class="drip-title">Q2 Drip Campaigns – Efficiency</div>
         <div class="drip-line">
-          <strong>April:</strong> No drip – focus on Q2 Efficiency state outreach and launch.
+          <span class="drip-pill">June · Weeks 10–12</span>
+          <strong>Cold, Warm, and High Intent Efficiency drips</strong> run at the end of June, reinforcing the “remove administrative burden” story before transitioning to Q3 Compliance.
         </div>
-        <div class="drip-line">
-          <strong>May:</strong> No drip – continue outreach and A/B, build audience for end-of-quarter drips.
+      </div>
+
+      <!-- Q2 Service Provider row -->
+      <div class="sp-row">
+        <div class="sp-title">Q2 Service Provider Campaigns – Efficiency</div>
+        <div class="sp-line">
+          <span class="sp-pill">April</span>
+          <strong>Notifications Create Predictable Demand.</strong> When BRYCER sends automated notifications to property owners, those premises are required to get systems tested on a regular cadence. That shift creates steadier, more predictable inspection demand — fewer “fire drills” and more scheduled work your team can plan around.
         </div>
-        <div class="drip-line">
-          <strong>June:</strong> Cold, Warm, and High Intent <strong>Efficiency drips</strong> all run in Weeks 10–12 (last 2–3 weeks of June).
+        <div class="sp-line">
+          <span class="sp-pill">June</span>
+          <strong>Integrations & Past-Due Tracking Make Reporting Easier.</strong> BRYCER simplifies your workflow with easier report uploads, integrations that reduce double entry, and clear visibility into past-due systems. That means less time chasing paperwork and more time actually doing inspections.
         </div>
-        <div class="drip-note">
-          All drips fire at the end of June, reinforcing the “remove administrative burden” story and setting up Q3 Compliance.
+        <div class="sp-note">
+          Focus: Make it easier to do business with BRYCER — less admin, more predictable work, better use of your team’s time.
         </div>
       </div>
     </section>
@@ -581,12 +621,6 @@
               </div>
             </div>
             <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>How to avoid common mistakes</strong> – help contractors improve report quality before busy season ramps.
-              </div>
-            </div>
-            <div class="stream-row">
               <div class="stream-label">Customer Upsell</div>
               <div class="stream-text">
                 Monthly upsell – tie add-ons to raising compliance percentages.
@@ -603,19 +637,13 @@
             <div class="stream-row">
               <div class="stream-label">Prospects</div>
               <div class="stream-text">
-                A/B variants around “results your leadership cares about”; resend winners and deepen outcome-focused drips.
-              </div>
-            </div>
-            <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                No new SP campaign – extend July education in AM and SDR conversations.
+                A/B variants around “results your leadership cares about”; resend winners and deepen outcome-focused messaging.
               </div>
             </div>
             <div class="stream-row">
               <div class="stream-label">Customer Upsell</div>
               <div class="stream-text">
-                Monthly upsell – pull in Huntsville-style outcomes (for example, 86% compliance) as proof points.
+                Monthly upsell – use compliance lift stories as proof points.
               </div>
             </div>
           </div>
@@ -629,13 +657,7 @@
             <div class="stream-row">
               <div class="stream-label">Prospects</div>
               <div class="stream-text">
-                Final Q3 wave – emphasize data for leadership, ISO and accreditation readiness, plus <strong>Q3 COMPLIANCE drips</strong>.
-              </div>
-            </div>
-            <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>Preparing for busy season</strong> – keep inspections flowing and reports clean as volume spikes.
+                Final Q3 wave – emphasize data for leadership, ISO and accreditation readiness, plus end-of-quarter drips.
               </div>
             </div>
             <div class="stream-row">
@@ -658,16 +680,20 @@
       <div class="drip-row">
         <div class="drip-title">Q3 Drip Campaigns – Compliance</div>
         <div class="drip-line">
-          <strong>July:</strong> No drip – focus on launching Q3 Compliance outreach and baseline narrative.
+          <span class="drip-pill">September · Weeks 10–12</span>
+          <strong>Cold, Warm, and High Intent Compliance drips</strong> run in late September, reinforcing jurisdiction-wide compliance outcomes and priming Q4 modernization conversations.
         </div>
-        <div class="drip-line">
-          <strong>August:</strong> No drip – continue outreach, A/B, and deepen case-study proof.
+      </div>
+
+      <!-- Q3 Service Provider row -->
+      <div class="sp-row">
+        <div class="sp-title">Q3 Service Provider Campaigns – Compliance</div>
+        <div class="sp-line">
+          <span class="sp-pill">August</span>
+          <strong>Your Reports Raise Citywide Compliance.</strong> When your team submits accurate, timely reports through BRYCER, those reports convert directly into higher compliance rates across the community. BRYCER makes that work visible — reinforcing that your inspections don’t just close jobs; they improve safety outcomes and help cities hit their compliance goals.
         </div>
-        <div class="drip-line">
-          <strong>September:</strong> Cold, Warm, and High Intent <strong>Compliance drips</strong> all run in Weeks 10–12 (late September).
-        </div>
-        <div class="drip-note">
-          These drips reinforce jurisdiction-wide compliance outcomes and tee up modernization conversations for Q4.
+        <div class="sp-note">
+          Focus: Position service providers as essential partners in improving community safety, not just vendors submitting paperwork.
         </div>
       </div>
     </section>
@@ -698,12 +724,6 @@
               </div>
             </div>
             <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                No new SP campaign – use prior content to show how modernization benefits contractors as well.
-              </div>
-            </div>
-            <div class="stream-row">
               <div class="stream-label">Customer Upsell</div>
               <div class="stream-text">
                 Monthly upsell – modernization as the case for adding systems and RR automation.
@@ -724,12 +744,6 @@
               </div>
             </div>
             <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>Close the year strong</strong> – SP campaign focused on finishing inspections and reporting cleanly.
-              </div>
-            </div>
-            <div class="stream-row">
               <div class="stream-label">Customer Upsell</div>
               <div class="stream-text">
                 Monthly upsell – positioning BRYCER as the modern backbone of their compliance tech stack.
@@ -746,13 +760,7 @@
             <div class="stream-row">
               <div class="stream-label">Prospects</div>
               <div class="stream-text">
-                Final Q4 touches – “prepare your compliance program for 2026” narrative and planning CTAs plus <strong>Q4 MODERNIZATION drips</strong>.
-              </div>
-            </div>
-            <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                No new SP send – focus on follow-through and prep for January education.
+                Final Q4 touches – “prepare your compliance program for 2026” narrative, planning CTAs, and early-quarter drips.
               </div>
             </div>
             <div class="stream-row">
@@ -775,23 +783,31 @@
       <div class="drip-row">
         <div class="drip-title">Q4 Drip Campaigns – Modernization</div>
         <div class="drip-line">
-          <strong>October:</strong> No drip – focus on Q4 Modernization state outreach and future-proofing story.
+          <span class="drip-pill">Early December · Weeks 9–10</span>
+          <strong>Cold, Warm, and High Intent Modernization drips</strong> run earlier in December to stay ahead of noisy inboxes, staffing drops, and holiday slowdowns — still end-of-quarter, just pulled slightly forward.
         </div>
-        <div class="drip-line">
-          <strong>November:</strong> No drip – continue outreach, A/B variants, and year-end planning messaging.
+      </div>
+
+      <!-- Q4 Service Provider row -->
+      <div class="sp-row">
+        <div class="sp-title">Q4 Service Provider Campaigns – Modernization & Wrap-Up</div>
+        <div class="sp-line">
+          <span class="sp-pill">October</span>
+          <strong>Modern Tools That Support Service Providers.</strong> Modernizing a city’s compliance program isn’t only about the AHJ. Service providers benefit from standardized submission requirements, fewer rejected reports, better visibility into workloads, and tools that help you stay aligned with enforcement cycles. Modernization becomes a competitive edge when you’re bidding and renewing contracts.
         </div>
-        <div class="drip-line">
-          <strong>December:</strong> Cold, Warm, and High Intent <strong>Modernization drips</strong> run slightly earlier in the quarter (Weeks 9–10) in early December.
+        <div class="sp-line">
+          <span class="sp-pill">December</span>
+          <strong>Year-End Service Provider Wrap-Up.</strong> Close the year by highlighting how working in BRYCER delivered clearer requirements, more predictable demand, and smoother submission workflows. Thank providers for being part of the ecosystem and preview how next year’s Visibility → Efficiency → Compliance → Modernization themes will create even more opportunity.
         </div>
-        <div class="drip-note">
-          Drips go earlier because December inboxes get noisy, staffing drops, and holidays reduce engagement – still end-of-quarter, just pulled forward.
+        <div class="sp-note">
+          Focus: Retain and deepen service provider relationships, and position BRYCER as the platform that makes their business easier and more successful.
         </div>
       </div>
     </section>
 
     <footer>
-      <div><strong>Powered by BRYCER.</strong> Turning Reports into Results.</div>
-      <div></div>
+      <div><strong>Backed by BRYCER.</strong> Turning Reports into Results.</div>
+      <div>Thank you for building this calendar around one problem – lack of compliance.</div>
     </footer>
   </div>
 </body>
