@@ -2,300 +2,355 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>BRYCER Quarterly Email Calendar</title>
+  <title>BRYCER Email Calendar – Weekly Regional Rollout</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    :root {
-      --brycer-navy: #03233d;
-      --brycer-orange: #e17f49;
-      --brycer-blue-light: #e9f1f8;
-      --brycer-grey-light: #f5f5f7;
-      --brycer-border: #94a3b8;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
+    :root{
+      --brycer-navy:#03233d;
+      --brycer-orange:#e17f49;
+
+      /* Lighter, higher-contrast palette */
+      --bg-1:#f6f8fb;
+      --bg-2:#ffffff;
+      --card:#ffffff;
+      --border:#d7dee9;
+      --muted:#5f6b7a;
+      --text:#0b1b2b;
+
+      --pill:#eef4ff;
+      --pill-border:#cfe0ff;
+
+      --row-alt:#f7fafc;
+      --shadow: 0 16px 50px rgba(3, 35, 61, 0.10);
+      --shadow-soft: 0 10px 28px rgba(3, 35, 61, 0.08);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #0b345c 0, #020617 55%, #000000 100%);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 40px 16px;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:"Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #ffffff 0, var(--bg-1) 45%, #eef2f7 100%);
+      color:var(--text);
+      line-height:1.55;
+      padding:38px 16px;
     }
 
-    .page {
-      max-width: 1200px;
-      margin: 0 auto;
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.98));
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
-      padding: 24px 22px 26px;
-      backdrop-filter: blur(18px);
+    .page{
+      max-width:1280px;
+      margin:0 auto;
+      background:var(--bg-2);
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      padding:24px 22px 26px;
     }
 
-    header {
-      margin-bottom: 22px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
-      padding-bottom: 14px;
+    header{
+      margin-bottom:18px;
+      border-bottom:1px solid var(--border);
+      padding-bottom:14px;
     }
 
-    .eyebrow {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--brycer-orange);
-      margin-bottom: 4px;
+    .eyebrow{
+      font-size:0.78rem;
+      font-weight:700;
+      letter-spacing:0.20em;
+      text-transform:uppercase;
+      color:var(--brycer-orange);
+      margin-bottom:6px;
     }
 
-    h1 {
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: #f9fafb;
-      margin-bottom: 6px;
+    h1{
+      font-size:1.85rem;
+      font-weight:800;
+      color:var(--brycer-navy);
+      margin-bottom:8px;
+      line-height:1.2;
     }
 
-    .subheading {
-      font-size: 0.9rem;
-      color: #e5e7eb;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
+    .subheading{
+      font-size:0.95rem;
+      color:var(--muted);
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
     }
 
-    .subheading span.dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 999px;
-      background: var(--brycer-orange);
-      display: inline-block;
+    .subheading .dot{
+      width:5px;height:5px;border-radius:999px;background:var(--brycer-orange);display:inline-block;
     }
 
-    .meta-row {
-      margin-top: 8px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
+    .meta-row{
+      margin-top:10px;
+      font-size:0.82rem;
+      color:var(--muted);
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
     }
 
-    .meta-pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(37, 99, 235, 0.2);
-      color: #e5f0ff;
-      font-weight: 500;
-      border: 1px solid rgba(191, 219, 254, 0.6);
+    .meta-pill{
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--pill);
+      border:1px solid var(--pill-border);
+      color:var(--brycer-navy);
+      font-weight:700;
     }
 
-    .section-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-      margin: 18px 0 8px;
+    .section-label{
+      font-size:0.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      color:#6c7786;
+      margin:18px 0 10px;
     }
 
-    .legend-card,
-    .quarter-card {
-      background: linear-gradient(135deg, rgba(12, 30, 60, 0.96), rgba(6, 18, 36, 0.98));
-      border-radius: 16px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 16px 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+    .legend-card, .quarter-card{
+      background:var(--card);
+      border-radius:16px;
+      border:1px solid var(--border);
+      padding:16px 18px;
+      box-shadow:var(--shadow-soft);
+      margin-bottom:14px;
     }
 
-    .legend-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #f3f4f6;
-      margin-bottom: 6px;
+    .legend-title{
+      font-size:0.95rem;
+      font-weight:800;
+      color:var(--brycer-navy);
+      margin-bottom:6px;
     }
 
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
+    .chip-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
     }
 
-    .chip {
-      font-size: 0.75rem;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
-      color: #e5e7eb;
+    .chip{
+      font-size:0.76rem;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fbfdff;
+      color:var(--brycer-navy);
+      font-weight:600;
     }
 
-    .quarter-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      align-items: baseline;
-      margin-bottom: 10px;
+    .quarter-header{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+      margin-bottom:10px;
+      flex-wrap:wrap;
     }
 
-    .quarter-name {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #f3f4f6;
+    .quarter-name{
+      font-size:1.05rem;
+      font-weight:900;
+      color:var(--brycer-navy);
     }
 
-    .quarter-theme {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--brycer-orange);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      text-align: right;
+    .quarter-theme{
+      font-size:0.80rem;
+      font-weight:800;
+      color:var(--brycer-orange);
+      text-transform:uppercase;
+      letter-spacing:0.10em;
+      text-align:right;
     }
 
-    .quarter-tagline {
-      font-size: 0.82rem;
-      color: #d1d5db;
-      margin-top: 2px;
+    .quarter-tagline{
+      font-size:0.90rem;
+      color:var(--muted);
+      margin-top:2px;
     }
 
-    .month-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 10px;
+    .split-note{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px;
     }
 
-    @media (max-width: 800px) { .month-grid { grid-template-columns: 1fr; } }
-
-    .month-card {
-      border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: radial-gradient(circle at top left, rgba(17, 35, 71, 0.98), rgba(10, 22, 45, 0.98));
-      padding: 9px 10px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
-      font-size: 0.8rem;
-      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, border-color 0.16s ease-out;
+    @media (max-width:900px){
+      .split-note{grid-template-columns:1fr;}
     }
 
-    .month-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-      border-color: var(--brycer-orange);
+    .note{
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:#fbfdff;
+      padding:10px 12px;
     }
 
-    .month-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 4px;
+    .note-title{
+      font-size:0.78rem;
+      font-weight:900;
+      color:var(--brycer-navy);
+      text-transform:uppercase;
+      letter-spacing:0.10em;
+      margin-bottom:6px;
     }
 
-    .month-name {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #e5e7eb;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
+    .note p{
+      font-size:0.84rem;
+      color:var(--muted);
     }
 
-    .month-theme-pill {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(37, 99, 235, 0.15);
-      border: 1px solid rgba(191, 219, 254, 0.6);
-      color: #e5f0ff;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      white-space: nowrap;
+    /* Week table */
+    .table-wrap{
+      overflow:auto;
+      border-radius:14px;
+      border:1px solid var(--border);
+      margin-top:12px;
     }
 
-    .stream-row {
-      margin-top: 4px;
-      padding-top: 4px;
-      border-top: 1px dashed rgba(148, 163, 184, 0.6);
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      min-width:1050px;
+      background:#fff;
     }
 
-    .stream-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
-      margin-bottom: 1px;
+    thead th{
+      position:sticky;
+      top:0;
+      background:linear-gradient(180deg, #ffffff 0, #f6f9ff 100%);
+      z-index:1;
+      border-bottom:1px solid var(--border);
+      color:var(--brycer-navy);
+      font-size:0.74rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      font-weight:900;
+      padding:12px 10px;
+      text-align:left;
+      vertical-align:bottom;
+      white-space:nowrap;
     }
 
-    .stream-text {
-      font-size: 0.78rem;
-      color: #e5e7eb;
+    tbody td{
+      border-bottom:1px solid var(--border);
+      padding:12px 10px;
+      vertical-align:top;
+      font-size:0.84rem;
+      color:var(--text);
     }
 
-    .stream-text strong {
-      font-weight: 600;
-      color: #f9fafb;
+    tbody tr:nth-child(even) td{
+      background:var(--row-alt);
     }
 
-    /* Drip rows under each quarter */
-    .drip-row {
-      margin-top: 6px;
-      margin-bottom: 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(59, 130, 246, 0.7);
-      background: linear-gradient(90deg, rgba(15, 23, 42, 0.95), rgba(30, 64, 175, 0.9));
-      padding: 9px 11px;
-      font-size: 0.78rem;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+    .wk{
+      font-weight:900;
+      color:var(--brycer-navy);
+      white-space:nowrap;
     }
 
-    .drip-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #e5e7eb;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 4px;
+    .dates{
+      color:var(--muted);
+      font-weight:700;
+      font-size:0.80rem;
+      white-space:nowrap;
     }
 
-    .drip-line { margin-top: 2px; color: #e5e7eb; }
-    .drip-line strong { font-weight: 600; color: #f9fafb; }
-
-    .drip-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #e5f0ff;
-      background: rgba(37, 99, 235, 0.25);
-      border-radius: 999px;
-      padding: 3px 9px;
-      border: 1px solid rgba(129, 140, 248, 0.8);
-      margin-right: 6px;
+    .region{
+      font-weight:900;
+      color:var(--brycer-navy);
+      margin-bottom:4px;
     }
 
-    footer {
-      margin-top: 22px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 0.78rem;
-      color: #9ca3af;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
+    .states{
+      color:var(--muted);
+      font-size:0.80rem;
+      line-height:1.45;
     }
 
-    footer strong { color: #e5e7eb; }
+    .stream-label{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:var(--pill);
+      border:1px solid var(--pill-border);
+      font-weight:900;
+      color:var(--brycer-navy);
+      font-size:0.74rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      margin-bottom:6px;
+    }
+
+    .stream-text{
+      color:var(--text);
+      font-size:0.84rem;
+    }
+
+    .stream-text strong{
+      color:var(--brycer-navy);
+      font-weight:900;
+    }
+
+    .drip-row{
+      margin-top:10px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:linear-gradient(90deg, #fff 0, #f6f9ff 100%);
+      padding:12px 14px;
+    }
+
+    .drip-title{
+      font-size:0.80rem;
+      font-weight:900;
+      color:var(--brycer-navy);
+      text-transform:uppercase;
+      letter-spacing:0.10em;
+      margin-bottom:6px;
+    }
+
+    .drip-line{
+      font-size:0.86rem;
+      color:var(--muted);
+    }
+
+    .drip-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#ffffff;
+      color:var(--brycer-navy);
+      font-weight:900;
+      font-size:0.78rem;
+      margin-right:8px;
+      white-space:nowrap;
+    }
+
+    footer{
+      margin-top:18px;
+      padding-top:12px;
+      border-top:1px solid var(--border);
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+      color:var(--muted);
+      font-size:0.82rem;
+    }
+
+    footer strong{color:var(--brycer-navy);}
   </style>
 </head>
 
@@ -303,483 +358,562 @@
   <div class="page">
     <header>
       <div class="eyebrow">Backed by BRYCER</div>
-      <h1>BRYCER Quarterly Email Calendar</h1>
+      <h1>BRYCER Weekly Regional Email Calendar</h1>
       <div class="subheading">
         <span>Turning Reports into Results</span>
         <span class="dot"></span>
-        <span>12-month roadmap organized by separate email streams.</span>
+        <span>Week-by-week 50-state rollout with separate streams for Fire, Backflow, Upsell, and Drips.</span>
       </div>
       <div class="meta-row">
-        <div class="meta-pill">National Marketing Engine</div>
-        <div>Fire Prospects · Backflow Prospects · Existing Partner Upsell · Quarterly Newsletter</div>
+        <div class="meta-pill">2026 Operating View</div>
+        <div>Prospect Outreach (Fire + Backflow) · Existing Fire Customer Upsell · Quarterly Newsletter · Behavior-Based Drips</div>
       </div>
     </header>
 
-    <!-- Segmentation legend -->
+    <!-- Legend -->
     <section>
-      <div class="section-label">Segmentation Frame</div>
+      <div class="section-label">How to Read This Calendar</div>
       <div class="legend-card">
-        <div class="legend-title">How every box on this calendar is targeted</div>
-        <p style="font-size:0.84rem; color:#d1d5db; margin-top:2px;">
-          Prospect outreach is filtered through region, population, and quarterly theme. Existing partner promotions run bi-monthly. Quarterly newsletters go to Fire and Backflow accounts.
+        <div class="legend-title">Four separate streams – one consistent regional cadence</div>
+        <p style="font-size:0.88rem; color:var(--muted); margin-top:4px;">
+          This calendar repeats the same 9-week regional structure every quarter. Fire prospects and Backflow prospects run in parallel with separate themes.
+          Webinars are only used as the core campaign asset for the Report Review upsell motion for existing Fire customers.
         </p>
         <div class="chip-row">
-          <div class="chip"><strong>Prospect regions</strong> – South · Midwest · West · Northeast · Mountain · Plains</div>
-          <div class="chip"><strong>Population tiers</strong> – &lt;25k · 25–50k · 50–250k · 250k+</div>
-          <div class="chip"><strong>Fire themes</strong> – Q1 Visibility · Q2 Efficiency · Q3 Compliance · Q4 Modernization</div>
-          <div class="chip"><strong>Backflow themes</strong> – Q1 Visibility · Q2 Program Control · Q3 Compliance Outcomes · Q4 Modernization & Planning</div>
-          <div class="chip"><strong>Partner promos</strong> – Bi-monthly rotation: Report Review ↔ Fire Extinguishers</div>
+          <div class="chip"><strong>Fire Prospects</strong> – 50 states in 9 weeks (5–6 states weekly)</div>
+          <div class="chip"><strong>Backflow Prospects</strong> – same regional schedule, separate backflow themes</div>
+          <div class="chip"><strong>Upsell (Fire Customers)</strong> – bi-monthly by region (Fire Extinguishers ↔ Report Review)</div>
+          <div class="chip"><strong>Drips</strong> – Cold, Warm, High Intent based on behavior</div>
+          <div class="chip"><strong>Newsletter</strong> – Quarterly to Fire + Backflow accounts</div>
         </div>
       </div>
     </section>
 
-    <!-- Q1 -->
+    <!-- Quarter 1 -->
     <section>
-      <div class="section-label">Quarter 1 · January – March</div>
+      <div class="section-label">Quarter 1 – January 1 to March 4, 2026</div>
       <div class="quarter-card">
         <div class="quarter-header">
-          <div class="quarter-name">Q1 – Visibility</div>
-          <div class="quarter-theme">Fire: “You cannot fix what you cannot see.” · Backflow: “You cannot enforce what you cannot track.”</div>
-        </div>
-        <div class="quarter-tagline">
-          Fire focuses on hidden systems and unseen compliance gaps. Backflow focuses on scattered data, manual tracking, and low visibility across devices.
-        </div>
-
-        <div class="month-grid">
-          <!-- January -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">January</div>
-              <div class="month-theme-pill">Q1 Visibility</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                <strong>Visibility outreach launch</strong> by region & tier. A/B on “blind spots” and discovery load.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                <strong>Visibility outreach launch</strong> by region & tier. A/B on “tracking gaps” and program visibility.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Existing Partner Upsell (Bi-monthly)</div>
-              <div class="stream-text">
-                <strong>Report Review promo</strong> – “close the loop after reports are submitted.”
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Webinars (Start in Jan)</div>
-              <div class="stream-text">
-                <strong>Regional RR webinars</strong> begin (region-based scheduling) with follow-up email CTA to request enablement.
-              </div>
+          <div>
+            <div class="quarter-name">Q1 Themes</div>
+            <div class="quarter-tagline">
+              <strong>Fire Prospects:</strong> Visibility – “You cannot fix what you cannot see.”<br/>
+              <strong>Backflow Prospects:</strong> Visibility – “You cannot enforce what you cannot track.”
             </div>
           </div>
+          <div class="quarter-theme">9-week regional rollout</div>
+        </div>
 
-          <!-- February -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">February</div>
-              <div class="month-theme-pill">Q1 Visibility</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Resend winning Q1 variant + continue state/region outreach across tiers.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Resend winning Q1 variant + reinforce “cannot enforce what you cannot track” visibility message.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>Systems Growth = More Opportunity.</strong> Visibility uncovers more systems/devices that now require testing.
-              </div>
-            </div>
+        <div class="split-note">
+          <div class="note">
+            <div class="note-title">Upsell focus in Q1</div>
+            <p><strong>Jan–Feb:</strong> Fire Extinguishers upsell by region.<br/>
+               <strong>Early Mar:</strong> Report Review upsell kickoff by region (webinar is the campaign anchor).</p>
           </div>
-
-          <!-- March -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">March</div>
-              <div class="month-theme-pill">Q1 Visibility</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Final Q1 wave + prepare leads for Q1 drips (late March).
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Final Q1 wave + prepare leads for Q1 drips (late March).
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Quarterly Newsletter (Fire + Backflow Accounts)</div>
-              <div class="stream-text">
-                <strong>Q1 newsletter</strong> – visibility wins, training resources, case-style stories. (Backflow accounts included.)
-              </div>
-            </div>
+          <div class="note">
+            <div class="note-title">Webinar rule</div>
+            <p><strong>Webinars are only tied to the Report Review upsell motion</strong> for existing Fire customers. No webinars for Backflow prospects.</p>
           </div>
         </div>
-      </div>
 
-      <div class="drip-row">
-        <div class="drip-title">Q1 Drips (Prospects) – Visibility</div>
-        <div class="drip-line">
-          <span class="drip-pill">Late March</span>
-          <strong>Fire + Backflow</strong> – run separate drips for each product line: <strong>Cold, Warm, High Intent</strong> to transition into Q2.
+        <div class="table-wrap" role="region" aria-label="Q1 week table">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th>Dates</th>
+                <th>Region + States</th>
+                <th>Fire Prospects</th>
+                <th>Backflow Prospects</th>
+                <th>Existing Fire Customers – Upsell</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="wk">W1</td>
+                <td class="dates">Jan 1–7</td>
+                <td>
+                  <div class="region">Northeast Wave 1</div>
+                  <div class="states">CT, MA, ME, NH, RI, VT</div>
+                </td>
+                <td>
+                  <div class="stream-label">Fire prospects</div>
+                  <div class="stream-text"><strong>Visibility outreach</strong> – uncover hidden compliance gaps.</div>
+                </td>
+                <td>
+                  <div class="stream-label">Backflow prospects</div>
+                  <div class="stream-text"><strong>Visibility outreach</strong> – scattered device tracking and enforcement gaps.</div>
+                </td>
+                <td>
+                  <div class="stream-label">Upsell</div>
+                  <div class="stream-text"><strong>Fire Extinguishers</strong> – regional focus + clear activation CTA.</div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="wk">W2</td>
+                <td class="dates">Jan 8–14</td>
+                <td>
+                  <div class="region">Northeast Wave 2 + Mid-Atlantic</div>
+                  <div class="states">NJ, NY, PA, DE, MD, DC</div>
+                </td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Visibility continuation – resend winners, sharpen the “blind spots” narrative.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Visibility continuation – “cannot enforce what you cannot track.”</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – maintain regional momentum.</div></td>
+              </tr>
+
+              <tr>
+                <td class="wk">W3</td>
+                <td class="dates">Jan 15–21</td>
+                <td>
+                  <div class="region">Southeast Atlantic</div>
+                  <div class="states">VA, WV, NC, SC, GA, FL</div>
+                </td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Visibility – compliance visibility and discovery load.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Visibility – tracking gaps, missing inventory, inconsistent follow-up.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – reinforce consistent tracking.</div></td>
+              </tr>
+
+              <tr>
+                <td class="wk">W4</td>
+                <td class="dates">Jan 22–28</td>
+                <td>
+                  <div class="region">Deep South</div>
+                  <div class="states">AL, MS, TN, KY, LA, AR</div>
+                </td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Visibility – “what you cannot see becomes risk.”</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Visibility – “paper compliance” hides program gaps.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – keep the campaign regional.</div></td>
+              </tr>
+
+              <tr>
+                <td class="wk">W5</td>
+                <td class="dates">Jan 29–Feb 4</td>
+                <td>
+                  <div class="region">Midwest Great Lakes</div>
+                  <div class="states">OH, MI, IN, IL, WI, MN</div>
+                </td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Visibility – systems and reports unified into one view.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Visibility – device tracking clarity at program scale.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – adoption and cleanup push.</div></td>
+              </tr>
+
+              <tr>
+                <td class="wk">W6</td>
+                <td class="dates">Feb 5–11</td>
+                <td>
+                  <div class="region">Midwest Plains</div>
+                  <div class="states">IA, MO, KS, NE, SD, ND</div>
+                </td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Visibility – highlight discovery load and workload reality.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Visibility – reduce uncertainty in what is compliant now.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – final Feb push.</div></td>
+              </tr>
+
+              <tr>
+                <td class="wk">W7</td>
+                <td class="dates">Feb 12–18</td>
+                <td>
+                  <div class="region">South Central</div>
+                  <div class="states">TX, OK, NM, AZ, CO</div>
+                </td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Visibility – keep the narrative consistent, region-specific proof points.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Visibility – “tracking is enforcement.”</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – sustain coverage.</div></td>
+              </tr>
+
+              <tr>
+                <td class="wk">W8</td>
+                <td class="dates">Feb 19–25</td>
+                <td>
+                  <div class="region">Mountain / Intermountain</div>
+                  <div class="states">UT, NV, ID, MT, WY, OR</div>
+                </td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Visibility – unify records and reduce blind spots.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Visibility – eliminate spreadsheet-driven uncertainty.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – last full-week focus before March shift.</div></td>
+              </tr>
+
+              <tr>
+                <td class="wk">W9</td>
+                <td class="dates">Feb 26–Mar 4</td>
+                <td>
+                  <div class="region">Pacific + Non-Contiguous</div>
+                  <div class="states">CA, WA, AK, HI</div>
+                </td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Visibility – final wave + move engaged contacts into behavior-based drips.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Visibility – final wave + move engaged contacts into behavior-based drips.</div></td>
+                <td>
+                  <div class="stream-label">Upsell</div>
+                  <div class="stream-text">
+                    <strong>Report Review kickoff</strong> – regional campaign begins.<br/>
+                    <strong>Webinar:</strong> Report Review enablement (campaign anchor).
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="drip-row">
+          <div class="drip-title">Q1 Behavior-Based Drips (Fire + Backflow Prospects)</div>
+          <div class="drip-line">
+            <span class="drip-pill">Cold</span> No opens/clicks → awareness + education sequence.
+            <br/>
+            <span class="drip-pill">Warm</span> Opens/clicks/webinar registration (if applicable) → credibility + urgency sequence.
+            <br/>
+            <span class="drip-pill">High Intent</span> Demo requests/repeat clicks/replies → conversion sequence + Sales handoff.
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Q2 -->
+    <!-- Quarter 2 -->
     <section>
-      <div class="section-label">Quarter 2 · April – June</div>
+      <div class="section-label">Quarter 2 – April 1 to June 2, 2026</div>
       <div class="quarter-card">
         <div class="quarter-header">
-          <div class="quarter-name">Q2 – Efficiency / Program Control</div>
-          <div class="quarter-theme">Fire: “Give inspectors their time back.” · Backflow: “From paper compliance to program control.”</div>
-        </div>
-        <div class="quarter-tagline">
-          Fire reduces administrative burden in report handling and review. Backflow modernizes program workflows so compliance doesn’t rely on inboxes and spreadsheets.
-        </div>
-
-        <div class="month-grid">
-          <!-- April -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">April</div>
-              <div class="month-theme-pill">Q2</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Launch <strong>Q2 Efficiency outreach</strong> – A/B on admin overload and manual review.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Launch <strong>Q2 Program Control outreach</strong> – A/B on “paper compliance” vs “program control” workflow modernization.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Existing Partner Upsell (Bi-monthly)</div>
-              <div class="stream-text">
-                <strong>Fire Extinguishers promo</strong> – “the most visible, highest-volume system should not be the least tracked.”
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>Notifications Drive Steady Demand.</strong> Structured notifications create predictable testing cycles.
-              </div>
+          <div>
+            <div class="quarter-name">Q2 Themes</div>
+            <div class="quarter-tagline">
+              <strong>Fire Prospects:</strong> Efficiency – “Give inspectors their time back.”<br/>
+              <strong>Backflow Prospects:</strong> Program Control – “From paper compliance to program control.”
             </div>
           </div>
+          <div class="quarter-theme">Same 9-week regional rollout</div>
+        </div>
 
-          <!-- May -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">May</div>
-              <div class="month-theme-pill">Q2</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Continue Q2 A/B + resend winners; highlight reduced admin hours and backlog removal.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Continue Q2 A/B + resend winners; emphasize workflow control, predictable enforcement, fewer manual chases.
-              </div>
-            </div>
+        <div class="split-note">
+          <div class="note">
+            <div class="note-title">Upsell focus in Q2</div>
+            <p><strong>Apr:</strong> Report Review upsell by region (webinar anchor).<br/>
+               <strong>May–Jun:</strong> Fire Extinguishers upsell by region.</p>
           </div>
-
-          <!-- June -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">June</div>
-              <div class="month-theme-pill">Q2</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Wrap Q2 outreach + prepare Q2 drips (late June).
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Wrap Q2 outreach + prepare Q2 drips (late June).
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Quarterly Newsletter (Fire + Backflow Accounts)</div>
-              <div class="stream-text">
-                <strong>Q2 newsletter</strong> – efficiency wins, training, workflow modernization. (Backflow accounts included.)
-              </div>
-            </div>
+          <div class="note">
+            <div class="note-title">Newsletter</div>
+            <p><strong>Quarterly newsletter</strong> sends to Fire + Backflow accounts (separate from upsells).</p>
           </div>
         </div>
-      </div>
 
-      <div class="drip-row">
-        <div class="drip-title">Q2 Drips (Prospects) – Efficiency / Program Control</div>
-        <div class="drip-line">
-          <span class="drip-pill">Late June</span>
-          <strong>Fire + Backflow</strong> – separate <strong>Cold, Warm, High Intent</strong> drips to reinforce the quarter’s “time back / control” story before Q3.
+        <div class="table-wrap" role="region" aria-label="Q2 week table">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th><th>Dates</th><th>Region + States</th><th>Fire Prospects</th><th>Backflow Prospects</th><th>Existing Fire Customers – Upsell</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Q2 Week map mirrors Q1 regions -->
+              <tr>
+                <td class="wk">W1</td><td class="dates">Apr 1–7</td>
+                <td><div class="region">Northeast Wave 1</div><div class="states">CT, MA, ME, NH, RI, VT</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text"><strong>Efficiency outreach</strong> – reduce admin burden and review cycles.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text"><strong>Program control</strong> – stop relying on inboxes and spreadsheets.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text"><strong>Report Review</strong> – webinar enablement campaign is live.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W2</td><td class="dates">Apr 8–14</td>
+                <td><div class="region">Northeast Wave 2 + Mid-Atlantic</div><div class="states">NJ, NY, PA, DE, MD, DC</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Efficiency continuation – time back, fewer touchpoints.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Program control – predictable workflows and enforcement.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – webinar reminder + activation CTA.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W3</td><td class="dates">Apr 15–21</td>
+                <td><div class="region">Southeast Atlantic</div><div class="states">VA, WV, NC, SC, GA, FL</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Efficiency – backlog reduction story.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Program control – fewer manual chases.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – enablement follow-up sequence.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W4</td><td class="dates">Apr 22–28</td>
+                <td><div class="region">Deep South</div><div class="states">AL, MS, TN, KY, LA, AR</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Efficiency – reduce rework, shorten cycles.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Program control – turn paper compliance into a managed program.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text"><strong>Report Review</strong> – last April push (webinar anchor).</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W5</td><td class="dates">Apr 29–May 5</td>
+                <td><div class="region">Midwest Great Lakes</div><div class="states">OH, MI, IN, IL, WI, MN</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Efficiency – “do more with the same team.”</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Program control – operational consistency.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text"><strong>Fire Extinguishers</strong> – May campaign begins by region.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W6</td><td class="dates">May 6–12</td>
+                <td><div class="region">Midwest Plains</div><div class="states">IA, MO, KS, NE, SD, ND</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Efficiency – reduce manual review work.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Program control – move away from spreadsheet risk.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – sustain momentum.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W7</td><td class="dates">May 13–19</td>
+                <td><div class="region">South Central</div><div class="states">TX, OK, NM, AZ, CO</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Efficiency – continue A/B winners.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Program control – predictable enforcement motion.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – regional push.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W8</td><td class="dates">May 20–26</td>
+                <td><div class="region">Mountain / Intermountain</div><div class="states">UT, NV, ID, MT, WY, OR</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Efficiency – close out the quarter narrative.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Program control – close out the quarter narrative.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – adoption follow-up.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W9</td><td class="dates">May 27–Jun 2</td>
+                <td><div class="region">Pacific + Non-Contiguous</div><div class="states">CA, WA, AK, HI</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Efficiency – final wave + drip entry based on behavior.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Program control – final wave + drip entry based on behavior.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – June continuation + cleanup CTA.</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="drip-row">
+          <div class="drip-title">Q2 Behavior-Based Drips (Fire + Backflow Prospects)</div>
+          <div class="drip-line">
+            <span class="drip-pill">Cold</span> no engagement → educate and reframe the problem.
+            <br/>
+            <span class="drip-pill">Warm</span> opens/clicks → outcomes and credibility.
+            <br/>
+            <span class="drip-pill">High Intent</span> repeated engagement → conversion + handoff.
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Q3 -->
+    <!-- Quarter 3 -->
     <section>
-      <div class="section-label">Quarter 3 · July – September</div>
+      <div class="section-label">Quarter 3 – July 1 to September 1, 2026</div>
       <div class="quarter-card">
         <div class="quarter-header">
-          <div class="quarter-name">Q3 – Compliance Outcomes</div>
-          <div class="quarter-theme">Fire: “Better data creates better community safety.” · Backflow: “Compliance that holds up.”</div>
-        </div>
-        <div class="quarter-tagline">
-          Fire ties to measurable compliance lift and community risk reduction. Backflow ties to defensible enforcement, audit readiness, and proof of compliance.
-        </div>
-
-        <div class="month-grid">
-          <!-- July -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">July</div>
-              <div class="month-theme-pill">Q3 Compliance</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Launch <strong>Q3 Compliance outreach</strong> – outcomes messaging by region & tier.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Launch <strong>Q3 Compliance Outcomes outreach</strong> – defensible enforcement, audit-readiness messaging by region & tier.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Existing Partner Upsell (Bi-monthly)</div>
-              <div class="stream-text">
-                <strong>Report Review promo</strong> – outcomes proof: fewer resubmits, faster decisions, cleaner compliance record.
-              </div>
+          <div>
+            <div class="quarter-name">Q3 Themes</div>
+            <div class="quarter-tagline">
+              <strong>Fire Prospects:</strong> Compliance Outcomes – “Better data creates better community safety.”<br/>
+              <strong>Backflow Prospects:</strong> Compliance Outcomes – “Compliance that holds up.”
             </div>
           </div>
+          <div class="quarter-theme">Same 9-week regional rollout</div>
+        </div>
 
-          <!-- August -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">August</div>
-              <div class="month-theme-pill">Q3 Compliance</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Resend winners + deepen “results leadership cares about” messaging.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Resend winners + emphasize “if you can’t prove compliance, you don’t have it.”
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Service Providers</div>
-              <div class="stream-text">
-                <strong>Your Reports Improve Community Compliance.</strong> Clean submissions lift city-wide outcomes.
-              </div>
-            </div>
+        <div class="split-note">
+          <div class="note">
+            <div class="note-title">Upsell focus in Q3</div>
+            <p><strong>Jul–Aug:</strong> Report Review upsell by region (webinar anchor).<br/>
+               <strong>Early Sep:</strong> Fire Extinguishers kickoff by region.</p>
           </div>
-
-          <!-- September -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">September</div>
-              <div class="month-theme-pill">Q3 Compliance</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Final Q3 wave + prepare Q3 drips (late September).
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Final Q3 wave + prepare Q3 drips (late September).
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Quarterly Newsletter (Fire + Backflow Accounts)</div>
-              <div class="stream-text">
-                <strong>Q3 newsletter</strong> – compliance outcomes, leadership reporting language, proof points. (Backflow accounts included.)
-              </div>
-            </div>
+          <div class="note">
+            <div class="note-title">Newsletter</div>
+            <p>Quarterly newsletter to Fire + Backflow accounts (separate stream, not an upsell).</p>
           </div>
         </div>
-      </div>
 
-      <div class="drip-row">
-        <div class="drip-title">Q3 Drips (Prospects) – Compliance Outcomes</div>
-        <div class="drip-line">
-          <span class="drip-pill">Late September</span>
-          <strong>Fire + Backflow</strong> – separate <strong>Cold, Warm, High Intent</strong> drips to reinforce outcomes and prime Q4 planning.
+        <div class="table-wrap" role="region" aria-label="Q3 week table">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th><th>Dates</th><th>Region + States</th><th>Fire Prospects</th><th>Backflow Prospects</th><th>Existing Fire Customers – Upsell</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Use the same region order; date ranges for Q3 -->
+              <tr>
+                <td class="wk">W1</td><td class="dates">Jul 1–7</td>
+                <td><div class="region">Northeast Wave 1</div><div class="states">CT, MA, ME, NH, RI, VT</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text"><strong>Compliance outcomes</strong> – measurable lift and defensibility.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text"><strong>Compliance outcomes</strong> – audit readiness and proof.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text"><strong>Report Review</strong> – webinar enablement campaign is live.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W2</td><td class="dates">Jul 8–14</td>
+                <td><div class="region">Northeast Wave 2 + Mid-Atlantic</div><div class="states">NJ, NY, PA, DE, MD, DC</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Outcomes – leadership language and reporting.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Outcomes – “if you can’t prove it, you don’t have it.”</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – webinar reminder + activation CTA.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W3</td><td class="dates">Jul 15–21</td>
+                <td><div class="region">Southeast Atlantic</div><div class="states">VA, WV, NC, SC, GA, FL</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Outcomes – compliance lift story.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Outcomes – defensible enforcement.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – enablement follow-up.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W4</td><td class="dates">Jul 22–28</td>
+                <td><div class="region">Deep South</div><div class="states">AL, MS, TN, KY, LA, AR</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Outcomes – community safety framing.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Outcomes – program integrity.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – webinar anchor remains primary.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W5</td><td class="dates">Jul 29–Aug 4</td>
+                <td><div class="region">Midwest Great Lakes</div><div class="states">OH, MI, IN, IL, WI, MN</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Outcomes – reduce gaps, increase compliance.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Outcomes – audit-ready compliance posture.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – sustain regional cadence.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W6</td><td class="dates">Aug 5–11</td>
+                <td><div class="region">Midwest Plains</div><div class="states">IA, MO, KS, NE, SD, ND</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Outcomes – keep message tight, proof-driven.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Outcomes – proof, enforcement, audit readiness.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – final August push (webinar anchor).</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W7</td><td class="dates">Aug 12–18</td>
+                <td><div class="region">South Central</div><div class="states">TX, OK, NM, AZ, CO</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Outcomes – drive urgency and credibility.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Outcomes – drive urgency and credibility.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – wrap-up sequence.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W8</td><td class="dates">Aug 19–25</td>
+                <td><div class="region">Mountain / Intermountain</div><div class="states">UT, NV, ID, MT, WY, OR</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Outcomes – final wave preparation.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Outcomes – final wave preparation.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – last full-week focus.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W9</td><td class="dates">Aug 26–Sep 1</td>
+                <td><div class="region">Pacific + Non-Contiguous</div><div class="states">CA, WA, AK, HI</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Outcomes – move to behavior-based drips.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Outcomes – move to behavior-based drips.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text"><strong>Fire Extinguishers kickoff</strong> – September campaign begins by region.</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="drip-row">
+          <div class="drip-title">Q3 Behavior-Based Drips (Fire + Backflow Prospects)</div>
+          <div class="drip-line">
+            <span class="drip-pill">Cold</span> awareness sequence.
+            <span class="drip-pill">Warm</span> proof and outcomes sequence.
+            <span class="drip-pill">High Intent</span> conversion sequence + handoff.
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Q4 -->
+    <!-- Quarter 4 -->
     <section>
-      <div class="section-label">Quarter 4 · October – December</div>
+      <div class="section-label">Quarter 4 – October 1 to December 2, 2026</div>
       <div class="quarter-card">
         <div class="quarter-header">
-          <div class="quarter-name">Q4 – Modernization</div>
-          <div class="quarter-theme">Fire: “Prepare your compliance program for 2026.” · Backflow: “Modernize and plan for next year.”</div>
-        </div>
-        <div class="quarter-tagline">
-          Fire positions BRYCER as the modernization layer for life safety. Backflow positions BRYCER as the modernization layer for a future-ready, defensible compliance program.
-        </div>
-
-        <div class="month-grid">
-          <!-- October -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">October</div>
-              <div class="month-theme-pill">Q4 Modernization</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Launch <strong>Q4 Modernization outreach</strong> – future-proofing across regions and tiers.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Launch <strong>Q4 Modernization & Planning outreach</strong> – budget cycle readiness and modernization language.
-              </div>
+          <div>
+            <div class="quarter-name">Q4 Themes</div>
+            <div class="quarter-tagline">
+              <strong>Fire Prospects:</strong> Modernization – “Prepare your compliance program for 2027.”<br/>
+              <strong>Backflow Prospects:</strong> Modernization & Planning – “Modernize and plan for next year.”
             </div>
           </div>
+          <div class="quarter-theme">Same 9-week regional rollout</div>
+        </div>
 
-          <!-- November -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">November</div>
-              <div class="month-theme-pill">Q4 Modernization</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Regional + population A/B variants emphasizing readiness for the next planning cycle.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Regional + population A/B variants emphasizing modernization, audit defensibility, and next-year planning.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Existing Partner Upsell (Bi-monthly)</div>
-              <div class="stream-text">
-                <strong>Fire Extinguishers promo</strong> – year-end “most visible system” compliance push.
-              </div>
-            </div>
+        <div class="split-note">
+          <div class="note">
+            <div class="note-title">Upsell focus in Q4</div>
+            <p><strong>Oct:</strong> Fire Extinguishers by region.<br/>
+               <strong>Nov–Dec:</strong> Report Review by region (webinar anchor).</p>
           </div>
-
-          <!-- December -->
-          <div class="month-card">
-            <div class="month-header">
-              <div class="month-name">December</div>
-              <div class="month-theme-pill">Q4 Modernization</div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Final Q4 touches + planning CTA. Keep short and high-signal during holiday slowdowns.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
-              <div class="stream-text">
-                Final Q4 touches + planning CTA. Keep short and high-signal during holiday slowdowns.
-              </div>
-            </div>
-
-            <div class="stream-row">
-              <div class="stream-label">Quarterly Newsletter (Fire + Backflow Accounts)</div>
-              <div class="stream-text">
-                <strong>Q4 / year-end newsletter</strong> – recap wins, training resources, what’s next in 2026. (Backflow accounts included.)
-              </div>
-            </div>
+          <div class="note">
+            <div class="note-title">Year-end newsletter</div>
+            <p>Quarterly newsletter to Fire + Backflow accounts: year-end recap + what’s next.</p>
           </div>
         </div>
-      </div>
 
-      <div class="drip-row">
-        <div class="drip-title">Q4 Drips (Prospects) – Modernization</div>
-        <div class="drip-line">
-          <span class="drip-pill">Early December</span>
-          <strong>Fire + Backflow</strong> – separate <strong>Cold, Warm, High Intent</strong> modernization drips pulled forward to beat holiday inbox noise.
+        <div class="table-wrap" role="region" aria-label="Q4 week table">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th><th>Dates</th><th>Region + States</th><th>Fire Prospects</th><th>Backflow Prospects</th><th>Existing Fire Customers – Upsell</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="wk">W1</td><td class="dates">Oct 1–7</td>
+                <td><div class="region">Northeast Wave 1</div><div class="states">CT, MA, ME, NH, RI, VT</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text"><strong>Modernization</strong> – future-proofing compliance programs.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text"><strong>Modernization</strong> – plan for defensible programs next year.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text"><strong>Fire Extinguishers</strong> – October campaign is live.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W2</td><td class="dates">Oct 8–14</td>
+                <td><div class="region">Northeast Wave 2 + Mid-Atlantic</div><div class="states">NJ, NY, PA, DE, MD, DC</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Modernization – readiness language.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Modernization – readiness language.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – sustain momentum.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W3</td><td class="dates">Oct 15–21</td>
+                <td><div class="region">Southeast Atlantic</div><div class="states">VA, WV, NC, SC, GA, FL</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Modernization – planning cycle CTA.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Modernization – planning cycle CTA.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – final October push.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W4</td><td class="dates">Oct 22–28</td>
+                <td><div class="region">Deep South</div><div class="states">AL, MS, TN, KY, LA, AR</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Modernization – future-ready compliance.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Modernization – future-ready compliance.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – closeout.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W5</td><td class="dates">Oct 29–Nov 4</td>
+                <td><div class="region">Midwest Great Lakes</div><div class="states">OH, MI, IN, IL, WI, MN</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Modernization – last chance before holiday slowdown.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Modernization – last chance before holiday slowdown.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Fire Extinguishers – transition planning.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W6</td><td class="dates">Nov 5–11</td>
+                <td><div class="region">Midwest Plains</div><div class="states">IA, MO, KS, NE, SD, ND</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Modernization – keep message short, high-signal.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Modernization – keep message short, high-signal.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text"><strong>Report Review</strong> – November campaign begins (webinar anchor).</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W7</td><td class="dates">Nov 12–18</td>
+                <td><div class="region">South Central</div><div class="states">TX, OK, NM, AZ, CO</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Modernization – planning CTA.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Modernization – planning CTA.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – webinar invite + activation CTA.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W8</td><td class="dates">Nov 19–25</td>
+                <td><div class="region">Mountain / Intermountain</div><div class="states">UT, NV, ID, MT, WY, OR</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Modernization – final lead-in to year-end.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Modernization – final lead-in to year-end.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text">Report Review – webinar anchor remains primary.</div></td>
+              </tr>
+              <tr>
+                <td class="wk">W9</td><td class="dates">Nov 26–Dec 2</td>
+                <td><div class="region">Pacific + Non-Contiguous</div><div class="states">CA, WA, AK, HI</div></td>
+                <td><div class="stream-label">Fire prospects</div><div class="stream-text">Modernization – last touches before end-of-year drips.</div></td>
+                <td><div class="stream-label">Backflow prospects</div><div class="stream-text">Modernization – last touches before end-of-year drips.</div></td>
+                <td><div class="stream-label">Upsell</div><div class="stream-text"><strong>Report Review</strong> – December continuation + webinar recap.</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="drip-row">
+          <div class="drip-title">Q4 Behavior-Based Drips (Fire + Backflow Prospects)</div>
+          <div class="drip-line">
+            <span class="drip-pill">Cold</span> pulled forward to beat holiday inbox noise.
+            <span class="drip-pill">Warm</span> proof + planning.
+            <span class="drip-pill">High Intent</span> conversion + scheduling CTA.
+          </div>
         </div>
       </div>
     </section>
 
     <footer>
       <div><strong>Backed by BRYCER.</strong> Turning Reports into Results.</div>
-      <div></div>
+      <div>Thank you to our customers and partners for protecting communities and improving compliance.</div>
     </footer>
   </div>
 </body>
