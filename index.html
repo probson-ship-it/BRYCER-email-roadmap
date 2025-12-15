@@ -105,48 +105,13 @@
     }
 
     .legend-card,
-    .quarter-card,
-    .track-card {
+    .quarter-card {
       background: linear-gradient(135deg, rgba(12, 30, 60, 0.96), rgba(6, 18, 36, 0.98));
       border-radius: 16px;
       border: 1px solid rgba(148, 163, 184, 0.6);
       padding: 16px 18px;
       margin-bottom: 16px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
-    }
-
-    .track-title-row{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:baseline;
-      margin-bottom:6px;
-    }
-
-    .track-title{
-      font-size:1.05rem;
-      font-weight:800;
-      color:#f3f4f6;
-      letter-spacing:0.02em;
-    }
-
-    .track-pill{
-      font-size:0.72rem;
-      font-weight:700;
-      padding:3px 10px;
-      border-radius:999px;
-      border: 1px solid rgba(225,127,73,0.75);
-      background: rgba(225,127,73,0.12);
-      color:#ffe9df;
-      text-transform:uppercase;
-      letter-spacing:0.12em;
-      white-space:nowrap;
-    }
-
-    .track-sub{
-      font-size:0.84rem;
-      color:#d1d5db;
-      margin-top:2px;
     }
 
     .legend-title {
@@ -156,7 +121,12 @@
       margin-bottom: 6px;
     }
 
-    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
 
     .chip {
       font-size: 0.75rem;
@@ -190,7 +160,11 @@
       text-align: right;
     }
 
-    .quarter-tagline { font-size: 0.82rem; color: #d1d5db; margin-top: 2px; }
+    .quarter-tagline {
+      font-size: 0.82rem;
+      color: #d1d5db;
+      margin-top: 2px;
+    }
 
     .month-grid {
       display: grid;
@@ -261,9 +235,17 @@
       margin-bottom: 1px;
     }
 
-    .stream-text { font-size: 0.78rem; color: #e5e7eb; }
-    .stream-text strong { font-weight: 600; color: #f9fafb; }
+    .stream-text {
+      font-size: 0.78rem;
+      color: #e5e7eb;
+    }
 
+    .stream-text strong {
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    /* Drip rows under each quarter */
     .drip-row {
       margin-top: 6px;
       margin-bottom: 10px;
@@ -325,603 +307,480 @@
       <div class="subheading">
         <span>Turning Reports into Results</span>
         <span class="dot"></span>
-        <span>12-month roadmap organized by track, quarter, and theme.</span>
+        <span>12-month roadmap organized by separate email streams.</span>
       </div>
       <div class="meta-row">
         <div class="meta-pill">National Marketing Engine</div>
-        <div>Tracks: Fire Prospects · Backflow Prospects · Existing Partner Upsell</div>
+        <div>Fire Prospects · Backflow Prospects · Existing Partner Upsell · Quarterly Newsletter</div>
       </div>
     </header>
 
-    <!-- Legend -->
+    <!-- Segmentation legend -->
     <section>
       <div class="section-label">Segmentation Frame</div>
       <div class="legend-card">
-        <div class="legend-title">How every email is targeted</div>
+        <div class="legend-title">How every box on this calendar is targeted</div>
         <p style="font-size:0.84rem; color:#d1d5db; margin-top:2px;">
-          Prospects are segmented by region and population tier. Existing partners receive bi-monthly promotional upsells plus quarterly newsletters.
+          Prospect outreach is filtered through region, population, and quarterly theme. Existing partner promotions run bi-monthly. Quarterly newsletters go to Fire and Backflow accounts.
         </p>
         <div class="chip-row">
-          <div class="chip"><strong>Regions</strong> – South · Midwest · West · Northeast · Mountain · Plains</div>
+          <div class="chip"><strong>Prospect regions</strong> – South · Midwest · West · Northeast · Mountain · Plains</div>
           <div class="chip"><strong>Population tiers</strong> – &lt;25k · 25–50k · 50–250k · 250k+</div>
-          <div class="chip"><strong>Drips</strong> – Cold · Warm · High Intent (end-of-quarter)</div>
+          <div class="chip"><strong>Fire themes</strong> – Q1 Visibility · Q2 Efficiency · Q3 Compliance · Q4 Modernization</div>
+          <div class="chip"><strong>Backflow themes</strong> – Q1 Visibility · Q2 Program Control · Q3 Compliance Outcomes · Q4 Modernization & Planning</div>
+          <div class="chip"><strong>Partner promos</strong> – Bi-monthly rotation: Report Review ↔ Fire Extinguishers</div>
         </div>
       </div>
     </section>
 
-    <!-- TRACK 1: FIRE PROSPECTS -->
+    <!-- Q1 -->
     <section>
-      <div class="section-label">Track 1</div>
-      <div class="track-card">
-        <div class="track-title-row">
-          <div class="track-title">Fire Prospects – Regional Outreach</div>
-          <div class="track-pill">Prospect Track</div>
+      <div class="section-label">Quarter 1 · January – March</div>
+      <div class="quarter-card">
+        <div class="quarter-header">
+          <div class="quarter-name">Q1 – Visibility</div>
+          <div class="quarter-theme">Fire: “You cannot fix what you cannot see.” · Backflow: “You cannot enforce what you cannot track.”</div>
         </div>
-        <div class="track-sub">
-          Theme spine: Visibility → Efficiency → Compliance Outcomes → Modernization. Region-based outreach modeled after existing fire prospect campaigns.
+        <div class="quarter-tagline">
+          Fire focuses on hidden systems and unseen compliance gaps. Backflow focuses on scattered data, manual tracking, and low visibility across devices.
+        </div>
+
+        <div class="month-grid">
+          <!-- January -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">January</div>
+              <div class="month-theme-pill">Q1 Visibility</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                <strong>Visibility outreach launch</strong> by region & tier. A/B on “blind spots” and discovery load.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                <strong>Visibility outreach launch</strong> by region & tier. A/B on “tracking gaps” and program visibility.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Existing Partner Upsell (Bi-monthly)</div>
+              <div class="stream-text">
+                <strong>Report Review promo</strong> – “close the loop after reports are submitted.”
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Webinars (Start in Jan)</div>
+              <div class="stream-text">
+                <strong>Regional RR webinars</strong> begin (region-based scheduling) with follow-up email CTA to request enablement.
+              </div>
+            </div>
+          </div>
+
+          <!-- February -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">February</div>
+              <div class="month-theme-pill">Q1 Visibility</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Resend winning Q1 variant + continue state/region outreach across tiers.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Resend winning Q1 variant + reinforce “cannot enforce what you cannot track” visibility message.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>Systems Growth = More Opportunity.</strong> Visibility uncovers more systems/devices that now require testing.
+              </div>
+            </div>
+          </div>
+
+          <!-- March -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">March</div>
+              <div class="month-theme-pill">Q1 Visibility</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Final Q1 wave + prepare leads for Q1 drips (late March).
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Final Q1 wave + prepare leads for Q1 drips (late March).
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Quarterly Newsletter (Fire + Backflow Accounts)</div>
+              <div class="stream-text">
+                <strong>Q1 newsletter</strong> – visibility wins, training resources, case-style stories. (Backflow accounts included.)
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- FIRE Q1 -->
-      <section>
-        <div class="section-label">Fire · Q1 · January – March</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q1 – Visibility</div>
-            <div class="quarter-theme">“You cannot fix what you cannot see.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Uncover hidden systems and unseen compliance gaps; introduce visibility as the first step to closing lack of compliance.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header">
-                <div class="month-name">January</div>
-                <div class="month-theme-pill">Visibility</div>
-              </div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">
-                  <strong>Regional outreach launch – Visibility</strong> across all regions & tiers. A/B on “blind spots” + discovery load.
-                </div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header">
-                <div class="month-name">February</div>
-                <div class="month-theme-pill">Visibility</div>
-              </div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">
-                  Continue A/B; resend winning variant; deepen the “systems you cannot see cannot be enforced” narrative.
-                </div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header">
-                <div class="month-name">March</div>
-                <div class="month-theme-pill">Visibility</div>
-              </div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">
-                  Final Q1 touches; transition language toward Q2 Efficiency.
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="drip-row">
+        <div class="drip-title">Q1 Drips (Prospects) – Visibility</div>
+        <div class="drip-line">
+          <span class="drip-pill">Late March</span>
+          <strong>Fire + Backflow</strong> – run separate drips for each product line: <strong>Cold, Warm, High Intent</strong> to transition into Q2.
         </div>
-
-        <div class="drip-row">
-          <div class="drip-title">Fire Q1 Drip Campaigns – Visibility</div>
-          <div class="drip-line">
-            <span class="drip-pill">Late March</span>
-            <strong>Cold, Warm, and High Intent Fire drips</strong> run in the final 2–3 weeks to close Q1 and move leads into Q2.
-          </div>
-        </div>
-      </section>
-
-      <!-- FIRE Q2 -->
-      <section>
-        <div class="section-label">Fire · Q2 · April – June</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q2 – Efficiency</div>
-            <div class="quarter-theme">“Give inspectors their time back.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Reduce administrative burden and speed up report handling, follow-up, and enforcement.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">April</div><div class="month-theme-pill">Efficiency</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text"><strong>Regional outreach – Efficiency</strong> A/B by tier: admin overload, backlog, manual review.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">May</div><div class="month-theme-pill">Efficiency</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Resend winners; add proof: “do more with the same team” stories.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">June</div><div class="month-theme-pill">Efficiency</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Final Q2 touches; set up Q3 outcomes language (compliance lift).</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="drip-row">
-          <div class="drip-title">Fire Q2 Drip Campaigns – Efficiency</div>
-          <div class="drip-line">
-            <span class="drip-pill">Late June</span>
-            <strong>Cold, Warm, and High Intent Fire drips</strong> run at end of quarter to convert engaged leads before Q3.
-          </div>
-        </div>
-      </section>
-
-      <!-- FIRE Q3 -->
-      <section>
-        <div class="section-label">Fire · Q3 · July – September</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q3 – Compliance Outcomes</div>
-            <div class="quarter-theme">“Better data creates better community safety.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Tie outcomes to leadership: measurable compliance lift, ISO readiness support, and community risk reduction.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">July</div><div class="month-theme-pill">Compliance</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text"><strong>Regional outreach – Compliance Outcomes</strong> (ISO, defensible enforcement, measurable lift).</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">August</div><div class="month-theme-pill">Compliance</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">A/B on executive outcomes vs operational wins; resend winners.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">September</div><div class="month-theme-pill">Compliance</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Final Q3 wave; prime modernization planning conversations for Q4.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="drip-row">
-          <div class="drip-title">Fire Q3 Drip Campaigns – Compliance</div>
-          <div class="drip-line">
-            <span class="drip-pill">Late September</span>
-            <strong>Cold, Warm, and High Intent Fire drips</strong> reinforce outcomes and convert before Q4 planning season.
-          </div>
-        </div>
-      </section>
-
-      <!-- FIRE Q4 -->
-      <section>
-        <div class="section-label">Fire · Q4 · October – December</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q4 – Modernization</div>
-            <div class="quarter-theme">“Prepare your compliance program for 2026.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Position BRYCER as the modernization layer for future-ready fire and life safety programs.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">October</div><div class="month-theme-pill">Modernization</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text"><strong>Regional outreach – Modernization</strong> future-proofing message across tiers.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">November</div><div class="month-theme-pill">Modernization</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">A/B on budget readiness + planning cycle language; resend winners.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">December</div><div class="month-theme-pill">Modernization</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Final touches; push planning CTA; keep messages concise for holiday inboxes.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="drip-row">
-          <div class="drip-title">Fire Q4 Drip Campaigns – Modernization</div>
-          <div class="drip-line">
-            <span class="drip-pill">Early December</span>
-            <strong>Cold, Warm, and High Intent Fire drips</strong> run earlier to stay ahead of holiday slowdowns.
-          </div>
-        </div>
-      </section>
+      </div>
     </section>
 
-    <!-- TRACK 2: BACKFLOW PROSPECTS -->
+    <!-- Q2 -->
     <section>
-      <div class="section-label">Track 2</div>
-      <div class="track-card">
-        <div class="track-title-row">
-          <div class="track-title">Backflow Prospects – Regional Outreach</div>
-          <div class="track-pill">Prospect Track</div>
+      <div class="section-label">Quarter 2 · April – June</div>
+      <div class="quarter-card">
+        <div class="quarter-header">
+          <div class="quarter-name">Q2 – Efficiency / Program Control</div>
+          <div class="quarter-theme">Fire: “Give inspectors their time back.” · Backflow: “From paper compliance to program control.”</div>
         </div>
-        <div class="track-sub">
-          Backflow messaging is different: fragmented programs, quiet failures, enforcement defensibility, and planning-ready modernization.
+        <div class="quarter-tagline">
+          Fire reduces administrative burden in report handling and review. Backflow modernizes program workflows so compliance doesn’t rely on inboxes and spreadsheets.
+        </div>
+
+        <div class="month-grid">
+          <!-- April -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">April</div>
+              <div class="month-theme-pill">Q2</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Launch <strong>Q2 Efficiency outreach</strong> – A/B on admin overload and manual review.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Launch <strong>Q2 Program Control outreach</strong> – A/B on “paper compliance” vs “program control” workflow modernization.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Existing Partner Upsell (Bi-monthly)</div>
+              <div class="stream-text">
+                <strong>Fire Extinguishers promo</strong> – “the most visible, highest-volume system should not be the least tracked.”
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>Notifications Drive Steady Demand.</strong> Structured notifications create predictable testing cycles.
+              </div>
+            </div>
+          </div>
+
+          <!-- May -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">May</div>
+              <div class="month-theme-pill">Q2</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Continue Q2 A/B + resend winners; highlight reduced admin hours and backlog removal.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Continue Q2 A/B + resend winners; emphasize workflow control, predictable enforcement, fewer manual chases.
+              </div>
+            </div>
+          </div>
+
+          <!-- June -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">June</div>
+              <div class="month-theme-pill">Q2</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Wrap Q2 outreach + prepare Q2 drips (late June).
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Wrap Q2 outreach + prepare Q2 drips (late June).
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Quarterly Newsletter (Fire + Backflow Accounts)</div>
+              <div class="stream-text">
+                <strong>Q2 newsletter</strong> – efficiency wins, training, workflow modernization. (Backflow accounts included.)
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- BACKFLOW Q1 -->
-      <section>
-        <div class="section-label">Backflow · Q1 · January – March</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q1 – Visibility</div>
-            <div class="quarter-theme">“You can’t enforce what you can’t track.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Reveal program reality: device inventory completeness, due dates, and true compliance status across the jurisdiction.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">January</div><div class="month-theme-pill">Visibility</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text"><strong>Regional outreach – Backflow Visibility</strong> A/B: “scattered data” vs “enforcement blind spots.”</div>
-              </div>
-              <div class="stream-row">
-                <div class="stream-label">Webinar</div>
-                <div class="stream-text">Launch region webinars: “What a complete backflow program view looks like.”</div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">February</div><div class="month-theme-pill">Visibility</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Resend winners; add: “program confidence” language for leadership and utilities stakeholders.</div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">March</div><div class="month-theme-pill">Visibility</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Final Q1 touches; transition to Q2 control + efficiency narrative (less chasing, more control).</div>
-              </div>
-            </div>
-          </div>
+      <div class="drip-row">
+        <div class="drip-title">Q2 Drips (Prospects) – Efficiency / Program Control</div>
+        <div class="drip-line">
+          <span class="drip-pill">Late June</span>
+          <strong>Fire + Backflow</strong> – separate <strong>Cold, Warm, High Intent</strong> drips to reinforce the quarter’s “time back / control” story before Q3.
         </div>
-
-        <div class="drip-row">
-          <div class="drip-title">Backflow Q1 Drip Campaigns – Visibility</div>
-          <div class="drip-line">
-            <span class="drip-pill">Late March</span>
-            <strong>Cold, Warm, and High Intent Backflow drips</strong> close the quarter and transition leads into Q2 Control.
-          </div>
-        </div>
-      </section>
-
-      <!-- BACKFLOW Q2 -->
-      <section>
-        <div class="section-label">Backflow · Q2 · April – June</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q2 – Control</div>
-            <div class="quarter-theme">“From paper compliance to program control.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Reduce manual follow-up. Standardize intake. Create enforcement leverage with consistent program workflows.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">April</div><div class="month-theme-pill">Control</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text"><strong>Regional outreach – Control</strong> A/B: “staff time” vs “enforcement consistency.”</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">May</div><div class="month-theme-pill">Control</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Resend winners; spotlight workflow stability: the program runs even when staffing is tight.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">June</div><div class="month-theme-pill">Control</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Final Q2 touches; transition into Q3 defensibility + outcomes language.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="drip-row">
-          <div class="drip-title">Backflow Q2 Drip Campaigns – Control</div>
-          <div class="drip-line">
-            <span class="drip-pill">Late June</span>
-            <strong>Cold, Warm, and High Intent Backflow drips</strong> convert engaged leads before Q3 audit/outcomes season.
-          </div>
-        </div>
-      </section>
-
-      <!-- BACKFLOW Q3 -->
-      <section>
-        <div class="section-label">Backflow · Q3 · July – September</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q3 – Compliance Outcomes</div>
-            <div class="quarter-theme">“If you can’t prove compliance, you don’t have it.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Defensible compliance: reporting that holds up, clearer accountability, and measurable lift across the program.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">July</div><div class="month-theme-pill">Outcomes</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text"><strong>Regional outreach – Outcomes</strong> leadership metrics, audit readiness, defensible enforcement.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">August</div><div class="month-theme-pill">Outcomes</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">A/B on public health protection vs operational defensibility; resend winners.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">September</div><div class="month-theme-pill">Outcomes</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Final Q3 wave; prime Q4 planning + modernization narrative.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="drip-row">
-          <div class="drip-title">Backflow Q3 Drip Campaigns – Outcomes</div>
-          <div class="drip-line">
-            <span class="drip-pill">Late September</span>
-            <strong>Cold, Warm, and High Intent Backflow drips</strong> reinforce defensibility and convert before Q4.
-          </div>
-        </div>
-      </section>
-
-      <!-- BACKFLOW Q4 -->
-      <section>
-        <div class="section-label">Backflow · Q4 · October – December</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q4 – Modernization & Planning</div>
-            <div class="quarter-theme">“Prepare your backflow program for 2026.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Make backflow planning-ready: modernization, budget alignment, and a program that scales without chaos.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">October</div><div class="month-theme-pill">Planning</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text"><strong>Regional outreach – Planning</strong> “budget readiness” and modernization language.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">November</div><div class="month-theme-pill">Planning</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">A/B on modernization vs staffing resilience; resend winners.</div>
-              </div>
-            </div>
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">December</div><div class="month-theme-pill">Planning</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Prospects</div>
-                <div class="stream-text">Final touches; planning CTA; keep concise for year-end inbox behavior.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="drip-row">
-          <div class="drip-title">Backflow Q4 Drip Campaigns – Planning</div>
-          <div class="drip-line">
-            <span class="drip-pill">Early December</span>
-            <strong>Cold, Warm, and High Intent Backflow drips</strong> run earlier to avoid holiday slowdowns.
-          </div>
-        </div>
-      </section>
+      </div>
     </section>
 
-    <!-- TRACK 3: EXISTING PARTNER UPSELL -->
+    <!-- Q3 -->
     <section>
-      <div class="section-label">Track 3</div>
-      <div class="track-card">
-        <div class="track-title-row">
-          <div class="track-title">Existing Partners – Upsell + Quarterly Newsletter</div>
-          <div class="track-pill">Partner Track</div>
+      <div class="section-label">Quarter 3 · July – September</div>
+      <div class="quarter-card">
+        <div class="quarter-header">
+          <div class="quarter-name">Q3 – Compliance Outcomes</div>
+          <div class="quarter-theme">Fire: “Better data creates better community safety.” · Backflow: “Compliance that holds up.”</div>
         </div>
-        <div class="track-sub">
-          Each account receives <strong>bi-monthly promotional emails</strong> (alternating Report Review and Fire Extinguishers) plus <strong>quarterly newsletters</strong>. Backflow accounts also receive the quarterly newsletter.
+        <div class="quarter-tagline">
+          Fire ties to measurable compliance lift and community risk reduction. Backflow ties to defensible enforcement, audit readiness, and proof of compliance.
+        </div>
+
+        <div class="month-grid">
+          <!-- July -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">July</div>
+              <div class="month-theme-pill">Q3 Compliance</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Launch <strong>Q3 Compliance outreach</strong> – outcomes messaging by region & tier.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Launch <strong>Q3 Compliance Outcomes outreach</strong> – defensible enforcement, audit-readiness messaging by region & tier.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Existing Partner Upsell (Bi-monthly)</div>
+              <div class="stream-text">
+                <strong>Report Review promo</strong> – outcomes proof: fewer resubmits, faster decisions, cleaner compliance record.
+              </div>
+            </div>
+          </div>
+
+          <!-- August -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">August</div>
+              <div class="month-theme-pill">Q3 Compliance</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Resend winners + deepen “results leadership cares about” messaging.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Resend winners + emphasize “if you can’t prove compliance, you don’t have it.”
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Service Providers</div>
+              <div class="stream-text">
+                <strong>Your Reports Improve Community Compliance.</strong> Clean submissions lift city-wide outcomes.
+              </div>
+            </div>
+          </div>
+
+          <!-- September -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">September</div>
+              <div class="month-theme-pill">Q3 Compliance</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Final Q3 wave + prepare Q3 drips (late September).
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Final Q3 wave + prepare Q3 drips (late September).
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Quarterly Newsletter (Fire + Backflow Accounts)</div>
+              <div class="stream-text">
+                <strong>Q3 newsletter</strong> – compliance outcomes, leadership reporting language, proof points. (Backflow accounts included.)
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- PARTNER Q1 -->
-      <section>
-        <div class="section-label">Partners · Q1 · January – March</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q1 – Visibility (Partner Value)</div>
-            <div class="quarter-theme">“Close the gaps you cannot see.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Expansion motion built around uncovering hidden gaps and tightening enforcement workflows.
-          </div>
+      <div class="drip-row">
+        <div class="drip-title">Q3 Drips (Prospects) – Compliance Outcomes</div>
+        <div class="drip-line">
+          <span class="drip-pill">Late September</span>
+          <strong>Fire + Backflow</strong> – separate <strong>Cold, Warm, High Intent</strong> drips to reinforce outcomes and prime Q4 planning.
+        </div>
+      </div>
+    </section>
 
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">January</div><div class="month-theme-pill">Promo</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Partner Upsell</div>
-                <div class="stream-text"><strong>Report Review promo</strong> – tie to visibility + consistent review.</div>
+    <!-- Q4 -->
+    <section>
+      <div class="section-label">Quarter 4 · October – December</div>
+      <div class="quarter-card">
+        <div class="quarter-header">
+          <div class="quarter-name">Q4 – Modernization</div>
+          <div class="quarter-theme">Fire: “Prepare your compliance program for 2026.” · Backflow: “Modernize and plan for next year.”</div>
+        </div>
+        <div class="quarter-tagline">
+          Fire positions BRYCER as the modernization layer for life safety. Backflow positions BRYCER as the modernization layer for a future-ready, defensible compliance program.
+        </div>
+
+        <div class="month-grid">
+          <!-- October -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">October</div>
+              <div class="month-theme-pill">Q4 Modernization</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Launch <strong>Q4 Modernization outreach</strong> – future-proofing across regions and tiers.
               </div>
             </div>
 
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">February</div><div class="month-theme-pill">Quarterly</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Quarterly Newsletter</div>
-                <div class="stream-text"><strong>Q1 Newsletter</strong> – visibility wins, training, updates. (All partners including Backflow accounts.)</div>
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Launch <strong>Q4 Modernization & Planning outreach</strong> – budget cycle readiness and modernization language.
+              </div>
+            </div>
+          </div>
+
+          <!-- November -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">November</div>
+              <div class="month-theme-pill">Q4 Modernization</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Regional + population A/B variants emphasizing readiness for the next planning cycle.
               </div>
             </div>
 
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">March</div><div class="month-theme-pill">Promo</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Partner Upsell</div>
-                <div class="stream-text"><strong>Fire Extinguishers promo</strong> – spotlight the most visible compliance gap.</div>
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Regional + population A/B variants emphasizing modernization, audit defensibility, and next-year planning.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Existing Partner Upsell (Bi-monthly)</div>
+              <div class="stream-text">
+                <strong>Fire Extinguishers promo</strong> – year-end “most visible system” compliance push.
+              </div>
+            </div>
+          </div>
+
+          <!-- December -->
+          <div class="month-card">
+            <div class="month-header">
+              <div class="month-name">December</div>
+              <div class="month-theme-pill">Q4 Modernization</div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Fire Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Final Q4 touches + planning CTA. Keep short and high-signal during holiday slowdowns.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Backflow Prospects (Regional Outreach)</div>
+              <div class="stream-text">
+                Final Q4 touches + planning CTA. Keep short and high-signal during holiday slowdowns.
+              </div>
+            </div>
+
+            <div class="stream-row">
+              <div class="stream-label">Quarterly Newsletter (Fire + Backflow Accounts)</div>
+              <div class="stream-text">
+                <strong>Q4 / year-end newsletter</strong> – recap wins, training resources, what’s next in 2026. (Backflow accounts included.)
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <!-- PARTNER Q2 -->
-      <section>
-        <div class="section-label">Partners · Q2 · April – June</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q2 – Efficiency (Partner Value)</div>
-            <div class="quarter-theme">“Less admin. Faster enforcement.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Reinforce operational efficiency and program control—without adding headcount.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">April</div><div class="month-theme-pill">Promo</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Partner Upsell</div>
-                <div class="stream-text"><strong>Report Review promo</strong> – reduce backlog and standardize review.</div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">May</div><div class="month-theme-pill">Promo</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Partner Upsell</div>
-                <div class="stream-text"><strong>Fire Extinguishers promo</strong> – make extinguisher compliance easier to manage at scale.</div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">June</div><div class="month-theme-pill">Quarterly</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Quarterly Newsletter</div>
-                <div class="stream-text"><strong>Q2 Newsletter</strong> – efficiency wins, RR impact, training. (All partners including Backflow accounts.)</div>
-              </div>
-            </div>
-          </div>
+      <div class="drip-row">
+        <div class="drip-title">Q4 Drips (Prospects) – Modernization</div>
+        <div class="drip-line">
+          <span class="drip-pill">Early December</span>
+          <strong>Fire + Backflow</strong> – separate <strong>Cold, Warm, High Intent</strong> modernization drips pulled forward to beat holiday inbox noise.
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- PARTNER Q3 -->
-      <section>
-        <div class="section-label">Partners · Q3 · July – September</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q3 – Compliance Outcomes (Partner Value)</div>
-            <div class="quarter-theme">“Make compliance measurable.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Tie partner expansion directly to measurable compliance lift and defensible enforcement.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">July</div><div class="month-theme-pill">Promo</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Partner Upsell</div>
-                <div class="stream-text"><strong>Report Review promo</strong> – consistent review drives measurable lift.</div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">August</div><div class="month-theme-pill">Promo</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Partner Upsell</div>
-                <div class="stream-text"><strong>Fire Extinguishers promo</strong> – reduce missed inspections and tighten visibility for leadership.</div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">September</div><div class="month-theme-pill">Quarterly</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Quarterly Newsletter</div>
-                <div class="stream-text"><strong>Q3 Newsletter</strong> – outcomes stories, compliance lift, case studies. (All partners including Backflow accounts.)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PARTNER Q4 -->
-      <section>
-        <div class="section-label">Partners · Q4 · October – December</div>
-        <div class="quarter-card">
-          <div class="quarter-header">
-            <div class="quarter-name">Q4 – Modernization (Partner Value)</div>
-            <div class="quarter-theme">“Plan for 2026 with a stronger program.”</div>
-          </div>
-          <div class="quarter-tagline">
-            Year-end momentum: modernization, planning, and expansion aligned to budget cycles.
-          </div>
-
-          <div class="month-grid">
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">October</div><div class="month-theme-pill">Promo</div></div>
-              <div class="stream-row">
-                <div class="stream-label">Partner Upsell</div>
-                <div class="stream-text"><strong>Report Review promo</strong> – modernization through consistent review workflows.</div>
-              </div>
-            </div>
-
-            <div class="month-card">
-              <div class="month-header"><div class="month-name">November</div><div class="month-theme-pill">Promo</div></div>
-             
+    <footer>
+      <div><strong>Backed by BRYCER.</strong> Turning Reports into Results.</div>
+      <div></div>
+    </footer>
+  </div>
+</body>
+</html>
