@@ -43,7 +43,7 @@
     }
 
     .page{
-      max-width:1400px;
+      max-width:1500px;
       margin:0 auto;
       background:var(--card);
       border:1px solid var(--border);
@@ -189,6 +189,7 @@
     .dot.backflow{ background:#2563eb; }
     .dot.upsell{ background:#0f766e; }
     .dot.sp{ background:#7c3aed; }
+    .dot.resend{ background:#64748b; }
     .dot.drip{ background:#334155; }
     .dot.news{ background:#b45309; }
 
@@ -232,9 +233,7 @@
       text-align:right;
     }
 
-    .content{
-      padding:0 12px 14px 12px;
-    }
+    .content{ padding:0 12px 14px 12px; }
 
     .qhead{
       margin:10px 2px 10px 2px;
@@ -245,12 +244,7 @@
       justify-content:space-between;
     }
 
-    .qtitle{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      min-width:260px;
-    }
+    .qtitle{ display:flex; flex-direction:column; gap:4px; min-width:260px; }
 
     .qtheme{
       display:flex;
@@ -330,9 +324,7 @@
       line-height:1.35;
     }
 
-    .sheet tbody tr:nth-child(even) td{
-      background:var(--zebra);
-    }
+    .sheet tbody tr:nth-child(even) td{ background:var(--zebra); }
 
     .wk{
       width:150px;
@@ -347,17 +339,10 @@
       font-size:.76rem;
     }
 
-    .muted{ color:var(--muted); }
+    .item{ font-weight:800; }
+    .item + .item{ margin-top:6px; }
 
-    .item{ font-weight:800; color:var(--text); }
-    .item strong{ color:var(--brycer-navy); }
-    .resend{
-      margin-top:4px;
-      font-size:.78rem;
-      color:var(--muted);
-      font-weight:800;
-    }
-    .resend span{
+    .pill{
       display:inline-block;
       padding:2px 8px;
       border:1px solid var(--border);
@@ -366,55 +351,70 @@
       margin-right:6px;
       font-weight:900;
       color:var(--brycer-navy);
-      font-size:.72rem;
+      font-size:.70rem;
       letter-spacing:.06em;
       text-transform:uppercase;
+      white-space:nowrap;
     }
+
+    .muted{ color:var(--muted); }
 
     /* Column filter system */
     .filter-all .col-fire,
     .filter-all .col-backflow,
     .filter-all .col-upsell,
     .filter-all .col-sp,
+    .filter-all .col-resend,
     .filter-all .col-drip,
-    .filter-all .col-news{
-      display:table-cell;
-    }
+    .filter-all .col-news{ display:table-cell; }
 
     .filter-fire .col-backflow,
     .filter-fire .col-upsell,
     .filter-fire .col-sp,
+    .filter-fire .col-resend,
     .filter-fire .col-drip,
     .filter-fire .col-news{ display:none; }
 
     .filter-backflow .col-fire,
     .filter-backflow .col-upsell,
     .filter-backflow .col-sp,
+    .filter-backflow .col-resend,
     .filter-backflow .col-drip,
     .filter-backflow .col-news{ display:none; }
 
     .filter-upsell .col-fire,
     .filter-upsell .col-backflow,
     .filter-upsell .col-sp,
+    .filter-upsell .col-resend,
     .filter-upsell .col-drip,
     .filter-upsell .col-news{ display:none; }
 
     .filter-sp .col-fire,
     .filter-sp .col-backflow,
     .filter-sp .col-upsell,
+    .filter-sp .col-resend,
     .filter-sp .col-drip,
     .filter-sp .col-news{ display:none; }
+
+    .filter-resend .col-fire,
+    .filter-resend .col-backflow,
+    .filter-resend .col-upsell,
+    .filter-resend .col-sp,
+    .filter-resend .col-drip,
+    .filter-resend .col-news{ display:none; }
 
     .filter-drip .col-fire,
     .filter-drip .col-backflow,
     .filter-drip .col-upsell,
     .filter-drip .col-sp,
+    .filter-drip .col-resend,
     .filter-drip .col-news{ display:none; }
 
     .filter-news .col-fire,
     .filter-news .col-backflow,
     .filter-news .col-upsell,
     .filter-news .col-sp,
+    .filter-news .col-resend,
     .filter-news .col-drip{ display:none; }
 
     footer{
@@ -438,11 +438,10 @@
       <div class="eyebrow">Backed by BRYCER</div>
       <h1>BRYCER 2026 Email Roadmap</h1>
       <div class="sub">
-        Turning Reports into Results — a year-long cadence built to reduce lack of compliance with clear weekly execution by audience. Thank you to our customers.
+        Turning Reports into Results — week-by-week cadence by audience, with a dedicated resend lane for unopens (3–4 business days later).
       </div>
     </header>
 
-    <!-- View buttons -->
     <div class="toolbar" role="region" aria-label="Calendar View Controls">
       <div class="toolbar-left">
         <button class="btn active" data-filter="all">All</button>
@@ -450,6 +449,7 @@
         <button class="btn" data-filter="backflow">Backflow Only</button>
         <button class="btn" data-filter="upsell">Upsells Only</button>
         <button class="btn" data-filter="sp">Service Providers Only</button>
+        <button class="btn" data-filter="resend">Resends Only</button>
         <button class="btn" data-filter="drip">Drips Only</button>
         <button class="btn" data-filter="news">Newsletter Only</button>
       </div>
@@ -469,19 +469,18 @@
           <div class="chip"><span class="dot backflow"></span> Backflow Prospects (Tue)</div>
           <div class="chip"><span class="dot upsell"></span> Upsell (Thu) – FE + RR monthly</div>
           <div class="chip"><span class="dot sp"></span> Service Providers (first Wed monthly)</div>
+          <div class="chip"><span class="dot resend"></span> Resend to Unopens (3–4 biz days later)</div>
           <div class="chip"><span class="dot drip"></span> Drips (Weeks 11–12)</div>
-          <div class="chip"><span class="dot news"></span> Quarterly Newsletter (Week 13)</div>
+          <div class="chip"><span class="dot news"></span> Quarterly Newsletter (Week 13) — no resend</div>
         </div>
       </div>
 
       <div class="box">
-        <h2>Quarter Rules (Locked)</h2>
+        <h2>Rules</h2>
         <ul>
-          <li><strong>Weeks 1–9:</strong> Prospecting (weekly state/region execution)</li>
-          <li><strong>Week 10:</strong> Pause new prospecting (optimize, resend winners, list hygiene)</li>
-          <li><strong>Weeks 11–12:</strong> Drips (Cold / Warm / High Intent)</li>
-          <li><strong>Week 13:</strong> Quarterly Newsletter (end of quarter)</li>
-          <li><strong>Resend rule:</strong> Resend for unopens <strong>3–4 business days</strong> after every email <strong>except</strong> newsletters (and webinars, if added later).</li>
+          <li><strong>Resends:</strong> Every email gets a resend to unopens <strong>3–4 business days later</strong>…</li>
+          <li>…<strong>except</strong> newsletters (and webinars, if/when included).</li>
+          <li><strong>Backflow cadence (every quarter):</strong> 2 regions in Month 1, 2 regions in Month 2, 1 region in Month 3 (then drip at end of quarter).</li>
         </ul>
       </div>
     </section>
@@ -520,6 +519,7 @@
                 <th class="col-backflow">Backflow Prospects</th>
                 <th class="col-upsell">Upsells</th>
                 <th class="col-sp">Service Providers</th>
+                <th class="col-resend">Resends (Unopens)</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
               </tr>
@@ -527,18 +527,14 @@
             <tbody>
               <tr>
                 <td class="wk">W1<div class="rng">Jan 01–Jan 07</div></td>
-                <td class="col-fire">
-                  <div class="item">Jan 06 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jan 09 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Jan 06 – Backflow Region 1 outreach</div>
-                  <div class="resend"><span>Resend</span>Jan 09 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jan 06 – Visibility outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Jan 06 – Backflow Region 1 outreach</div></td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Jan 07 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Jan 12 – Unopens</div>
+                <td class="col-sp"><div class="item">Jan 07 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jan 09 – Fire Prospects (from Jan 06)</div>
+                  <div class="item"><span class="pill">Resend</span>Jan 09 – Backflow Region 1 (from Jan 06)</div>
+                  <div class="item"><span class="pill">Resend</span>Jan 12 – Service Providers (from Jan 07)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -546,63 +542,55 @@
 
               <tr>
                 <td class="wk">W2<div class="rng">Jan 08–Jan 14</div></td>
-                <td class="col-fire">
-                  <div class="item">Jan 13 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jan 16 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jan 13 – Visibility outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Jan 08 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Jan 13 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Jan 08 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jan 13 – Upsell: FE (from Jan 08)</div>
+                  <div class="item"><span class="pill">Resend</span>Jan 16 – Fire Prospects (from Jan 13)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W3<div class="rng">Jan 15–Jan 21</div></td>
-                <td class="col-fire">
-                  <div class="item">Jan 20 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jan 23 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Jan 20 – Backflow Region 2 outreach</div>
-                  <div class="resend"><span>Resend</span>Jan 23 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jan 20 – Visibility outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Jan 20 – Backflow Region 2 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jan 23 – Fire Prospects (from Jan 20)</div>
+                  <div class="item"><span class="pill">Resend</span>Jan 23 – Backflow Region 2 (from Jan 20)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W4<div class="rng">Jan 22–Jan 28</div></td>
-                <td class="col-fire">
-                  <div class="item">Jan 27 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jan 30 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jan 27 – Visibility outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Jan 22 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Jan 27 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Jan 22 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jan 27 – Upsell: RR (from Jan 22)</div>
+                  <div class="item"><span class="pill">Resend</span>Jan 30 – Fire Prospects (from Jan 27)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W5<div class="rng">Jan 29–Feb 04</div></td>
-                <td class="col-fire">
-                  <div class="item">Feb 03 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Feb 06 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Feb 03 – Visibility outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Feb 04 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Feb 09 – Unopens</div>
+                <td class="col-sp"><div class="item">Feb 04 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Feb 06 – Fire Prospects (from Feb 03)</div>
+                  <div class="item"><span class="pill">Resend</span>Feb 09 – Service Providers (from Feb 04)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -610,66 +598,56 @@
 
               <tr>
                 <td class="wk">W6<div class="rng">Feb 05–Feb 11</div></td>
-                <td class="col-fire">
-                  <div class="item">Feb 10 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Feb 13 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Feb 10 – Backflow Region 3 outreach</div>
-                  <div class="resend"><span>Resend</span>Feb 13 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Feb 10 – Visibility outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Feb 10 – Backflow Region 3 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Feb 13 – Fire Prospects (from Feb 10)</div>
+                  <div class="item"><span class="pill">Resend</span>Feb 13 – Backflow Region 3 (from Feb 10)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W7<div class="rng">Feb 12–Feb 18</div></td>
-                <td class="col-fire">
-                  <div class="item">Feb 17 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Feb 20 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Feb 17 – Visibility outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Feb 12 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Feb 17 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Feb 12 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Feb 17 – Upsell: FE (from Feb 12)</div>
+                  <div class="item"><span class="pill">Resend</span>Feb 20 – Fire Prospects (from Feb 17)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W8<div class="rng">Feb 19–Feb 25</div></td>
-                <td class="col-fire">
-                  <div class="item">Feb 24 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Feb 27 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Feb 24 – Backflow Region 4 outreach</div>
-                  <div class="resend"><span>Resend</span>Feb 27 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Feb 24 – Visibility outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Feb 24 – Backflow Region 4 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Feb 27 – Fire Prospects (from Feb 24)</div>
+                  <div class="item"><span class="pill">Resend</span>Feb 27 – Backflow Region 4 (from Feb 24)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W9<div class="rng">Feb 26–Mar 04</div></td>
-                <td class="col-fire">
-                  <div class="item">Mar 03 – Visibility outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Mar 06 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Mar 03 – Visibility outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Feb 26 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Mar 03 – Unopens</div>
-                </td>
-                <td class="col-sp">
-                  <div class="item">Mar 04 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Mar 09 – Unopens</div>
+                <td class="col-upsell"><div class="item">Feb 26 – Upsell: RR</div></td>
+                <td class="col-sp"><div class="item">Mar 04 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Mar 03 – Upsell: RR (from Feb 26)</div>
+                  <div class="item"><span class="pill">Resend</span>Mar 06 – Fire Prospects (from Mar 03)</div>
+                  <div class="item"><span class="pill">Resend</span>Mar 09 – Service Providers (from Mar 04)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -678,12 +656,12 @@
               <tr>
                 <td class="wk">W10<div class="rng">Mar 05–Mar 11</div></td>
                 <td class="col-fire"><div class="item muted">No new prospect send (optimize / resend winners)</div></td>
-                <td class="col-backflow">
-                  <div class="item">Mar 10 – Backflow Region 5 outreach</div>
-                  <div class="resend"><span>Resend</span>Mar 13 – Unopens</div>
-                </td>
+                <td class="col-backflow"><div class="item">Mar 10 – Backflow Region 5 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Mar 13 – Backflow Region 5 (from Mar 10)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -692,15 +670,13 @@
                 <td class="wk">W11<div class="rng">Mar 12–Mar 18</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">
-                  <div class="item">Mar 12 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Mar 17 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Mar 12 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
-                <td class="col-drip">
-                  <div class="item"><strong>Drip Email #1:</strong> Mar 17 – Cold/Warm/High Intent</div>
-                  <div class="resend"><span>Resend</span>Mar 20 – Unopens</div>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Mar 17 – Upsell: FE (from Mar 12)</div>
+                  <div class="item"><span class="pill">Resend</span>Mar 20 – Drip Email #1 (from Mar 17)</div>
                 </td>
+                <td class="col-drip"><div class="item">Mar 17 – Drip Email #1 (Cold / Warm / High Intent)</div></td>
                 <td class="col-news">—</td>
               </tr>
 
@@ -710,10 +686,10 @@
                 <td class="col-backflow muted">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
-                <td class="col-drip">
-                  <div class="item"><strong>Drip Email #2:</strong> Mar 24 – Continue + last-chance CTA</div>
-                  <div class="resend"><span>Resend</span>Mar 27 – Unopens</div>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Mar 27 – Drip Email #2 (from Mar 24)</div>
                 </td>
+                <td class="col-drip"><div class="item">Mar 24 – Drip Email #2 (Continue + last-chance CTA)</div></td>
                 <td class="col-news">—</td>
               </tr>
 
@@ -721,19 +697,23 @@
                 <td class="wk">W13<div class="rng">Mar 26–Apr 01</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">
-                  <div class="item">Mar 26 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Mar 31 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Mar 26 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Mar 31 – Upsell: RR (from Mar 26)</div>
+                </td>
                 <td class="col-drip muted">—</td>
-                <td class="col-news">Mar 31 – Quarterly Newsletter</td>
+                <td class="col-news"><div class="item">Mar 31 – Quarterly Newsletter</div></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </details>
+
+    <!-- Q2 / Q3 / Q4 -->
+    <!-- Keeping your same structure: Backflow appears every quarter with 2 regions month 1, 2 regions month 2, 1 region month 3.
+         Resends are listed ONLY in the Resends column (no notes inside the primary send columns). -->
 
     <!-- ===================== Q2 ===================== -->
     <details>
@@ -769,6 +749,7 @@
                 <th class="col-backflow">Backflow Prospects</th>
                 <th class="col-upsell">Upsells</th>
                 <th class="col-sp">Service Providers</th>
+                <th class="col-resend">Resends (Unopens)</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
               </tr>
@@ -776,18 +757,14 @@
             <tbody>
               <tr>
                 <td class="wk">W1<div class="rng">Apr 01–Apr 07</div></td>
-                <td class="col-fire">
-                  <div class="item">Apr 07 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Apr 10 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Apr 07 – Backflow Region 1 outreach</div>
-                  <div class="resend"><span>Resend</span>Apr 10 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Apr 07 – Efficiency outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Apr 07 – Backflow Region 1 outreach</div></td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Apr 01 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Apr 06 – Unopens</div>
+                <td class="col-sp"><div class="item">Apr 01 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Apr 06 – Service Providers (from Apr 01)</div>
+                  <div class="item"><span class="pill">Resend</span>Apr 10 – Fire Prospects (from Apr 07)</div>
+                  <div class="item"><span class="pill">Resend</span>Apr 10 – Backflow Region 1 (from Apr 07)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -795,79 +772,69 @@
 
               <tr>
                 <td class="wk">W2<div class="rng">Apr 08–Apr 14</div></td>
-                <td class="col-fire">
-                  <div class="item">Apr 14 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Apr 17 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Apr 14 – Efficiency outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Apr 09 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Apr 14 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Apr 09 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Apr 14 – Upsell: FE (from Apr 09)</div>
+                  <div class="item"><span class="pill">Resend</span>Apr 17 – Fire Prospects (from Apr 14)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W3<div class="rng">Apr 15–Apr 21</div></td>
-                <td class="col-fire">
-                  <div class="item">Apr 21 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Apr 24 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Apr 21 – Backflow Region 2 outreach</div>
-                  <div class="resend"><span>Resend</span>Apr 24 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Apr 21 – Efficiency outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Apr 21 – Backflow Region 2 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Apr 24 – Fire Prospects (from Apr 21)</div>
+                  <div class="item"><span class="pill">Resend</span>Apr 24 – Backflow Region 2 (from Apr 21)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W4<div class="rng">Apr 22–Apr 28</div></td>
-                <td class="col-fire">
-                  <div class="item">Apr 28 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>May 01 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Apr 28 – Efficiency outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Apr 23 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Apr 28 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Apr 23 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Apr 28 – Upsell: RR (from Apr 23)</div>
+                  <div class="item"><span class="pill">Resend</span>May 01 – Fire Prospects (from Apr 28)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W5<div class="rng">Apr 29–May 05</div></td>
-                <td class="col-fire">
-                  <div class="item">May 05 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>May 08 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">May 05 – Efficiency outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>May 08 – Fire Prospects (from May 05)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W6<div class="rng">May 06–May 12</div></td>
-                <td class="col-fire">
-                  <div class="item">May 12 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>May 15 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">May 12 – Backflow Region 3 outreach</div>
-                  <div class="resend"><span>Resend</span>May 15 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">May 12 – Efficiency outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">May 12 – Backflow Region 3 outreach</div></td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">May 06 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>May 11 – Unopens</div>
+                <td class="col-sp"><div class="item">May 06 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>May 11 – Service Providers (from May 06)</div>
+                  <div class="item"><span class="pill">Resend</span>May 15 – Fire Prospects (from May 12)</div>
+                  <div class="item"><span class="pill">Resend</span>May 15 – Backflow Region 3 (from May 12)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -875,48 +842,42 @@
 
               <tr>
                 <td class="wk">W7<div class="rng">May 13–May 19</div></td>
-                <td class="col-fire">
-                  <div class="item">May 19 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>May 22 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">May 19 – Efficiency outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">May 14 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>May 19 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">May 14 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>May 19 – Upsell: FE (from May 14)</div>
+                  <div class="item"><span class="pill">Resend</span>May 22 – Fire Prospects (from May 19)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W8<div class="rng">May 20–May 26</div></td>
-                <td class="col-fire">
-                  <div class="item">May 26 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>May 29 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">May 26 – Backflow Region 4 outreach</div>
-                  <div class="resend"><span>Resend</span>May 29 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">May 26 – Efficiency outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">May 26 – Backflow Region 4 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>May 29 – Fire Prospects (from May 26)</div>
+                  <div class="item"><span class="pill">Resend</span>May 29 – Backflow Region 4 (from May 26)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W9<div class="rng">May 27–Jun 02</div></td>
-                <td class="col-fire">
-                  <div class="item">Jun 02 – Efficiency outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jun 05 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jun 02 – Efficiency outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">May 28 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Jun 02 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">May 28 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jun 02 – Upsell: RR (from May 28)</div>
+                  <div class="item"><span class="pill">Resend</span>Jun 05 – Fire Prospects (from Jun 02)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -924,14 +885,12 @@
               <tr>
                 <td class="wk">W10<div class="rng">Jun 03–Jun 09</div></td>
                 <td class="col-fire"><div class="item muted">No new prospect send (optimize / resend winners)</div></td>
-                <td class="col-backflow">
-                  <div class="item">Jun 09 – Backflow Region 5 outreach</div>
-                  <div class="resend"><span>Resend</span>Jun 12 – Unopens</div>
-                </td>
+                <td class="col-backflow"><div class="item">Jun 09 – Backflow Region 5 outreach</div></td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Jun 03 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Jun 08 – Unopens</div>
+                <td class="col-sp"><div class="item">Jun 03 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jun 08 – Service Providers (from Jun 03)</div>
+                  <div class="item"><span class="pill">Resend</span>Jun 12 – Backflow Region 5 (from Jun 09)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -941,15 +900,13 @@
                 <td class="wk">W11<div class="rng">Jun 10–Jun 16</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">
-                  <div class="item">Jun 11 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Jun 16 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Jun 11 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
-                <td class="col-drip">
-                  <div class="item"><strong>Drip Email #1:</strong> Jun 16 – Cold/Warm/High Intent</div>
-                  <div class="resend"><span>Resend</span>Jun 19 – Unopens</div>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jun 16 – Upsell: FE (from Jun 11)</div>
+                  <div class="item"><span class="pill">Resend</span>Jun 19 – Drip Email #1 (from Jun 16)</div>
                 </td>
+                <td class="col-drip"><div class="item">Jun 16 – Drip Email #1 (Cold / Warm / High Intent)</div></td>
                 <td class="col-news">—</td>
               </tr>
 
@@ -959,10 +916,10 @@
                 <td class="col-backflow muted">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
-                <td class="col-drip">
-                  <div class="item"><strong>Drip Email #2:</strong> Jun 23 – Continue + last-chance CTA</div>
-                  <div class="resend"><span>Resend</span>Jun 26 – Unopens</div>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jun 26 – Drip Email #2 (from Jun 23)</div>
                 </td>
+                <td class="col-drip"><div class="item">Jun 23 – Drip Email #2 (Continue + last-chance CTA)</div></td>
                 <td class="col-news">—</td>
               </tr>
 
@@ -970,19 +927,23 @@
                 <td class="wk">W13<div class="rng">Jun 24–Jun 30</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">
-                  <div class="item">Jun 25 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Jun 30 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Jun 25 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jun 30 – Upsell: RR (from Jun 25)</div>
+                </td>
                 <td class="col-drip muted">—</td>
-                <td class="col-news">Jun 30 – Quarterly Newsletter</td>
+                <td class="col-news"><div class="item">Jun 30 – Quarterly Newsletter</div></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </details>
+
+    <!-- ===================== Q3 ===================== -->
+    <!-- (Same pattern as Q1/Q2; Backflow regions 1–2 in month 1, 3–4 in month 2, 5 in month 3, with resends in the resend column.) -->
+    <!-- To keep this reply usable, I’m including Q3 + Q4 fully as well. -->
 
     <!-- ===================== Q3 ===================== -->
     <details>
@@ -1018,6 +979,7 @@
                 <th class="col-backflow">Backflow Prospects</th>
                 <th class="col-upsell">Upsells</th>
                 <th class="col-sp">Service Providers</th>
+                <th class="col-resend">Resends (Unopens)</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
               </tr>
@@ -1025,18 +987,14 @@
             <tbody>
               <tr>
                 <td class="wk">W1<div class="rng">Jul 01–Jul 07</div></td>
-                <td class="col-fire">
-                  <div class="item">Jul 07 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jul 10 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Jul 07 – Backflow Region 1 outreach</div>
-                  <div class="resend"><span>Resend</span>Jul 10 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jul 07 – Compliance outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Jul 07 – Backflow Region 1 outreach</div></td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Jul 01 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Jul 06 – Unopens</div>
+                <td class="col-sp"><div class="item">Jul 01 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jul 06 – Service Providers (from Jul 01)</div>
+                  <div class="item"><span class="pill">Resend</span>Jul 10 – Fire Prospects (from Jul 07)</div>
+                  <div class="item"><span class="pill">Resend</span>Jul 10 – Backflow Region 1 (from Jul 07)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -1044,79 +1002,67 @@
 
               <tr>
                 <td class="wk">W2<div class="rng">Jul 08–Jul 14</div></td>
-                <td class="col-fire">
-                  <div class="item">Jul 14 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jul 17 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jul 14 – Compliance outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Jul 09 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Jul 14 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Jul 09 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jul 14 – Upsell: FE (from Jul 09)</div>
+                  <div class="item"><span class="pill">Resend</span>Jul 17 – Fire Prospects (from Jul 14)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W3<div class="rng">Jul 15–Jul 21</div></td>
-                <td class="col-fire">
-                  <div class="item">Jul 21 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jul 24 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Jul 21 – Backflow Region 2 outreach</div>
-                  <div class="resend"><span>Resend</span>Jul 24 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jul 21 – Compliance outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Jul 21 – Backflow Region 2 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jul 24 – Fire Prospects (from Jul 21)</div>
+                  <div class="item"><span class="pill">Resend</span>Jul 24 – Backflow Region 2 (from Jul 21)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W4<div class="rng">Jul 22–Jul 28</div></td>
-                <td class="col-fire">
-                  <div class="item">Jul 28 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Jul 31 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Jul 28 – Compliance outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Jul 23 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Jul 28 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Jul 23 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Jul 28 – Upsell: RR (from Jul 23)</div>
+                  <div class="item"><span class="pill">Resend</span>Jul 31 – Fire Prospects (from Jul 28)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W5<div class="rng">Jul 29–Aug 04</div></td>
-                <td class="col-fire">
-                  <div class="item">Aug 04 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Aug 07 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Aug 04 – Compliance outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend"><div class="item"><span class="pill">Resend</span>Aug 07 – Fire Prospects (from Aug 04)</div></td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W6<div class="rng">Aug 05–Aug 11</div></td>
-                <td class="col-fire">
-                  <div class="item">Aug 11 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Aug 14 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Aug 11 – Backflow Region 3 outreach</div>
-                  <div class="resend"><span>Resend</span>Aug 14 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Aug 11 – Compliance outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Aug 11 – Backflow Region 3 outreach</div></td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Aug 05 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Aug 10 – Unopens</div>
+                <td class="col-sp"><div class="item">Aug 05 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Aug 10 – Service Providers (from Aug 05)</div>
+                  <div class="item"><span class="pill">Resend</span>Aug 14 – Fire Prospects (from Aug 11)</div>
+                  <div class="item"><span class="pill">Resend</span>Aug 14 – Backflow Region 3 (from Aug 11)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -1124,48 +1070,42 @@
 
               <tr>
                 <td class="wk">W7<div class="rng">Aug 12–Aug 18</div></td>
-                <td class="col-fire">
-                  <div class="item">Aug 18 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Aug 21 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Aug 18 – Compliance outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Aug 13 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Aug 18 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Aug 13 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Aug 18 – Upsell: FE (from Aug 13)</div>
+                  <div class="item"><span class="pill">Resend</span>Aug 21 – Fire Prospects (from Aug 18)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W8<div class="rng">Aug 19–Aug 25</div></td>
-                <td class="col-fire">
-                  <div class="item">Aug 25 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Aug 28 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Aug 25 – Backflow Region 4 outreach</div>
-                  <div class="resend"><span>Resend</span>Aug 28 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Aug 25 – Compliance outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Aug 25 – Backflow Region 4 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Aug 28 – Fire Prospects (from Aug 25)</div>
+                  <div class="item"><span class="pill">Resend</span>Aug 28 – Backflow Region 4 (from Aug 25)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W9<div class="rng">Aug 26–Sep 01</div></td>
-                <td class="col-fire">
-                  <div class="item">Sep 01 – Compliance outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Sep 04 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Sep 01 – Compliance outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Aug 27 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Sep 01 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Aug 27 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Sep 01 – Upsell: RR (from Aug 27)</div>
+                  <div class="item"><span class="pill">Resend</span>Sep 04 – Fire Prospects (from Sep 01)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -1173,14 +1113,12 @@
               <tr>
                 <td class="wk">W10<div class="rng">Sep 02–Sep 08</div></td>
                 <td class="col-fire"><div class="item muted">No new prospect send (optimize / resend winners)</div></td>
-                <td class="col-backflow">
-                  <div class="item">Sep 08 – Backflow Region 5 outreach</div>
-                  <div class="resend"><span>Resend</span>Sep 11 – Unopens</div>
-                </td>
+                <td class="col-backflow"><div class="item">Sep 08 – Backflow Region 5 outreach</div></td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Sep 02 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Sep 07 – Unopens</div>
+                <td class="col-sp"><div class="item">Sep 02 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Sep 07 – Service Providers (from Sep 02)</div>
+                  <div class="item"><span class="pill">Resend</span>Sep 11 – Backflow Region 5 (from Sep 08)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -1190,15 +1128,13 @@
                 <td class="wk">W11<div class="rng">Sep 09–Sep 15</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">
-                  <div class="item">Sep 10 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Sep 15 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Sep 10 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
-                <td class="col-drip">
-                  <div class="item"><strong>Drip Email #1:</strong> Sep 15 – Cold/Warm/High Intent</div>
-                  <div class="resend"><span>Resend</span>Sep 18 – Unopens</div>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Sep 15 – Upsell: FE (from Sep 10)</div>
+                  <div class="item"><span class="pill">Resend</span>Sep 18 – Drip Email #1 (from Sep 15)</div>
                 </td>
+                <td class="col-drip"><div class="item">Sep 15 – Drip Email #1 (Cold / Warm / High Intent)</div></td>
                 <td class="col-news">—</td>
               </tr>
 
@@ -1208,10 +1144,8 @@
                 <td class="col-backflow muted">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
-                <td class="col-drip">
-                  <div class="item"><strong>Drip Email #2:</strong> Sep 22 – Continue + last-chance CTA</div>
-                  <div class="resend"><span>Resend</span>Sep 25 – Unopens</div>
-                </td>
+                <td class="col-resend"><div class="item"><span class="pill">Resend</span>Sep 25 – Drip Email #2 (from Sep 22)</div></td>
+                <td class="col-drip"><div class="item">Sep 22 – Drip Email #2 (Continue + last-chance CTA)</div></td>
                 <td class="col-news">—</td>
               </tr>
 
@@ -1219,13 +1153,11 @@
                 <td class="wk">W13<div class="rng">Sep 23–Sep 30</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">
-                  <div class="item">Sep 24 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Sep 29 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Sep 24 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend"><div class="item"><span class="pill">Resend</span>Sep 29 – Upsell: RR (from Sep 24)</div></td>
                 <td class="col-drip muted">—</td>
-                <td class="col-news">Sep 30 – Quarterly Newsletter</td>
+                <td class="col-news"><div class="item">Sep 30 – Quarterly Newsletter</div></td>
               </tr>
             </tbody>
           </table>
@@ -1267,6 +1199,7 @@
                 <th class="col-backflow">Backflow Prospects</th>
                 <th class="col-upsell">Upsells</th>
                 <th class="col-sp">Service Providers</th>
+                <th class="col-resend">Resends (Unopens)</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
               </tr>
@@ -1274,18 +1207,14 @@
             <tbody>
               <tr>
                 <td class="wk">W1<div class="rng">Oct 01–Oct 07</div></td>
-                <td class="col-fire">
-                  <div class="item">Oct 06 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Oct 09 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Oct 06 – Backflow Region 1 outreach</div>
-                  <div class="resend"><span>Resend</span>Oct 09 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Oct 06 – Modernization outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Oct 06 – Backflow Region 1 outreach</div></td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Oct 07 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Oct 12 – Unopens</div>
+                <td class="col-sp"><div class="item">Oct 07 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Oct 09 – Fire Prospects (from Oct 06)</div>
+                  <div class="item"><span class="pill">Resend</span>Oct 09 – Backflow Region 1 (from Oct 06)</div>
+                  <div class="item"><span class="pill">Resend</span>Oct 12 – Service Providers (from Oct 07)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -1293,63 +1222,55 @@
 
               <tr>
                 <td class="wk">W2<div class="rng">Oct 08–Oct 14</div></td>
-                <td class="col-fire">
-                  <div class="item">Oct 13 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Oct 16 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Oct 13 – Modernization outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Oct 08 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Oct 13 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Oct 08 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Oct 13 – Upsell: FE (from Oct 08)</div>
+                  <div class="item"><span class="pill">Resend</span>Oct 16 – Fire Prospects (from Oct 13)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W3<div class="rng">Oct 15–Oct 21</div></td>
-                <td class="col-fire">
-                  <div class="item">Oct 20 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Oct 23 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Oct 20 – Backflow Region 2 outreach</div>
-                  <div class="resend"><span>Resend</span>Oct 23 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Oct 20 – Modernization outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Oct 20 – Backflow Region 2 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Oct 23 – Fire Prospects (from Oct 20)</div>
+                  <div class="item"><span class="pill">Resend</span>Oct 23 – Backflow Region 2 (from Oct 20)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W4<div class="rng">Oct 22–Oct 28</div></td>
-                <td class="col-fire">
-                  <div class="item">Oct 27 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Oct 30 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Oct 27 – Modernization outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Oct 22 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Oct 27 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Oct 22 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Oct 27 – Upsell: RR (from Oct 22)</div>
+                  <div class="item"><span class="pill">Resend</span>Oct 30 – Fire Prospects (from Oct 27)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W5<div class="rng">Oct 29–Nov 04</div></td>
-                <td class="col-fire">
-                  <div class="item">Nov 03 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Nov 06 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Nov 03 – Modernization outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">
-                  <div class="item">Nov 04 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Nov 09 – Unopens</div>
+                <td class="col-sp"><div class="item">Nov 04 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Nov 06 – Fire Prospects (from Nov 03)</div>
+                  <div class="item"><span class="pill">Resend</span>Nov 09 – Service Providers (from Nov 04)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -1357,66 +1278,56 @@
 
               <tr>
                 <td class="wk">W6<div class="rng">Nov 05–Nov 11</div></td>
-                <td class="col-fire">
-                  <div class="item">Nov 10 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Nov 13 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Nov 10 – Backflow Region 3 outreach</div>
-                  <div class="resend"><span>Resend</span>Nov 13 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Nov 10 – Modernization outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Nov 10 – Backflow Region 3 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Nov 13 – Fire Prospects (from Nov 10)</div>
+                  <div class="item"><span class="pill">Resend</span>Nov 13 – Backflow Region 3 (from Nov 10)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W7<div class="rng">Nov 12–Nov 18</div></td>
-                <td class="col-fire">
-                  <div class="item">Nov 17 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Nov 20 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Nov 17 – Modernization outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Nov 12 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Nov 17 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Nov 12 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Nov 17 – Upsell: FE (from Nov 12)</div>
+                  <div class="item"><span class="pill">Resend</span>Nov 20 – Fire Prospects (from Nov 17)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W8<div class="rng">Nov 19–Nov 25</div></td>
-                <td class="col-fire">
-                  <div class="item">Nov 24 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Nov 27 – Unopens</div>
-                </td>
-                <td class="col-backflow">
-                  <div class="item">Nov 24 – Backflow Region 4 outreach</div>
-                  <div class="resend"><span>Resend</span>Nov 27 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Nov 24 – Modernization outreach (5–6 states)</div></td>
+                <td class="col-backflow"><div class="item">Nov 24 – Backflow Region 4 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Nov 27 – Fire Prospects (from Nov 24)</div>
+                  <div class="item"><span class="pill">Resend</span>Nov 27 – Backflow Region 4 (from Nov 24)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W9<div class="rng">Nov 26–Dec 02</div></td>
-                <td class="col-fire">
-                  <div class="item">Dec 01 – Modernization outreach (5–6 states)</div>
-                  <div class="resend"><span>Resend</span>Dec 04 – Unopens</div>
-                </td>
+                <td class="col-fire"><div class="item">Dec 01 – Modernization outreach (5–6 states)</div></td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell">
-                  <div class="item">Nov 26 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Dec 01 – Unopens</div>
-                </td>
-                <td class="col-sp">
-                  <div class="item">Dec 02 – Monthly touch</div>
-                  <div class="resend"><span>Resend</span>Dec 07 – Unopens</div>
+                <td class="col-upsell"><div class="item">Nov 26 – Upsell: RR</div></td>
+                <td class="col-sp"><div class="item">Dec 02 – Monthly touch</div></td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Dec 01 – Upsell: RR (from Nov 26)</div>
+                  <div class="item"><span class="pill">Resend</span>Dec 04 – Fire Prospects (from Dec 01)</div>
+                  <div class="item"><span class="pill">Resend</span>Dec 07 – Service Providers (from Dec 02)</div>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -1425,12 +1336,12 @@
               <tr>
                 <td class="wk">W10<div class="rng">Dec 03–Dec 09</div></td>
                 <td class="col-fire"><div class="item muted">No new prospect send (optimize / resend winners)</div></td>
-                <td class="col-backflow">
-                  <div class="item">Dec 08 – Backflow Region 5 outreach</div>
-                  <div class="resend"><span>Resend</span>Dec 11 – Unopens</div>
-                </td>
+                <td class="col-backflow"><div class="item">Dec 08 – Backflow Region 5 outreach</div></td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Dec 11 – Backflow Region 5 (from Dec 08)</div>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -1439,15 +1350,13 @@
                 <td class="wk">W11<div class="rng">Dec 10–Dec 16</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">
-                  <div class="item">Dec 10 – Upsell: FE</div>
-                  <div class="resend"><span>Resend</span>Dec 15 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Dec 10 – Upsell: FE</div></td>
                 <td class="col-sp">—</td>
-                <td class="col-drip">
-                  <div class="item"><strong>Drip Email #1:</strong> Dec 15 – Cold/Warm/High Intent</div>
-                  <div class="resend"><span>Resend</span>Dec 18 – Unopens</div>
+                <td class="col-resend">
+                  <div class="item"><span class="pill">Resend</span>Dec 15 – Upsell: FE (from Dec 10)</div>
+                  <div class="item"><span class="pill">Resend</span>Dec 18 – Drip Email #1 (from Dec 15)</div>
                 </td>
+                <td class="col-drip"><div class="item">Dec 15 – Drip Email #1 (Cold / Warm / High Intent)</div></td>
                 <td class="col-news">—</td>
               </tr>
 
@@ -1457,10 +1366,8 @@
                 <td class="col-backflow muted">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
-                <td class="col-drip">
-                  <div class="item"><strong>Drip Email #2:</strong> Dec 22 – Continue + last-chance CTA</div>
-                  <div class="resend"><span>Resend</span>Dec 28 – Unopens (holiday-adjusted)</div>
-                </td>
+                <td class="col-resend"><div class="item"><span class="pill">Resend</span>Dec 28 – Drip Email #2 (from Dec 22)</div></td>
+                <td class="col-drip"><div class="item">Dec 22 – Drip Email #2 (Continue + last-chance CTA)</div></td>
                 <td class="col-news">—</td>
               </tr>
 
@@ -1468,13 +1375,11 @@
                 <td class="wk">W13<div class="rng">Dec 24–Dec 30</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">
-                  <div class="item">Dec 24 – Upsell: RR</div>
-                  <div class="resend"><span>Resend</span>Dec 29 – Unopens</div>
-                </td>
+                <td class="col-upsell"><div class="item">Dec 24 – Upsell: RR</div></td>
                 <td class="col-sp">—</td>
+                <td class="col-resend"><div class="item"><span class="pill">Resend</span>Dec 29 – Upsell: RR (from Dec 24)</div></td>
                 <td class="col-drip muted">—</td>
-                <td class="col-news">Dec 31 – Quarterly Newsletter</td>
+                <td class="col-news"><div class="item">Dec 31 – Quarterly Newsletter</div></td>
               </tr>
             </tbody>
           </table>
@@ -1495,20 +1400,15 @@
 
       function setFilter(name){
         root.classList.remove(
-          "filter-all","filter-fire","filter-backflow","filter-upsell","filter-sp","filter-drip","filter-news"
+          "filter-all","filter-fire","filter-backflow","filter-upsell","filter-sp","filter-resend","filter-drip","filter-news"
         );
         root.classList.add("filter-" + name);
-
         buttons.forEach(b => b.classList.toggle("active", b.dataset.filter === name));
       }
 
-      buttons.forEach(btn => {
-        btn.addEventListener("click", () => setFilter(btn.dataset.filter));
-      });
-
+      buttons.forEach(btn => btn.addEventListener("click", () => setFilter(btn.dataset.filter)));
       setFilter("all");
     })();
   </script>
 </body>
 </html>
-
