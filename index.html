@@ -5,6 +5,7 @@
   <title>BRYCER 2026 Email Calendar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
     :root{
       --brycer-navy:#03233d;
@@ -12,11 +13,10 @@
 
       --bg:#f4f7fb;
       --card:#ffffff;
-      --subcard:#f8fafc;
+      --sub:#f8fafc;
 
       --text:#0f172a;
       --muted:#475569;
-
       --border:#d9e2ef;
       --shadow:0 18px 40px rgba(2,6,23,.08);
 
@@ -89,14 +89,12 @@
       grid-template-columns:1.15fr .85fr;
       gap:14px;
       align-items:start;
+      margin-bottom:12px;
     }
-
-    @media (max-width:980px){
-      .grid{ grid-template-columns:1fr; }
-    }
+    @media (max-width:980px){ .grid{ grid-template-columns:1fr; } }
 
     .card{
-      background:var(--subcard);
+      background:var(--sub);
       border:1px solid var(--border);
       border-radius:14px;
       padding:14px;
@@ -183,7 +181,6 @@
       font-weight:900;
       color:var(--brycer-navy);
     }
-
     summary::-webkit-details-marker{ display:none; }
 
     .summary-right{
@@ -198,15 +195,9 @@
       text-align:right;
     }
 
-    .content{
-      padding:14px;
-      background:#fff;
-    }
+    .content{ padding:14px; background:#fff; }
 
-    .month-details{
-      margin-top:12px;
-      border-radius:12px;
-    }
+    .month-details{ margin-top:12px; border-radius:12px; }
 
     table{
       width:100%;
@@ -233,12 +224,11 @@
       font-weight:900;
     }
 
-    td small{ color:var(--muted); font-weight:700; }
-
     .week{
       font-weight:900;
       color:var(--brycer-navy);
       white-space:nowrap;
+      width:72px;
     }
 
     .cell{
@@ -254,15 +244,8 @@
       flex-wrap:wrap;
     }
 
-    .line span{
-      color:var(--muted);
-      font-weight:700;
-    }
-
-    .line strong{
-      color:var(--text);
-      font-weight:900;
-    }
+    .line span{ color:var(--muted); font-weight:700; }
+    .line strong{ color:var(--text); font-weight:900; }
 
     .note{
       margin-top:10px;
@@ -299,48 +282,47 @@
       <div class="subheading">
         Turning Reports into Results
         <span class="dot"></span>
-        A year-long engine designed to reduce lack of compliance through consistent, segmented communication.
+        A year-long engine built to reduce lack of compliance through consistent, segmented communication.
       </div>
     </header>
 
     <div class="grid">
       <div class="card">
         <div class="card-title">Legend</div>
-
         <div class="pill-row">
-          <div class="pill"><span class="tag fire">Fire Prospects</span><b>Weekly</b> <span>Tue</span></div>
-          <div class="pill"><span class="tag backflow">Backflow Prospects</span><b>Bi-weekly</b> <span>Tue</span></div>
-          <div class="pill"><span class="tag upsell">Customer Upsell</span><b>Bi-monthly</b> <span>Thu</span></div>
-          <div class="pill"><span class="tag sp">Service Providers</span><b>Monthly</b> <span>Wed</span></div>
-          <div class="pill"><span class="tag news">Newsletter</span><b>Quarterly</b> <span>Last week</span></div>
-          <div class="pill"><span class="tag drip">Drips</span><b>Behavior-based</b> <span>Always-on</span></div>
+          <div class="pill"><span class="tag fire">Fire Prospects</span><b>Weekly</b><span>Tue</span></div>
+          <div class="pill"><span class="tag backflow">Backflow Prospects</span><b>Bi-weekly (Q1)</b><span>Tue</span></div>
+          <div class="pill"><span class="tag sp">Service Providers</span><b>Monthly</b><span>Wed</span></div>
+          <div class="pill"><span class="tag upsell">Upsell (Customers)</span><b>2 per month</b><span>Thu</span></div>
+          <div class="pill"><span class="tag news">Newsletter</span><b>Quarterly</b><span>End of quarter</span></div>
+          <div class="pill"><span class="tag drip">Drips</span><b>Behavior-based</b><span>Always-on</span></div>
         </div>
 
         <div class="note" style="margin-top:12px;">
-          Drips are triggered by behavior (cold, warm, high intent) and run separately for Fire vs Backflow.
-          This keeps broadcast outreach clean while still accelerating intent.
+          Upsell cadence is locked: <strong>1 FE + 1 Report Review per month</strong>, never in the same week.<br/>
+          Drips trigger by behavior (Cold / Warm / High Intent) and are separated for Fire vs Backflow.
         </div>
       </div>
 
       <div class="card">
         <div class="card-title">Rules (Locked)</div>
         <ul class="rules">
-          <li><strong>Fire Prospects:</strong> weekly 50-state rollout (5–6 states per week) via regions</li>
-          <li><strong>Backflow Prospects:</strong> Q1 only; 5 regions over 3 months; bi-weekly outreach; then into dedicated drips</li>
-          <li><strong>Upsells (Global, Bi-monthly):</strong> Jan–Feb FE, Mar–Apr RR, May–Jun FE, Jul–Aug RR, Sep–Oct FE, Nov–Dec RR</li>
-          <li><strong>Report Review Webinars:</strong> only during RR upsell windows (one primary webinar month per window)</li>
-          <li><strong>Quarterly Newsletters:</strong> end of Mar, Jun, Sep, Dec</li>
+          <li><strong>Fire Prospects:</strong> weekly on Tuesdays (state batches can be filled into each week)</li>
+          <li><strong>Backflow Prospects:</strong> Q1 only; 5 regions over 3 months; bi-weekly outreach; then drip-only</li>
+          <li><strong>Upsells:</strong> FE = Week 2 Thursday; Report Review = Week 4 Thursday (one email each)</li>
+          <li><strong>Service Providers:</strong> monthly on the first Wednesday</li>
+          <li><strong>Quarterly Newsletters:</strong> March 27, June 26, September 25, December 18 (adjusted off holiday)</li>
         </ul>
       </div>
     </div>
 
-    <!-- =============== Q1 =============== -->
+    <!-- ===================== Q1 ===================== -->
     <details open>
       <summary>
         <span>Q1 – Visibility</span>
         <span class="summary-right">
           <span>You cannot fix what you cannot see</span>
-          <span class="tag news">Newsletter: Late March</span>
+          <span class="tag news">Newsletter: 2026-03-27</span>
         </span>
       </summary>
       <div class="content">
@@ -348,30 +330,25 @@
         <!-- January -->
         <details class="month-details" open>
           <summary>
-            <span>January</span>
+            <span>January 2026</span>
             <span class="summary-right">
               <span class="tag fire">Fire weekly</span>
               <span class="tag backflow">Backflow bi-weekly</span>
-              <span class="tag upsell">Upsell FE</span>
+              <span class="tag upsell">FE 2026-01-08</span>
+              <span class="tag upsell">RR 2026-01-22</span>
             </span>
           </summary>
           <div class="content">
             <table>
-              <thead>
-                <tr>
-                  <th style="width:120px;">Week</th>
-                  <th>Send Plan</th>
-                </tr>
-              </thead>
+              <thead><tr><th class="week">Week</th><th>Send Plan</th></tr></thead>
               <tbody>
                 <tr>
                   <td class="week">W1</td>
                   <td>
                     <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag backflow">Tue</span><strong>Backflow Prospects:</strong><span>Region A (bi-weekly)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers – Touch 1</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Visibility creates more systems to test (steady opportunity)</span></div>
+                      <div class="line"><span class="tag fire">Tue 2026-01-06</span><strong>Fire Prospects:</strong><span>Visibility outreach (fill 5–6 states)</span></div>
+                      <div class="line"><span class="tag backflow">Tue 2026-01-06</span><strong>Backflow Prospects:</strong><span>Region A (bi-weekly)</span></div>
+                      <div class="line"><span class="tag sp">Wed 2026-01-07</span><strong>Service Providers:</strong><span>Visibility creates more systems to test (more opportunity)</span></div>
                     </div>
                   </td>
                 </tr>
@@ -379,10 +356,8 @@
                   <td class="week">W2</td>
                   <td>
                     <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers – Touch 2</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Clean reporting reduces rejections and rework</span></div>
-                      <div class="line"><span class="tag drip">Always</span><strong>Drips:</strong><span>Cold / Warm / High Intent triggers continue</span></div>
+                      <div class="line"><span class="tag fire">Tue 2026-01-13</span><strong>Fire Prospects:</strong><span>Visibility outreach (fill 5–6 states)</span></div>
+                      <div class="line"><span class="tag upsell">Thu 2026-01-08</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers (1 of 1 this month)</span></div>
                     </div>
                   </td>
                 </tr>
@@ -390,10 +365,9 @@
                   <td class="week">W3</td>
                   <td>
                     <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag backflow">Tue</span><strong>Backflow Prospects:</strong><span>Region B (bi-weekly)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers – Touch 3 (proof/outcomes)</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Systems growth = more recurring cycles</span></div>
+                      <div class="line"><span class="tag fire">Tue 2026-01-20</span><strong>Fire Prospects:</strong><span>Visibility outreach (fill 5–6 states)</span></div>
+                      <div class="line"><span class="tag backflow">Tue 2026-01-20</span><strong>Backflow Prospects:</strong><span>Region B (bi-weekly)</span></div>
+                      <div class="line"><span class="tag drip">Always</span><strong>Drips:</strong><span>Behavior-based split (Cold / Warm / High Intent)</span></div>
                     </div>
                   </td>
                 </tr>
@@ -401,18 +375,15 @@
                   <td class="week">W4</td>
                   <td>
                     <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers – Touch 4 (final CTA)</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Visibility messaging variant (A/B)</span></div>
+                      <div class="line"><span class="tag fire">Tue 2026-01-27</span><strong>Fire Prospects:</strong><span>Visibility outreach (fill 5–6 states)</span></div>
+                      <div class="line"><span class="tag upsell">Thu 2026-01-22</span><strong>Customer Upsell (Global):</strong><span>Report Review (1 of 1 this month)</span></div>
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
-
             <div class="note">
-              Fire Prospect states: keep 5–6 per week. Replace “regional batch (fill states)” with your actual state list.<br/>
-              Backflow is intentionally lighter to protect trust and drive higher quality intent.
+              Note: FE is anchored to Week 2 Thursday and Report Review is anchored to Week 4 Thursday every month to keep spacing clean and prevent fatigue.
             </div>
           </div>
         </details>
@@ -420,156 +391,122 @@
         <!-- February -->
         <details class="month-details">
           <summary>
-            <span>February</span>
+            <span>February 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag backflow">Backflow bi-weekly</span>
-              <span class="tag upsell">Upsell FE</span>
+              <span class="tag backflow">Regions C + D</span>
+              <span class="tag upsell">FE 2026-02-12</span>
+              <span class="tag upsell">RR 2026-02-26</span>
+              <span class="tag sp">SP 2026-02-04</span>
             </span>
           </summary>
           <div class="content">
             <table>
-              <thead>
-                <tr>
-                  <th style="width:120px;">Week</th>
-                  <th>Send Plan</th>
-                </tr>
-              </thead>
+              <thead><tr><th class="week">Week</th><th>Send Plan</th></tr></thead>
               <tbody>
                 <tr>
                   <td class="week">W1</td>
-                  <td>
-                    <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag backflow">Tue</span><strong>Backflow Prospects:</strong><span>Region C (bi-weekly)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers – Touch 1 (Feb wave)</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Visibility unlocks demand inside accounts you already serve</span></div>
-                    </div>
-                  </td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-02-03</span><strong>Fire Prospects:</strong><span>Visibility outreach (fill 5–6 states)</span></div>
+                    <div class="line"><span class="tag backflow">Tue 2026-02-03</span><strong>Backflow Prospects:</strong><span>Region C (bi-weekly)</span></div>
+                    <div class="line"><span class="tag sp">Wed 2026-02-04</span><strong>Service Providers:</strong><span>Visibility = steady demand cycles</span></div>
+                  </div></td>
                 </tr>
                 <tr>
                   <td class="week">W2</td>
-                  <td>
-                    <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers – Touch 2</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Reduce admin time with clearer requirements</span></div>
-                    </div>
-                  </td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-02-10</span><strong>Fire Prospects:</strong><span>Visibility outreach (fill 5–6 states)</span></div>
+                    <div class="line"><span class="tag upsell">Thu 2026-02-12</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers (1 of 1)</span></div>
+                  </div></td>
                 </tr>
                 <tr>
                   <td class="week">W3</td>
-                  <td>
-                    <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag backflow">Tue</span><strong>Backflow Prospects:</strong><span>Region D (bi-weekly)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers – Touch 3</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Past-due visibility supports recurring work</span></div>
-                    </div>
-                  </td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-02-17</span><strong>Fire Prospects:</strong><span>Visibility outreach (fill 5–6 states)</span></div>
+                    <div class="line"><span class="tag backflow">Tue 2026-02-17</span><strong>Backflow Prospects:</strong><span>Region D (bi-weekly)</span></div>
+                  </div></td>
                 </tr>
                 <tr>
                   <td class="week">W4</td>
-                  <td>
-                    <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers – Touch 4 (final CTA)</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Visibility close-out + CTA to engage</span></div>
-                    </div>
-                  </td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-02-24</span><strong>Fire Prospects:</strong><span>Visibility outreach (fill 5–6 states)</span></div>
+                    <div class="line"><span class="tag upsell">Thu 2026-02-26</span><strong>Customer Upsell (Global):</strong><span>Report Review (1 of 1)</span></div>
+                  </div></td>
                 </tr>
               </tbody>
             </table>
-
-            <div class="note">
-              Backflow ends broad outreach after Q1. After each region’s send, contacts move into Backflow-only drips (Cold / Warm / High Intent).
-            </div>
           </div>
         </details>
 
         <!-- March -->
         <details class="month-details">
           <summary>
-            <span>March</span>
+            <span>March 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag backflow">Backflow bi-weekly</span>
-              <span class="tag upsell">Upsell RR</span>
-              <span class="tag news">Newsletter</span>
+              <span class="tag backflow">Region E (final)</span>
+              <span class="tag upsell">FE 2026-03-12</span>
+              <span class="tag upsell">RR 2026-03-26</span>
+              <span class="tag news">Newsletter 2026-03-27</span>
+              <span class="tag sp">SP 2026-03-04</span>
             </span>
           </summary>
           <div class="content">
             <table>
-              <thead>
-                <tr>
-                  <th style="width:120px;">Week</th>
-                  <th>Send Plan</th>
-                </tr>
-              </thead>
+              <thead><tr><th class="week">Week</th><th>Send Plan</th></tr></thead>
               <tbody>
                 <tr>
                   <td class="week">W1</td>
-                  <td>
-                    <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Report Review – Touch 1 (announce)</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Visibility quarter close + what to expect next</span></div>
-                    </div>
-                  </td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-03-03</span><strong>Fire Prospects:</strong><span>Visibility close-out (fill states)</span></div>
+                    <div class="line"><span class="tag sp">Wed 2026-03-04</span><strong>Service Providers:</strong><span>How visibility increases workload predictability</span></div>
+                  </div></td>
                 </tr>
                 <tr>
                   <td class="week">W2</td>
-                  <td>
-                    <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag backflow">Tue</span><strong>Backflow Prospects:</strong><span>Region E (final Q1 region)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Report Review – Webinar Invite</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>Data quality + fewer rejections story</span></div>
-                    </div>
-                  </td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-03-10</span><strong>Fire Prospects:</strong><span>Visibility close-out (fill states)</span></div>
+                    <div class="line"><span class="tag backflow">Tue 2026-03-10</span><strong>Backflow Prospects:</strong><span>Region E (final Q1 region)</span></div>
+                    <div class="line"><span class="tag upsell">Thu 2026-03-12</span><strong>Customer Upsell (Global):</strong><span>Fire Extinguishers (1 of 1)</span></div>
+                  </div></td>
                 </tr>
                 <tr>
                   <td class="week">W3</td>
-                  <td>
-                    <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Report Review – Touch 3 (proof/case study)</span></div>
-                      <div class="line"><span class="tag sp">Wed</span><strong>Service Providers:</strong><span>How report quality impacts compliance outcomes</span></div>
-                    </div>
-                  </td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-03-17</span><strong>Fire Prospects:</strong><span>Transition to Q2 Efficiency (fill states)</span></div>
+                    <div class="line"><span class="tag drip">Always</span><strong>Backflow Drips Begin:</strong><span>Cold / Warm / High Intent (backflow-only)</span></div>
+                  </div></td>
                 </tr>
                 <tr>
                   <td class="week">W4</td>
-                  <td>
-                    <div class="cell">
-                      <div class="line"><span class="tag fire">Tue</span><strong>Fire Prospects:</strong><span>Regional batch (fill states)</span></div>
-                      <div class="line"><span class="tag upsell">Thu</span><strong>Customer Upsell (Global):</strong><span>Report Review – Touch 4 (final CTA)</span></div>
-                      <div class="line"><span class="tag news">Fri</span><strong>Quarterly Newsletter:</strong><span>Q1 Visibility recap + outcomes + what’s next</span></div>
-                    </div>
-                  </td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-03-24</span><strong>Fire Prospects:</strong><span>Transition to Q2 Efficiency (fill states)</span></div>
+                    <div class="line"><span class="tag upsell">Thu 2026-03-26</span><strong>Customer Upsell (Global):</strong><span>Report Review (1 of 1)</span></div>
+                    <div class="line"><span class="tag news">Fri 2026-03-27</span><strong>Quarterly Newsletter:</strong><span>Q1 Visibility outcomes + next steps</span></div>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td class="week">W5</td>
+                  <td><div class="cell">
+                    <div class="line"><span class="tag fire">Tue 2026-03-31</span><strong>Fire Prospects:</strong><span>Efficiency launch prep (optional week 5)</span></div>
+                  </div></td>
                 </tr>
               </tbody>
             </table>
-
             <div class="note">
-              Backflow broad outreach ends here. Starting April: Backflow stays in its own nurture + behavior drips only.
+              Backflow broadcast outreach ends after March. From April forward: Backflow is drip-only.
             </div>
           </div>
         </details>
 
-        <div class="note">
-          Q1 Drips: run continuously. Cold / Warm / High Intent are split by audience (Fire Prospects vs Backflow Prospects) to keep messaging aligned to compliance realities.
-        </div>
       </div>
     </details>
 
-    <!-- =============== Q2 =============== -->
+    <!-- ===================== Q2 ===================== -->
     <details>
       <summary>
         <span>Q2 – Efficiency</span>
         <span class="summary-right">
           <span>Give inspectors their time back</span>
-          <span class="tag news">Newsletter: Late June</span>
+          <span class="tag news">Newsletter: 2026-06-26</span>
         </span>
       </summary>
       <div class="content">
@@ -577,17 +514,18 @@
         <!-- April -->
         <details class="month-details">
           <summary>
-            <span>April</span>
+            <span>April 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell RR</span>
+              <span class="tag sp">SP 2026-04-01</span>
+              <span class="tag upsell">FE 2026-04-09</span>
+              <span class="tag upsell">RR 2026-04-23</span>
               <span class="tag backflow">Backflow drips</span>
             </span>
           </summary>
           <div class="content">
             <div class="note">
-              April follows the same weekly table format as Q1. Fire Prospects continue weekly on Tuesdays (regional batches). Backflow is drip-only. Upsell (RR) continues globally on Thursdays (2–4 touches/month).
-              Service Provider email continues monthly on Wednesdays aligned to Efficiency.
+              Fire Prospects continue weekly on Tuesdays (Efficiency theme). Backflow remains drip-only.
+              Upsells: FE 2026-04-09 and RR 2026-04-23 (one each).
             </div>
           </div>
         </details>
@@ -595,16 +533,16 @@
         <!-- May -->
         <details class="month-details">
           <summary>
-            <span>May</span>
+            <span>May 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell FE</span>
-              <span class="tag sp">Service Providers</span>
+              <span class="tag sp">SP 2026-05-06</span>
+              <span class="tag upsell">FE 2026-05-14</span>
+              <span class="tag upsell">RR 2026-05-28</span>
             </span>
           </summary>
           <div class="content">
             <div class="note">
-              May: Upsell flips back to Fire Extinguishers globally. Fire Prospects continue weekly regional batches. Service Provider messaging ties to efficiency and predictable demand cycles.
+              Maintain the same spacing: FE in Week 2, Report Review in Week 4.
             </div>
           </div>
         </details>
@@ -612,16 +550,17 @@
         <!-- June -->
         <details class="month-details">
           <summary>
-            <span>June</span>
+            <span>June 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell FE</span>
-              <span class="tag news">Newsletter</span>
+              <span class="tag sp">SP 2026-06-03</span>
+              <span class="tag upsell">FE 2026-06-11</span>
+              <span class="tag upsell">RR 2026-06-25</span>
+              <span class="tag news">Newsletter 2026-06-26</span>
             </span>
           </summary>
           <div class="content">
             <div class="note">
-              June: End-of-quarter Efficiency wrap. Newsletter goes out late June. (Keep the weekly cadence consistent for operational discipline.)
+              Quarterly Newsletter: 2026-06-26 (day after RR) is intentional to avoid competing CTAs.
             </div>
           </div>
         </details>
@@ -629,123 +568,110 @@
       </div>
     </details>
 
-    <!-- =============== Q3 =============== -->
+    <!-- ===================== Q3 ===================== -->
     <details>
       <summary>
         <span>Q3 – Compliance Outcomes</span>
         <span class="summary-right">
           <span>Better data creates safer communities</span>
-          <span class="tag news">Newsletter: Late September</span>
+          <span class="tag news">Newsletter: 2026-09-25</span>
         </span>
       </summary>
       <div class="content">
+
         <details class="month-details">
           <summary>
-            <span>July</span>
+            <span>July 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell RR</span>
-              <span class="tag sp">Service Providers</span>
+              <span class="tag sp">SP 2026-07-01</span>
+              <span class="tag upsell">FE 2026-07-09</span>
+              <span class="tag upsell">RR 2026-07-23</span>
             </span>
           </summary>
-          <div class="content">
-            <div class="note">
-              July–August: RR upsell window (global). Include one webinar month per window. Fire Prospects stay weekly. Service Providers tie reporting quality to measurable compliance lift.
-            </div>
-          </div>
+          <div class="content"><div class="note">Fire Prospects continue weekly on Tuesdays (Compliance Outcomes theme).</div></div>
         </details>
 
         <details class="month-details">
           <summary>
-            <span>August</span>
+            <span>August 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell RR</span>
-              <span class="tag sp">Service Providers</span>
+              <span class="tag sp">SP 2026-08-05</span>
+              <span class="tag upsell">FE 2026-08-13</span>
+              <span class="tag upsell">RR 2026-08-27</span>
             </span>
           </summary>
-          <div class="content">
-            <div class="note">
-              August: Run the webinar invite + follow-up sequence inside the RR window. Continue weekly Fire Prospect outreach.
-            </div>
-          </div>
+          <div class="content"><div class="note">Use Report Review month to reinforce consistency and reduced rework caused by lack of compliance.</div></div>
         </details>
 
         <details class="month-details">
           <summary>
-            <span>September</span>
+            <span>September 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell FE</span>
-              <span class="tag news">Newsletter</span>
+              <span class="tag sp">SP 2026-09-02</span>
+              <span class="tag upsell">FE 2026-09-10</span>
+              <span class="tag upsell">RR 2026-09-24</span>
+              <span class="tag news">Newsletter 2026-09-25</span>
             </span>
           </summary>
-          <div class="content">
-            <div class="note">
-              September: Upsell flips back to FE window (global). Newsletter late September focuses on compliance outcomes and measurable lift.
-            </div>
-          </div>
+          <div class="content"><div class="note">Newsletter lands 2026-09-25 to close Q3 with outcomes and proof.</div></div>
         </details>
+
       </div>
     </details>
 
-    <!-- =============== Q4 =============== -->
+    <!-- ===================== Q4 ===================== -->
     <details>
       <summary>
         <span>Q4 – Modernization</span>
         <span class="summary-right">
           <span>Prepare your compliance program for 2027</span>
-          <span class="tag news">Newsletter: Late December</span>
+          <span class="tag news">Newsletter: 2026-12-18</span>
         </span>
       </summary>
       <div class="content">
+
         <details class="month-details">
           <summary>
-            <span>October</span>
+            <span>October 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell FE</span>
-              <span class="tag sp">Service Providers</span>
+              <span class="tag sp">SP 2026-10-07</span>
+              <span class="tag upsell">FE 2026-10-08</span>
+              <span class="tag upsell">RR 2026-10-22</span>
             </span>
           </summary>
-          <div class="content">
-            <div class="note">
-              October: Modernization narrative. Fire Prospects weekly. FE upsell continues globally. Service Providers messaging ties modernization to fewer rejections and cleaner cycles.
-            </div>
-          </div>
+          <div class="content"><div class="note">Modernization narrative: reduce lack of compliance through program readiness, not just tools.</div></div>
         </details>
 
         <details class="month-details">
           <summary>
-            <span>November</span>
+            <span>November 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell RR</span>
-              <span class="tag sp">Service Providers</span>
+              <span class="tag sp">SP 2026-11-04</span>
+              <span class="tag upsell">FE 2026-11-12</span>
+              <span class="tag upsell">RR 2026-11-26</span>
             </span>
           </summary>
-          <div class="content">
-            <div class="note">
-              November–December: RR upsell window (global) with one webinar month inside. Keep weekly Fire Prospect cadence intact.
-            </div>
-          </div>
+          <div class="content"><div class="note">Thanksgiving week RR: keep copy short and action-oriented.</div></div>
         </details>
 
         <details class="month-details">
           <summary>
-            <span>December</span>
+            <span>December 2026</span>
             <span class="summary-right">
-              <span class="tag fire">Fire weekly</span>
-              <span class="tag upsell">Upsell RR</span>
-              <span class="tag news">Newsletter</span>
+              <span class="tag sp">SP 2026-12-02</span>
+              <span class="tag upsell">FE 2026-12-10</span>
+              <span class="tag upsell">RR 2026-12-24</span>
+              <span class="tag news">Newsletter 2026-12-18</span>
             </span>
           </summary>
           <div class="content">
             <div class="note">
-              December: Run RR webinar earlier in the month if needed, then close with the Year-End newsletter late December.
+              Newsletter is set to <strong>2026-12-18</strong> (avoids holiday conflicts).
+              If you decide to move the December RR off 12/24, shift it to <strong>12/17</strong> and keep the “Week 4 Thursday” intent.
             </div>
           </div>
         </details>
+
       </div>
     </details>
 
