@@ -23,6 +23,14 @@
       --zebra:#f8fafc;
       --thead:#eef4fb;
       --sticky-shadow:0 10px 24px rgba(2,6,23,.08);
+
+      --focus:#0b5cff;
+      --focus-soft:rgba(11,92,255,.12);
+
+      --q1:#0ea5e9;
+      --q2:#22c55e;
+      --q3:#f59e0b;
+      --q4:#a855f7;
     }
 
     *{ box-sizing:border-box; }
@@ -75,11 +83,64 @@
       line-height:1.45;
     }
 
+    .toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      justify-content:space-between;
+      margin:14px 0 10px;
+      padding:12px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+
+    .toolbar-left{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+
+    .toolbar-right{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      color:var(--muted);
+      font-weight:800;
+      font-size:.82rem;
+    }
+
+    .btn{
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--brycer-navy);
+      font-weight:900;
+      font-size:.78rem;
+      padding:8px 10px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:transform .06s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(2,6,23,.22);
+      box-shadow:0 10px 18px rgba(2,6,23,.08);
+    }
+    .btn.active{
+      border-color:rgba(11,92,255,.55);
+      background:var(--focus-soft);
+      color:var(--focus);
+    }
+
     .legend{
       display:grid;
       grid-template-columns:1.2fr .8fr;
       gap:12px;
-      margin:14px 0 10px;
+      margin:10px 0 10px;
     }
     @media (max-width:980px){ .legend{ grid-template-columns:1fr; } }
 
@@ -175,20 +236,73 @@
       padding:0 12px 14px 12px;
     }
 
-    .qtagline{
+    .qhead{
       margin:10px 2px 10px 2px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+
+    .qtitle{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:260px;
+    }
+
+    .qtheme{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .qbadge{
+      font-weight:900;
+      font-size:.74rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      padding:6px 10px;
+      border-radius:999px;
+      color:var(--brycer-navy);
+      border:1px solid var(--border);
+      background:#fff;
+      white-space:nowrap;
+    }
+
+    .qbadge.q1{ border-color:rgba(14,165,233,.35); background:rgba(14,165,233,.10); }
+    .qbadge.q2{ border-color:rgba(34,197,94,.35); background:rgba(34,197,94,.10); }
+    .qbadge.q3{ border-color:rgba(245,158,11,.35); background:rgba(245,158,11,.12); }
+    .qbadge.q4{ border-color:rgba(168,85,247,.35); background:rgba(168,85,247,.10); }
+
+    .qquote{
+      font-weight:900;
+      color:var(--brycer-navy);
+      font-size:.9rem;
+      letter-spacing:-.01em;
+    }
+
+    .qtagline{
       color:var(--muted);
       font-size:.9rem;
       line-height:1.5;
+      max-width:920px;
+    }
+
+    .sheet-wrap{
+      margin-top:10px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      overflow:hidden;
+      background:#fff;
     }
 
     .sheet{
       width:100%;
       border-collapse:separate;
       border-spacing:0;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
       background:#fff;
     }
 
@@ -205,6 +319,7 @@
       padding:10px 10px;
       border-bottom:1px solid var(--border);
       box-shadow:var(--sticky-shadow);
+      white-space:nowrap;
     }
 
     .sheet tbody td{
@@ -220,7 +335,7 @@
     }
 
     .wk{
-      width:130px;
+      width:150px;
       font-weight:900;
       color:var(--brycer-navy);
       white-space:nowrap;
@@ -233,6 +348,52 @@
     }
 
     .muted{ color:var(--muted); }
+
+    /* Column filter system */
+    .filter-all .col-fire,
+    .filter-all .col-backflow,
+    .filter-all .col-upsell,
+    .filter-all .col-sp,
+    .filter-all .col-drip,
+    .filter-all .col-news{
+      display:table-cell;
+    }
+
+    .filter-fire .col-backflow,
+    .filter-fire .col-upsell,
+    .filter-fire .col-sp,
+    .filter-fire .col-drip,
+    .filter-fire .col-news{ display:none; }
+
+    .filter-backflow .col-fire,
+    .filter-backflow .col-upsell,
+    .filter-backflow .col-sp,
+    .filter-backflow .col-drip,
+    .filter-backflow .col-news{ display:none; }
+
+    .filter-upsell .col-fire,
+    .filter-upsell .col-backflow,
+    .filter-upsell .col-sp,
+    .filter-upsell .col-drip,
+    .filter-upsell .col-news{ display:none; }
+
+    .filter-sp .col-fire,
+    .filter-sp .col-backflow,
+    .filter-sp .col-upsell,
+    .filter-sp .col-drip,
+    .filter-sp .col-news{ display:none; }
+
+    .filter-drip .col-fire,
+    .filter-drip .col-backflow,
+    .filter-drip .col-upsell,
+    .filter-drip .col-sp,
+    .filter-drip .col-news{ display:none; }
+
+    .filter-news .col-fire,
+    .filter-news .col-backflow,
+    .filter-news .col-upsell,
+    .filter-news .col-sp,
+    .filter-news .col-drip{ display:none; }
 
     footer{
       margin-top:16px;
@@ -250,12 +411,32 @@
 </head>
 
 <body>
-  <div class="page">
+  <div class="page filter-all" id="pageRoot">
     <header>
       <div class="eyebrow">Backed by BRYCER</div>
       <h1>BRYCER 2026 Email Roadmap</h1>
-      <div class="sub">Turning Reports into Results — a year-long cadence built to reduce lack of compliance with clear weekly execution by audience.</div>
+      <div class="sub">
+        Turning Reports into Results — a year-long cadence built to reduce lack of compliance with clear weekly execution by audience.
+      </div>
     </header>
+
+    <!-- View buttons -->
+    <div class="toolbar" role="region" aria-label="Calendar View Controls">
+      <div class="toolbar-left">
+        <button class="btn active" data-filter="all">All</button>
+        <button class="btn" data-filter="fire">Fire Only</button>
+        <button class="btn" data-filter="backflow">Backflow Only</button>
+        <button class="btn" data-filter="upsell">Upsells Only</button>
+        <button class="btn" data-filter="sp">Service Providers Only</button>
+        <button class="btn" data-filter="drip">Drips Only</button>
+        <button class="btn" data-filter="news">Newsletter Only</button>
+      </div>
+      <div class="toolbar-right">
+        <span><strong>Prospecting:</strong> Weeks 1–9</span>
+        <span><strong>Drips:</strong> Weeks 11–12</span>
+        <span><strong>Newsletter:</strong> Week 13</span>
+      </div>
+    </div>
 
     <section class="legend">
       <div class="box">
@@ -273,7 +454,7 @@
       <div class="box">
         <h2>Quarter Rules (Locked)</h2>
         <ul>
-          <li><strong>Weeks 1–9:</strong> Prospecting (Fire weekly; Backflow per Q1 plan)</li>
+          <li><strong>Weeks 1–9:</strong> Prospecting</li>
           <li><strong>Week 10:</strong> Pause prospecting (optimize, resend winners, list hygiene)</li>
           <li><strong>Week 11:</strong> End-of-quarter drips (Cold / Warm / High Intent)</li>
           <li><strong>Week 12:</strong> Drip continuation + last-chance CTA</li>
@@ -294,143 +475,152 @@
       </summary>
 
       <div class="content">
-        <div class="qtagline">
-          Focus: uncover hidden gaps that create lack of compliance (systems, locations, missed cycles). Backflow prospecting runs in Q1 only.
+        <div class="qhead">
+          <div class="qtitle">
+            <div class="qtheme">
+              <span class="qbadge q1">Theme: Visibility</span>
+              <span class="qquote">You cannot fix what you cannot see.</span>
+            </div>
+            <div class="qtagline">
+              Make lack of compliance visible: uncover untracked systems, unknown ownership, and missed cycles before they become audit or risk issues.
+            </div>
+          </div>
         </div>
 
-        <table class="sheet" aria-label="Q1 Sheet View">
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Fire Prospects</th>
-              <th>Backflow Prospects</th>
-              <th>Upsells</th>
-              <th>Service Providers</th>
-              <th>Drips</th>
-              <th>Quarterly Newsletter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Q1 rows -->
-            <tr>
-              <td class="wk">W1<div class="rng">Jan 01–Jan 07</div></td>
-              <td>Jan 06 – Visibility outreach (5–6 states)</td>
-              <td>Jan 06 – Backflow Region 1 outreach</td>
-              <td>—</td>
-              <td>Jan 07 – Monthly touch</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W2<div class="rng">Jan 08–Jan 14</div></td>
-              <td>Jan 13 – Visibility outreach (5–6 states)</td>
-              <td>—</td>
-              <td>Jan 08 – Upsell: FE</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W3<div class="rng">Jan 15–Jan 21</div></td>
-              <td>Jan 20 – Visibility outreach (5–6 states)</td>
-              <td>Jan 20 – Backflow Region 2 outreach</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W4<div class="rng">Jan 22–Jan 28</div></td>
-              <td>Jan 27 – Visibility outreach (5–6 states)</td>
-              <td>—</td>
-              <td>Jan 22 – Upsell: RR</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W5<div class="rng">Jan 29–Feb 04</div></td>
-              <td>Feb 03 – Visibility outreach (5–6 states)</td>
-              <td>—</td>
-              <td>—</td>
-              <td>Feb 04 – Monthly touch</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W6<div class="rng">Feb 05–Feb 11</div></td>
-              <td>Feb 10 – Visibility outreach (5–6 states)</td>
-              <td>Feb 10 – Backflow Region 3 outreach</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W7<div class="rng">Feb 12–Feb 18</div></td>
-              <td>Feb 17 – Visibility outreach (5–6 states)</td>
-              <td>—</td>
-              <td>Feb 12 – Upsell: FE</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W8<div class="rng">Feb 19–Feb 25</div></td>
-              <td>Feb 24 – Visibility outreach (5–6 states)</td>
-              <td>Feb 24 – Backflow Region 4 outreach</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W9<div class="rng">Feb 26–Mar 04</div></td>
-              <td>Mar 03 – Visibility outreach (5–6 states)</td>
-              <td>—</td>
-              <td>Feb 26 – Upsell: RR</td>
-              <td>Mar 04 – Monthly touch</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W10<div class="rng">Mar 05–Mar 11</div></td>
-              <td>No new prospect send (optimize / resend winners)</td>
-              <td>Mar 10 – Backflow Region 5 outreach</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W11<div class="rng">Mar 12–Mar 18</div></td>
-              <td class="muted">—</td>
-              <td class="muted">—</td>
-              <td>Mar 12 – Upsell: FE</td>
-              <td>—</td>
-              <td>Fire Visibility drip (Cold/Warm/High Intent) · Backflow drip (Cold/Warm/High Intent)</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W12<div class="rng">Mar 19–Mar 25</div></td>
-              <td class="muted">—</td>
-              <td class="muted">—</td>
-              <td>—</td>
-              <td>—</td>
-              <td>Continue drips + last-chance CTA</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td class="wk">W13<div class="rng">Mar 26–Apr 01</div></td>
-              <td class="muted">—</td>
-              <td class="muted">—</td>
-              <td>Mar 26 – Upsell: RR</td>
-              <td>—</td>
-              <td class="muted">—</td>
-              <td>Mar 31 – Quarterly Newsletter</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="sheet-wrap">
+          <table class="sheet" aria-label="Q1 Sheet View">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th class="col-fire">Fire Prospects</th>
+                <th class="col-backflow">Backflow Prospects</th>
+                <th class="col-upsell">Upsells</th>
+                <th class="col-sp">Service Providers</th>
+                <th class="col-drip">Drips</th>
+                <th class="col-news">Quarterly Newsletter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="wk">W1<div class="rng">Jan 01–Jan 07</div></td>
+                <td class="col-fire">Jan 06 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">Jan 06 – Backflow Region 1 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Jan 07 – Monthly touch</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W2<div class="rng">Jan 08–Jan 14</div></td>
+                <td class="col-fire">Jan 13 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Jan 08 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W3<div class="rng">Jan 15–Jan 21</div></td>
+                <td class="col-fire">Jan 20 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">Jan 20 – Backflow Region 2 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W4<div class="rng">Jan 22–Jan 28</div></td>
+                <td class="col-fire">Jan 27 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Jan 22 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W5<div class="rng">Jan 29–Feb 04</div></td>
+                <td class="col-fire">Feb 03 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Feb 04 – Monthly touch</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W6<div class="rng">Feb 05–Feb 11</div></td>
+                <td class="col-fire">Feb 10 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">Feb 10 – Backflow Region 3 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W7<div class="rng">Feb 12–Feb 18</div></td>
+                <td class="col-fire">Feb 17 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Feb 12 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W8<div class="rng">Feb 19–Feb 25</div></td>
+                <td class="col-fire">Feb 24 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">Feb 24 – Backflow Region 4 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W9<div class="rng">Feb 26–Mar 04</div></td>
+                <td class="col-fire">Mar 03 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Feb 26 – Upsell: RR</td>
+                <td class="col-sp">Mar 04 – Monthly touch</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W10<div class="rng">Mar 05–Mar 11</div></td>
+                <td class="col-fire">No new prospect send (optimize / resend winners)</td>
+                <td class="col-backflow">Mar 10 – Backflow Region 5 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W11<div class="rng">Mar 12–Mar 18</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Mar 12 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">Fire Visibility drip + Backflow drip (Cold / Warm / High Intent)</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W12<div class="rng">Mar 19–Mar 25</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip">Continue drips + last-chance CTA</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W13<div class="rng">Mar 26–Apr 01</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Mar 26 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-drip muted">—</td>
+                <td class="col-news">Mar 31 – Quarterly Newsletter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </details>
 
@@ -446,38 +636,48 @@
       </summary>
 
       <div class="content">
-        <div class="qtagline">
-          Focus: reduce admin burden that leads to lack of compliance (backlogs, missed reviews, unclear responsibility). Backflow remains drip-only.
+        <div class="qhead">
+          <div class="qtitle">
+            <div class="qtheme">
+              <span class="qbadge q2">Theme: Efficiency</span>
+              <span class="qquote">Give inspectors their time back.</span>
+            </div>
+            <div class="qtagline">
+              Reduce the process friction that drives lack of compliance: streamline review, eliminate rework, and shorten time-to-resolution.
+            </div>
+          </div>
         </div>
 
-        <table class="sheet" aria-label="Q2 Sheet View">
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Fire Prospects</th>
-              <th>Backflow Prospects</th>
-              <th>Upsells</th>
-              <th>Service Providers</th>
-              <th>Drips</th>
-              <th>Quarterly Newsletter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="wk">W1<div class="rng">Apr 01–Apr 07</div></td><td>Apr 07 – Efficiency outreach (5–6 states)</td><td>—</td><td>—</td><td>Apr 01 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W2<div class="rng">Apr 08–Apr 14</div></td><td>Apr 14 – Efficiency outreach (5–6 states)</td><td>—</td><td>Apr 09 – Upsell: FE</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W3<div class="rng">Apr 15–Apr 21</div></td><td>Apr 21 – Efficiency outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W4<div class="rng">Apr 22–Apr 28</div></td><td>Apr 28 – Efficiency outreach (5–6 states)</td><td>—</td><td>Apr 23 – Upsell: RR</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W5<div class="rng">Apr 29–May 05</div></td><td>May 05 – Efficiency outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W6<div class="rng">May 06–May 12</div></td><td>May 12 – Efficiency outreach (5–6 states)</td><td>—</td><td>—</td><td>May 06 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W7<div class="rng">May 13–May 19</div></td><td>May 19 – Efficiency outreach (5–6 states)</td><td>—</td><td>May 14 – Upsell: FE</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W8<div class="rng">May 20–May 26</div></td><td>May 26 – Efficiency outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W9<div class="rng">May 27–Jun 02</div></td><td>Jun 02 – Efficiency outreach (5–6 states)</td><td>—</td><td>May 28 – Upsell: RR</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W10<div class="rng">Jun 03–Jun 09</div></td><td>No new prospect send (optimize / resend winners)</td><td>—</td><td>—</td><td>Jun 03 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W11<div class="rng">Jun 10–Jun 16</div></td><td class="muted">—</td><td class="muted">—</td><td>Jun 11 – Upsell: FE</td><td>—</td><td>Fire Efficiency drip (Cold/Warm/High Intent)</td><td>—</td></tr>
-            <tr><td class="wk">W12<div class="rng">Jun 17–Jun 23</div></td><td class="muted">—</td><td class="muted">—</td><td>—</td><td>—</td><td>Continue drips + last-chance CTA</td><td>—</td></tr>
-            <tr><td class="wk">W13<div class="rng">Jun 24–Jun 30</div></td><td class="muted">—</td><td class="muted">—</td><td>Jun 25 – Upsell: RR</td><td>—</td><td class="muted">—</td><td>Jun 30 – Quarterly Newsletter</td></tr>
-          </tbody>
-        </table>
+        <div class="sheet-wrap">
+          <table class="sheet" aria-label="Q2 Sheet View">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th class="col-fire">Fire Prospects</th>
+                <th class="col-backflow">Backflow Prospects</th>
+                <th class="col-upsell">Upsells</th>
+                <th class="col-sp">Service Providers</th>
+                <th class="col-drip">Drips</th>
+                <th class="col-news">Quarterly Newsletter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="wk">W1<div class="rng">Apr 01–Apr 07</div></td><td class="col-fire">Apr 07 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">Apr 01 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W2<div class="rng">Apr 08–Apr 14</div></td><td class="col-fire">Apr 14 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Apr 09 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W3<div class="rng">Apr 15–Apr 21</div></td><td class="col-fire">Apr 21 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W4<div class="rng">Apr 22–Apr 28</div></td><td class="col-fire">Apr 28 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Apr 23 – Upsell: RR</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W5<div class="rng">Apr 29–May 05</div></td><td class="col-fire">May 05 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W6<div class="rng">May 06–May 12</div></td><td class="col-fire">May 12 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">May 06 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W7<div class="rng">May 13–May 19</div></td><td class="col-fire">May 19 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">May 14 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W8<div class="rng">May 20–May 26</div></td><td class="col-fire">May 26 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W9<div class="rng">May 27–Jun 02</div></td><td class="col-fire">Jun 02 – Efficiency outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">May 28 – Upsell: RR</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W10<div class="rng">Jun 03–Jun 09</div></td><td class="col-fire">No new prospect send (optimize / resend winners)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">Jun 03 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W11<div class="rng">Jun 10–Jun 16</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">Jun 11 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">Fire Efficiency drip (Cold / Warm / High Intent)</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W12<div class="rng">Jun 17–Jun 23</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">Continue drips + last-chance CTA</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W13<div class="rng">Jun 24–Jun 30</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">Jun 25 – Upsell: RR</td><td class="col-sp">—</td><td class="col-drip muted">—</td><td class="col-news">Jun 30 – Quarterly Newsletter</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </details>
 
@@ -493,38 +693,48 @@
       </summary>
 
       <div class="content">
-        <div class="qtagline">
-          Focus: measurable compliance lift (program outcomes that leadership cares about). Backflow remains drip-only.
+        <div class="qhead">
+          <div class="qtitle">
+            <div class="qtheme">
+              <span class="qbadge q3">Theme: Compliance</span>
+              <span class="qquote">Better data creates safer communities.</span>
+            </div>
+            <div class="qtagline">
+              Drive outcomes that reduce lack of compliance: higher completion rates, fewer overdue items, and clearer accountability across stakeholders.
+            </div>
+          </div>
         </div>
 
-        <table class="sheet" aria-label="Q3 Sheet View">
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Fire Prospects</th>
-              <th>Backflow Prospects</th>
-              <th>Upsells</th>
-              <th>Service Providers</th>
-              <th>Drips</th>
-              <th>Quarterly Newsletter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="wk">W1<div class="rng">Jul 01–Jul 07</div></td><td>Jul 07 – Compliance outreach (5–6 states)</td><td>—</td><td>—</td><td>Jul 01 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W2<div class="rng">Jul 08–Jul 14</div></td><td>Jul 14 – Compliance outreach (5–6 states)</td><td>—</td><td>Jul 09 – Upsell: FE</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W3<div class="rng">Jul 15–Jul 21</div></td><td>Jul 21 – Compliance outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W4<div class="rng">Jul 22–Jul 28</div></td><td>Jul 28 – Compliance outreach (5–6 states)</td><td>—</td><td>Jul 23 – Upsell: RR</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W5<div class="rng">Jul 29–Aug 04</div></td><td>Aug 04 – Compliance outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W6<div class="rng">Aug 05–Aug 11</div></td><td>Aug 11 – Compliance outreach (5–6 states)</td><td>—</td><td>—</td><td>Aug 05 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W7<div class="rng">Aug 12–Aug 18</div></td><td>Aug 18 – Compliance outreach (5–6 states)</td><td>—</td><td>Aug 13 – Upsell: FE</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W8<div class="rng">Aug 19–Aug 25</div></td><td>Aug 25 – Compliance outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W9<div class="rng">Aug 26–Sep 01</div></td><td>Sep 01 – Compliance outreach (5–6 states)</td><td>—</td><td>Aug 27 – Upsell: RR</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W10<div class="rng">Sep 02–Sep 08</div></td><td>No new prospect send (optimize / resend winners)</td><td>—</td><td>—</td><td>Sep 02 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W11<div class="rng">Sep 09–Sep 15</div></td><td class="muted">—</td><td class="muted">—</td><td>Sep 10 – Upsell: FE</td><td>—</td><td>Fire Compliance drip (Cold/Warm/High Intent)</td><td>—</td></tr>
-            <tr><td class="wk">W12<div class="rng">Sep 16–Sep 22</div></td><td class="muted">—</td><td class="muted">—</td><td>—</td><td>—</td><td>Continue drips + last-chance CTA</td><td>—</td></tr>
-            <tr><td class="wk">W13<div class="rng">Sep 23–Sep 30</div></td><td class="muted">—</td><td class="muted">—</td><td>Sep 24 – Upsell: RR</td><td>—</td><td class="muted">—</td><td>Sep 30 – Quarterly Newsletter</td></tr>
-          </tbody>
-        </table>
+        <div class="sheet-wrap">
+          <table class="sheet" aria-label="Q3 Sheet View">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th class="col-fire">Fire Prospects</th>
+                <th class="col-backflow">Backflow Prospects</th>
+                <th class="col-upsell">Upsells</th>
+                <th class="col-sp">Service Providers</th>
+                <th class="col-drip">Drips</th>
+                <th class="col-news">Quarterly Newsletter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="wk">W1<div class="rng">Jul 01–Jul 07</div></td><td class="col-fire">Jul 07 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">Jul 01 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W2<div class="rng">Jul 08–Jul 14</div></td><td class="col-fire">Jul 14 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Jul 09 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W3<div class="rng">Jul 15–Jul 21</div></td><td class="col-fire">Jul 21 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W4<div class="rng">Jul 22–Jul 28</div></td><td class="col-fire">Jul 28 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Jul 23 – Upsell: RR</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W5<div class="rng">Jul 29–Aug 04</div></td><td class="col-fire">Aug 04 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W6<div class="rng">Aug 05–Aug 11</div></td><td class="col-fire">Aug 11 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">Aug 05 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W7<div class="rng">Aug 12–Aug 18</div></td><td class="col-fire">Aug 18 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Aug 13 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W8<div class="rng">Aug 19–Aug 25</div></td><td class="col-fire">Aug 25 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W9<div class="rng">Aug 26–Sep 01</div></td><td class="col-fire">Sep 01 – Compliance outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Aug 27 – Upsell: RR</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W10<div class="rng">Sep 02–Sep 08</div></td><td class="col-fire">No new prospect send (optimize / resend winners)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">Sep 02 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W11<div class="rng">Sep 09–Sep 15</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">Sep 10 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">Fire Compliance drip (Cold / Warm / High Intent)</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W12<div class="rng">Sep 16–Sep 22</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">Continue drips + last-chance CTA</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W13<div class="rng">Sep 23–Sep 30</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">Sep 24 – Upsell: RR</td><td class="col-sp">—</td><td class="col-drip muted">—</td><td class="col-news">Sep 30 – Quarterly Newsletter</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </details>
 
@@ -540,38 +750,48 @@
       </summary>
 
       <div class="content">
-        <div class="qtagline">
-          Focus: preparing programs to reduce lack of compliance heading into the next budget cycle and staffing realities. Backflow remains drip-only.
+        <div class="qhead">
+          <div class="qtitle">
+            <div class="qtheme">
+              <span class="qbadge q4">Theme: Modernization</span>
+              <span class="qquote">Prepare your compliance program for next year.</span>
+            </div>
+            <div class="qtagline">
+              Modernize processes that fuel lack of compliance: standardize submissions, tighten timelines, and make compliance easier to sustain with the team you already have.
+            </div>
+          </div>
         </div>
 
-        <table class="sheet" aria-label="Q4 Sheet View">
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Fire Prospects</th>
-              <th>Backflow Prospects</th>
-              <th>Upsells</th>
-              <th>Service Providers</th>
-              <th>Drips</th>
-              <th>Quarterly Newsletter</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="wk">W1<div class="rng">Oct 01–Oct 07</div></td><td>Oct 06 – Modernization outreach (5–6 states)</td><td>—</td><td>—</td><td>Oct 07 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W2<div class="rng">Oct 08–Oct 14</div></td><td>Oct 13 – Modernization outreach (5–6 states)</td><td>—</td><td>Oct 08 – Upsell: FE</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W3<div class="rng">Oct 15–Oct 21</div></td><td>Oct 20 – Modernization outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W4<div class="rng">Oct 22–Oct 28</div></td><td>Oct 27 – Modernization outreach (5–6 states)</td><td>—</td><td>Oct 22 – Upsell: RR</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W5<div class="rng">Oct 29–Nov 04</div></td><td>Nov 03 – Modernization outreach (5–6 states)</td><td>—</td><td>—</td><td>Nov 04 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W6<div class="rng">Nov 05–Nov 11</div></td><td>Nov 10 – Modernization outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W7<div class="rng">Nov 12–Nov 18</div></td><td>Nov 17 – Modernization outreach (5–6 states)</td><td>—</td><td>Nov 12 – Upsell: FE</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W8<div class="rng">Nov 19–Nov 25</div></td><td>Nov 24 – Modernization outreach (5–6 states)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W9<div class="rng">Nov 26–Dec 02</div></td><td>Dec 01 – Modernization outreach (5–6 states)</td><td>—</td><td>Nov 26 – Upsell: RR</td><td>Dec 02 – Monthly touch</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W10<div class="rng">Dec 03–Dec 09</div></td><td>No new prospect send (optimize / resend winners)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td class="wk">W11<div class="rng">Dec 10–Dec 16</div></td><td class="muted">—</td><td class="muted">—</td><td>Dec 10 – Upsell: FE</td><td>—</td><td>Fire Modernization drip (Cold/Warm/High Intent)</td><td>—</td></tr>
-            <tr><td class="wk">W12<div class="rng">Dec 17–Dec 23</div></td><td class="muted">—</td><td class="muted">—</td><td>—</td><td>—</td><td>Continue drips + last-chance CTA</td><td>—</td></tr>
-            <tr><td class="wk">W13<div class="rng">Dec 24–Dec 30</div></td><td class="muted">—</td><td class="muted">—</td><td>Dec 24 – Upsell: RR</td><td>—</td><td class="muted">—</td><td>Dec 31 – Quarterly Newsletter</td></tr>
-          </tbody>
-        </table>
+        <div class="sheet-wrap">
+          <table class="sheet" aria-label="Q4 Sheet View">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th class="col-fire">Fire Prospects</th>
+                <th class="col-backflow">Backflow Prospects</th>
+                <th class="col-upsell">Upsells</th>
+                <th class="col-sp">Service Providers</th>
+                <th class="col-drip">Drips</th>
+                <th class="col-news">Quarterly Newsletter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="wk">W1<div class="rng">Oct 01–Oct 07</div></td><td class="col-fire">Oct 06 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">Oct 07 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W2<div class="rng">Oct 08–Oct 14</div></td><td class="col-fire">Oct 13 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Oct 08 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W3<div class="rng">Oct 15–Oct 21</div></td><td class="col-fire">Oct 20 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W4<div class="rng">Oct 22–Oct 28</div></td><td class="col-fire">Oct 27 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Oct 22 – Upsell: RR</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W5<div class="rng">Oct 29–Nov 04</div></td><td class="col-fire">Nov 03 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">Nov 04 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W6<div class="rng">Nov 05–Nov 11</div></td><td class="col-fire">Nov 10 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W7<div class="rng">Nov 12–Nov 18</div></td><td class="col-fire">Nov 17 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Nov 12 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W8<div class="rng">Nov 19–Nov 25</div></td><td class="col-fire">Nov 24 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W9<div class="rng">Nov 26–Dec 02</div></td><td class="col-fire">Dec 01 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Nov 26 – Upsell: RR</td><td class="col-sp">Dec 02 – Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W10<div class="rng">Dec 03–Dec 09</div></td><td class="col-fire">No new prospect send (optimize / resend winners)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W11<div class="rng">Dec 10–Dec 16</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">Dec 10 – Upsell: FE</td><td class="col-sp">—</td><td class="col-drip">Fire Modernization drip (Cold / Warm / High Intent)</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W12<div class="rng">Dec 17–Dec 23</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-drip">Continue drips + last-chance CTA</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W13<div class="rng">Dec 24–Dec 30</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">Dec 24 – Upsell: RR</td><td class="col-sp">—</td><td class="col-drip muted">—</td><td class="col-news">Dec 31 – Quarterly Newsletter</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </details>
 
@@ -580,5 +800,28 @@
       <div>Thank you to our customers for raising the standard of compliance.</div>
     </footer>
   </div>
+
+  <script>
+    (function(){
+      const root = document.getElementById("pageRoot");
+      const buttons = Array.from(document.querySelectorAll(".btn[data-filter]"));
+
+      function setFilter(name){
+        root.classList.remove(
+          "filter-all","filter-fire","filter-backflow","filter-upsell","filter-sp","filter-drip","filter-news"
+        );
+        root.classList.add("filter-" + name);
+
+        buttons.forEach(b => b.classList.toggle("active", b.dataset.filter === name));
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => setFilter(btn.dataset.filter));
+      });
+
+      // default
+      setFilter("all");
+    })();
+  </script>
 </body>
 </html>
