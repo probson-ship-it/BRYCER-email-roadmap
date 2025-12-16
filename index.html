@@ -43,7 +43,7 @@
     }
 
     .page{
-      max-width:1500px;
+      max-width:1400px;
       margin:0 auto;
       background:var(--card);
       border:1px solid var(--border);
@@ -83,11 +83,10 @@
       line-height:1.45;
     }
 
-    /* MULTI-SELECT TOOLBAR */
     .toolbar{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
+      gap:8px;
       align-items:center;
       justify-content:space-between;
       margin:14px 0 10px;
@@ -137,7 +136,6 @@
       color:var(--focus);
     }
 
-    /* LEGEND */
     .legend{
       display:grid;
       grid-template-columns:1.2fr .8fr;
@@ -190,10 +188,10 @@
     .dot.fire{ background:#e17f49; }
     .dot.backflow{ background:#2563eb; }
     .dot.upsell{ background:#0f766e; }
-    .dot.resend{ background:#334155; }
     .dot.sp{ background:#7c3aed; }
-    .dot.drip{ background:#111827; }
+    .dot.drip{ background:#334155; }
     .dot.news{ background:#b45309; }
+    .dot.conf{ background:#ef4444; }
 
     ul{
       margin:0;
@@ -291,7 +289,7 @@
       color:var(--muted);
       font-size:.9rem;
       line-height:1.5;
-      max-width:980px;
+      max-width:920px;
     }
 
     .sheet-wrap{
@@ -338,7 +336,7 @@
     }
 
     .wk{
-      width:160px;
+      width:150px;
       font-weight:900;
       color:var(--brycer-navy);
       white-space:nowrap;
@@ -352,8 +350,14 @@
 
     .muted{ color:var(--muted); }
 
-    /* MULTI-SELECT COLUMN HIDING */
-    .col-hidden{ display:none !important; }
+    /* Multi-select column toggles (hide-* classes are added/removed by JS) */
+    .hide-fire .col-fire{ display:none; }
+    .hide-backflow .col-backflow{ display:none; }
+    .hide-upsell .col-upsell{ display:none; }
+    .hide-sp .col-sp{ display:none; }
+    .hide-drip .col-drip{ display:none; }
+    .hide-news .col-news{ display:none; }
+    .hide-conf .col-conf{ display:none; }
 
     footer{
       margin-top:16px;
@@ -380,22 +384,21 @@
       </div>
     </header>
 
-    <!-- Multi-select view buttons -->
+    <!-- View buttons (multi-select) -->
     <div class="toolbar" role="region" aria-label="Calendar View Controls">
       <div class="toolbar-left">
-        <button class="btn active" data-col="fire">Fire Prospects</button>
-        <button class="btn active" data-col="backflow">Backflow Prospects</button>
-        <button class="btn active" data-col="upsell">Upsells</button>
-        <button class="btn active" data-col="resend">Resends</button>
-        <button class="btn active" data-col="sp">Service Providers</button>
-        <button class="btn active" data-col="drip">Drips</button>
-        <button class="btn active" data-col="news">Newsletter</button>
-        <button class="btn" id="btnAll">All On</button>
-        <button class="btn" id="btnNone">All Off</button>
+        <button class="btn active" data-col="fire" type="button">Fire</button>
+        <button class="btn active" data-col="backflow" type="button">Backflow</button>
+        <button class="btn active" data-col="upsell" type="button">Upsells</button>
+        <button class="btn active" data-col="sp" type="button">Service Providers</button>
+        <button class="btn active" data-col="drip" type="button">Drips</button>
+        <button class="btn active" data-col="news" type="button">Newsletter</button>
+        <button class="btn active" data-col="conf" type="button">Conferences</button>
+        <button class="btn" id="showAllBtn" type="button" title="Show all columns">Show All</button>
+        <button class="btn" id="hideAllBtn" type="button" title="Hide all columns (then toggle what you want)">Hide All</button>
       </div>
       <div class="toolbar-right">
         <span><strong>Prospecting:</strong> Weeks 1–9</span>
-        <span><strong>Week 10:</strong> Fire pause + Backflow Region 5</span>
         <span><strong>Drips:</strong> Weeks 11–12</span>
         <span><strong>Newsletter:</strong> Week 13</span>
       </div>
@@ -407,22 +410,22 @@
         <div class="chips">
           <div class="chip"><span class="dot fire"></span> Fire Prospects (Tue)</div>
           <div class="chip"><span class="dot backflow"></span> Backflow Prospects (Tue)</div>
-          <div class="chip"><span class="dot upsell"></span> Upsells (Thu) — FE monthly + RR monthly</div>
-          <div class="chip"><span class="dot resend"></span> Resend (Unopens) — 3–4 business days after (no webinar/newsletter)</div>
-          <div class="chip"><span class="dot sp"></span> Service Providers (1st Wed monthly)</div>
+          <div class="chip"><span class="dot upsell"></span> Upsell (Thu) – FE + RR monthly</div>
+          <div class="chip"><span class="dot sp"></span> Service Providers (first Wed monthly)</div>
           <div class="chip"><span class="dot drip"></span> Drips (Week 11–12)</div>
           <div class="chip"><span class="dot news"></span> Quarterly Newsletter (Week 13)</div>
+          <div class="chip"><span class="dot conf"></span> Conferences (email 3 business days before event)</div>
         </div>
       </div>
 
       <div class="box">
         <h2>Quarter Rules (Locked)</h2>
         <ul>
-          <li><strong>Weeks 1–9:</strong> Prospecting (Fire weekly; Backflow biweekly by region plan)</li>
-          <li><strong>Week 10:</strong> Fire pause (optimize, resend winners, list hygiene) + Backflow Region 5 send</li>
-          <li><strong>Weeks 11–12:</strong> Behavior-based drips (Cold / Warm / High Intent)</li>
+          <li><strong>Weeks 1–9:</strong> Prospecting</li>
+          <li><strong>Week 10:</strong> Pause prospecting (optimize, resend winners, list hygiene)</li>
+          <li><strong>Week 11:</strong> End-of-quarter drips (Cold / Warm / High Intent)</li>
+          <li><strong>Week 12:</strong> Drip continuation + last-chance CTA</li>
           <li><strong>Week 13:</strong> Quarterly Newsletter (end of quarter)</li>
-          <li><strong>Resends:</strong> Every send except webinars/newsletters gets a resend to unopens 3–4 business days later</li>
         </ul>
       </div>
     </section>
@@ -432,7 +435,9 @@
       <summary>
         <span>Q1 – Visibility</span>
         <span class="qmeta">
-          <span>Newsletter: Mar 31</span>
+          <span>Prospecting Weeks 1–9</span>
+          <span>Drips Week 11–12</span>
+          <span>Newsletter Mar 31</span>
         </span>
       </summary>
 
@@ -457,8 +462,8 @@
                 <th class="col-fire">Fire Prospects</th>
                 <th class="col-backflow">Backflow Prospects</th>
                 <th class="col-upsell">Upsells</th>
-                <th class="col-resend">Resends (Unopens)</th>
                 <th class="col-sp">Service Providers</th>
+                <th class="col-conf">Conferences</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
               </tr>
@@ -466,145 +471,157 @@
             <tbody>
               <tr>
                 <td class="wk">W1<div class="rng">Jan 01–Jan 07</div></td>
-                <td class="col-fire"><strong>Jan 06 (Tue)</strong> — State outreach (5–6 states)</td>
-                <td class="col-backflow"><strong>Jan 06 (Tue)</strong> — Region 1</td>
+                <td class="col-fire">Jan 06 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">Jan 06 – Backflow Region 1 outreach</td>
                 <td class="col-upsell">—</td>
-                <td class="col-resend">Fire resend → <strong>Jan 09 (Fri)</strong><br/>Backflow resend → <strong>Jan 09 (Fri)</strong></td>
-                <td class="col-sp"><strong>Jan 07 (Wed)</strong> — Monthly touch</td>
+                <td class="col-sp">Jan 07 – Monthly touch</td>
+                <td class="col-conf">
+                  Dec 31 – Fire Rescue East (Florida) • event Jan 05–Jan 09<br/>
+                  Jan 07 – Chiefs Summit (Florida) • event Jan 12–Jan 15
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W2<div class="rng">Jan 08–Jan 14</div></td>
-                <td class="col-fire"><strong>Jan 13 (Tue)</strong> — State outreach (5–6 states)</td>
+                <td class="col-fire">Jan 13 – Visibility outreach (5–6 states)</td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell"><strong>Jan 08 (Thu)</strong> — Upsell: FE</td>
-                <td class="col-resend">SP resend → <strong>Jan 12 (Mon)</strong><br/>FE resend → <strong>Jan 13 (Tue)</strong><br/>Fire resend → <strong>Jan 16 (Fri)</strong></td>
+                <td class="col-upsell">Jan 08 – Upsell: FE</td>
                 <td class="col-sp">—</td>
+                <td class="col-conf">Jan 14 – Utah Fire Marshals (Utah) • event Jan 18–Jan 21</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W3<div class="rng">Jan 15–Jan 21</div></td>
-                <td class="col-fire"><strong>Jan 20 (Tue)</strong> — State outreach (5–6 states)</td>
-                <td class="col-backflow"><strong>Jan 20 (Tue)</strong> — Region 2</td>
+                <td class="col-fire">Jan 20 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">Jan 20 – Backflow Region 2 outreach</td>
                 <td class="col-upsell">—</td>
-                <td class="col-resend">Fire resend → <strong>Jan 23 (Fri)</strong><br/>Backflow resend → <strong>Jan 23 (Fri)</strong></td>
                 <td class="col-sp">—</td>
+                <td class="col-conf">Jan 16 – Utah Fire Chiefs (Utah) • event Jan 21–Jan 23</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W4<div class="rng">Jan 22–Jan 28</div></td>
-                <td class="col-fire"><strong>Jan 27 (Tue)</strong> — State outreach (5–6 states)</td>
+                <td class="col-fire">Jan 27 – Visibility outreach (5–6 states)</td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell"><strong>Jan 22 (Thu)</strong> — Upsell: RR</td>
-                <td class="col-resend">RR resend → <strong>Jan 27 (Tue)</strong><br/>Fire resend → <strong>Jan 30 (Fri)</strong></td>
+                <td class="col-upsell">Jan 22 – Upsell: RR</td>
                 <td class="col-sp">—</td>
+                <td class="col-conf">
+                  Jan 22 – Heart of America (Kansas/Missouri) • event Jan 27–Jan 27<br/>
+                  Jan 27 – Long Island Metro Fire/EMS (New York) • event Jan 30–Feb 01
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W5<div class="rng">Jan 29–Feb 04</div></td>
-                <td class="col-fire"><strong>Feb 03 (Tue)</strong> — State outreach (5–6 states)</td>
+                <td class="col-fire">Feb 03 – Visibility outreach (5–6 states)</td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
-                <td class="col-resend">Fire resend → <strong>Feb 06 (Fri)</strong></td>
-                <td class="col-sp"><strong>Feb 04 (Wed)</strong> — Monthly touch</td>
+                <td class="col-sp">Feb 04 – Monthly touch</td>
+                <td class="col-conf">
+                  Jan 29 – CAFAA (California) • event Feb 03–Feb 05<br/>
+                  Jan 30 – TN Fire Chiefs Winter Conf (Tennessee) • event Feb 04–Feb 06<br/>
+                  Feb 03 – Cross Connection Control (Florida) • event Feb 08–Feb 10
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W6<div class="rng">Feb 05–Feb 11</div></td>
-                <td class="col-fire"><strong>Feb 10 (Tue)</strong> — State outreach (5–6 states)</td>
-                <td class="col-backflow"><strong>Feb 10 (Tue)</strong> — Region 3</td>
+                <td class="col-fire">Feb 10 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">Feb 10 – Backflow Region 3 outreach</td>
                 <td class="col-upsell">—</td>
-                <td class="col-resend">SP resend → <strong>Feb 09 (Mon)</strong><br/>Fire resend → <strong>Feb 13 (Fri)</strong><br/>Backflow resend → <strong>Feb 13 (Fri)</strong></td>
                 <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W7<div class="rng">Feb 12–Feb 18</div></td>
-                <td class="col-fire"><strong>Feb 17 (Tue)</strong> — State outreach (5–6 states)</td>
+                <td class="col-fire">Feb 17 – Visibility outreach (5–6 states)</td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell"><strong>Feb 12 (Thu)</strong> — Upsell: FE</td>
-                <td class="col-resend">FE resend → <strong>Feb 17 (Tue)</strong><br/>Fire resend → <strong>Feb 20 (Fri)</strong></td>
+                <td class="col-upsell">Feb 12 – Upsell: FE</td>
                 <td class="col-sp">—</td>
+                <td class="col-conf">Feb 13 – Tech Summit Indiana (Indiana) • event Feb 18–Feb 18</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W8<div class="rng">Feb 19–Feb 25</div></td>
-                <td class="col-fire"><strong>Feb 24 (Tue)</strong> — State outreach (5–6 states)</td>
-                <td class="col-backflow"><strong>Feb 24 (Tue)</strong> — Region 4</td>
+                <td class="col-fire">Feb 24 – Visibility outreach (5–6 states)</td>
+                <td class="col-backflow">Feb 24 – Backflow Region 4 outreach</td>
                 <td class="col-upsell">—</td>
-                <td class="col-resend">Fire resend → <strong>Feb 27 (Fri)</strong><br/>Backflow resend → <strong>Feb 27 (Fri)</strong></td>
                 <td class="col-sp">—</td>
+                <td class="col-conf">
+                  Feb 19 – Vision 20/20 (North Carolina) • event Feb 24–Feb 26<br/>
+                  Feb 19 – FCAM (Massachusetts) • event Feb 24–Feb 26<br/>
+                  Feb 20 – AL Fire Marshals (Alabama) • event Feb 25–Feb 27<br/>
+                  Feb 23 – MO Fire Chiefs (Missouri) • event Feb 26–Mar 01<br/>
+                  Feb 25 – CFPI (California) • event Mar 02–Mar 06<br/>
+                  Feb 25 – OH Life Safety Forum (Ohio) • event Mar 02–Mar 03
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W9<div class="rng">Feb 26–Mar 04</div></td>
-                <td class="col-fire"><strong>Mar 03 (Tue)</strong> — State outreach (5–6 states)</td>
+                <td class="col-fire">Mar 03 – Visibility outreach (5–6 states)</td>
                 <td class="col-backflow">—</td>
-                <td class="col-upsell"><strong>Feb 26 (Thu)</strong> — Upsell: RR</td>
-                <td class="col-resend">RR resend → <strong>Mar 03 (Tue)</strong><br/>SP resend → <strong>Mar 09 (Mon)</strong><br/>Fire resend → <strong>Mar 06 (Fri)</strong></td>
-                <td class="col-sp"><strong>Mar 04 (Wed)</strong> — Monthly touch</td>
+                <td class="col-upsell">Feb 26 – Upsell: RR</td>
+                <td class="col-sp">Mar 04 – Monthly touch</td>
+                <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W10<div class="rng">Mar 05–Mar 11</div></td>
-                <td class="col-fire">No new Fire prospect send (optimize / list hygiene)</td>
-                <td class="col-backflow"><strong>Mar 10 (Tue)</strong> — Region 5</td>
+                <td class="col-fire">No new prospect send (optimize / resend winners)</td>
+                <td class="col-backflow">Mar 10 – Backflow Region 5 outreach</td>
                 <td class="col-upsell">—</td>
-                <td class="col-resend">Backflow resend → <strong>Mar 13 (Fri)</strong></td>
                 <td class="col-sp">—</td>
+                <td class="col-conf">
+                  Mar 05 – CPSE (Florida) • event Mar 10–Mar 13<br/>
+                  Mar 05 – MI Fire Inspectors (Michigan) • event Mar 10–Mar 12<br/>
+                  Mar 06 – WFCA Ignite (Nevada) • event Mar 11–Mar 13
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W11<div class="rng">Mar 12–Mar 18</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell"><strong>Mar 12 (Thu)</strong> — Upsell: FE</td>
-                <td class="col-resend">FE resend → <strong>Mar 17 (Tue)</strong></td>
+                <td class="col-upsell">Mar 12 – Upsell: FE</td>
                 <td class="col-sp">—</td>
-                <td class="col-drip"><strong>Drips (Week 11):</strong> Fire + Backflow (Cold / Warm / High Intent)</td>
+                <td class="col-conf">
+                  Mar 12 – IN Fire Inspectors (Indiana) • event Mar 17–Mar 19<br/>
+                  Mar 17 – IL Fire/Life Safety (Illinois) • event Mar 22–Mar 24
+                </td>
+                <td class="col-drip">Fire Visibility drip + Backflow drip (Cold / Warm / High Intent)</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W12<div class="rng">Mar 19–Mar 25</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
                 <td class="col-upsell">—</td>
-                <td class="col-resend">—</td>
                 <td class="col-sp">—</td>
-                <td class="col-drip"><strong>Drips (Week 12):</strong> Continue nurture + last-chance CTA</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">Continue drips + last-chance CTA</td>
                 <td class="col-news">—</td>
               </tr>
-
               <tr>
                 <td class="wk">W13<div class="rng">Mar 26–Apr 01</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell"><strong>Mar 26 (Thu)</strong> — Upsell: RR</td>
-                <td class="col-resend">RR resend → <strong>Mar 31 (Tue)</strong></td>
+                <td class="col-upsell">Mar 26 – Upsell: RR</td>
                 <td class="col-sp">—</td>
+                <td class="col-conf">Mar 27 – MO Valley Force (Oklahoma) • event Apr 01–Apr 02</td>
                 <td class="col-drip muted">—</td>
-                <td class="col-news"><strong>Mar 31</strong> — Quarterly Newsletter</td>
+                <td class="col-news">Mar 31 – Quarterly Newsletter</td>
               </tr>
             </tbody>
           </table>
@@ -616,7 +633,11 @@
     <details>
       <summary>
         <span>Q2 – Efficiency</span>
-        <span class="qmeta"><span>Newsletter: Jun 30</span></span>
+        <span class="qmeta">
+          <span>Prospecting Weeks 1–9</span>
+          <span>Drips Week 11–12</span>
+          <span>Newsletter Jun 30</span>
+        </span>
       </summary>
 
       <div class="content">
@@ -627,7 +648,7 @@
               <span class="qquote">Give inspectors their time back.</span>
             </div>
             <div class="qtagline">
-              Reduce process friction that drives lack of compliance: streamline review, eliminate rework, and shorten time-to-resolution.
+              Reduce the process friction that drives lack of compliance: streamline review, eliminate rework, and shorten time-to-resolution.
             </div>
           </div>
         </div>
@@ -640,26 +661,151 @@
                 <th class="col-fire">Fire Prospects</th>
                 <th class="col-backflow">Backflow Prospects</th>
                 <th class="col-upsell">Upsells</th>
-                <th class="col-resend">Resends (Unopens)</th>
                 <th class="col-sp">Service Providers</th>
+                <th class="col-conf">Conferences</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td class="wk">W1<div class="rng">Apr 01–Apr 07</div></td><td class="col-fire"><strong>Apr 07 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Apr 07 (Tue)</strong> — Region 1</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Apr 10 (Fri)</strong><br/>Backflow resend → <strong>Apr 10 (Fri)</strong></td><td class="col-sp"><strong>Apr 01 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W2<div class="rng">Apr 08–Apr 14</div></td><td class="col-fire"><strong>Apr 14 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Apr 09 (Thu)</strong> — Upsell: FE</td><td class="col-resend">SP resend → <strong>Apr 06 (Mon)</strong><br/>FE resend → <strong>Apr 14 (Tue)</strong><br/>Fire resend → <strong>Apr 17 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W3<div class="rng">Apr 15–Apr 21</div></td><td class="col-fire"><strong>Apr 21 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Apr 21 (Tue)</strong> — Region 2</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Apr 24 (Fri)</strong><br/>Backflow resend → <strong>Apr 24 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W4<div class="rng">Apr 22–Apr 28</div></td><td class="col-fire"><strong>Apr 28 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Apr 23 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Apr 28 (Tue)</strong><br/>Fire resend → <strong>May 01 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W5<div class="rng">Apr 29–May 05</div></td><td class="col-fire"><strong>May 05 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>May 08 (Fri)</strong><br/>SP resend → <strong>May 11 (Mon)</strong></td><td class="col-sp"><strong>May 06 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W6<div class="rng">May 06–May 12</div></td><td class="col-fire"><strong>May 12 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>May 12 (Tue)</strong> — Region 3</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>May 15 (Fri)</strong><br/>Backflow resend → <strong>May 15 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W7<div class="rng">May 13–May 19</div></td><td class="col-fire"><strong>May 19 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>May 14 (Thu)</strong> — Upsell: FE</td><td class="col-resend">FE resend → <strong>May 19 (Tue)</strong><br/>Fire resend → <strong>May 22 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W8<div class="rng">May 20–May 26</div></td><td class="col-fire"><strong>May 26 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>May 26 (Tue)</strong> — Region 4</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>May 29 (Fri)</strong><br/>Backflow resend → <strong>May 29 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W9<div class="rng">May 27–Jun 02</div></td><td class="col-fire"><strong>Jun 02 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>May 28 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Jun 02 (Tue)</strong><br/>Fire resend → <strong>Jun 05 (Fri)</strong></td><td class="col-sp"><strong>Jun 03 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W10<div class="rng">Jun 03–Jun 09</div></td><td class="col-fire">No new Fire prospect send (optimize / list hygiene)</td><td class="col-backflow"><strong>Jun 09 (Tue)</strong> — Region 5</td><td class="col-upsell">—</td><td class="col-resend">SP resend → <strong>Jun 08 (Mon)</strong><br/>Backflow resend → <strong>Jun 12 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W11<div class="rng">Jun 10–Jun 16</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell"><strong>Jun 11 (Thu)</strong> — Upsell: FE</td><td class="col-resend">FE resend → <strong>Jun 16 (Tue)</strong></td><td class="col-sp">—</td><td class="col-drip"><strong>Drips (Week 11):</strong> Fire + Backflow (Cold / Warm / High Intent)</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W12<div class="rng">Jun 17–Jun 23</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">—</td><td class="col-resend">—</td><td class="col-sp">—</td><td class="col-drip"><strong>Drips (Week 12):</strong> Continue nurture + last-chance CTA</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W13<div class="rng">Jun 24–Jun 30</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell"><strong>Jun 25 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Jun 30 (Tue)</strong></td><td class="col-sp">—</td><td class="col-drip muted">—</td><td class="col-news"><strong>Jun 30</strong> — Quarterly Newsletter</td></tr>
+              <tr>
+                <td class="wk">W1<div class="rng">Apr 01–Apr 07</div></td>
+                <td class="col-fire">Apr 07 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">Apr 07 – Backflow Region 1 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Apr 01 – Monthly touch</td>
+                <td class="col-conf">Apr 06 – CT Fire Marshals (Connecticut) • event Apr 09–Apr 10</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W2<div class="rng">Apr 08–Apr 14</div></td>
+                <td class="col-fire">Apr 14 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Apr 09 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  Apr 08 – TX Fire Chief (Texas) • event Apr 13–Apr 16
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W3<div class="rng">Apr 15–Apr 21</div></td>
+                <td class="col-fire">Apr 21 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">Apr 21 – Backflow Region 2 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W4<div class="rng">Apr 22–Apr 28</div></td>
+                <td class="col-fire">Apr 28 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Apr 23 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  Apr 22 – LA Fire Chiefs (Louisiana) • event Apr 27–May 02<br/>
+                  Apr 27 – Idaho Fire Chiefs (Idaho) • event Apr 30–May 03
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W5<div class="rng">Apr 29–May 05</div></td>
+                <td class="col-fire">May 05 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">May 05 – Backflow Region 3 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">May 01 – TN Fire Chiefs Spring Conference (Tennessee) • event May 06–May 08</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W6<div class="rng">May 06–May 12</div></td>
+                <td class="col-fire">May 12 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">May 06 – Monthly touch</td>
+                <td class="col-conf">May 07 – OR Fire Chiefs (Oregon) • event May 12–May 14<br/>May 07 – NC Fire Chiefs Mid Winter (North Carolina) • event May 12–May 15</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W7<div class="rng">May 13–May 19</div></td>
+                <td class="col-fire">May 19 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">May 19 – Backflow Region 4 outreach</td>
+                <td class="col-upsell">May 14 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">May 14 – CRRL Conference (Arizona) • event May 19–May 21</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W8<div class="rng">May 20–May 26</div></td>
+                <td class="col-fire">May 26 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W9<div class="rng">May 27–Jun 02</div></td>
+                <td class="col-fire">Jun 02 – Efficiency outreach (5–6 states)</td>
+                <td class="col-backflow">Jun 02 – Backflow Region 5 outreach</td>
+                <td class="col-upsell">May 28 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  May 29 – MO Valley Chiefs (Nebraska) • event Jun 03–Jun 05<br/>
+                  Jun 02 – Metro Fire Chiefs (Wisconsin) • event Jun 07–Jun 11
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W10<div class="rng">Jun 03–Jun 09</div></td>
+                <td class="col-fire">No new prospect send (optimize / resend winners)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Jun 03 – Monthly touch</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W11<div class="rng">Jun 10–Jun 16</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Jun 11 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">Fire Efficiency drip + Backflow drip (Cold / Warm / High Intent)</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W12<div class="rng">Jun 17–Jun 23</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">Jun 23 – MO Fire Districts (Missouri) • event Jun 26–Jun 28</td>
+                <td class="col-drip">Continue drips + last-chance CTA</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W13<div class="rng">Jun 24–Jun 30</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Jun 25 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip muted">—</td>
+                <td class="col-news">Jun 30 – Quarterly Newsletter</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -670,7 +816,11 @@
     <details>
       <summary>
         <span>Q3 – Compliance Outcomes</span>
-        <span class="qmeta"><span>Newsletter: Sep 30</span></span>
+        <span class="qmeta">
+          <span>Prospecting Weeks 1–9</span>
+          <span>Drips Week 11–12</span>
+          <span>Newsletter Sep 30</span>
+        </span>
       </summary>
 
       <div class="content">
@@ -694,26 +844,143 @@
                 <th class="col-fire">Fire Prospects</th>
                 <th class="col-backflow">Backflow Prospects</th>
                 <th class="col-upsell">Upsells</th>
-                <th class="col-resend">Resends (Unopens)</th>
                 <th class="col-sp">Service Providers</th>
+                <th class="col-conf">Conferences</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td class="wk">W1<div class="rng">Jul 01–Jul 07</div></td><td class="col-fire"><strong>Jul 07 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Jul 07 (Tue)</strong> — Region 1</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Jul 10 (Fri)</strong><br/>Backflow resend → <strong>Jul 10 (Fri)</strong></td><td class="col-sp"><strong>Jul 01 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W2<div class="rng">Jul 08–Jul 14</div></td><td class="col-fire"><strong>Jul 14 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Jul 09 (Thu)</strong> — Upsell: FE</td><td class="col-resend">SP resend → <strong>Jul 06 (Mon)</strong><br/>FE resend → <strong>Jul 14 (Tue)</strong><br/>Fire resend → <strong>Jul 17 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W3<div class="rng">Jul 15–Jul 21</div></td><td class="col-fire"><strong>Jul 21 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Jul 21 (Tue)</strong> — Region 2</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Jul 24 (Fri)</strong><br/>Backflow resend → <strong>Jul 24 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W4<div class="rng">Jul 22–Jul 28</div></td><td class="col-fire"><strong>Jul 28 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Jul 23 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Jul 28 (Tue)</strong><br/>Fire resend → <strong>Jul 31 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W5<div class="rng">Jul 29–Aug 04</div></td><td class="col-fire"><strong>Aug 04 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Aug 07 (Fri)</strong><br/>SP resend → <strong>Aug 10 (Mon)</strong></td><td class="col-sp"><strong>Aug 05 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W6<div class="rng">Aug 05–Aug 11</div></td><td class="col-fire"><strong>Aug 11 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Aug 11 (Tue)</strong> — Region 3</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Aug 14 (Fri)</strong><br/>Backflow resend → <strong>Aug 14 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W7<div class="rng">Aug 12–Aug 18</div></td><td class="col-fire"><strong>Aug 18 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Aug 13 (Thu)</strong> — Upsell: FE</td><td class="col-resend">FE resend → <strong>Aug 18 (Tue)</strong><br/>Fire resend → <strong>Aug 21 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W8<div class="rng">Aug 19–Aug 25</div></td><td class="col-fire"><strong>Aug 25 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Aug 25 (Tue)</strong> — Region 4</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Aug 28 (Fri)</strong><br/>Backflow resend → <strong>Aug 28 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W9<div class="rng">Aug 26–Sep 01</div></td><td class="col-fire"><strong>Sep 01 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Aug 27 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Sep 01 (Tue)</strong><br/>Fire resend → <strong>Sep 04 (Fri)</strong></td><td class="col-sp"><strong>Sep 02 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W10<div class="rng">Sep 02–Sep 08</div></td><td class="col-fire">No new Fire prospect send (optimize / list hygiene)</td><td class="col-backflow"><strong>Sep 08 (Tue)</strong> — Region 5</td><td class="col-upsell">—</td><td class="col-resend">SP resend → <strong>Sep 07 (Mon)</strong><br/>Backflow resend → <strong>Sep 11 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W11<div class="rng">Sep 09–Sep 15</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell"><strong>Sep 10 (Thu)</strong> — Upsell: FE</td><td class="col-resend">FE resend → <strong>Sep 15 (Tue)</strong></td><td class="col-sp">—</td><td class="col-drip"><strong>Drips (Week 11):</strong> Fire + Backflow (Cold / Warm / High Intent)</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W12<div class="rng">Sep 16–Sep 22</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">—</td><td class="col-resend">—</td><td class="col-sp">—</td><td class="col-drip"><strong>Drips (Week 12):</strong> Continue nurture + last-chance CTA</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W13<div class="rng">Sep 23–Sep 30</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell"><strong>Sep 24 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Sep 29 (Tue)</strong></td><td class="col-sp">—</td><td class="col-drip muted">—</td><td class="col-news"><strong>Sep 30</strong> — Quarterly Newsletter</td></tr>
+              <tr>
+                <td class="wk">W1<div class="rng">Jul 01–Jul 07</div></td>
+                <td class="col-fire">Jul 07 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">Jul 07 – Backflow Region 1 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Jul 01 – Monthly touch</td>
+                <td class="col-conf">Jul 01 – AZ Fire Chiefs (Arizona) • event Jul 06–Jul 09</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W2<div class="rng">Jul 08–Jul 14</div></td>
+                <td class="col-fire">Jul 14 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Jul 09 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">Jul 08 – Fire Chiefs Summit (Arizona) • event Jul 13–Jul 15</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W3<div class="rng">Jul 15–Jul 21</div></td>
+                <td class="col-fire">Jul 21 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">Jul 21 – Backflow Region 2 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W4<div class="rng">Jul 22–Jul 28</div></td>
+                <td class="col-fire">Jul 28 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Jul 23 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W5<div class="rng">Jul 29–Aug 04</div></td>
+                <td class="col-fire">Aug 04 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">Aug 04 – Backflow Region 3 outreach</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W6<div class="rng">Aug 05–Aug 11</div></td>
+                <td class="col-fire">Aug 11 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Aug 05 – Monthly touch</td>
+                <td class="col-conf">Aug 07 – FRI (Missouri) • event Aug 12–Aug 14</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W7<div class="rng">Aug 12–Aug 18</div></td>
+                <td class="col-fire">Aug 18 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">Aug 18 – Backflow Region 4 outreach</td>
+                <td class="col-upsell">Aug 13 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W8<div class="rng">Aug 19–Aug 25</div></td>
+                <td class="col-fire">Aug 25 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W9<div class="rng">Aug 26–Sep 01</div></td>
+                <td class="col-fire">Sep 01 – Compliance outreach (5–6 states)</td>
+                <td class="col-backflow">Sep 01 – Backflow Region 5 outreach</td>
+                <td class="col-upsell">Aug 27 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W10<div class="rng">Sep 02–Sep 08</div></td>
+                <td class="col-fire">No new prospect send (optimize / resend winners)</td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Sep 02 – Monthly touch</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W11<div class="rng">Sep 09–Sep 15</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Sep 10 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">Fire Compliance drip + Backflow drip (Cold / Warm / High Intent)</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W12<div class="rng">Sep 16–Sep 22</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">Continue drips + last-chance CTA</td>
+                <td class="col-news">—</td>
+              </tr>
+              <tr>
+                <td class="wk">W13<div class="rng">Sep 23–Sep 30</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Sep 24 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip muted">—</td>
+                <td class="col-news">Sep 30 – Quarterly Newsletter</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -724,7 +991,11 @@
     <details>
       <summary>
         <span>Q4 – Modernization</span>
-        <span class="qmeta"><span>Newsletter: Dec 31</span></span>
+        <span class="qmeta">
+          <span>Prospecting Weeks 1–9</span>
+          <span>Drips Week 11–12</span>
+          <span>Newsletter Dec 31</span>
+        </span>
       </summary>
 
       <div class="content">
@@ -748,26 +1019,26 @@
                 <th class="col-fire">Fire Prospects</th>
                 <th class="col-backflow">Backflow Prospects</th>
                 <th class="col-upsell">Upsells</th>
-                <th class="col-resend">Resends (Unopens)</th>
                 <th class="col-sp">Service Providers</th>
+                <th class="col-conf">Conferences</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td class="wk">W1<div class="rng">Oct 01–Oct 07</div></td><td class="col-fire"><strong>Oct 06 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Oct 06 (Tue)</strong> — Region 1</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Oct 09 (Fri)</strong><br/>Backflow resend → <strong>Oct 09 (Fri)</strong></td><td class="col-sp"><strong>Oct 07 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W2<div class="rng">Oct 08–Oct 14</div></td><td class="col-fire"><strong>Oct 13 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Oct 08 (Thu)</strong> — Upsell: FE</td><td class="col-resend">FE resend → <strong>Oct 13 (Tue)</strong><br/>SP resend → <strong>Oct 12 (Mon)</strong><br/>Fire resend → <strong>Oct 16 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W3<div class="rng">Oct 15–Oct 21</div></td><td class="col-fire"><strong>Oct 20 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Oct 20 (Tue)</strong> — Region 2</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Oct 23 (Fri)</strong><br/>Backflow resend → <strong>Oct 23 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W4<div class="rng">Oct 22–Oct 28</div></td><td class="col-fire"><strong>Oct 27 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Oct 22 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Oct 27 (Tue)</strong><br/>Fire resend → <strong>Oct 30 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W5<div class="rng">Oct 29–Nov 04</div></td><td class="col-fire"><strong>Nov 03 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Nov 06 (Fri)</strong><br/>SP resend → <strong>Nov 09 (Mon)</strong></td><td class="col-sp"><strong>Nov 04 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W6<div class="rng">Nov 05–Nov 11</div></td><td class="col-fire"><strong>Nov 10 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Nov 10 (Tue)</strong> — Region 3</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Nov 13 (Fri)</strong><br/>Backflow resend → <strong>Nov 13 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W7<div class="rng">Nov 12–Nov 18</div></td><td class="col-fire"><strong>Nov 17 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Nov 12 (Thu)</strong> — Upsell: FE</td><td class="col-resend">FE resend → <strong>Nov 17 (Tue)</strong><br/>Fire resend → <strong>Nov 20 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W8<div class="rng">Nov 19–Nov 25</div></td><td class="col-fire"><strong>Nov 24 (Tue)</strong> — State outreach</td><td class="col-backflow"><strong>Nov 24 (Tue)</strong> — Region 4</td><td class="col-upsell">—</td><td class="col-resend">Fire resend → <strong>Nov 27 (Fri)</strong><br/>Backflow resend → <strong>Nov 27 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W9<div class="rng">Nov 26–Dec 02</div></td><td class="col-fire"><strong>Dec 01 (Tue)</strong> — State outreach</td><td class="col-backflow">—</td><td class="col-upsell"><strong>Nov 26 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Dec 01 (Tue)</strong><br/>Fire resend → <strong>Dec 04 (Fri)</strong></td><td class="col-sp"><strong>Dec 02 (Wed)</strong> — Monthly touch</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W10<div class="rng">Dec 03–Dec 09</div></td><td class="col-fire">No new Fire prospect send (optimize / list hygiene)</td><td class="col-backflow"><strong>Dec 08 (Tue)</strong> — Region 5</td><td class="col-upsell">—</td><td class="col-resend">SP resend → <strong>Dec 07 (Mon)</strong><br/>Backflow resend → <strong>Dec 11 (Fri)</strong></td><td class="col-sp">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W11<div class="rng">Dec 10–Dec 16</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell"><strong>Dec 10 (Thu)</strong> — Upsell: FE</td><td class="col-resend">FE resend → <strong>Dec 15 (Tue)</strong></td><td class="col-sp">—</td><td class="col-drip"><strong>Drips (Week 11):</strong> Fire + Backflow (Cold / Warm / High Intent)</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W12<div class="rng">Dec 17–Dec 23</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">—</td><td class="col-resend">—</td><td class="col-sp">—</td><td class="col-drip"><strong>Drips (Week 12):</strong> Continue nurture + last-chance CTA</td><td class="col-news">—</td></tr>
-              <tr><td class="wk">W13<div class="rng">Dec 24–Dec 31</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell"><strong>Dec 24 (Thu)</strong> — Upsell: RR</td><td class="col-resend">RR resend → <strong>Dec 29 (Tue)</strong></td><td class="col-sp">—</td><td class="col-drip muted">—</td><td class="col-news"><strong>Dec 31</strong> — Quarterly Newsletter</td></tr>
+              <tr><td class="wk">W1<div class="rng">Oct 01–Oct 07</div></td><td class="col-fire">Oct 06 – Modernization outreach (5–6 states)</td><td class="col-backflow">Oct 06 – Backflow Region 1 outreach</td><td class="col-upsell">—</td><td class="col-sp">Oct 07 – Monthly touch</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W2<div class="rng">Oct 08–Oct 14</div></td><td class="col-fire">Oct 13 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Oct 08 – Upsell: FE</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W3<div class="rng">Oct 15–Oct 21</div></td><td class="col-fire">Oct 20 – Modernization outreach (5–6 states)</td><td class="col-backflow">Oct 20 – Backflow Region 2 outreach</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W4<div class="rng">Oct 22–Oct 28</div></td><td class="col-fire">Oct 27 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">Oct 22 – Upsell: RR</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W5<div class="rng">Oct 29–Nov 04</div></td><td class="col-fire">Nov 03 – Modernization outreach (5–6 states)</td><td class="col-backflow">Nov 03 – Backflow Region 3 outreach</td><td class="col-upsell">—</td><td class="col-sp">Nov 04 – Monthly touch</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W6<div class="rng">Nov 05–Nov 11</div></td><td class="col-fire">Nov 10 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W7<div class="rng">Nov 12–Nov 18</div></td><td class="col-fire">Nov 17 – Modernization outreach (5–6 states)</td><td class="col-backflow">Nov 17 – Backflow Region 4 outreach</td><td class="col-upsell">Nov 12 – Upsell: FE</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W8<div class="rng">Nov 19–Nov 25</div></td><td class="col-fire">Nov 24 – Modernization outreach (5–6 states)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W9<div class="rng">Nov 26–Dec 02</div></td><td class="col-fire">Dec 01 – Modernization outreach (5–6 states)</td><td class="col-backflow">Dec 01 – Backflow Region 5 outreach</td><td class="col-upsell">Nov 26 – Upsell: RR</td><td class="col-sp">Dec 02 – Monthly touch</td><td class="col-conf">Nov 26 – TN Fire Inspectors Annual Conf (Tennessee) • event Dec 01–Dec 04</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W10<div class="rng">Dec 03–Dec 09</div></td><td class="col-fire">No new prospect send (optimize / resend winners)</td><td class="col-backflow">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">—</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W11<div class="rng">Dec 10–Dec 16</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">Dec 10 – Upsell: FE</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">Fire Modernization drip + Backflow drip (Cold / Warm / High Intent)</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W12<div class="rng">Dec 17–Dec 23</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">—</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip">Continue drips + last-chance CTA</td><td class="col-news">—</td></tr>
+              <tr><td class="wk">W13<div class="rng">Dec 24–Dec 30</div></td><td class="col-fire muted">—</td><td class="col-backflow muted">—</td><td class="col-upsell">Dec 24 – Upsell: RR</td><td class="col-sp">—</td><td class="col-conf">—</td><td class="col-drip muted">—</td><td class="col-news">Dec 31 – Quarterly Newsletter</td></tr>
             </tbody>
           </table>
         </div>
@@ -783,44 +1054,38 @@
   <script>
     (function(){
       const root = document.getElementById("pageRoot");
-      const buttons = Array.from(document.querySelectorAll(".btn[data-col]"));
-      const btnAll = document.getElementById("btnAll");
-      const btnNone = document.getElementById("btnNone");
 
-      const COLS = ["fire","backflow","upsell","resend","sp","drip","news"];
+      const toggleButtons = Array.from(document.querySelectorAll(".btn[data-col]"));
+      const showAllBtn = document.getElementById("showAllBtn");
+      const hideAllBtn = document.getElementById("hideAllBtn");
 
-      function applyVisibility(){
-        const activeCols = buttons
-          .filter(b => b.classList.contains("active"))
-          .map(b => b.dataset.col);
-
-        COLS.forEach(col => {
-          const show = activeCols.includes(col);
-          root.querySelectorAll(".col-" + col).forEach(cell => {
-            cell.classList.toggle("col-hidden", !show);
-          });
-        });
+      function setHidden(col, hidden){
+        root.classList.toggle("hide-" + col, hidden);
+        const btn = toggleButtons.find(b => b.dataset.col === col);
+        if(btn) btn.classList.toggle("active", !hidden);
       }
 
-      buttons.forEach(btn => {
+      function showAll(){
+        toggleButtons.forEach(b => setHidden(b.dataset.col, false));
+      }
+
+      function hideAll(){
+        toggleButtons.forEach(b => setHidden(b.dataset.col, true));
+      }
+
+      toggleButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-          btn.classList.toggle("active");
-          applyVisibility();
+          const col = btn.dataset.col;
+          const isHidden = root.classList.contains("hide-" + col);
+          setHidden(col, !isHidden);
         });
       });
 
-      btnAll.addEventListener("click", () => {
-        buttons.forEach(b => b.classList.add("active"));
-        applyVisibility();
-      });
+      showAllBtn.addEventListener("click", showAll);
+      hideAllBtn.addEventListener("click", hideAll);
 
-      btnNone.addEventListener("click", () => {
-        buttons.forEach(b => b.classList.remove("active"));
-        applyVisibility();
-      });
-
-      // Initial
-      applyVisibility();
+      // default: show everything
+      showAll();
     })();
   </script>
 </body>
