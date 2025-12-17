@@ -2,162 +2,551 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Email Detail – BRYCER</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>Email Preview | BRYCER 2026 Roadmap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
+    :root{
+      --brycer-navy:#03233d;
+      --brycer-orange:#e17f49;
+
+      --bg:#f4f7fb;
+      --card:#ffffff;
+
+      --text:#0f172a;
+      --muted:#475569;
+      --border:#d9e2ef;
+
+      --shadow:0 18px 40px rgba(2,6,23,.08);
+
+      --focus:#0b5cff;
+      --focus-soft:rgba(11,92,255,.12);
+
+      --thead:#eef4fb;
+    }
+
+    *{ box-sizing:border-box; }
     body{
       margin:0;
       font-family:Montserrat, system-ui, -apple-system, Segoe UI, sans-serif;
-      background:#f4f7fb;
-      color:#0f172a;
-      padding:32px 16px;
+      background:var(--bg);
+      color:var(--text);
+      padding:24px 14px 60px;
     }
 
     .page{
-      max-width:900px;
+      max-width:980px;
       margin:0 auto;
-      background:#fff;
-      border:1px solid #d9e2ef;
-      border-radius:16px;
-      box-shadow:0 18px 40px rgba(2,6,23,.08);
-      padding:24px;
     }
 
-    .eyebrow{
-      font-size:.75rem;
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .crumb{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      font-size:.88rem;
       font-weight:800;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:#e17f49;
-      margin-bottom:6px;
     }
 
-    h1{
-      margin:0 0 8px 0;
-      font-size:1.6rem;
+    .crumb a{
+      color:var(--focus);
+      text-decoration:none;
       font-weight:900;
-      color:#03233d;
     }
+    .crumb a:hover{ text-decoration:underline; }
 
-    .meta{
-      color:#475569;
-      font-size:.9rem;
-      margin-bottom:18px;
+    .btn{
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--brycer-navy);
+      font-weight:900;
+      font-size:.78rem;
+      padding:9px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:transform .06s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+      white-space:nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(2,6,23,.22);
+      box-shadow:0 10px 18px rgba(2,6,23,.08);
     }
 
     .card{
-      border:1px solid #d9e2ef;
-      border-radius:12px;
-      padding:18px;
-      margin-bottom:16px;
-      background:#fff;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
-    .label{
-      font-size:.72rem;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:#475569;
-      margin-bottom:6px;
+    .hero{
+      position:relative;
+      height:260px;
+      background:#03233d;
+      overflow:hidden;
+    }
+    .hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      opacity:.92;
+      filter:saturate(1.05) contrast(1.05);
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(3,35,61,.10), rgba(3,35,61,.78));
     }
 
-    .subject{
-      font-size:1.1rem;
+    .hero-text{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:16px;
+      color:#fff;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .eyebrow{
+      font-size:.76rem;
       font-weight:900;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.86);
+    }
+
+    h1{
+      margin:0;
+      font-size:1.55rem;
+      line-height:1.2;
+      font-weight:950;
+      letter-spacing:-.02em;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:2px;
+      font-size:.86rem;
+      color:rgba(255,255,255,.88);
+      font-weight:800;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      white-space:nowrap;
+    }
+
+    .content{
+      padding:18px 18px 20px;
+    }
+
+    .section-title{
+      margin:0 0 10px 0;
+      font-size:.95rem;
+      font-weight:950;
+      color:var(--brycer-navy);
+      letter-spacing:-.01em;
+    }
+
+    .email-wrap{
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:#fff;
+      overflow:hidden;
+    }
+
+    .email-head{
+      padding:12px 14px;
+      background:linear-gradient(180deg, #ffffff, #f8fafc);
+      border-bottom:1px solid var(--border);
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+      align-items:flex-start;
+    }
+
+    .fromline{
+      font-size:.9rem;
+      font-weight:900;
+      color:var(--brycer-navy);
+    }
+
+    .subline{
+      font-size:.86rem;
+      color:var(--muted);
+      font-weight:800;
+      margin-top:4px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .tag{
+      font-size:.72rem;
+      font-weight:950;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--brycer-navy);
+      white-space:nowrap;
+    }
+    .tag.fire{ border-color:rgba(225,127,73,.35); background:rgba(225,127,73,.12); }
+    .tag.backflow{ border-color:rgba(37,99,235,.35); background:rgba(37,99,235,.10); }
+    .tag.resend{ border-color:rgba(100,116,139,.35); background:rgba(100,116,139,.10); color:#334155; }
+
+    .email-body{
+      padding:14px 14px 16px;
+      font-size:15px;
+      line-height:1.65;
+      color:var(--text);
+    }
+
+    .callout{
+      margin:14px 0;
+      padding:14px 14px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:var(--thead);
+    }
+    .callout .label{
+      font-size:.72rem;
+      font-weight:950;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--brycer-navy);
       margin-bottom:6px;
     }
-
-    .preheader{
-      font-size:.9rem;
-      color:#475569;
-      margin-bottom:10px;
+    .callout .big{
+      font-size:1.18rem;
+      line-height:1.25;
+      font-weight:950;
+      color:var(--brycer-navy);
     }
-
-    .body p{
-      margin:0 0 10px 0;
-      line-height:1.6;
+    .callout .small{
+      margin-top:6px;
+      font-size:.9rem;
+      color:var(--muted);
+      font-weight:700;
     }
 
     .cta{
-      display:inline-block;
-      margin-top:12px;
-      background:#0b5cff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 16px;
+      border-radius:12px;
+      background:var(--focus);
       color:#fff;
-      font-weight:900;
-      font-size:.85rem;
-      padding:10px 14px;
-      border-radius:10px;
+      font-weight:950;
       text-decoration:none;
+      margin:10px 0 0;
+    }
+    .cta:hover{ filter:brightness(.96); }
+
+    .foot{
+      margin-top:14px;
+      padding-top:12px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:.88rem;
+      font-weight:700;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
     }
 
-    .back{
-      margin-top:18px;
-      display:inline-block;
-      font-size:.85rem;
+    .error{
+      border:1px solid rgba(225,29,72,.25);
+      background:rgba(225,29,72,.06);
+      border-radius:14px;
+      padding:14px;
+      color:#9f1239;
       font-weight:800;
-      color:#0b5cff;
-      text-decoration:none;
+      line-height:1.55;
+    }
+
+    code{
+      background:#f1f5f9;
+      padding:2px 6px;
+      border-radius:8px;
+      border:1px solid #e2e8f0;
+      font-size:.9em;
     }
   </style>
 </head>
 
 <body>
-  <div class="page" id="emailRoot">
-    <div class="eyebrow">Backed by BRYCER</div>
-    <h1 id="emailTitle">Loading…</h1>
-    <div class="meta" id="emailMeta"></div>
-
-    <div class="card">
-      <div class="label">Subject</div>
-      <div class="subject" id="emailSubject"></div>
-      <div class="preheader" id="emailPreheader"></div>
+  <div class="page">
+    <div class="topbar">
+      <div class="crumb">
+        <a href="index.html">← Back to Roadmap</a>
+        <span>•</span>
+        <span id="crumbId">email.html</span>
+      </div>
+      <button class="btn" onclick="window.print()">Print</button>
     </div>
 
-    <div class="card body" id="emailBody"></div>
+    <div class="card" id="card">
+      <div class="hero">
+        <img id="heroImg" alt="" />
+        <div class="hero-text">
+          <div class="eyebrow" id="heroEyebrow">Email Preview</div>
+          <h1 id="heroTitle">Loading…</h1>
+          <div class="meta" id="heroMeta"></div>
+        </div>
+      </div>
 
-    <a class="cta" id="emailCta" href="#" target="_blank"></a>
+      <div class="content">
+        <h2 class="section-title">Email Content</h2>
 
-    <a class="back" href="index.html">← Back to roadmap</a>
+        <div class="email-wrap" id="emailWrap" style="display:none;">
+          <div class="email-head">
+            <div>
+              <div class="fromline" id="fromLine"></div>
+              <div class="subline" id="subjectLine"></div>
+            </div>
+            <div class="tags" id="tagWrap"></div>
+          </div>
+          <div class="email-body" id="emailBody"></div>
+        </div>
+
+        <div class="error" id="errorBox" style="display:none;"></div>
+
+        <div class="foot">
+          <div><strong style="color:var(--brycer-navy); font-weight:950;">BRYCER</strong> · Turning Reports into Results</div>
+          <div id="footId" style="font-weight:900;"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    async function loadEmail(){
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
+    // =========================
+    // 1) EMAIL LIBRARY (ADD MORE HERE)
+    // =========================
+    const EMAILS = {
+      "2026-q1-w1-fire-prospect": {
+        title: "Jan 06 – Visibility outreach (5–6 states)",
+        eyebrow: "Q1 · Visibility · Fire Prospects",
+        tags: ["fire"],
+        from: "Paige Robson, BRYCER",
+        subject: "Visibility is the first step to reducing lack of compliance.",
+        heroImage: "https://via.placeholder.com/1600x650.png?text=BRYCER+Visibility+Hero",
+        bodyHtml: `
+          <p>Hi <strong>{{First Name}}</strong>,</p>
 
-      const res = await fetch("data/emails.json");
-      const emails = await res.json();
+          <p>
+            Most fire departments believe they’re enforcing compliance — until they finally see the full inventory of systems
+            they’re responsible for.
+          </p>
 
-      const email = emails.find(e => e.id === id);
-      if(!email){
-        document.getElementById("emailTitle").innerText = "Email not found";
-        return;
+          <div class="callout">
+            <div class="label">Case study result</div>
+            <div class="big">+32% more fire protection systems identified in one year</div>
+            <div class="small">Not new installs — existing systems that had never fully entered the compliance cycle.</div>
+          </div>
+
+          <p>
+            Once the department could see all of their systems in one place — including <strong>fire sprinkler</strong>,
+            <strong>fire alarm</strong>, and <strong>suppression</strong> systems — patterns became clear:
+          </p>
+
+          <ul>
+            <li>Systems with no recent inspection history</li>
+            <li>Ownership records that were incomplete or outdated</li>
+            <li>Sites that were operating outside a consistent compliance cycle</li>
+          </ul>
+
+          <p>
+            The risk wasn’t new. <strong>It had simply been invisible.</strong>
+          </p>
+
+          <p>
+            BRYCER helps fire departments uncover the systems they’re already responsible for — so enforcement decisions
+            are based on reality, not assumptions.
+          </p>
+
+          <p>
+            <a class="cta" href="https://www.brycer.com/" target="_blank" rel="noopener">See what’s visible in your region</a>
+          </p>
+
+          <p style="margin-top:16px;">
+            If it’s helpful, I’m happy to share what similar departments in your region typically uncover once the full picture becomes visible.
+          </p>
+
+          <p>
+            Thank you,<br/>
+            <strong>Paige</strong>
+          </p>
+        `
+      },
+
+      "2026-q1-w1-fire-prospect-resend": {
+        title: "Jan 09 – Resend to unopens (Visibility outreach)",
+        eyebrow: "Q1 · Visibility · Fire Prospects",
+        tags: ["fire", "resend"],
+        from: "Paige Robson, BRYCER",
+        subject: "Quick bump: visibility is the first step to reducing lack of compliance",
+        heroImage: "https://via.placeholder.com/1600x650.png?text=BRYCER+Visibility+Reminder",
+        bodyHtml: `
+          <p>Hi <strong>{{First Name}}</strong>,</p>
+
+          <p>
+            Quick bump in case you missed this — we’ve seen fire departments uncover significant “invisible” compliance risk
+            once they can see the full inventory of systems in one place.
+          </p>
+
+          <div class="callout">
+            <div class="label">Case study result</div>
+            <div class="big">+32% more systems identified in one year</div>
+            <div class="small">Same buildings, same community — better visibility.</div>
+          </div>
+
+          <p>
+            If you’d like, I can share a short overview of what similar departments in your region typically uncover in the first 60–90 days.
+          </p>
+
+          <p>
+            <a class="cta" href="https://www.brycer.com/" target="_blank" rel="noopener">View a quick overview</a>
+          </p>
+
+          <p style="margin-top:16px;">
+            Thank you,<br/>
+            <strong>Paige</strong>
+          </p>
+        `
       }
+    };
 
-      document.getElementById("emailTitle").innerText = email.audience;
-      document.getElementById("emailMeta").innerText =
-        email.quarter + " · " + email.sendDate + " · " + email.type;
-
-      document.getElementById("emailSubject").innerText = email.subject;
-      document.getElementById("emailPreheader").innerText = email.preheader;
-
-      const body = document.getElementById("emailBody");
-      body.innerHTML = "";
-      email.body.forEach(p => {
-        const el = document.createElement("p");
-        el.innerText = p;
-        body.appendChild(el);
-      });
-
-      const cta = document.getElementById("emailCta");
-      cta.innerText = email.ctaText;
-      cta.href = email.ctaUrl;
+    // =========================
+    // 2) RENDER LOGIC
+    // =========================
+    function getParam(name){
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
     }
 
-    loadEmail();
+    const id = getParam("id");
+    const email = id ? EMAILS[id] : null;
+
+    const crumbId = document.getElementById("crumbId");
+    const footId  = document.getElementById("footId");
+    crumbId.textContent = id ? `id=${id}` : "Missing id";
+    footId.textContent  = id ? `Email ID: ${id}` : "";
+
+    const heroTitle = document.getElementById("heroTitle");
+    const heroEyebrow = document.getElementById("heroEyebrow");
+    const heroMeta = document.getElementById("heroMeta");
+    const heroImg = document.getElementById("heroImg");
+
+    const emailWrap = document.getElementById("emailWrap");
+    const fromLine = document.getElementById("fromLine");
+    const subjectLine = document.getElementById("subjectLine");
+    const tagWrap = document.getElementById("tagWrap");
+    const emailBody = document.getElementById("emailBody");
+
+    const errorBox = document.getElementById("errorBox");
+
+    function makePill(text){
+      const div = document.createElement("div");
+      div.className = "pill";
+      div.textContent = text;
+      return div;
+    }
+
+    function tagClass(tag){
+      if(tag === "fire") return "tag fire";
+      if(tag === "backflow") return "tag backflow";
+      if(tag === "resend") return "tag resend";
+      return "tag";
+    }
+
+    if(!id){
+      heroTitle.textContent = "No email selected";
+      heroEyebrow.textContent = "Missing URL parameter";
+      heroImg.src = "https://via.placeholder.com/1600x650.png?text=BRYCER+Email+Preview";
+      heroMeta.innerHTML = "";
+      errorBox.style.display = "block";
+      errorBox.innerHTML = `
+        This page needs an <code>id</code> in the URL.<br/><br/>
+        Example: <code>email.html?id=2026-q1-w1-fire-prospect</code>
+      `;
+    } else if(!email){
+      heroTitle.textContent = "Email not found";
+      heroEyebrow.textContent = "Unknown id";
+      heroImg.src = "https://via.placeholder.com/1600x650.png?text=Email+Not+Found";
+      heroMeta.innerHTML = "";
+      errorBox.style.display = "block";
+      errorBox.innerHTML = `
+        No email content exists for <code>${id}</code> yet.<br/><br/>
+        Add it inside the <code>EMAILS</code> object in <code>email.html</code>.
+      `;
+    } else {
+      // Hero
+      heroTitle.textContent = email.title || "Email Preview";
+      heroEyebrow.textContent = email.eyebrow || "Email Preview";
+      heroImg.src = email.heroImage || "https://via.placeholder.com/1600x650.png?text=BRYCER+Email";
+      heroImg.alt = email.title || "Email hero image";
+
+      // Meta pills
+      heroMeta.innerHTML = "";
+      heroMeta.appendChild(makePill("Open in new tab from roadmap links"));
+      heroMeta.appendChild(makePill("Printable"));
+
+      // Header details
+      fromLine.textContent = email.from || "BRYCER";
+      subjectLine.textContent = `Subject: ${email.subject || ""}`;
+
+      // Tags
+      tagWrap.innerHTML = "";
+      (email.tags || []).forEach(t => {
+        const el = document.createElement("div");
+        el.className = tagClass(t);
+        el.textContent = t;
+        tagWrap.appendChild(el);
+      });
+
+      // Body
+      emailBody.innerHTML = email.bodyHtml || "";
+      emailWrap.style.display = "block";
+    }
   </script>
 </body>
 </html>
