@@ -43,7 +43,7 @@
     }
 
     .page{
-      max-width:1400px;
+      max-width:1500px;
       margin:0 auto;
       background:var(--card);
       border:1px solid var(--border);
@@ -83,6 +83,7 @@
       line-height:1.45;
     }
 
+    /* Toolbar + multi-select buttons */
     .toolbar{
       display:flex;
       flex-wrap:wrap;
@@ -124,6 +125,9 @@
       cursor:pointer;
       transition:transform .06s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
       white-space:nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
     }
     .btn:hover{
       transform:translateY(-1px);
@@ -191,7 +195,8 @@
     .dot.sp{ background:#7c3aed; }
     .dot.drip{ background:#334155; }
     .dot.news{ background:#b45309; }
-    .dot.conf{ background:#ef4444; }
+    .dot.conf{ background:#0f172a; }
+    .dot.res{ background:#64748b; }
 
     ul{
       margin:0;
@@ -289,7 +294,7 @@
       color:var(--muted);
       font-size:.9rem;
       line-height:1.5;
-      max-width:920px;
+      max-width:980px;
     }
 
     .sheet-wrap{
@@ -350,6 +355,16 @@
 
     .muted{ color:var(--muted); }
 
+    /* Email link styling */
+    .email-link{
+      color:#0b5cff;
+      font-weight:800;
+      text-decoration:none;
+    }
+    .email-link:hover{
+      text-decoration:underline;
+    }
+
     /* Resend pill styling (lives INSIDE Fire/Backflow cells, so it shows whenever those columns are visible) */
     .resend{
       margin-top:6px;
@@ -363,15 +378,60 @@
       font-size:.75rem;
       white-space:nowrap;
     }
+    .resend-link{
+      font-weight:700;
+      color:#475569;
+      text-decoration:none;
+    }
+    .resend-link:hover{
+      text-decoration:underline;
+    }
 
-    /* Multi-select column toggles (hide-* classes are added/removed by JS) */
-    .hide-fire .col-fire{ display:none; }
-    .hide-backflow .col-backflow{ display:none; }
-    .hide-upsell .col-upsell{ display:none; }
-    .hide-sp .col-sp{ display:none; }
-    .hide-drip .col-drip{ display:none; }
-    .hide-news .col-news{ display:none; }
-    .hide-conf .col-conf{ display:none; }
+    /* Conference list formatting inside cells */
+    .cell-list{
+      margin:0;
+      padding-left:16px;
+      color:var(--text);
+    }
+    .cell-list li{
+      margin:0 0 4px 0;
+    }
+    .cell-list .subline{
+      color:var(--muted);
+      font-weight:700;
+      font-size:.78rem;
+      margin-left:2px;
+    }
+
+    /* Multi-select column visibility:
+       Default: show all.
+       When at least one column filter is active, we hide all "data columns",
+       then show only the selected ones.
+    */
+    .cols-filtering .col-fire,
+    .cols-filtering .col-backflow,
+    .cols-filtering .col-upsell,
+    .cols-filtering .col-sp,
+    .cols-filtering .col-drip,
+    .cols-filtering .col-news,
+    .cols-filtering .col-conf{
+      display:none;
+    }
+
+    .show-fire .col-fire{ display:table-cell; }
+    .show-backflow .col-backflow{ display:table-cell; }
+    .show-upsell .col-upsell{ display:table-cell; }
+    .show-sp .col-sp{ display:table-cell; }
+    .show-drip .col-drip{ display:table-cell; }
+    .show-news .col-news{ display:table-cell; }
+    .show-conf .col-conf{ display:table-cell; }
+
+    /* Resend highlight toggle */
+    .highlight-resends .resend{
+      border-color:rgba(11,92,255,.35);
+      background:rgba(11,92,255,.08);
+      color:var(--focus);
+    }
 
     footer{
       margin-top:16px;
@@ -394,24 +454,28 @@
       <div class="eyebrow">Backed by BRYCER</div>
       <h1>BRYCER 2026 Email Roadmap</h1>
       <div class="sub">
+        Turning Reports into Results — a year-long cadence built to reduce lack of compliance with clear weekly execution by audience.
       </div>
     </header>
 
-    <!-- View buttons (multi-select) -->
+    <!-- Multi-select View buttons -->
     <div class="toolbar" role="region" aria-label="Calendar View Controls">
       <div class="toolbar-left">
-        <button class="btn active" data-col="fire" type="button">Fire</button>
-        <button class="btn active" data-col="backflow" type="button">Backflow</button>
-        <button class="btn active" data-col="upsell" type="button">Upsells</button>
-        <button class="btn active" data-col="sp" type="button">Service Providers</button>
-        <button class="btn active" data-col="drip" type="button">Drips</button>
-        <button class="btn active" data-col="news" type="button">Newsletter</button>
-        <button class="btn active" data-col="conf" type="button">Conferences</button>
-        <button class="btn" id="showAllBtn" type="button" title="Show all columns">Show All</button>
-        <button class="btn" id="hideAllBtn" type="button" title="Hide all columns (then toggle what you want)">Hide All</button>
+        <button class="btn" data-col="fire"><span class="dot fire"></span>Fire</button>
+        <button class="btn" data-col="backflow"><span class="dot backflow"></span>Backflow</button>
+        <button class="btn" data-col="upsell"><span class="dot upsell"></span>Upsells</button>
+        <button class="btn" data-col="sp"><span class="dot sp"></span>Service Providers</button>
+        <button class="btn" data-col="drip"><span class="dot drip"></span>Drips</button>
+        <button class="btn" data-col="news"><span class="dot news"></span>Newsletter</button>
+        <button class="btn" data-col="conf"><span class="dot conf"></span>Conferences</button>
+
+        <button class="btn" data-toggle="resends"><span class="dot res"></span>Highlight Resends</button>
+        <button class="btn" data-action="reset">Reset View</button>
       </div>
+
       <div class="toolbar-right">
         <span><strong>Prospecting:</strong> Weeks 1–9</span>
+        <span><strong>Week 10:</strong> Pause + optimize</span>
         <span><strong>Drips:</strong> Weeks 11–12</span>
         <span><strong>Newsletter:</strong> Week 13</span>
       </div>
@@ -423,11 +487,11 @@
         <div class="chips">
           <div class="chip"><span class="dot fire"></span> Fire Prospects (Tue) + resend to unopens (Fri)</div>
           <div class="chip"><span class="dot backflow"></span> Backflow Prospects (Tue) + resend to unopens (Fri)</div>
-          <div class="chip"><span class="dot upsell"></span> Upsell (Thu) – FE + RR monthly</div>
+          <div class="chip"><span class="dot upsell"></span> Upsells (Thu) — FE monthly + RR monthly</div>
           <div class="chip"><span class="dot sp"></span> Service Providers (first Wed monthly)</div>
-          <div class="chip"><span class="dot drip"></span> Drips (Week 11–12)</div>
+          <div class="chip"><span class="dot conf"></span> Conferences (email 3 business days before event start)</div>
+          <div class="chip"><span class="dot drip"></span> Drips (Weeks 11–12)</div>
           <div class="chip"><span class="dot news"></span> Quarterly Newsletter (Week 13)</div>
-          <div class="chip"><span class="dot conf"></span> Conferences (email 3 business days before event)</div>
         </div>
       </div>
 
@@ -485,18 +549,19 @@
               <tr>
                 <td class="wk">W1<div class="rng">Jan 01–Jan 07</div></td>
                 <td class="col-fire">
-                  Jan 06 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jan 09</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w1-fire-prospect" target="_blank">Jan 06 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w1-fire-prospect-resend" target="_blank">Jan 09</a></span>
                 </td>
                 <td class="col-backflow">
-                  Jan 06 – Backflow Region 1 outreach
-                  <span class="resend">Resend to unopens: Jan 09</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w1-backflow-r1" target="_blank">Jan 06 – Backflow Region 1 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w1-backflow-r1-resend" target="_blank">Jan 09</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">Jan 07 – Monthly touch</td>
                 <td class="col-conf">
-                  Dec 31 – Fire Rescue East (Florida) • event Jan 05–Jan 09<br/>
-                  Jan 07 – Chiefs Summit (Florida) • event Jan 12–Jan 15
+                  <ul class="cell-list">
+                    <li><strong>Jan 07</strong> – Chiefs Summit <span class="subline">(Florida · event starts Jan 12)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -505,13 +570,17 @@
               <tr>
                 <td class="wk">W2<div class="rng">Jan 08–Jan 14</div></td>
                 <td class="col-fire">
-                  Jan 13 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jan 16</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w2-fire-prospect" target="_blank">Jan 13 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w2-fire-prospect-resend" target="_blank">Jan 16</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Jan 08 – Upsell: FE</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">Jan 14 – Utah Fire Marshals (Utah) • event Jan 18–Jan 21</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jan 14</strong> – Utah Fire Marshals <span class="subline">(Utah · event starts Jan 18)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -519,16 +588,20 @@
               <tr>
                 <td class="wk">W3<div class="rng">Jan 15–Jan 21</div></td>
                 <td class="col-fire">
-                  Jan 20 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jan 23</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w3-fire-prospect" target="_blank">Jan 20 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w3-fire-prospect-resend" target="_blank">Jan 23</a></span>
                 </td>
                 <td class="col-backflow">
-                  Jan 20 – Backflow Region 2 outreach
-                  <span class="resend">Resend to unopens: Jan 23</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w3-backflow-r2" target="_blank">Jan 20 – Backflow Region 2 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w3-backflow-r2-resend" target="_blank">Jan 23</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">Jan 16 – Utah Fire Chiefs (Utah) • event Jan 21–Jan 23</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jan 16</strong> – Utah Fire Chiefs <span class="subline">(Utah · event starts Jan 21)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -536,15 +609,17 @@
               <tr>
                 <td class="wk">W4<div class="rng">Jan 22–Jan 28</div></td>
                 <td class="col-fire">
-                  Jan 27 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jan 30</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w4-fire-prospect" target="_blank">Jan 27 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w4-fire-prospect-resend" target="_blank">Jan 30</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Jan 22 – Upsell: RR</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">
-                  Jan 22 – Heart of America (Kansas/Missouri) • event Jan 27–Jan 27<br/>
-                  Jan 27 – Long Island Metro Fire/EMS (New York) • event Jan 30–Feb 01
+                  <ul class="cell-list">
+                    <li><strong>Jan 22</strong> – Heart of America <span class="subline">(Kansas/Missouri · event starts Jan 27)</span></li>
+                    <li><strong>Jan 27</strong> – Long Island Metro Fire/EMS <span class="subline">(New York · event starts Jan 30)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -553,16 +628,18 @@
               <tr>
                 <td class="wk">W5<div class="rng">Jan 29–Feb 04</div></td>
                 <td class="col-fire">
-                  Feb 03 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Feb 06</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w5-fire-prospect" target="_blank">Feb 03 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w5-fire-prospect-resend" target="_blank">Feb 06</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">Feb 04 – Monthly touch</td>
                 <td class="col-conf">
-                  Jan 29 – CAFAA (California) • event Feb 03–Feb 05<br/>
-                  Jan 30 – TN Fire Chiefs Winter Conf (Tennessee) • event Feb 04–Feb 06<br/>
-                  Feb 03 – Cross Connection Control (Florida) • event Feb 08–Feb 10
+                  <ul class="cell-list">
+                    <li><strong>Jan 29</strong> – CAFAA <span class="subline">(California · event starts Feb 03)</span></li>
+                    <li><strong>Jan 30</strong> – TN Fire Chiefs Winter Conf <span class="subline">(Tennessee · event starts Feb 04)</span></li>
+                    <li><strong>Feb 04</strong> – Cross Connection Control <span class="subline">(Florida · event starts Feb 08)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -571,12 +648,12 @@
               <tr>
                 <td class="wk">W6<div class="rng">Feb 05–Feb 11</div></td>
                 <td class="col-fire">
-                  Feb 10 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Feb 13</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w6-fire-prospect" target="_blank">Feb 10 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w6-fire-prospect-resend" target="_blank">Feb 13</a></span>
                 </td>
                 <td class="col-backflow">
-                  Feb 10 – Backflow Region 3 outreach
-                  <span class="resend">Resend to unopens: Feb 13</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w6-backflow-r3" target="_blank">Feb 10 – Backflow Region 3 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w6-backflow-r3-resend" target="_blank">Feb 13</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
@@ -588,13 +665,17 @@
               <tr>
                 <td class="wk">W7<div class="rng">Feb 12–Feb 18</div></td>
                 <td class="col-fire">
-                  Feb 17 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Feb 20</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w7-fire-prospect" target="_blank">Feb 17 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w7-fire-prospect-resend" target="_blank">Feb 20</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Feb 12 – Upsell: FE</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">Feb 13 – Tech Summit Indiana (Indiana) • event Feb 18–Feb 18</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Feb 13</strong> – Tech Summit Indiana <span class="subline">(Indiana · event starts Feb 18)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -602,22 +683,23 @@
               <tr>
                 <td class="wk">W8<div class="rng">Feb 19–Feb 25</div></td>
                 <td class="col-fire">
-                  Feb 24 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Feb 27</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w8-fire-prospect" target="_blank">Feb 24 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w8-fire-prospect-resend" target="_blank">Feb 27</a></span>
                 </td>
                 <td class="col-backflow">
-                  Feb 24 – Backflow Region 4 outreach
-                  <span class="resend">Resend to unopens: Feb 27</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w8-backflow-r4" target="_blank">Feb 24 – Backflow Region 4 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w8-backflow-r4-resend" target="_blank">Feb 27</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">
-                  Feb 19 – Vision 20/20 (North Carolina) • event Feb 24–Feb 26<br/>
-                  Feb 19 – FCAM (Massachusetts) • event Feb 24–Feb 26<br/>
-                  Feb 20 – AL Fire Marshals (Alabama) • event Feb 25–Feb 27<br/>
-                  Feb 23 – MO Fire Chiefs (Missouri) • event Feb 26–Mar 01<br/>
-                  Feb 25 – CFPI (California) • event Mar 02–Mar 06<br/>
-                  Feb 25 – OH Life Safety Forum (Ohio) • event Mar 02–Mar 03
+                  <ul class="cell-list">
+                    <li><strong>Feb 19</strong> – Vision 20/20 <span class="subline">(North Carolina · event starts Feb 24)</span></li>
+                    <li><strong>Feb 19</strong> – FCAM <span class="subline">(Massachusetts · event starts Feb 24)</span></li>
+                    <li><strong>Feb 20</strong> – AL Fire Marshals <span class="subline">(Alabama · event starts Feb 25)</span></li>
+                    <li><strong>Feb 25</strong> – OH Life Safety Forum <span class="subline">(Ohio · event starts Mar 02)</span></li>
+                    <li><strong>Feb 26</strong> – CFPI <span class="subline">(California · event starts Mar 02)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -626,8 +708,8 @@
               <tr>
                 <td class="wk">W9<div class="rng">Feb 26–Mar 04</div></td>
                 <td class="col-fire">
-                  Mar 03 – Visibility outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Mar 06</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w9-fire-prospect" target="_blank">Mar 03 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w9-fire-prospect-resend" target="_blank">Mar 06</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Feb 26 – Upsell: RR</td>
@@ -641,15 +723,17 @@
                 <td class="wk">W10<div class="rng">Mar 05–Mar 11</div></td>
                 <td class="col-fire">No new prospect send (optimize / resend winners)</td>
                 <td class="col-backflow">
-                  Mar 10 – Backflow Region 5 outreach
-                  <span class="resend">Resend to unopens: Mar 13</span>
+                  <a class="email-link" href="email.html?id=2026-q1-w10-backflow-r5" target="_blank">Mar 10 – Backflow Region 5 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w10-backflow-r5-resend" target="_blank">Mar 13</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">
-                  Mar 05 – CPSE (Florida) • event Mar 10–Mar 13<br/>
-                  Mar 05 – MI Fire Inspectors (Michigan) • event Mar 10–Mar 12<br/>
-                  Mar 06 – WFCA Ignite (Nevada) • event Mar 11–Mar 13
+                  <ul class="cell-list">
+                    <li><strong>Mar 05</strong> – CPSE <span class="subline">(Florida · event starts Mar 10)</span></li>
+                    <li><strong>Mar 05</strong> – MI Fire Inspectors <span class="subline">(Michigan · event starts Mar 10)</span></li>
+                    <li><strong>Mar 06</strong> – WFCA Ignite <span class="subline">(Nevada · event starts Mar 11)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -662,8 +746,10 @@
                 <td class="col-upsell">Mar 12 – Upsell: FE</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">
-                  Mar 12 – IN Fire Inspectors (Indiana) • event Mar 17–Mar 19<br/>
-                  Mar 17 – IL Fire/Life Safety (Illinois) • event Mar 22–Mar 24
+                  <ul class="cell-list">
+                    <li><strong>Mar 12</strong> – IN Fire Inspectors <span class="subline">(Indiana · event starts Mar 17)</span></li>
+                    <li><strong>Mar 18</strong> – IL Fire/Life Safety <span class="subline">(Illinois · event starts Mar 22)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">Fire Visibility drip + Backflow drip (Cold / Warm / High Intent)</td>
                 <td class="col-news">—</td>
@@ -686,7 +772,11 @@
                 <td class="col-backflow muted">—</td>
                 <td class="col-upsell">Mar 26 – Upsell: RR</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">Mar 27 – MO Valley Force (Oklahoma) • event Apr 01–Apr 02</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Mar 27</strong> – MO Valley Force <span class="subline">(Oklahoma · event starts Apr 01)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip muted">—</td>
                 <td class="col-news">Mar 31 – Quarterly Newsletter</td>
               </tr>
@@ -715,7 +805,7 @@
               <span class="qquote">Give inspectors their time back.</span>
             </div>
             <div class="qtagline">
-              Reduce the process friction that drives lack of compliance: streamline review, eliminate rework, and shorten time-to-resolution.
+              Reduce process friction that drives lack of compliance: streamline review, eliminate rework, and shorten time-to-resolution.
             </div>
           </div>
         </div>
@@ -738,16 +828,20 @@
               <tr>
                 <td class="wk">W1<div class="rng">Apr 01–Apr 07</div></td>
                 <td class="col-fire">
-                  Apr 07 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Apr 10</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w1-fire-prospect" target="_blank">Apr 07 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w1-fire-prospect-resend" target="_blank">Apr 10</a></span>
                 </td>
                 <td class="col-backflow">
-                  Apr 07 – Backflow Region 1 outreach
-                  <span class="resend">Resend to unopens: Apr 10</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w1-backflow-r1" target="_blank">Apr 07 – Backflow Region 1 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w1-backflow-r1-resend" target="_blank">Apr 10</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">Apr 01 – Monthly touch</td>
-                <td class="col-conf">Apr 06 – CT Fire Marshals (Connecticut) • event Apr 09–Apr 10</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Apr 06</strong> – CT Fire Marshals <span class="subline">(Connecticut · event starts Apr 09)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -755,13 +849,17 @@
               <tr>
                 <td class="wk">W2<div class="rng">Apr 08–Apr 14</div></td>
                 <td class="col-fire">
-                  Apr 14 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Apr 17</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w2-fire-prospect" target="_blank">Apr 14 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w2-fire-prospect-resend" target="_blank">Apr 17</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Apr 09 – Upsell: FE</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">Apr 08 – TX Fire Chief (Texas) • event Apr 13–Apr 16</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Apr 08</strong> – TX Fire Chief <span class="subline">(Texas · event starts Apr 13)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -769,12 +867,12 @@
               <tr>
                 <td class="wk">W3<div class="rng">Apr 15–Apr 21</div></td>
                 <td class="col-fire">
-                  Apr 21 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Apr 24</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w3-fire-prospect" target="_blank">Apr 21 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w3-fire-prospect-resend" target="_blank">Apr 24</a></span>
                 </td>
                 <td class="col-backflow">
-                  Apr 21 – Backflow Region 2 outreach
-                  <span class="resend">Resend to unopens: Apr 24</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w3-backflow-r2" target="_blank">Apr 21 – Backflow Region 2 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w3-backflow-r2-resend" target="_blank">Apr 24</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
@@ -786,15 +884,17 @@
               <tr>
                 <td class="wk">W4<div class="rng">Apr 22–Apr 28</div></td>
                 <td class="col-fire">
-                  Apr 28 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: May 01</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w4-fire-prospect" target="_blank">Apr 28 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w4-fire-prospect-resend" target="_blank">May 01</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Apr 23 – Upsell: RR</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">
-                  Apr 22 – LA Fire Chiefs (Louisiana) • event Apr 27–May 02<br/>
-                  Apr 27 – Idaho Fire Chiefs (Idaho) • event Apr 30–May 03
+                  <ul class="cell-list">
+                    <li><strong>Apr 22</strong> – LA Fire Chiefs <span class="subline">(Louisiana · event starts Apr 27)</span></li>
+                    <li><strong>Apr 27</strong> – Idaho Fire Chiefs <span class="subline">(Idaho · event starts Apr 30)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -803,16 +903,17 @@
               <tr>
                 <td class="wk">W5<div class="rng">Apr 29–May 05</div></td>
                 <td class="col-fire">
-                  May 05 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: May 08</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w5-fire-prospect" target="_blank">May 05 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w5-fire-prospect-resend" target="_blank">May 08</a></span>
                 </td>
-                <td class="col-backflow">
-                  May 05 – Backflow Region 3 outreach
-                  <span class="resend">Resend to unopens: May 08</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">May 01 – TN Fire Chiefs Spring Conference (Tennessee) • event May 06–May 08</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>May 01</strong> – TN Fire Chiefs Spring Conference <span class="subline">(Tennessee · event starts May 06)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -820,15 +921,20 @@
               <tr>
                 <td class="wk">W6<div class="rng">May 06–May 12</div></td>
                 <td class="col-fire">
-                  May 12 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: May 15</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w6-fire-prospect" target="_blank">May 12 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w6-fire-prospect-resend" target="_blank">May 15</a></span>
                 </td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q2-w6-backflow-r3" target="_blank">May 12 – Backflow Region 3 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w6-backflow-r3-resend" target="_blank">May 15</a></span>
+                </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">May 06 – Monthly touch</td>
                 <td class="col-conf">
-                  May 07 – OR Fire Chiefs (Oregon) • event May 12–May 14<br/>
-                  May 07 – NC Fire Chiefs Mid Winter (North Carolina) • event May 12–May 15
+                  <ul class="cell-list">
+                    <li><strong>May 07</strong> – OR Fire Chiefs <span class="subline">(Oregon · event starts May 12)</span></li>
+                    <li><strong>May 07</strong> – NC Fire Chiefs Mid Winter <span class="subline">(North Carolina · event starts May 12)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -837,16 +943,17 @@
               <tr>
                 <td class="wk">W7<div class="rng">May 13–May 19</div></td>
                 <td class="col-fire">
-                  May 19 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: May 22</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w7-fire-prospect" target="_blank">May 19 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w7-fire-prospect-resend" target="_blank">May 22</a></span>
                 </td>
-                <td class="col-backflow">
-                  May 19 – Backflow Region 4 outreach
-                  <span class="resend">Resend to unopens: May 22</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">May 14 – Upsell: FE</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">May 14 – CRRL Conference (Arizona) • event May 19–May 21</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>May 14</strong> – CRRL Conference <span class="subline">(Arizona · event starts May 19)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -854,10 +961,13 @@
               <tr>
                 <td class="wk">W8<div class="rng">May 20–May 26</div></td>
                 <td class="col-fire">
-                  May 26 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: May 29</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w8-fire-prospect" target="_blank">May 26 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w8-fire-prospect-resend" target="_blank">May 29</a></span>
                 </td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q2-w8-backflow-r4" target="_blank">May 26 – Backflow Region 4 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w8-backflow-r4-resend" target="_blank">May 29</a></span>
+                </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
@@ -868,18 +978,16 @@
               <tr>
                 <td class="wk">W9<div class="rng">May 27–Jun 02</div></td>
                 <td class="col-fire">
-                  Jun 02 – Efficiency outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jun 05</span>
+                  <a class="email-link" href="email.html?id=2026-q2-w9-fire-prospect" target="_blank">Jun 02 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w9-fire-prospect-resend" target="_blank">Jun 05</a></span>
                 </td>
-                <td class="col-backflow">
-                  Jun 02 – Backflow Region 5 outreach
-                  <span class="resend">Resend to unopens: Jun 05</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">May 28 – Upsell: RR</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">
-                  May 29 – MO Valley Chiefs (Nebraska) • event Jun 03–Jun 05<br/>
-                  Jun 02 – Metro Fire Chiefs (Wisconsin) • event Jun 07–Jun 11
+                  <ul class="cell-list">
+                    <li><strong>May 29</strong> – MO Valley Chiefs <span class="subline">(Nebraska · event starts Jun 03)</span></li>
+                  </ul>
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -888,10 +996,17 @@
               <tr>
                 <td class="wk">W10<div class="rng">Jun 03–Jun 09</div></td>
                 <td class="col-fire">No new prospect send (optimize / resend winners)</td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q2-w10-backflow-r5" target="_blank">Jun 09 – Backflow Region 5 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w10-backflow-r5-resend" target="_blank">Jun 12</a></span>
+                </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">Jun 03 – Monthly touch</td>
-                <td class="col-conf">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jun 03</strong> – Metro Fire Chiefs <span class="subline">(Wisconsin · event starts Jun 07)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -913,7 +1028,11 @@
                 <td class="col-backflow muted">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">Jun 23 – MO Fire Districts (Missouri) • event Jun 26–Jun 28</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jun 23</strong> – MO Fire Districts <span class="subline">(Missouri · event starts Jun 26)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">Continue drips + last-chance CTA</td>
                 <td class="col-news">—</td>
               </tr>
@@ -976,16 +1095,20 @@
               <tr>
                 <td class="wk">W1<div class="rng">Jul 01–Jul 07</div></td>
                 <td class="col-fire">
-                  Jul 07 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jul 10</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w1-fire-prospect" target="_blank">Jul 07 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w1-fire-prospect-resend" target="_blank">Jul 10</a></span>
                 </td>
                 <td class="col-backflow">
-                  Jul 07 – Backflow Region 1 outreach
-                  <span class="resend">Resend to unopens: Jul 10</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w1-backflow-r1" target="_blank">Jul 07 – Backflow Region 1 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w1-backflow-r1-resend" target="_blank">Jul 10</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">Jul 01 – Monthly touch</td>
-                <td class="col-conf">Jul 01 – AZ Fire Chiefs (Arizona) • event Jul 06–Jul 09</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jul 01</strong> – AZ Fire Chiefs <span class="subline">(Arizona · event starts Jul 06)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -993,13 +1116,17 @@
               <tr>
                 <td class="wk">W2<div class="rng">Jul 08–Jul 14</div></td>
                 <td class="col-fire">
-                  Jul 14 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jul 17</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w2-fire-prospect" target="_blank">Jul 14 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w2-fire-prospect-resend" target="_blank">Jul 17</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Jul 09 – Upsell: FE</td>
                 <td class="col-sp">—</td>
-                <td class="col-conf">Jul 08 – Fire Chiefs Summit (Arizona) • event Jul 13–Jul 15</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jul 08</strong> – Fire Chiefs Summit <span class="subline">(Arizona · event starts Jul 13)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -1007,12 +1134,12 @@
               <tr>
                 <td class="wk">W3<div class="rng">Jul 15–Jul 21</div></td>
                 <td class="col-fire">
-                  Jul 21 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jul 24</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w3-fire-prospect" target="_blank">Jul 21 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w3-fire-prospect-resend" target="_blank">Jul 24</a></span>
                 </td>
                 <td class="col-backflow">
-                  Jul 21 – Backflow Region 2 outreach
-                  <span class="resend">Resend to unopens: Jul 24</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w3-backflow-r2" target="_blank">Jul 21 – Backflow Region 2 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w3-backflow-r2-resend" target="_blank">Jul 24</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
@@ -1024,8 +1151,8 @@
               <tr>
                 <td class="wk">W4<div class="rng">Jul 22–Jul 28</div></td>
                 <td class="col-fire">
-                  Jul 28 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Jul 31</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w4-fire-prospect" target="_blank">Jul 28 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w4-fire-prospect-resend" target="_blank">Jul 31</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Jul 23 – Upsell: RR</td>
@@ -1038,13 +1165,10 @@
               <tr>
                 <td class="wk">W5<div class="rng">Jul 29–Aug 04</div></td>
                 <td class="col-fire">
-                  Aug 04 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Aug 07</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w5-fire-prospect" target="_blank">Aug 04 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w5-fire-prospect-resend" target="_blank">Aug 07</a></span>
                 </td>
-                <td class="col-backflow">
-                  Aug 04 – Backflow Region 3 outreach
-                  <span class="resend">Resend to unopens: Aug 07</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
@@ -1055,13 +1179,20 @@
               <tr>
                 <td class="wk">W6<div class="rng">Aug 05–Aug 11</div></td>
                 <td class="col-fire">
-                  Aug 11 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Aug 14</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w6-fire-prospect" target="_blank">Aug 11 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w6-fire-prospect-resend" target="_blank">Aug 14</a></span>
                 </td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q3-w6-backflow-r3" target="_blank">Aug 11 – Backflow Region 3 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w6-backflow-r3-resend" target="_blank">Aug 14</a></span>
+                </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">Aug 05 – Monthly touch</td>
-                <td class="col-conf">Aug 07 – FRI (Missouri) • event Aug 12–Aug 14</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Aug 07</strong> – FRI <span class="subline">(Missouri · event starts Aug 12)</span></li>
+                  </ul>
+                </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -1069,13 +1200,10 @@
               <tr>
                 <td class="wk">W7<div class="rng">Aug 12–Aug 18</div></td>
                 <td class="col-fire">
-                  Aug 18 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Aug 21</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w7-fire-prospect" target="_blank">Aug 18 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w7-fire-prospect-resend" target="_blank">Aug 21</a></span>
                 </td>
-                <td class="col-backflow">
-                  Aug 18 – Backflow Region 4 outreach
-                  <span class="resend">Resend to unopens: Aug 21</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">Aug 13 – Upsell: FE</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
@@ -1086,10 +1214,13 @@
               <tr>
                 <td class="wk">W8<div class="rng">Aug 19–Aug 25</div></td>
                 <td class="col-fire">
-                  Aug 25 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Aug 28</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w8-fire-prospect" target="_blank">Aug 25 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w8-fire-prospect-resend" target="_blank">Aug 28</a></span>
                 </td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q3-w8-backflow-r4" target="_blank">Aug 25 – Backflow Region 4 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w8-backflow-r4-resend" target="_blank">Aug 28</a></span>
+                </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
@@ -1100,15 +1231,12 @@
               <tr>
                 <td class="wk">W9<div class="rng">Aug 26–Sep 01</div></td>
                 <td class="col-fire">
-                  Sep 01 – Compliance outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Sep 04</span>
+                  <a class="email-link" href="email.html?id=2026-q3-w9-fire-prospect" target="_blank">Sep 01 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w9-fire-prospect-resend" target="_blank">Sep 04</a></span>
                 </td>
-                <td class="col-backflow">
-                  Sep 01 – Backflow Region 5 outreach
-                  <span class="resend">Resend to unopens: Sep 04</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">Aug 27 – Upsell: RR</td>
-                <td class="col-sp">—</td>
+                <td class="col-sp">Sep 02 – Monthly touch</td>
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -1117,9 +1245,12 @@
               <tr>
                 <td class="wk">W10<div class="rng">Sep 02–Sep 08</div></td>
                 <td class="col-fire">No new prospect send (optimize / resend winners)</td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q3-w10-backflow-r5" target="_blank">Sep 08 – Backflow Region 5 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w10-backflow-r5-resend" target="_blank">Sep 11</a></span>
+                </td>
                 <td class="col-upsell">—</td>
-                <td class="col-sp">Sep 02 – Monthly touch</td>
+                <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
@@ -1205,12 +1336,12 @@
               <tr>
                 <td class="wk">W1<div class="rng">Oct 01–Oct 07</div></td>
                 <td class="col-fire">
-                  Oct 06 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Oct 09</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w1-fire-prospect" target="_blank">Oct 06 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w1-fire-prospect-resend" target="_blank">Oct 09</a></span>
                 </td>
                 <td class="col-backflow">
-                  Oct 06 – Backflow Region 1 outreach
-                  <span class="resend">Resend to unopens: Oct 09</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w1-backflow-r1" target="_blank">Oct 06 – Backflow Region 1 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w1-backflow-r1-resend" target="_blank">Oct 09</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">Oct 07 – Monthly touch</td>
@@ -1222,8 +1353,8 @@
               <tr>
                 <td class="wk">W2<div class="rng">Oct 08–Oct 14</div></td>
                 <td class="col-fire">
-                  Oct 13 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Oct 16</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w2-fire-prospect" target="_blank">Oct 13 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <aclass="resend-link" href="email.html?id=2026-q4-w2-fire-prospect-resend" target="_blank">Oct 16</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Oct 08 – Upsell: FE</td>
@@ -1236,12 +1367,12 @@
               <tr>
                 <td class="wk">W3<div class="rng">Oct 15–Oct 21</div></td>
                 <td class="col-fire">
-                  Oct 20 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Oct 23</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w3-fire-prospect" target="_blank">Oct 20 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w3-fire-prospect-resend" target="_blank">Oct 23</a></span>
                 </td>
                 <td class="col-backflow">
-                  Oct 20 – Backflow Region 2 outreach
-                  <span class="resend">Resend to unopens: Oct 23</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w3-backflow-r2" target="_blank">Oct 20 – Backflow Region 2 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w3-backflow-r2-resend" target="_blank">Oct 23</a></span>
                 </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
@@ -1253,8 +1384,8 @@
               <tr>
                 <td class="wk">W4<div class="rng">Oct 22–Oct 28</div></td>
                 <td class="col-fire">
-                  Oct 27 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Oct 30</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w4-fire-prospect" target="_blank">Oct 27 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w4-fire-prospect-resend" target="_blank">Oct 30</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Oct 22 – Upsell: RR</td>
@@ -1267,13 +1398,10 @@
               <tr>
                 <td class="wk">W5<div class="rng">Oct 29–Nov 04</div></td>
                 <td class="col-fire">
-                  Nov 03 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Nov 06</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w5-fire-prospect" target="_blank">Nov 03 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w5-fire-prospect-resend" target="_blank">Nov 06</a></span>
                 </td>
-                <td class="col-backflow">
-                  Nov 03 – Backflow Region 3 outreach
-                  <span class="resend">Resend to unopens: Nov 06</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">Nov 04 – Monthly touch</td>
                 <td class="col-conf">—</td>
@@ -1284,10 +1412,13 @@
               <tr>
                 <td class="wk">W6<div class="rng">Nov 05–Nov 11</div></td>
                 <td class="col-fire">
-                  Nov 10 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Nov 13</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w6-fire-prospect" target="_blank">Nov 10 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w6-fire-prospect-resend" target="_blank">Nov 13</a></span>
                 </td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q4-w6-backflow-r3" target="_blank">Nov 10 – Backflow Region 3 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w6-backflow-r3-resend" target="_blank">Nov 13</a></span>
+                </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
@@ -1298,13 +1429,10 @@
               <tr>
                 <td class="wk">W7<div class="rng">Nov 12–Nov 18</div></td>
                 <td class="col-fire">
-                  Nov 17 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Nov 20</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w7-fire-prospect" target="_blank">Nov 17 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w7-fire-prospect-resend" target="_blank">Nov 20</a></span>
                 </td>
-                <td class="col-backflow">
-                  Nov 17 – Backflow Region 4 outreach
-                  <span class="resend">Resend to unopens: Nov 20</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">Nov 12 – Upsell: FE</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
@@ -1315,10 +1443,13 @@
               <tr>
                 <td class="wk">W8<div class="rng">Nov 19–Nov 25</div></td>
                 <td class="col-fire">
-                  Nov 24 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Nov 27</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w8-fire-prospect" target="_blank">Nov 24 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w8-fire-prospect-resend" target="_blank">Nov 27</a></span>
                 </td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q4-w8-backflow-r4" target="_blank">Nov 24 – Backflow Region 4 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w8-backflow-r4-resend" target="_blank">Nov 27</a></span>
+                </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
@@ -1329,16 +1460,13 @@
               <tr>
                 <td class="wk">W9<div class="rng">Nov 26–Dec 02</div></td>
                 <td class="col-fire">
-                  Dec 01 – Modernization outreach (5–6 states)
-                  <span class="resend">Resend to unopens: Dec 04</span>
+                  <a class="email-link" href="email.html?id=2026-q4-w9-fire-prospect" target="_blank">Dec 01 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w9-fire-prospect-resend" target="_blank">Dec 04</a></span>
                 </td>
-                <td class="col-backflow">
-                  Dec 01 – Backflow Region 5 outreach
-                  <span class="resend">Resend to unopens: Dec 04</span>
-                </td>
+                <td class="col-backflow">—</td>
                 <td class="col-upsell">Nov 26 – Upsell: RR</td>
                 <td class="col-sp">Dec 02 – Monthly touch</td>
-                <td class="col-conf">Nov 26 – TN Fire Inspectors Annual Conf (Tennessee) • event Dec 01–Dec 04</td>
+                <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
               </tr>
@@ -1346,7 +1474,10 @@
               <tr>
                 <td class="wk">W10<div class="rng">Dec 03–Dec 09</div></td>
                 <td class="col-fire">No new prospect send (optimize / resend winners)</td>
-                <td class="col-backflow">—</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q4-w10-backflow-r5" target="_blank">Dec 08 – Backflow Region 5 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w10-backflow-r5-resend" target="_blank">Dec 11</a></span>
+                </td>
                 <td class="col-upsell">—</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
@@ -1377,10 +1508,10 @@
               </tr>
 
               <tr>
-                <td class="wk">W13<div class="rng">Dec 24–Dec 30</div></td>
+                <td class="wk">W13<div class="rng">Dec 24–Dec 31</div></td>
                 <td class="col-fire muted">—</td>
                 <td class="col-backflow muted">—</td>
-                <td class="col-upsell">Dec 24 – Upsell: RR</td>
+                <td class="col-upsell">Dec 31 – Upsell: RR</td>
                 <td class="col-sp">—</td>
                 <td class="col-conf">—</td>
                 <td class="col-drip muted">—</td>
@@ -1393,47 +1524,69 @@
     </details>
 
     <footer>
-      <div><strong>Backed by BRYCER.</strong> Turning Reports into Results.</div>
-      <div></div>
+      <div><strong>BRYCER 2026 Roadmap</strong> · Multi-view filters for quick planning</div>
+      <div>Tip: click multiple buttons to isolate columns · Reset returns full view</div>
     </footer>
+
   </div>
 
   <script>
     (function(){
-      const root = document.getElementById("pageRoot");
+      const root = document.getElementById('pageRoot');
+      const buttons = Array.from(document.querySelectorAll('.btn[data-col]'));
+      const resendBtn = document.querySelector('.btn[data-toggle="resends"]');
+      const resetBtn = document.querySelector('.btn[data-action="reset"]');
 
-      const toggleButtons = Array.from(document.querySelectorAll(".btn[data-col]"));
-      const showAllBtn = document.getElementById("showAllBtn");
-      const hideAllBtn = document.getElementById("hideAllBtn");
-
-      function setHidden(col, hidden){
-        root.classList.toggle("hide-" + col, hidden);
-        const btn = toggleButtons.find(b => b.dataset.col === col);
-        if(btn) btn.classList.toggle("active", !hidden);
+      function selectedCols(){
+        return buttons
+          .filter(b => b.classList.contains('active'))
+          .map(b => b.getAttribute('data-col'));
       }
 
-      function showAll(){
-        toggleButtons.forEach(b => setHidden(b.dataset.col, false));
+      function applyColClasses(){
+        const cols = selectedCols();
+
+        // Clear all show-* classes
+        root.classList.remove(
+          'cols-filtering',
+          'show-fire','show-backflow','show-upsell','show-sp','show-drip','show-news','show-conf'
+        );
+
+        // If none selected, show everything (default CSS)
+        if(cols.length === 0) return;
+
+        // Otherwise: hide all data cols, then re-show selected
+        root.classList.add('cols-filtering');
+        cols.forEach(c => root.classList.add(`show-${c}`));
       }
 
-      function hideAll(){
-        toggleButtons.forEach(b => setHidden(b.dataset.col, true));
-      }
-
-      toggleButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const col = btn.dataset.col;
-          const isHidden = root.classList.contains("hide-" + col);
-          setHidden(col, !isHidden);
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('active');
+          applyColClasses();
         });
       });
 
-      showAllBtn.addEventListener("click", showAll);
-      hideAllBtn.addEventListener("click", hideAll);
+      if(resendBtn){
+        resendBtn.addEventListener('click', () => {
+          resendBtn.classList.toggle('active');
+          root.classList.toggle('highlight-resends');
+        });
+      }
 
-      // default: show everything
-      showAll();
+      if(resetBtn){
+        resetBtn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('active'));
+          if(resendBtn) resendBtn.classList.remove('active');
+          root.classList.remove(
+            'cols-filtering',
+            'show-fire','show-backflow','show-upsell','show-sp','show-drip','show-news','show-conf',
+            'highlight-resends'
+          );
+        });
+      }
     })();
   </script>
 </body>
 </html>
+
