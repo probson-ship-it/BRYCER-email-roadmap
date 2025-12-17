@@ -1,0 +1,19 @@
+[
+  {
+    "id": "2026-q1-w1-fire-prospect",
+    "audience": "Fire Prospects",
+    "quarter": "Q1 – Visibility",
+    "sendDate": "Jan 06, 2026",
+    "type": "Primary Send",
+    "subject": "You can’t fix what you can’t see",
+    "preheader": "Uncover hidden compliance gaps before they become risk.",
+    "body": [
+      "Hi {{FirstName}},",
+      "Most jurisdictions don’t struggle with enforcement — they struggle with visibility.",
+      "BRYCER helps make lack of compliance visible across fire and life safety systems without adding administrative burden.",
+      "Teams use BRYCER to identify missing systems, overdue inspections, and ownership gaps before they become audit issues."
+    ],
+    "ctaText": "See how BRYCER works",
+    "ctaUrl": "https://brycer.com/demo"
+  }
+]
