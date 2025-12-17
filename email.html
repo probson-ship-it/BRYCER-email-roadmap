@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Detail – BRYCER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      margin:0;
+      font-family:Montserrat, system-ui, -apple-system, Segoe UI, sans-serif;
+      background:#f4f7fb;
+      color:#0f172a;
+      padding:32px 16px;
+    }
+
+    .page{
+      max-width:900px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #d9e2ef;
+      border-radius:16px;
+      box-shadow:0 18px 40px rgba(2,6,23,.08);
+      padding:24px;
+    }
+
+    .eyebrow{
+      font-size:.75rem;
+      font-weight:800;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#e17f49;
+      margin-bottom:6px;
+    }
+
+    h1{
+      margin:0 0 8px 0;
+      font-size:1.6rem;
+      font-weight:900;
+      color:#03233d;
+    }
+
+    .meta{
+      color:#475569;
+      font-size:.9rem;
+      margin-bottom:18px;
+    }
+
+    .card{
+      border:1px solid #d9e2ef;
+      border-radius:12px;
+      padding:18px;
+      margin-bottom:16px;
+      background:#fff;
+    }
+
+    .label{
+      font-size:.72rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:#475569;
+      margin-bottom:6px;
+    }
+
+    .subject{
+      font-size:1.1rem;
+      font-weight:900;
+      margin-bottom:6px;
+    }
+
+    .preheader{
+      font-size:.9rem;
+      color:#475569;
+      margin-bottom:10px;
+    }
+
+    .body p{
+      margin:0 0 10px 0;
+      line-height:1.6;
+    }
+
+    .cta{
+      display:inline-block;
+      margin-top:12px;
+      background:#0b5cff;
+      color:#fff;
+      font-weight:900;
+      font-size:.85rem;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+    }
+
+    .back{
+      margin-top:18px;
+      display:inline-block;
+      font-size:.85rem;
+      font-weight:800;
+      color:#0b5cff;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page" id="emailRoot">
+    <div class="eyebrow">Backed by BRYCER</div>
+    <h1 id="emailTitle">Loading…</h1>
+    <div class="meta" id="emailMeta"></div>
+
+    <div class="card">
+      <div class="label">Subject</div>
+      <div class="subject" id="emailSubject"></div>
+      <div class="preheader" id="emailPreheader"></div>
+    </div>
+
+    <div class="card body" id="emailBody"></div>
+
+    <a class="cta" id="emailCta" href="#" target="_blank"></a>
+
+    <a class="back" href="index.html">← Back to roadmap</a>
+  </div>
+
+  <script>
+    async function loadEmail(){
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      const res = await fetch("data/emails.json");
+      const emails = await res.json();
+
+      const email = emails.find(e => e.id === id);
+      if(!email){
+        document.getElementById("emailTitle").innerText = "Email not found";
+        return;
+      }
+
+      document.getElementById("emailTitle").innerText = email.audience;
+      document.getElementById("emailMeta").innerText =
+        email.quarter + " · " + email.sendDate + " · " + email.type;
+
+      document.getElementById("emailSubject").innerText = email.subject;
+      document.getElementById("emailPreheader").innerText = email.preheader;
+
+      const body = document.getElementById("emailBody");
+      body.innerHTML = "";
+      email.body.forEach(p => {
+        const el = document.createElement("p");
+        el.innerText = p;
+        body.appendChild(el);
+      });
+
+      const cta = document.getElementById("emailCta");
+      cta.innerText = email.ctaText;
+      cta.href = email.ctaUrl;
+    }
+
+    loadEmail();
+  </script>
+</body>
+</html>
