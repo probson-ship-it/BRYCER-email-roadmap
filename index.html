@@ -82,6 +82,254 @@
       font-size:.92rem;
       line-height:1.45;
     }
+    /* =========================
+   VIEW TOGGLE
+========================= */
+.view{ display:none; }
+.view.view-active{ display:block; }
+
+/* =========================
+   CALENDAR LAYOUT
+========================= */
+.cal-shell{
+  margin-top:14px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+  display:grid;
+  grid-template-columns:320px 1fr;
+}
+@media (max-width:1100px){
+  .cal-shell{ grid-template-columns:1fr; }
+}
+
+.cal-left{
+  border-right:1px solid var(--border);
+  padding:16px;
+  background:#fff;
+}
+@media (max-width:1100px){
+  .cal-left{ border-right:none; border-bottom:1px solid var(--border); }
+}
+
+.cal-brand{ margin-bottom:14px; }
+.cal-eyebrow{
+  font-size:.75rem;
+  font-weight:900;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--brycer-orange);
+}
+.cal-title{
+  margin-top:6px;
+  font-size:1.12rem;
+  font-weight:900;
+  color:var(--brycer-navy);
+  letter-spacing:-.01em;
+}
+.cal-sub{
+  margin-top:6px;
+  color:var(--muted);
+  font-weight:600;
+  font-size:.84rem;
+  line-height:1.35;
+}
+
+.cal-monthbox{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  background:linear-gradient(180deg,#ffffff,#f8fafc);
+}
+.cal-monthname{
+  font-size:1.8rem;
+  font-weight:900;
+  color:var(--brycer-orange);
+  line-height:1.05;
+}
+.cal-year{
+  margin-top:6px;
+  font-size:1.1rem;
+  font-weight:900;
+  color:var(--brycer-navy);
+}
+.cal-nav{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+.navbtn{
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--brycer-navy);
+  font-weight:900;
+  font-size:.8rem;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.navbtn:hover{ border-color:rgba(2,6,23,.25); }
+
+.cal-legendbox{
+  margin-top:14px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  background:#fff;
+}
+.cal-h{
+  font-size:.95rem;
+  font-weight:900;
+  color:var(--brycer-navy);
+  margin-bottom:10px;
+}
+.cal-legend{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 12px;
+}
+.tag-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  font-size:.82rem;
+  color:var(--muted);
+}
+.tag-dot{
+  width:12px; height:12px;
+  border-radius:999px;
+  border:2px solid rgba(2,6,23,.10);
+}
+
+/* Calendar dots use your same roadmap color language */
+.tag-dot.t-fire{ background:#e17f49; }      /* Fire */
+.tag-dot.t-backflow{ background:#2563eb; }  /* Backflow */
+.tag-dot.t-upsell{ background:#0f766e; }    /* Upsells */
+.tag-dot.t-sp{ background:#7c3aed; }        /* Service Providers */
+.tag-dot.t-drip{ background:#334155; }      /* Drips */
+.tag-dot.t-news{ background:#b45309; }      /* Newsletter */
+.tag-dot.t-conf{ background:#0f172a; }      /* Conferences */
+.tag-dot.t-social{ background:#f59e0b; }    /* Social */
+.tag-dot.t-press{ background:#0b5cff; }     /* Press */
+.tag-dot.t-customer{ background:#22c55e; }  /* Customer Comms */
+
+.cal-note{
+  margin-top:12px;
+  color:var(--muted);
+  font-weight:600;
+  font-size:.82rem;
+  line-height:1.35;
+}
+
+.cal-right{ padding:16px; background:#fff; }
+
+.cal-grid{ width:100%; }
+
+.cal-dow{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  border:1px solid var(--border);
+  border-bottom:none;
+  border-radius:14px 14px 0 0;
+  overflow:hidden;
+}
+.cal-dow > div{
+  padding:10px 10px;
+  background:var(--thead);
+  border-right:1px solid var(--border);
+  font-weight:900;
+  letter-spacing:.14em;
+  font-size:.72rem;
+  text-transform:uppercase;
+  color:var(--brycer-navy);
+}
+.cal-dow > div:last-child{ border-right:none; }
+
+.cal-days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  border:1px solid var(--border);
+  border-radius:0 0 14px 14px;
+  overflow:hidden;
+}
+
+.day{
+  min-height:120px;
+  padding:10px;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:#fff;
+}
+.day:nth-child(7n){ border-right:none; }
+.day.muted{ background:#f8fafc; color:var(--muted); }
+
+.daynum{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:900;
+  color:var(--brycer-navy);
+  margin-bottom:8px;
+}
+
+.event{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  padding:8px 8px;
+  border:1px solid rgba(2,6,23,.10);
+  border-radius:12px;
+  background:#fff;
+  margin-bottom:8px;
+}
+.evdot{
+  width:10px; height:10px;
+  border-radius:999px;
+  margin-top:4px;
+  background:var(--brycer-navy);
+  border:2px solid rgba(2,6,23,.10);
+}
+.evtxt{
+  font-size:.82rem;
+  line-height:1.25;
+  color:var(--text);
+  font-weight:700;
+}
+.evtxt a{
+  color:#0b5cff;
+  text-decoration:none;
+  font-weight:900;
+}
+.evtxt a:hover{ text-decoration:underline; }
+
+/* Dot color by category (uses data-col) */
+.event[data-col="fire"] .evdot{ background:#e17f49; }
+.event[data-col="backflow"] .evdot{ background:#2563eb; }
+.event[data-col="upsell"] .evdot{ background:#0f766e; }
+.event[data-col="sp"] .evdot{ background:#7c3aed; }
+.event[data-col="drip"] .evdot{ background:#334155; }
+.event[data-col="news"] .evdot{ background:#b45309; }
+.event[data-col="conf"] .evdot{ background:#0f172a; }
+.event[data-col="social"] .evdot{ background:#f59e0b; }
+.event[data-col="press"] .evdot{ background:#0b5cff; }
+.event[data-col="customer"] .evdot{ background:#22c55e; }
+
+/* Make calendar respect the same multi-select filtering classes */
+.cols-filtering .event{ display:none; }
+.show-fire .event[data-col="fire"]{ display:flex; }
+.show-backflow .event[data-col="backflow"]{ display:flex; }
+.show-upsell .event[data-col="upsell"]{ display:flex; }
+.show-sp .event[data-col="sp"]{ display:flex; }
+.show-drip .event[data-col="drip"]{ display:flex; }
+.show-news .event[data-col="news"]{ display:flex; }
+.show-conf .event[data-col="conf"]{ display:flex; }
+.show-social .event[data-col="social"]{ display:flex; }
+.show-press .event[data-col="press"]{ display:flex; }
+.show-customer .event[data-col="customer"]{ display:flex; }
+
 
     /* Toolbar + multi-select buttons */
     .toolbar{
@@ -476,6 +724,23 @@
         <button class="btn" data-col="social"><span class="dot social"></span>Social</button>
         <button class="btn" data-col="pr"><span class="dot pr"></span>Press Releases</button>
         <button class="btn" data-col="cust"><span class="dot cust"></span>Customer Comms</button>
+        <div class="toolbar">
+<button class="btn" data-view="roadmap" aria-label="Roadmap View">Roadmap</button>
+<button class="btn" data-view="calendar" aria-label="Calendar View">Calendar</button>
+
+
+  <!-- NEW FILTERS -->
+  <button class="btn" data-col="social">Social</button>
+  <button class="btn" data-col="press">Press</button>
+  <button class="btn" data-col="customer">Customer Comms</button>
+
+  <!-- VIEW TOGGLE ICONS (PLACE THESE LAST) -->
+  <button class="btn" data-view="roadmap">Roadmap</button>
+  <button class="btn" data-view="calendar">Calendar</button>
+
+  <!-- Existing reset/resend buttons stay last -->
+</div>
+
 
         <button class="btn" data-toggle="resends"><span class="dot res"></span>Highlight Resends</button>
         <button class="btn" data-action="reset">Reset View</button>
@@ -520,7 +785,8 @@
     </section>
 
     <!-- ===================== Q1 ===================== -->
-    <details open>
+   <section id="viewRoadmap" class="view view-active">
+ <details open>
       <summary>
         <span>Q1 – Visibility</span>
         <span class="qmeta">
@@ -1771,7 +2037,60 @@
       </div>
     </details>
 
-    <footer>
+<section id="viewCalendar" class="view">
+  <div class="cal-shell">
+    <aside class="cal-left">
+      <div class="cal-brand">
+        <div class="cal-eyebrow">Backed by BRYCER</div>
+        <div class="cal-title">Monthly Content Calendar</div>
+        <div class="cal-sub">Turning Reports into Results – make lack of compliance visible by date and channel.</div>
+      </div>
+
+      <div class="cal-monthbox">
+        <div id="calMonthName" class="cal-monthname">January</div>
+        <div id="calYear" class="cal-year">2026</div>
+
+        <div class="cal-nav">
+          <button class="navbtn" id="calPrev" type="button">Prev</button>
+          <button class="navbtn" id="calToday" type="button">This Month</button>
+          <button class="navbtn" id="calNext" type="button">Next</button>
+        </div>
+      </div>
+
+      <div class="cal-legendbox">
+        <div class="cal-h">Types</div>
+        <div class="cal-legend">
+          <div class="tag-row"><span class="tag-dot t-fire"></span><span>Fire</span></div>
+          <div class="tag-row"><span class="tag-dot t-backflow"></span><span>Backflow</span></div>
+          <div class="tag-row"><span class="tag-dot t-upsell"></span><span>Upsells</span></div>
+          <div class="tag-row"><span class="tag-dot t-sp"></span><span>Service Providers</span></div>
+          <div class="tag-row"><span class="tag-dot t-drip"></span><span>Drips</span></div>
+          <div class="tag-row"><span class="tag-dot t-news"></span><span>Newsletter</span></div>
+          <div class="tag-row"><span class="tag-dot t-conf"></span><span>Conferences</span></div>
+          <div class="tag-row"><span class="tag-dot t-social"></span><span>Social</span></div>
+          <div class="tag-row"><span class="tag-dot t-press"></span><span>Press Release</span></div>
+          <div class="tag-row"><span class="tag-dot t-customer"></span><span>Customer Comms</span></div>
+        </div>
+
+        <div class="cal-note">
+          Tip: use the same filter icons above to isolate types in both views.
+        </div>
+      </div>
+    </aside>
+
+    <main class="cal-right">
+      <div class="cal-grid">
+        <div class="cal-dow">
+          <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+        </div>
+        <div id="calendarDays" class="cal-days"></div>
+      </div>
+    </main>
+  </div>
+</section>
+     
+   </section>
+ <footer>
       <div><strong>BRYCER 2026 Roadmap</strong> · Multi-view filters for quick planning</div>
       <div>Tip: click multiple icons to isolate columns · Reset returns full view</div>
     </footer>
@@ -1837,3 +2156,247 @@
   </script>
 </body>
 </html>
+<script>
+(function(){
+  const root = document.getElementById('pageRoot');
+
+  /* =========================
+     VIEW TOGGLE
+  ========================= */
+  const viewRoadmap = document.getElementById('viewRoadmap');
+  const viewCalendar = document.getElementById('viewCalendar');
+  const viewBtns = Array.from(document.querySelectorAll('.btn[data-view]'));
+
+  function setView(name){
+    viewBtns.forEach(b=>b.classList.remove('active'));
+    const activeBtn = viewBtns.find(b => b.getAttribute('data-view') === name);
+    if(activeBtn) activeBtn.classList.add('active');
+
+    if(name === 'calendar'){
+      viewRoadmap.classList.remove('view-active');
+      viewCalendar.classList.add('view-active');
+      renderMonth(calCursor);
+      applyColClasses(); // keep filters consistent
+    }else{
+      viewCalendar.classList.remove('view-active');
+      viewRoadmap.classList.add('view-active');
+    }
+  }
+
+  viewBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      setView(btn.getAttribute('data-view'));
+    });
+  });
+
+  /* =========================
+     YOUR EXISTING FILTERS
+     (Extend them to include social/press/customer)
+  ========================= */
+  const colButtons = Array.from(document.querySelectorAll('.btn[data-col]'));
+
+  function selectedCols(){
+    return colButtons.filter(b => b.classList.contains('active')).map(b => b.getAttribute('data-col'));
+  }
+
+  function applyColClasses(){
+    const cols = selectedCols();
+
+    root.classList.remove(
+      'cols-filtering',
+      'show-fire','show-backflow','show-upsell','show-sp','show-drip','show-news','show-conf',
+      'show-social','show-press','show-customer'
+    );
+
+    if(cols.length === 0) return;
+
+    root.classList.add('cols-filtering');
+    cols.forEach(c => root.classList.add(`show-${c}`));
+  }
+
+  colButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      btn.classList.toggle('active');
+      applyColClasses();
+    });
+  });
+
+  /* Keep your resend + reset logic if you already have it.
+     If you have a reset button, just add the new show-* classes to its remove list. */
+
+  /* =========================
+     CALENDAR DATA (STARTER)
+     Add more months here over time.
+  ========================= */
+  const events = [
+    /* Customer Comms */
+    { date: '2026-01-16', col:'customer', title:'Customer Comms – New Look Update (AHJs)' },
+
+    /* Press Releases (Jan specifics, then placeholders) */
+    { date: '2026-01-08', col:'press', title:'Press Release – IROL Acquisition Notice' },
+    { date: '2026-01-30', col:'press', title:'Press Release – BRYCER Newsroom Page / Blog' },
+
+    /* Monthly Press Release placeholders (15th + 30th) for Feb–Dec */
+    { date: '2026-02-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-02-30', col:'press', title:'Press Release – Placeholder (end of month)' }, // note: Feb 30 not valid; adjust per month
+    { date: '2026-03-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-03-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-04-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-04-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-05-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-05-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-06-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-06-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-07-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-07-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-08-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-08-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-09-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-09-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-10-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-10-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-11-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-11-30', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-12-15', col:'press', title:'Press Release – Placeholder' },
+    { date: '2026-12-30', col:'press', title:'Press Release – Placeholder' },
+
+    /* RR Webinar Upsells (Q1 specific updates) */
+    { date: '2026-01-22', col:'upsell', title:'RR Upsell – NE RR Webinar' },
+    { date: '2026-01-26', col:'upsell', title:'RR Upsell – SE RR Webinar' },
+    { date: '2026-02-11', col:'upsell', title:'RR Upsell – MW RR Webinar' },
+    { date: '2026-02-25', col:'upsell', title:'RR Upsell – NW RR Webinar' },
+    { date: '2026-02-26', col:'upsell', title:'RR Upsell – SW RR Webinar' },
+
+    /* February Social posts (from your list) */
+    { date:'2026-02-02', col:'social', title:'Social – Conferences (Catch us @ these conferences)' },
+    { date:'2026-02-03', col:'social', title:'Social – Partnership (Win-Bur-Sew, IL)' },
+    { date:'2026-02-04', col:'social', title:'Social – Case Study' },
+    { date:'2026-02-05', col:'social', title:'Social – Partnership (Northborough, MA)' },
+    { date:'2026-02-06', col:'social', title:'Social – Conference Pic' },
+    { date:'2026-02-09', col:'social', title:'Social – Announcement (BRYCER Newsroom)' },
+    { date:'2026-02-10', col:'social', title:'Social – Partnership (Springfield, IL)' },
+    { date:'2026-02-11', col:'social', title:'Social – Case Study' },
+    { date:'2026-02-12', col:'social', title:'Social – Partnership (Momence, IL)' },
+    { date:'2026-02-13', col:'social', title:'Social – Video (AHJ Testimonial: "Why do you love...?")' },
+    { date:'2026-02-16', col:'social', title:'Social – Presidents Day (Poll about FEs)' },
+    { date:'2026-02-17', col:'social', title:'Social – Partnership (Nueces County (TX) ESD #1)' },
+    { date:'2026-02-18', col:'social', title:'Social – Case Study' },
+    { date:'2026-02-19', col:'social', title:'Social – Partnership (Little Elm Fire Department (TX))' },
+    { date:'2026-02-20', col:'social', title:'Social – Conference Pic' },
+    { date:'2026-02-23', col:'social', title:'Social – Quiz (Tie to Data Entry for SPs)' },
+    { date:'2026-02-24', col:'social', title:'Social – Partnership (Brawley Fire-Rescue (CA))' },
+    { date:'2026-02-25', col:'social', title:'Social – Case Study' },
+    { date:'2026-02-26', col:'social', title:'Social – Partnership (Muskegon Charter Township (MI) Fire Dept.)' },
+    { date:'2026-02-27', col:'social', title:'Social – Announcement (Data Entry for SPs)' },
+  ];
+
+  /* Fix invalid dates like Feb 30 automatically by skipping them */
+  function parseISO(iso){
+    const [y,m,d] = iso.split('-').map(n=>parseInt(n,10));
+    const dt = new Date(y, m-1, d);
+    if(dt.getFullYear()!==y || (dt.getMonth()+1)!==m || dt.getDate()!==d) return null;
+    return dt;
+  }
+
+  /* =========================
+     CALENDAR RENDERING
+  ========================= */
+  const calMonthName = document.getElementById('calMonthName');
+  const calYear = document.getElementById('calYear');
+  const calendarDays = document.getElementById('calendarDays');
+
+  let calCursor = new Date(2026, 0, 1);
+
+  const prevBtn = document.getElementById('calPrev');
+  const nextBtn = document.getElementById('calNext');
+  const todayBtn = document.getElementById('calToday');
+
+  if(prevBtn) prevBtn.addEventListener('click', ()=>{ calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth()-1, 1); renderMonth(calCursor); applyColClasses(); });
+  if(nextBtn) nextBtn.addEventListener('click', ()=>{ calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth()+1, 1); renderMonth(calCursor); applyColClasses(); });
+  if(todayBtn) todayBtn.addEventListener('click', ()=>{ calCursor = new Date(2026, 0, 1); renderMonth(calCursor); applyColClasses(); });
+
+  function monthLabel(d){
+    return d.toLocaleString('en-US', { month:'long' });
+  }
+  function sameDay(a,b){
+    return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+  }
+
+  function renderMonth(cursor){
+    if(!calendarDays) return;
+
+    const y = cursor.getFullYear();
+    const m = cursor.getMonth();
+
+    if(calMonthName) calMonthName.textContent = monthLabel(cursor);
+    if(calYear) calYear.textContent = String(y);
+
+    calendarDays.innerHTML = '';
+
+    const first = new Date(y, m, 1);
+    const last = new Date(y, m+1, 0);
+    const startDow = first.getDay();
+    const daysInMonth = last.getDate();
+
+    const prevLast = new Date(y, m, 0).getDate();
+    for(let i=0; i<startDow; i++){
+      const dnum = prevLast - (startDow - 1 - i);
+      calendarDays.appendChild(makeDayCell(dnum, true));
+    }
+
+    for(let d=1; d<=daysInMonth; d++){
+      const date = new Date(y, m, d);
+      const cell = makeDayCell(d, false);
+
+      const todays = events
+        .map(e => ({...e, dt: parseISO(e.date)}))
+        .filter(e => e.dt && sameDay(e.dt, date));
+
+      todays.forEach(ev=>{
+        cell.appendChild(makeEvent(ev.col, ev.title));
+      });
+
+      calendarDays.appendChild(cell);
+    }
+
+    const totalCells = calendarDays.children.length;
+    const remaining = (totalCells <= 35) ? (42 - totalCells) : (49 - totalCells);
+    for(let i=1; i<=remaining; i++){
+      calendarDays.appendChild(makeDayCell(i, true));
+    }
+  }
+
+  function makeDayCell(dayNum, isMuted){
+    const div = document.createElement('div');
+    div.className = 'day' + (isMuted ? ' muted' : '');
+
+    const head = document.createElement('div');
+    head.className = 'daynum';
+    head.innerHTML = `<span>${dayNum}</span>`;
+    div.appendChild(head);
+
+    return div;
+  }
+
+  function makeEvent(col, title){
+    const div = document.createElement('div');
+    div.className = 'event';
+    div.setAttribute('data-col', col);
+
+    const dot = document.createElement('span');
+    dot.className = 'evdot';
+
+    const txt = document.createElement('div');
+    txt.className = 'evtxt';
+    txt.textContent = title;
+
+    div.appendChild(dot);
+    div.appendChild(txt);
+    return div;
+  }
+
+  /* Default calendar render happens only when you switch views */
+  // setView('roadmap'); // keep default as roadmap
+})();
+</script>
+
