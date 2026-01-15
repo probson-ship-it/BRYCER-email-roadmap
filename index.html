@@ -197,6 +197,7 @@
     .dot.news{ background:#b45309; }
     .dot.conf{ background:#0f172a; }
     .dot.res{ background:#64748b; }
+    .dot.social{ background:#e11d48; } /* Social */
 
     ul{
       margin:0;
@@ -365,7 +366,7 @@
       text-decoration:underline;
     }
 
-    /* Resend pill styling (lives INSIDE Fire/Backflow cells, so it shows whenever those columns are visible) */
+    /* Resend pill styling */
     .resend{
       margin-top:6px;
       display:inline-block;
@@ -403,18 +404,15 @@
       margin-left:2px;
     }
 
-    /* Multi-select column visibility:
-       Default: show all.
-       When at least one column filter is active, we hide all "data columns",
-       then show only the selected ones.
-    */
+    /* Multi-select column visibility */
     .cols-filtering .col-fire,
     .cols-filtering .col-backflow,
     .cols-filtering .col-upsell,
     .cols-filtering .col-sp,
     .cols-filtering .col-drip,
     .cols-filtering .col-news,
-    .cols-filtering .col-conf{
+    .cols-filtering .col-conf,
+    .cols-filtering .col-social{
       display:none;
     }
 
@@ -425,6 +423,7 @@
     .show-drip .col-drip{ display:table-cell; }
     .show-news .col-news{ display:table-cell; }
     .show-conf .col-conf{ display:table-cell; }
+    .show-social .col-social{ display:table-cell; }
 
     /* Resend highlight toggle */
     .highlight-resends .resend{
@@ -468,6 +467,7 @@
         <button class="btn" data-col="drip"><span class="dot drip"></span>Drips</button>
         <button class="btn" data-col="news"><span class="dot news"></span>Newsletter</button>
         <button class="btn" data-col="conf"><span class="dot conf"></span>Conferences</button>
+        <button class="btn" data-col="social"><span class="dot social"></span>Social</button>
 
         <button class="btn" data-toggle="resends"><span class="dot res"></span>Highlight Resends</button>
         <button class="btn" data-action="reset">Reset View</button>
@@ -491,7 +491,8 @@
           <div class="chip"><span class="dot sp"></span> Service Providers (first Wed monthly)</div>
           <div class="chip"><span class="dot conf"></span> Conferences (email 3 business days before event start)</div>
           <div class="chip"><span class="dot drip"></span> Drips (Weeks 11–12)</div>
-          <div class="chip"><span class="dot news"></span> Quarterly Newsletter (Week 13)</div>
+          <div class="chip"><span class="dot news"></span> Quarterly Newsletter (end of quarter)</div>
+          <div class="chip"><span class="dot social"></span> Social (weekly planned posts)</div>
         </div>
       </div>
 
@@ -543,6 +544,7 @@
                 <th class="col-conf">Conferences</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
+                <th class="col-social">Social</th>
               </tr>
             </thead>
             <tbody>
@@ -565,6 +567,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -583,6 +586,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -604,6 +608,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -623,6 +628,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -643,6 +649,13 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 02</strong> – Conference <span class="subline">Catch us @ these conferences</span></li>
+                    <li><strong>Feb 03</strong> – Partnership <span class="subline">Win-Bur-Sew, IL</span></li>
+                    <li><strong>Feb 04</strong> – Case Study</li>
+                  </ul>
+                </td>
               </tr>
 
               <tr>
@@ -660,6 +673,15 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 05</strong> – Partnership <span class="subline">Northborough, MA</span></li>
+                    <li><strong>Feb 06</strong> – Conference Pic</li>
+                    <li><strong>Feb 09</strong> – Announcement <span class="subline">BRYCER Newsroom</span></li>
+                    <li><strong>Feb 10</strong> – Partnership <span class="subline">Springfield, IL</span></li>
+                    <li><strong>Feb 11</strong> – Case Study</li>
+                  </ul>
+                </td>
               </tr>
 
               <tr>
@@ -678,6 +700,15 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 12</strong> – Partnership <span class="subline">Momence, IL</span></li>
+                    <li><strong>Feb 13</strong> – Video <span class="subline">AHJ Testimonial – "Why do you love...?"</span></li>
+                    <li><strong>Feb 16</strong> – Presidents Day <span class="subline">Poll about FEs</span></li>
+                    <li><strong>Feb 17</strong> – Partnership <span class="subline">Nueces County (TX) ESD #1</span></li>
+                    <li><strong>Feb 18</strong> – Case Study</li>
+                  </ul>
+                </td>
               </tr>
 
               <tr>
@@ -703,6 +734,15 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 19</strong> – Partnership <span class="subline">Little Elm Fire Department (TX)</span></li>
+                    <li><strong>Feb 20</strong> – Conference Pic</li>
+                    <li><strong>Feb 23</strong> – Quiz <span class="subline">Tie-in to Data Entry for SPs</span></li>
+                    <li><strong>Feb 24</strong> – Partnership <span class="subline">Brawley Fire-Rescue (CA)</span></li>
+                    <li><strong>Feb 25</strong> – Case Study</li>
+                  </ul>
+                </td>
               </tr>
 
               <tr>
@@ -717,6 +757,12 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 26</strong> – Partnership <span class="subline">Muskegon Charter Township (MI) Fire Department</span></li>
+                    <li><strong>Feb 27</strong> – Announcement <span class="subline">Data Entry for SPs</span></li>
+                  </ul>
+                </td>
               </tr>
 
               <tr>
@@ -737,6 +783,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -753,6 +800,7 @@
                 </td>
                 <td class="col-drip">Fire Visibility drip + Backflow drip (Cold / Warm / High Intent)</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -764,6 +812,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">Continue drips + last-chance CTA</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -779,6 +828,7 @@
                 </td>
                 <td class="col-drip muted">—</td>
                 <td class="col-news">Mar 31 – Quarterly Newsletter</td>
+                <td class="col-social">—</td>
               </tr>
             </tbody>
           </table>
@@ -822,6 +872,7 @@
                 <th class="col-conf">Conferences</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
+                <th class="col-social">Social</th>
               </tr>
             </thead>
             <tbody>
@@ -844,6 +895,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -862,6 +914,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -879,6 +932,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -898,6 +952,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -916,6 +971,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -938,6 +994,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -956,6 +1013,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -973,6 +1031,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -991,6 +1050,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1009,6 +1069,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1020,6 +1081,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">Fire Efficiency drip + Backflow drip (Cold / Warm / High Intent)</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1035,6 +1097,7 @@
                 </td>
                 <td class="col-drip">Continue drips + last-chance CTA</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1046,6 +1109,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip muted">—</td>
                 <td class="col-news">Jun 30 – Quarterly Newsletter</td>
+                <td class="col-social">—</td>
               </tr>
             </tbody>
           </table>
@@ -1089,6 +1153,7 @@
                 <th class="col-conf">Conferences</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
+                <th class="col-social">Social</th>
               </tr>
             </thead>
             <tbody>
@@ -1111,6 +1176,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1129,6 +1195,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1146,6 +1213,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1160,6 +1228,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1174,6 +1243,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1195,6 +1265,7 @@
                 </td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1209,6 +1280,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1226,6 +1298,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1240,6 +1313,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1254,6 +1328,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1265,6 +1340,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">Fire Compliance drip + Backflow drip (Cold / Warm / High Intent)</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1276,6 +1352,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">Continue drips + last-chance CTA</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1287,6 +1364,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip muted">—</td>
                 <td class="col-news">Sep 30 – Quarterly Newsletter</td>
+                <td class="col-social">—</td>
               </tr>
             </tbody>
           </table>
@@ -1330,6 +1408,7 @@
                 <th class="col-conf">Conferences</th>
                 <th class="col-drip">Drips</th>
                 <th class="col-news">Quarterly Newsletter</th>
+                <th class="col-social">Social</th>
               </tr>
             </thead>
             <tbody>
@@ -1348,13 +1427,14 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
                 <td class="wk">W2<div class="rng">Oct 08–Oct 14</div></td>
                 <td class="col-fire">
                   <a class="email-link" href="email.html?id=2026-q4-w2-fire-prospect" target="_blank">Oct 13 – Modernization outreach (5–6 states)</a>
-                  <span class="resend">Resend to unopens: <aclass="resend-link" href="email.html?id=2026-q4-w2-fire-prospect-resend" target="_blank">Oct 16</a></span>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w2-fire-prospect-resend" target="_blank">Oct 16</a></span>
                 </td>
                 <td class="col-backflow">—</td>
                 <td class="col-upsell">Oct 08 – Upsell: FE</td>
@@ -1362,6 +1442,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1379,6 +1460,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1393,6 +1475,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1407,6 +1490,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1424,6 +1508,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1438,6 +1523,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1455,6 +1541,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1469,6 +1556,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1483,6 +1571,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">—</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1494,6 +1583,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">Fire Modernization drip + Backflow drip (Cold / Warm / High Intent)</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1505,6 +1595,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip">Continue drips + last-chance CTA</td>
                 <td class="col-news">—</td>
+                <td class="col-social">—</td>
               </tr>
 
               <tr>
@@ -1516,6 +1607,7 @@
                 <td class="col-conf">—</td>
                 <td class="col-drip muted">—</td>
                 <td class="col-news">Dec 31 – Quarterly Newsletter</td>
+                <td class="col-social">—</td>
               </tr>
             </tbody>
           </table>
@@ -1549,7 +1641,7 @@
         // Clear all show-* classes
         root.classList.remove(
           'cols-filtering',
-          'show-fire','show-backflow','show-upsell','show-sp','show-drip','show-news','show-conf'
+          'show-fire','show-backflow','show-upsell','show-sp','show-drip','show-news','show-conf','show-social'
         );
 
         // If none selected, show everything (default CSS)
@@ -1580,7 +1672,7 @@
           if(resendBtn) resendBtn.classList.remove('active');
           root.classList.remove(
             'cols-filtering',
-            'show-fire','show-backflow','show-upsell','show-sp','show-drip','show-news','show-conf',
+            'show-fire','show-backflow','show-upsell','show-sp','show-drip','show-news','show-conf','show-social',
             'highlight-resends'
           );
         });
