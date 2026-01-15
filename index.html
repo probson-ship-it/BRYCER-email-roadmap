@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>BRYCER 2026 Email Roadmap</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -31,13 +31,6 @@
       --q2:#22c55e;
       --q3:#f59e0b;
       --q4:#a855f7;
-
-      /* Calendar type colors (for the calendar chips) */
-      --t-email:#22c55e;
-      --t-social:#f59e0b;
-      --t-press:#2563eb;
-      --t-thought:#ef4444;
-      --t-holiday:#0f172a;
     }
 
     *{ box-sizing:border-box; }
@@ -70,7 +63,7 @@
 
     .eyebrow{
       font-size:.78rem;
-      font-weight:900;
+      font-weight:800;
       letter-spacing:.22em;
       text-transform:uppercase;
       color:var(--brycer-orange);
@@ -88,10 +81,9 @@
       color:var(--muted);
       font-size:.92rem;
       line-height:1.45;
-      font-weight:600;
     }
 
-    /* Toolbar + multi-select icons */
+    /* Toolbar + multi-select buttons */
     .toolbar{
       display:flex;
       flex-wrap:wrap;
@@ -118,7 +110,7 @@
       gap:10px;
       align-items:center;
       color:var(--muted);
-      font-weight:900;
+      font-weight:800;
       font-size:.82rem;
     }
 
@@ -186,7 +178,7 @@
       background:#fff;
       font-size:.78rem;
       color:var(--muted);
-      font-weight:800;
+      font-weight:700;
       white-space:nowrap;
     }
 
@@ -205,11 +197,9 @@
     .dot.news{ background:#b45309; }
     .dot.conf{ background:#0f172a; }
     .dot.res{ background:#64748b; }
-
-    /* NEW */
-    .dot.social{ background:#f59e0b; }
-    .dot.press{ background:#2563eb; }
-    .dot.customer{ background:#22c55e; }
+    .dot.social{ background:#e11d48; } /* Social */
+    .dot.pr{ background:#16a34a; }     /* Press Releases */
+    .dot.cust{ background:#0ea5e9; }   /* Customer Comms */
 
     ul{
       margin:0;
@@ -217,7 +207,6 @@
       color:var(--muted);
       font-size:.86rem;
       line-height:1.55;
-      font-weight:600;
     }
 
     details{
@@ -243,7 +232,7 @@
 
     .qmeta{
       font-size:.8rem;
-      font-weight:900;
+      font-weight:800;
       color:var(--muted);
       display:flex;
       gap:10px;
@@ -309,7 +298,6 @@
       font-size:.9rem;
       line-height:1.5;
       max-width:980px;
-      font-weight:600;
     }
 
     .sheet-wrap{
@@ -349,7 +337,6 @@
       vertical-align:top;
       font-size:.86rem;
       line-height:1.35;
-      font-weight:600;
     }
 
     .sheet tbody tr:nth-child(even) td{
@@ -374,7 +361,7 @@
     /* Email link styling */
     .email-link{
       color:#0b5cff;
-      font-weight:900;
+      font-weight:800;
       text-decoration:none;
     }
     .email-link:hover{
@@ -390,12 +377,12 @@
       border:1px solid rgba(2,6,23,.14);
       background:rgba(2,6,23,.03);
       color:var(--muted);
-      font-weight:900;
+      font-weight:800;
       font-size:.75rem;
       white-space:nowrap;
     }
     .resend-link{
-      font-weight:800;
+      font-weight:700;
       color:#475569;
       text-decoration:none;
     }
@@ -408,7 +395,6 @@
       margin:0;
       padding-left:16px;
       color:var(--text);
-      font-weight:600;
     }
     .cell-list li{
       margin:0 0 4px 0;
@@ -420,11 +406,7 @@
       margin-left:2px;
     }
 
-    /* Multi-select column visibility:
-       Default: show all.
-       When at least one column filter is active, we hide all "data columns",
-       then show only the selected ones.
-    */
+    /* Multi-select column visibility */
     .cols-filtering .col-fire,
     .cols-filtering .col-backflow,
     .cols-filtering .col-upsell,
@@ -433,8 +415,8 @@
     .cols-filtering .col-news,
     .cols-filtering .col-conf,
     .cols-filtering .col-social,
-    .cols-filtering .col-press,
-    .cols-filtering .col-customer{
+    .cols-filtering .col-pr,
+    .cols-filtering .col-cust{
       display:none;
     }
 
@@ -446,8 +428,8 @@
     .show-news .col-news{ display:table-cell; }
     .show-conf .col-conf{ display:table-cell; }
     .show-social .col-social{ display:table-cell; }
-    .show-press .col-press{ display:table-cell; }
-    .show-customer .col-customer{ display:table-cell; }
+    .show-pr .col-pr{ display:table-cell; }
+    .show-cust .col-cust{ display:table-cell; }
 
     /* Resend highlight toggle */
     .highlight-resends .resend{
@@ -466,266 +448,8 @@
       flex-wrap:wrap;
       color:var(--muted);
       font-size:.86rem;
-      font-weight:700;
     }
     footer strong{ color:var(--brycer-navy); font-weight:900; }
-
-    /* =========================
-       VIEW TOGGLE
-    ========================== */
-    .view{ display:none; }
-    .view.view-active{ display:block; }
-
-    /* =========================
-       MONTHLY CALENDAR VIEW
-       (styled like your screenshot)
-    ========================== */
-    .calendar-shell{
-      display:grid;
-      grid-template-columns:340px 1fr;
-      gap:0;
-      border:1px solid var(--border);
-      border-radius:14px;
-      overflow:hidden;
-      background:#fff;
-      margin-top:14px;
-    }
-    @media (max-width:1100px){ .calendar-shell{ grid-template-columns:1fr; } }
-
-    .calendar-left{
-      border-right:1px solid var(--border);
-      padding:16px;
-      background:#fff;
-    }
-    @media (max-width:1100px){
-      .calendar-left{ border-right:none; border-bottom:1px solid var(--border); }
-    }
-
-    .cal-brand{ margin-bottom:14px; }
-    .cal-eyebrow{
-      font-size:.75rem;
-      font-weight:900;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--brycer-orange);
-    }
-    .cal-title{
-      margin-top:6px;
-      font-size:1.05rem;
-      font-weight:900;
-      color:var(--brycer-navy);
-      letter-spacing:.02em;
-    }
-    .cal-sub{
-      margin-top:6px;
-      color:var(--muted);
-      font-weight:600;
-      font-size:.84rem;
-      line-height:1.35;
-    }
-
-    .cal-monthbox{
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
-      background:linear-gradient(180deg,#ffffff,#f8fafc);
-    }
-    .cal-monthname{
-      font-size:1.8rem;
-      font-weight:900;
-      color:var(--brycer-orange);
-      line-height:1.05;
-    }
-    .cal-year{
-      margin-top:6px;
-      font-size:1.1rem;
-      font-weight:900;
-      color:var(--brycer-navy);
-    }
-    .cal-nav{
-      display:flex;
-      gap:8px;
-      margin-top:12px;
-      flex-wrap:wrap;
-    }
-    .navbtn{
-      border:1px solid var(--border);
-      background:#fff;
-      color:var(--brycer-navy);
-      font-weight:900;
-      font-size:.8rem;
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-    }
-    .navbtn:hover{ border-color:rgba(2,6,23,.25); }
-
-    .cal-legendbox{
-      margin-top:14px;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
-      background:#fff;
-    }
-    .cal-h{
-      font-size:.95rem;
-      font-weight:900;
-      color:var(--brycer-navy);
-      margin-bottom:10px;
-    }
-    .cal-legend{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px 12px;
-    }
-    .tag-row{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:900;
-      font-size:.82rem;
-      color:var(--muted);
-    }
-    .tag-dot{
-      width:12px; height:12px;
-      border-radius:999px;
-      border:2px solid rgba(2,6,23,.10);
-    }
-    .tag-dot.t-social{ background:var(--t-social); }
-    .tag-dot.t-email{ background:var(--t-email); }
-    .tag-dot.t-press{ background:var(--t-press); }
-    .tag-dot.t-thought{ background:var(--t-thought); }
-    .tag-dot.t-holiday{ background:var(--t-holiday); }
-    .cal-note{
-      margin-top:12px;
-      color:var(--muted);
-      font-weight:600;
-      font-size:.82rem;
-      line-height:1.35;
-    }
-
-    .calendar-right{ background:#fff; padding:16px; }
-
-    .cal-grid{
-      border:1px solid var(--border);
-      border-radius:14px;
-      overflow:hidden;
-      background:#fff;
-    }
-
-    .cal-dow{
-      display:grid;
-      grid-template-columns:repeat(7, 1fr);
-      background:#fff;
-      border-bottom:1px solid var(--border);
-    }
-    .cal-dow div{
-      padding:10px 10px;
-      color:var(--brycer-navy);
-      font-weight:900;
-      letter-spacing:.14em;
-      font-size:.72rem;
-      text-transform:uppercase;
-      border-right:1px solid var(--border);
-    }
-    .cal-dow div:last-child{ border-right:none; }
-
-    .cal-days{
-      display:grid;
-      grid-template-columns:repeat(7, 1fr);
-      min-height:640px;
-    }
-
-    .day{
-      border-right:1px solid var(--border);
-      border-bottom:1px solid var(--border);
-      padding:10px 10px 12px;
-      min-height:120px;
-      background:#fff;
-    }
-    .day:nth-child(7n){ border-right:none; }
-
-    .day.muted{
-      background:#fbfdff;
-      color:#94a3b8;
-    }
-
-    .daynum{
-      font-weight:900;
-      color:var(--brycer-navy);
-      font-size:.9rem;
-      margin-bottom:8px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:8px;
-    }
-    .day.muted .daynum{ color:#94a3b8; }
-
-    .event{
-      display:flex;
-      gap:8px;
-      align-items:flex-start;
-      border:1px solid rgba(2,6,23,.12);
-      border-left:4px solid rgba(2,6,23,.35);
-      border-radius:10px;
-      padding:6px 8px;
-      margin:0 0 6px 0;
-      background:#fff;
-      font-size:.78rem;
-      line-height:1.25;
-    }
-    .event .evdot{
-      width:8px; height:8px;
-      border-radius:999px;
-      margin-top:4px;
-      flex:0 0 auto;
-      border:2px solid rgba(2,6,23,.10);
-    }
-    .event .evtxt{
-      font-weight:800;
-      color:var(--text);
-    }
-    .event .evsub{
-      display:block;
-      margin-top:2px;
-      color:var(--muted);
-      font-weight:700;
-      font-size:.74rem;
-    }
-    .event a{
-      color:#0b5cff;
-      text-decoration:none;
-      font-weight:900;
-    }
-    .event a:hover{ text-decoration:underline; }
-
-    /* Calendar event type borders */
-    .event[data-type="email"]{ border-left-color:rgba(34,197,94,.75); }
-    .event[data-type="social"]{ border-left-color:rgba(245,158,11,.85); }
-    .event[data-type="press"]{ border-left-color:rgba(37,99,235,.85); }
-    .event[data-type="thought"]{ border-left-color:rgba(239,68,68,.85); }
-    .event[data-type="holiday"]{ border-left-color:rgba(2,6,23,.85); }
-
-    .event[data-type="email"] .evdot{ background:var(--t-email); }
-    .event[data-type="social"] .evdot{ background:var(--t-social); }
-    .event[data-type="press"] .evdot{ background:var(--t-press); }
-    .event[data-type="thought"] .evdot{ background:var(--t-thought); }
-    .event[data-type="holiday"] .evdot{ background:var(--t-holiday); }
-
-    /* When column filtering is active, calendar events follow the same selections */
-    .cols-filtering .event{ display:none; }
-    .show-fire .event[data-col="fire"]{ display:flex; }
-    .show-backflow .event[data-col="backflow"]{ display:flex; }
-    .show-upsell .event[data-col="upsell"]{ display:flex; }
-    .show-sp .event[data-col="sp"]{ display:flex; }
-    .show-drip .event[data-col="drip"]{ display:flex; }
-    .show-news .event[data-col="news"]{ display:flex; }
-    .show-conf .event[data-col="conf"]{ display:flex; }
-    .show-social .event[data-col="social"]{ display:flex; }
-    .show-press .event[data-col="press"]{ display:flex; }
-    .show-customer .event[data-col="customer"]{ display:flex; }
-
   </style>
 </head>
 
@@ -733,13 +457,13 @@
   <div class="page" id="pageRoot">
     <header>
       <div class="eyebrow">Backed by BRYCER</div>
-      <h1>BRYCER 2026 Roadmap</h1>
+      <h1>BRYCER 2026 Email Roadmap</h1>
       <div class="sub">
         Turning Reports into Results — a year-long cadence built to reduce lack of compliance with clear weekly execution by audience.
       </div>
     </header>
 
-    <!-- Multi-select icons + View toggle -->
+    <!-- Multi-select View buttons -->
     <div class="toolbar" role="region" aria-label="Calendar View Controls">
       <div class="toolbar-left">
         <button class="btn" data-col="fire"><span class="dot fire"></span>Fire</button>
@@ -749,18 +473,12 @@
         <button class="btn" data-col="drip"><span class="dot drip"></span>Drips</button>
         <button class="btn" data-col="news"><span class="dot news"></span>Newsletter</button>
         <button class="btn" data-col="conf"><span class="dot conf"></span>Conferences</button>
-
         <button class="btn" data-col="social"><span class="dot social"></span>Social</button>
-        <button class="btn" data-col="press"><span class="dot press"></span>Press Releases</button>
-        <button class="btn" data-col="customer"><span class="dot customer"></span>Customer Comms</button>
+        <button class="btn" data-col="pr"><span class="dot pr"></span>Press Releases</button>
+        <button class="btn" data-col="cust"><span class="dot cust"></span>Customer Comms</button>
 
         <button class="btn" data-toggle="resends"><span class="dot res"></span>Highlight Resends</button>
         <button class="btn" data-action="reset">Reset View</button>
-
-        <span style="width:10px; display:inline-block;"></span>
-
-        <button class="btn active" data-view="roadmap">Roadmap View</button>
-        <button class="btn" data-view="calendar">Calendar View</button>
       </div>
 
       <div class="toolbar-right">
@@ -768,1107 +486,1067 @@
         <span><strong>Week 10:</strong> Pause + optimize</span>
         <span><strong>Drips:</strong> Weeks 11–12</span>
         <span><strong>Newsletter:</strong> Week 13</span>
+        <span><strong>PR:</strong> 15th + 30th</span>
       </div>
     </div>
 
-    <!-- =========================
-         VIEW: ROADMAP
-    ========================== -->
-    <section id="viewRoadmap" class="view view-active">
-
-      <section class="legend">
-        <div class="box">
-          <h2>Legend</h2>
-          <div class="chips">
-            <div class="chip"><span class="dot fire"></span> Fire Prospects (Tue) + resend to unopens (Fri)</div>
-            <div class="chip"><span class="dot backflow"></span> Backflow Prospects (Tue) + resend to unopens (Fri)</div>
-            <div class="chip"><span class="dot upsell"></span> Upsells (Thu) — FE monthly + RR webinar schedule</div>
-            <div class="chip"><span class="dot sp"></span> Service Providers (first Wed monthly)</div>
-            <div class="chip"><span class="dot conf"></span> Conferences (email 3 business days before event start)</div>
-            <div class="chip"><span class="dot drip"></span> Drips (Weeks 11–12)</div>
-            <div class="chip"><span class="dot news"></span> Quarterly Newsletter (Week 13)</div>
-            <div class="chip"><span class="dot social"></span> Social posts (per content calendar)</div>
-            <div class="chip"><span class="dot press"></span> Press releases (15th + 30th monthly; placeholders)</div>
-            <div class="chip"><span class="dot customer"></span> Customer communications (platform updates + feature notices)</div>
-          </div>
+    <section class="legend">
+      <div class="box">
+        <h2>Legend</h2>
+        <div class="chips">
+          <div class="chip"><span class="dot fire"></span> Fire Prospects (Tue) + resend to unopens (Fri)</div>
+          <div class="chip"><span class="dot backflow"></span> Backflow Prospects (Tue) + resend to unopens (Fri)</div>
+          <div class="chip"><span class="dot upsell"></span> Upsells (Thu) — FE monthly + RR webinars (regional)</div>
+          <div class="chip"><span class="dot sp"></span> Service Providers (first Wed monthly)</div>
+          <div class="chip"><span class="dot conf"></span> Conferences (email 3 business days before event start)</div>
+          <div class="chip"><span class="dot drip"></span> Drips (Weeks 11–12)</div>
+          <div class="chip"><span class="dot news"></span> Quarterly Newsletter (end of quarter)</div>
+          <div class="chip"><span class="dot social"></span> Social (weekly planned posts)</div>
+          <div class="chip"><span class="dot pr"></span> Press Releases (15th + 30th)</div>
+          <div class="chip"><span class="dot cust"></span> Customer Comms (platform updates, feature announcements)</div>
         </div>
+      </div>
 
-        <div class="box">
-          <h2>Quarter Rules (Locked)</h2>
-          <ul>
-            <li><strong>Weeks 1–9:</strong> Prospecting</li>
-            <li><strong>Week 10:</strong> Pause prospecting (optimize, resend winners, list hygiene)</li>
-            <li><strong>Week 11:</strong> End-of-quarter drips (Cold / Warm / High Intent)</li>
-            <li><strong>Week 12:</strong> Drip continuation + last-chance CTA</li>
-            <li><strong>Week 13:</strong> Quarterly Newsletter (end of quarter)</li>
-          </ul>
-        </div>
-      </section>
+      <div class="box">
+        <h2>Quarter Rules (Locked)</h2>
+        <ul>
+          <li><strong>Weeks 1–9:</strong> Prospecting</li>
+          <li><strong>Week 10:</strong> Pause prospecting (optimize, resend winners, list hygiene)</li>
+          <li><strong>Week 11:</strong> End-of-quarter drips (Cold / Warm / High Intent)</li>
+          <li><strong>Week 12:</strong> Drip continuation + last-chance CTA</li>
+          <li><strong>Week 13:</strong> Quarterly Newsletter (end of quarter)</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- ===================== Q1 ===================== -->
-      <details open>
-        <summary>
-          <span>Q1 – Visibility</span>
-          <span class="qmeta">
-            <span>Prospecting Weeks 1–9</span>
-            <span>Drips Week 11–12</span>
-            <span>Newsletter Mar 31</span>
-          </span>
-        </summary>
+    <!-- ===================== Q1 ===================== -->
+    <details open>
+      <summary>
+        <span>Q1 – Visibility</span>
+        <span class="qmeta">
+          <span>Prospecting Weeks 1–9</span>
+          <span>Drips Week 11–12</span>
+          <span>Newsletter Mar 31</span>
+        </span>
+      </summary>
 
-        <div class="content">
-          <div class="qhead">
-            <div class="qtitle">
-              <div class="qtheme">
-                <span class="qbadge q1">Theme: Visibility</span>
-                <span class="qquote">You cannot fix what you cannot see.</span>
-              </div>
-              <div class="qtagline">
-                Make lack of compliance visible: uncover untracked systems, unknown ownership, and missed cycles before they become audit or risk issues.
-              </div>
+      <div class="content">
+        <div class="qhead">
+          <div class="qtitle">
+            <div class="qtheme">
+              <span class="qbadge q1">Theme: Visibility</span>
+              <span class="qquote">You cannot fix what you cannot see.</span>
+            </div>
+            <div class="qtagline">
+              Make lack of compliance visible: uncover untracked systems, unknown ownership, and missed cycles before they become audit or risk issues.
             </div>
           </div>
-
-          <div class="sheet-wrap">
-            <table class="sheet" aria-label="Q1 Sheet View">
-              <thead>
-                <tr>
-                  <th>Week</th>
-                  <th class="col-fire">Fire Prospects</th>
-                  <th class="col-backflow">Backflow Prospects</th>
-                  <th class="col-upsell">Upsells</th>
-                  <th class="col-sp">Service Providers</th>
-                  <th class="col-conf">Conferences</th>
-                  <th class="col-drip">Drips</th>
-                  <th class="col-news">Quarterly Newsletter</th>
-                  <th class="col-social">Social</th>
-                  <th class="col-press">Press Releases</th>
-                  <th class="col-customer">Customer Comms</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td class="wk">W1<div class="rng">Jan 01–Jan 07</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w1-fire-prospect" target="_blank">Jan 06 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w1-fire-prospect-resend" target="_blank">Jan 09</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q1-w1-backflow-r1" target="_blank">Jan 06 – Backflow Region 1 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w1-backflow-r1-resend" target="_blank">Jan 09</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">Jan 07 – Monthly touch</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jan 07</strong> – Chiefs Summit <span class="subline">(Florida · event starts Jan 12)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W2<div class="rng">Jan 08–Jan 14</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w2-fire-prospect" target="_blank">Jan 13 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w2-fire-prospect-resend" target="_blank">Jan 16</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">Jan 08 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jan 14</strong> – Utah Fire Marshals <span class="subline">(Utah · event starts Jan 18)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Jan 08</strong> – Press Release <span class="subline">(IROL acquisition notice)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">
-                    <ul class="cell-list">
-                      <li><strong>Jan 16</strong> – Customer Update <span class="subline">(New Look Update – AHJs)</span></li>
-                    </ul>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W3<div class="rng">Jan 15–Jan 21</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w3-fire-prospect" target="_blank">Jan 20 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w3-fire-prospect-resend" target="_blank">Jan 23</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q1-w3-backflow-r2" target="_blank">Jan 20 – Backflow Region 2 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w3-backflow-r2-resend" target="_blank">Jan 23</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jan 16</strong> – Utah Fire Chiefs <span class="subline">(Utah · event starts Jan 21)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W4<div class="rng">Jan 22–Jan 28</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w4-fire-prospect" target="_blank">Jan 27 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w4-fire-prospect-resend" target="_blank">Jan 30</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">
-                    <ul class="cell-list">
-                      <li><strong>Jan 22</strong> – RR: NE Webinar</li>
-                      <li><strong>Jan 26</strong> – RR: SE Webinar</li>
-                    </ul>
-                  </td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jan 22</strong> – Heart of America <span class="subline">(Kansas/Missouri · event starts Jan 27)</span></li>
-                      <li><strong>Jan 27</strong> – Long Island Metro Fire/EMS <span class="subline">(New York · event starts Jan 30)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Jan 30</strong> – Press Release <span class="subline">(BRYCER Newsroom page/blog)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W5<div class="rng">Jan 29–Feb 04</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w5-fire-prospect" target="_blank">Feb 03 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w5-fire-prospect-resend" target="_blank">Feb 06</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">Feb 04 – Monthly touch</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jan 29</strong> – CAFAA <span class="subline">(California · event starts Feb 03)</span></li>
-                      <li><strong>Jan 30</strong> – TN Fire Chiefs Winter Conf <span class="subline">(Tennessee · event starts Feb 04)</span></li>
-                      <li><strong>Feb 04</strong> – Cross Connection Control <span class="subline">(Florida · event starts Feb 08)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">
-                    <ul class="cell-list">
-                      <li><strong>Feb 02</strong> – Conference <span class="subline">Catch us @ these conferences</span></li>
-                      <li><strong>Feb 03</strong> – Partnership <span class="subline">Win-Bur-Sew, IL</span></li>
-                      <li><strong>Feb 04</strong> – Case Study</li>
-                    </ul>
-                  </td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Feb 15</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                      <li><strong>Feb 30</strong> – Press Release <span class="subline">(Placeholder – adjust for month length)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W6<div class="rng">Feb 05–Feb 11</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w6-fire-prospect" target="_blank">Feb 10 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w6-fire-prospect-resend" target="_blank">Feb 13</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q1-w6-backflow-r3" target="_blank">Feb 10 – Backflow Region 3 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w6-backflow-r3-resend" target="_blank">Feb 13</a></span>
-                  </td>
-                  <td class="col-upsell">
-                    <ul class="cell-list">
-                      <li><strong>Feb 11</strong> – RR: MW Webinar</li>
-                    </ul>
-                  </td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">
-                    <ul class="cell-list">
-                      <li><strong>Feb 05</strong> – Partnership <span class="subline">Northborough, MA</span></li>
-                      <li><strong>Feb 06</strong> – Conference Pic</li>
-                      <li><strong>Feb 09</strong> – Announcement <span class="subline">BRYCER Newsroom</span></li>
-                      <li><strong>Feb 10</strong> – Partnership <span class="subline">Springfield, IL</span></li>
-                      <li><strong>Feb 11</strong> – Case Study</li>
-                    </ul>
-                  </td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W7<div class="rng">Feb 12–Feb 18</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w7-fire-prospect" target="_blank">Feb 17 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w7-fire-prospect-resend" target="_blank">Feb 20</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">Feb 12 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Feb 13</strong> – Tech Summit Indiana <span class="subline">(Indiana · event starts Feb 18)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">
-                    <ul class="cell-list">
-                      <li><strong>Feb 12</strong> – Partnership <span class="subline">Momence, IL</span></li>
-                      <li><strong>Feb 13</strong> – Video <span class="subline">AHJ Testimonial – "Why do you love...?"</span></li>
-                      <li><strong>Feb 16</strong> – Presidents Day <span class="subline">Poll about FEs</span></li>
-                      <li><strong>Feb 17</strong> – Partnership <span class="subline">Nueces County (TX) ESD #1</span></li>
-                      <li><strong>Feb 18</strong> – Case Study</li>
-                    </ul>
-                  </td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W8<div class="rng">Feb 19–Feb 25</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w8-fire-prospect" target="_blank">Feb 24 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w8-fire-prospect-resend" target="_blank">Feb 27</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q1-w8-backflow-r4" target="_blank">Feb 24 – Backflow Region 4 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w8-backflow-r4-resend" target="_blank">Feb 27</a></span>
-                  </td>
-                  <td class="col-upsell">
-                    <ul class="cell-list">
-                      <li><strong>Feb 25</strong> – RR: NW Webinar</li>
-                    </ul>
-                  </td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Feb 19</strong> – Vision 20/20 <span class="subline">(North Carolina · event starts Feb 24)</span></li>
-                      <li><strong>Feb 19</strong> – FCAM <span class="subline">(Massachusetts · event starts Feb 24)</span></li>
-                      <li><strong>Feb 20</strong> – AL Fire Marshals <span class="subline">(Alabama · event starts Feb 25)</span></li>
-                      <li><strong>Feb 25</strong> – OH Life Safety Forum <span class="subline">(Ohio · event starts Mar 02)</span></li>
-                      <li><strong>Feb 26</strong> – CFPI <span class="subline">(California · event starts Mar 02)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">
-                    <ul class="cell-list">
-                      <li><strong>Feb 19</strong> – Partnership <span class="subline">Little Elm Fire Department (TX)</span></li>
-                      <li><strong>Feb 20</strong> – Conference Pic</li>
-                      <li><strong>Feb 23</strong> – Quiz <span class="subline">Tie-in to Data Entry for SPs</span></li>
-                      <li><strong>Feb 24</strong> – Partnership <span class="subline">Brawley Fire-Rescue (CA)</span></li>
-                      <li><strong>Feb 25</strong> – Case Study</li>
-                    </ul>
-                  </td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W9<div class="rng">Feb 26–Mar 04</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q1-w9-fire-prospect" target="_blank">Mar 03 – Visibility outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w9-fire-prospect-resend" target="_blank">Mar 06</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">
-                    <ul class="cell-list">
-                      <li><strong>Feb 26</strong> – RR: SW Webinar</li>
-                    </ul>
-                  </td>
-                  <td class="col-sp">Mar 04 – Monthly touch</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">
-                    <ul class="cell-list">
-                      <li><strong>Feb 26</strong> – Partnership <span class="subline">Muskegon Charter Township (MI) Fire Department</span></li>
-                      <li><strong>Feb 27</strong> – Announcement <span class="subline">Data Entry for SPs</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W10<div class="rng">Mar 05–Mar 11</div></td>
-                  <td class="col-fire">No new prospect send (optimize / resend winners)</td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q1-w10-backflow-r5" target="_blank">Mar 10 – Backflow Region 5 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w10-backflow-r5-resend" target="_blank">Mar 13</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Mar 05</strong> – CPSE <span class="subline">(Florida · event starts Mar 10)</span></li>
-                      <li><strong>Mar 05</strong> – MI Fire Inspectors <span class="subline">(Michigan · event starts Mar 10)</span></li>
-                      <li><strong>Mar 06</strong> – WFCA Ignite <span class="subline">(Nevada · event starts Mar 11)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Mar 15</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                      <li><strong>Mar 30</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W11<div class="rng">Mar 12–Mar 18</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">Mar 12 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Mar 12</strong> – IN Fire Inspectors <span class="subline">(Indiana · event starts Mar 17)</span></li>
-                      <li><strong>Mar 18</strong> – IL Fire/Life Safety <span class="subline">(Illinois · event starts Mar 22)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">Fire Visibility drip + Backflow drip (Cold / Warm / High Intent)</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W12<div class="rng">Mar 19–Mar 25</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">Continue drips + last-chance CTA</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W13<div class="rng">Mar 26–Apr 01</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Mar 27</strong> – MO Valley Force <span class="subline">(Oklahoma · event starts Apr 01)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip muted">—</td>
-                  <td class="col-news">Mar 31 – Quarterly Newsletter</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
-      </details>
 
-      <!-- ===================== Q2 ===================== -->
-      <details>
-        <summary>
-          <span>Q2 – Efficiency</span>
-          <span class="qmeta">
-            <span>Prospecting Weeks 1–9</span>
-            <span>Drips Week 11–12</span>
-            <span>Newsletter Jun 30</span>
-          </span>
-        </summary>
+        <div class="sheet-wrap">
+          <table class="sheet" aria-label="Q1 Sheet View">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th class="col-fire">Fire Prospects</th>
+                <th class="col-backflow">Backflow Prospects</th>
+                <th class="col-upsell">Upsells</th>
+                <th class="col-sp">Service Providers</th>
+                <th class="col-conf">Conferences</th>
+                <th class="col-drip">Drips</th>
+                <th class="col-cust">Customer Comms</th>
+                <th class="col-pr">Press Releases</th>
+                <th class="col-news">Quarterly Newsletter</th>
+                <th class="col-social">Social</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="wk">W1<div class="rng">Jan 01–Jan 07</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w1-fire-prospect" target="_blank">Jan 06 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w1-fire-prospect-resend" target="_blank">Jan 09</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q1-w1-backflow-r1" target="_blank">Jan 06 – Backflow Region 1 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w1-backflow-r1-resend" target="_blank">Jan 09</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Jan 07 – Monthly touch</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jan 07</strong> – Chiefs Summit <span class="subline">(Florida · event starts Jan 12)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
 
-        <div class="content">
-          <div class="qhead">
-            <div class="qtitle">
-              <div class="qtheme">
-                <span class="qbadge q2">Theme: Efficiency</span>
-                <span class="qquote">Give inspectors their time back.</span>
-              </div>
-              <div class="qtagline">
-                Reduce process friction that drives lack of compliance: streamline review, eliminate rework, and shorten time-to-resolution.
-              </div>
+              <tr>
+                <td class="wk">W2<div class="rng">Jan 08–Jan 14</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w2-fire-prospect" target="_blank">Jan 13 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w2-fire-prospect-resend" target="_blank">Jan 16</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Jan 08 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jan 14</strong> – Utah Fire Marshals <span class="subline">(Utah · event starts Jan 18)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">
+                  <ul class="cell-list">
+                    <li><strong>Jan 08</strong> – IROL acquisition notice</li>
+                  </ul>
+                </td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W3<div class="rng">Jan 15–Jan 21</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w3-fire-prospect" target="_blank">Jan 20 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w3-fire-prospect-resend" target="_blank">Jan 23</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q1-w3-backflow-r2" target="_blank">Jan 20 – Backflow Region 2 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w3-backflow-r2-resend" target="_blank">Jan 23</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jan 16</strong> – Utah Fire Chiefs <span class="subline">(Utah · event starts Jan 21)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">
+                  <ul class="cell-list">
+                    <li><strong>Jan 16</strong> – New Look Update <span class="subline">(AHJs)</span></li>
+                  </ul>
+                </td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W4<div class="rng">Jan 22–Jan 28</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w4-fire-prospect" target="_blank">Jan 27 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w4-fire-prospect-resend" target="_blank">Jan 30</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">
+                  <ul class="cell-list">
+                    <li><strong>Jan 22</strong> – NE RR webinar</li>
+                    <li><strong>Jan 26</strong> – SE RR webinar</li>
+                  </ul>
+                </td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jan 22</strong> – Heart of America <span class="subline">(Kansas/Missouri · event starts Jan 27)</span></li>
+                    <li><strong>Jan 27</strong> – Long Island Metro Fire/EMS <span class="subline">(New York · event starts Jan 30)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W5<div class="rng">Jan 29–Feb 04</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w5-fire-prospect" target="_blank">Feb 03 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w5-fire-prospect-resend" target="_blank">Feb 06</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Feb 04 – Monthly touch</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jan 29</strong> – CAFAA <span class="subline">(California · event starts Feb 03)</span></li>
+                    <li><strong>Jan 30</strong> – TN Fire Chiefs Winter Conf <span class="subline">(Tennessee · event starts Feb 04)</span></li>
+                    <li><strong>Feb 04</strong> – Cross Connection Control <span class="subline">(Florida · event starts Feb 08)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">
+                  <ul class="cell-list">
+                    <li><strong>Jan 30</strong> – BRYCER Newsroom page announcement</li>
+                  </ul>
+                </td>
+                <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 02</strong> – Conference <span class="subline">Catch us @ these conferences</span></li>
+                    <li><strong>Feb 03</strong> – Partnership <span class="subline">Win-Bur-Sew, IL</span></li>
+                    <li><strong>Feb 04</strong> – Case Study</li>
+                  </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="wk">W6<div class="rng">Feb 05–Feb 11</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w6-fire-prospect" target="_blank">Feb 10 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w6-fire-prospect-resend" target="_blank">Feb 13</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q1-w6-backflow-r3" target="_blank">Feb 10 – Backflow Region 3 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w6-backflow-r3-resend" target="_blank">Feb 13</a></span>
+                </td>
+                <td class="col-upsell">
+                  <ul class="cell-list">
+                    <li><strong>Feb 11</strong> – MW RR webinar</li>
+                  </ul>
+                </td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 05</strong> – Partnership <span class="subline">Northborough, MA</span></li>
+                    <li><strong>Feb 06</strong> – Conference Pic</li>
+                    <li><strong>Feb 09</strong> – Announcement <span class="subline">BRYCER Newsroom</span></li>
+                    <li><strong>Feb 10</strong> – Partnership <span class="subline">Springfield, IL</span></li>
+                    <li><strong>Feb 11</strong> – Case Study</li>
+                  </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="wk">W7<div class="rng">Feb 12–Feb 18</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w7-fire-prospect" target="_blank">Feb 17 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w7-fire-prospect-resend" target="_blank">Feb 20</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Feb 12 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Feb 13</strong> – Tech Summit Indiana <span class="subline">(Indiana · event starts Feb 18)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">
+                  <ul class="cell-list">
+                    <li><strong>Feb 15</strong> – Press Release (TBD)</li>
+                  </ul>
+                </td>
+                <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 12</strong> – Partnership <span class="subline">Momence, IL</span></li>
+                    <li><strong>Feb 13</strong> – Video <span class="subline">AHJ Testimonial – "Why do you love...?"</span></li>
+                    <li><strong>Feb 16</strong> – Presidents Day <span class="subline">Poll about FEs</span></li>
+                    <li><strong>Feb 17</strong> – Partnership <span class="subline">Nueces County (TX) ESD #1</span></li>
+                    <li><strong>Feb 18</strong> – Case Study</li>
+                  </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="wk">W8<div class="rng">Feb 19–Feb 25</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w8-fire-prospect" target="_blank">Feb 24 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w8-fire-prospect-resend" target="_blank">Feb 27</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q1-w8-backflow-r4" target="_blank">Feb 24 – Backflow Region 4 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w8-backflow-r4-resend" target="_blank">Feb 27</a></span>
+                </td>
+                <td class="col-upsell">
+                  <ul class="cell-list">
+                    <li><strong>Feb 25</strong> – NW RR webinar</li>
+                  </ul>
+                </td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Feb 19</strong> – Vision 20/20 <span class="subline">(North Carolina · event starts Feb 24)</span></li>
+                    <li><strong>Feb 19</strong> – FCAM <span class="subline">(Massachusetts · event starts Feb 24)</span></li>
+                    <li><strong>Feb 20</strong> – AL Fire Marshals <span class="subline">(Alabama · event starts Feb 25)</span></li>
+                    <li><strong>Feb 25</strong> – OH Life Safety Forum <span class="subline">(Ohio · event starts Mar 02)</span></li>
+                    <li><strong>Feb 26</strong> – CFPI <span class="subline">(California · event starts Mar 02)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 19</strong> – Partnership <span class="subline">Little Elm Fire Department (TX)</span></li>
+                    <li><strong>Feb 20</strong> – Conference Pic</li>
+                    <li><strong>Feb 23</strong> – Quiz <span class="subline">Tie-in to Data Entry for SPs</span></li>
+                    <li><strong>Feb 24</strong> – Partnership <span class="subline">Brawley Fire-Rescue (CA)</span></li>
+                    <li><strong>Feb 25</strong> – Case Study</li>
+                  </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="wk">W9<div class="rng">Feb 26–Mar 04</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q1-w9-fire-prospect" target="_blank">Mar 03 – Visibility outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w9-fire-prospect-resend" target="_blank">Mar 06</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">
+                  <ul class="cell-list">
+                    <li><strong>Feb 26</strong> – SW RR webinar</li>
+                  </ul>
+                </td>
+                <td class="col-sp">Mar 04 – Monthly touch</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">
+                  <ul class="cell-list">
+                    <li><strong>Feb 28</strong> – Press Release (TBD)</li>
+                  </ul>
+                </td>
+                <td class="col-news">—</td>
+                <td class="col-social">
+                  <ul class="cell-list">
+                    <li><strong>Feb 26</strong> – Partnership <span class="subline">Muskegon Charter Township (MI) Fire Department</span></li>
+                    <li><strong>Feb 27</strong> – Announcement <span class="subline">Data Entry for SPs</span></li>
+                  </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="wk">W10<div class="rng">Mar 05–Mar 11</div></td>
+                <td class="col-fire">No new prospect send (optimize / resend winners)</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q1-w10-backflow-r5" target="_blank">Mar 10 – Backflow Region 5 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q1-w10-backflow-r5-resend" target="_blank">Mar 13</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Mar 05</strong> – CPSE <span class="subline">(Florida · event starts Mar 10)</span></li>
+                    <li><strong>Mar 05</strong> – MI Fire Inspectors <span class="subline">(Michigan · event starts Mar 10)</span></li>
+                    <li><strong>Mar 06</strong> – WFCA Ignite <span class="subline">(Nevada · event starts Mar 11)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W11<div class="rng">Mar 12–Mar 18</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Mar 12 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Mar 12</strong> – IN Fire Inspectors <span class="subline">(Indiana · event starts Mar 17)</span></li>
+                    <li><strong>Mar 18</strong> – IL Fire/Life Safety <span class="subline">(Illinois · event starts Mar 22)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">Fire Visibility drip + Backflow drip (Cold / Warm / High Intent)</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">
+                  <ul class="cell-list">
+                    <li><strong>Mar 15</strong> – Press Release (TBD)</li>
+                  </ul>
+                </td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W12<div class="rng">Mar 19–Mar 25</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">Continue drips + last-chance CTA</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W13<div class="rng">Mar 26–Apr 01</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Mar 27</strong> – MO Valley Force <span class="subline">(Oklahoma · event starts Apr 01)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip muted">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">
+                  <ul class="cell-list">
+                    <li><strong>Mar 30</strong> – Press Release (TBD)</li>
+                  </ul>
+                </td>
+                <td class="col-news">Mar 31 – Quarterly Newsletter</td>
+                <td class="col-social">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <!-- ===================== Q2 ===================== -->
+    <details>
+      <summary>
+        <span>Q2 – Efficiency</span>
+        <span class="qmeta">
+          <span>Prospecting Weeks 1–9</span>
+          <span>Drips Week 11–12</span>
+          <span>Newsletter Jun 30</span>
+        </span>
+      </summary>
+
+      <div class="content">
+        <div class="qhead">
+          <div class="qtitle">
+            <div class="qtheme">
+              <span class="qbadge q2">Theme: Efficiency</span>
+              <span class="qquote">Give inspectors their time back.</span>
+            </div>
+            <div class="qtagline">
+              Reduce process friction that drives lack of compliance: streamline review, eliminate rework, and shorten time-to-resolution.
             </div>
           </div>
-
-          <div class="sheet-wrap">
-            <table class="sheet" aria-label="Q2 Sheet View">
-              <thead>
-                <tr>
-                  <th>Week</th>
-                  <th class="col-fire">Fire Prospects</th>
-                  <th class="col-backflow">Backflow Prospects</th>
-                  <th class="col-upsell">Upsells</th>
-                  <th class="col-sp">Service Providers</th>
-                  <th class="col-conf">Conferences</th>
-                  <th class="col-drip">Drips</th>
-                  <th class="col-news">Quarterly Newsletter</th>
-                  <th class="col-social">Social</th>
-                  <th class="col-press">Press Releases</th>
-                  <th class="col-customer">Customer Comms</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="wk">W1<div class="rng">Apr 01–Apr 07</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w1-fire-prospect" target="_blank">Apr 07 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w1-fire-prospect-resend" target="_blank">Apr 10</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q2-w1-backflow-r1" target="_blank">Apr 07 – Backflow Region 1 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w1-backflow-r1-resend" target="_blank">Apr 10</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">Apr 01 – Monthly touch</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Apr 06</strong> – CT Fire Marshals <span class="subline">(Connecticut · event starts Apr 09)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Apr 15</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                      <li><strong>Apr 30</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W2<div class="rng">Apr 08–Apr 14</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w2-fire-prospect" target="_blank">Apr 14 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w2-fire-prospect-resend" target="_blank">Apr 17</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">Apr 09 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Apr 08</strong> – TX Fire Chief <span class="subline">(Texas · event starts Apr 13)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W3<div class="rng">Apr 15–Apr 21</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w3-fire-prospect" target="_blank">Apr 21 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w3-fire-prospect-resend" target="_blank">Apr 24</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q2-w3-backflow-r2" target="_blank">Apr 21 – Backflow Region 2 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w3-backflow-r2-resend" target="_blank">Apr 24</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W4<div class="rng">Apr 22–Apr 28</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w4-fire-prospect" target="_blank">Apr 28 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w4-fire-prospect-resend" target="_blank">May 01</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">Apr 23 – Upsell: RR</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Apr 22</strong> – LA Fire Chiefs <span class="subline">(Louisiana · event starts Apr 27)</span></li>
-                      <li><strong>Apr 27</strong> – Idaho Fire Chiefs <span class="subline">(Idaho · event starts Apr 30)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W5<div class="rng">Apr 29–May 05</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w5-fire-prospect" target="_blank">May 05 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w5-fire-prospect-resend" target="_blank">May 08</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>May 01</strong> – TN Fire Chiefs Spring Conference <span class="subline">(Tennessee · event starts May 06)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>May 15</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                      <li><strong>May 30</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W6<div class="rng">May 06–May 12</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w6-fire-prospect" target="_blank">May 12 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w6-fire-prospect-resend" target="_blank">May 15</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q2-w6-backflow-r3" target="_blank">May 12 – Backflow Region 3 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w6-backflow-r3-resend" target="_blank">May 15</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">May 06 – Monthly touch</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>May 07</strong> – OR Fire Chiefs <span class="subline">(Oregon · event starts May 12)</span></li>
-                      <li><strong>May 07</strong> – NC Fire Chiefs Mid Winter <span class="subline">(North Carolina · event starts May 12)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W7<div class="rng">May 13–May 19</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w7-fire-prospect" target="_blank">May 19 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w7-fire-prospect-resend" target="_blank">May 22</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">May 14 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>May 14</strong> – CRRL Conference <span class="subline">(Arizona · event starts May 19)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W8<div class="rng">May 20–May 26</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w8-fire-prospect" target="_blank">May 26 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w8-fire-prospect-resend" target="_blank">May 29</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q2-w8-backflow-r4" target="_blank">May 26 – Backflow Region 4 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w8-backflow-r4-resend" target="_blank">May 29</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W9<div class="rng">May 27–Jun 02</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q2-w9-fire-prospect" target="_blank">Jun 02 – Efficiency outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w9-fire-prospect-resend" target="_blank">Jun 05</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">May 28 – Upsell: RR</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>May 29</strong> – MO Valley Chiefs <span class="subline">(Nebraska · event starts Jun 03)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Jun 15</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                      <li><strong>Jun 30</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W10<div class="rng">Jun 03–Jun 09</div></td>
-                  <td class="col-fire">No new prospect send (optimize / resend winners)</td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q2-w10-backflow-r5" target="_blank">Jun 09 – Backflow Region 5 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w10-backflow-r5-resend" target="_blank">Jun 12</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">Jun 03 – Monthly touch</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jun 03</strong> – Metro Fire Chiefs <span class="subline">(Wisconsin · event starts Jun 07)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W11<div class="rng">Jun 10–Jun 16</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">Jun 11 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">Fire Efficiency drip + Backflow drip (Cold / Warm / High Intent)</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W12<div class="rng">Jun 17–Jun 23</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jun 23</strong> – MO Fire Districts <span class="subline">(Missouri · event starts Jun 26)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">Continue drips + last-chance CTA</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W13<div class="rng">Jun 24–Jun 30</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">Jun 25 – Upsell: RR</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip muted">—</td>
-                  <td class="col-news">Jun 30 – Quarterly Newsletter</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
-      </details>
 
-      <!-- ===================== Q3 ===================== -->
-      <details>
-        <summary>
-          <span>Q3 – Compliance Outcomes</span>
-          <span class="qmeta">
-            <span>Prospecting Weeks 1–9</span>
-            <span>Drips Week 11–12</span>
-            <span>Newsletter Sep 30</span>
-          </span>
-        </summary>
+        <div class="sheet-wrap">
+          <table class="sheet" aria-label="Q2 Sheet View">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th class="col-fire">Fire Prospects</th>
+                <th class="col-backflow">Backflow Prospects</th>
+                <th class="col-upsell">Upsells</th>
+                <th class="col-sp">Service Providers</th>
+                <th class="col-conf">Conferences</th>
+                <th class="col-drip">Drips</th>
+                <th class="col-cust">Customer Comms</th>
+                <th class="col-pr">Press Releases</th>
+                <th class="col-news">Quarterly Newsletter</th>
+                <th class="col-social">Social</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="wk">W1<div class="rng">Apr 01–Apr 07</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w1-fire-prospect" target="_blank">Apr 07 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w1-fire-prospect-resend" target="_blank">Apr 10</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q2-w1-backflow-r1" target="_blank">Apr 07 – Backflow Region 1 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w1-backflow-r1-resend" target="_blank">Apr 10</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Apr 01 – Monthly touch</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Apr 06</strong> – CT Fire Marshals <span class="subline">(Connecticut · event starts Apr 09)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
 
-        <div class="content">
-          <div class="qhead">
-            <div class="qtitle">
-              <div class="qtheme">
-                <span class="qbadge q3">Theme: Compliance</span>
-                <span class="qquote">Better data creates safer communities.</span>
-              </div>
-              <div class="qtagline">
-                Drive outcomes that reduce lack of compliance: higher completion rates, fewer overdue items, and clearer accountability across stakeholders.
-              </div>
+              <tr>
+                <td class="wk">W2<div class="rng">Apr 08–Apr 14</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w2-fire-prospect" target="_blank">Apr 14 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w2-fire-prospect-resend" target="_blank">Apr 17</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Apr 09 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Apr 08</strong> – TX Fire Chief <span class="subline">(Texas · event starts Apr 13)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W3<div class="rng">Apr 15–Apr 21</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w3-fire-prospect" target="_blank">Apr 21 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w3-fire-prospect-resend" target="_blank">Apr 24</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q2-w3-backflow-r2" target="_blank">Apr 21 – Backflow Region 2 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w3-backflow-r2-resend" target="_blank">Apr 24</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Apr 15</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W4<div class="rng">Apr 22–Apr 28</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w4-fire-prospect" target="_blank">Apr 28 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w4-fire-prospect-resend" target="_blank">May 01</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Apr 23 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Apr 22</strong> – LA Fire Chiefs <span class="subline">(Louisiana · event starts Apr 27)</span></li>
+                    <li><strong>Apr 27</strong> – Idaho Fire Chiefs <span class="subline">(Idaho · event starts Apr 30)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W5<div class="rng">Apr 29–May 05</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w5-fire-prospect" target="_blank">May 05 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w5-fire-prospect-resend" target="_blank">May 08</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>May 01</strong> – TN Fire Chiefs Spring Conference <span class="subline">(Tennessee · event starts May 06)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Apr 30</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W6<div class="rng">May 06–May 12</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w6-fire-prospect" target="_blank">May 12 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w6-fire-prospect-resend" target="_blank">May 15</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q2-w6-backflow-r3" target="_blank">May 12 – Backflow Region 3 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w6-backflow-r3-resend" target="_blank">May 15</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">May 06 – Monthly touch</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>May 07</strong> – OR Fire Chiefs <span class="subline">(Oregon · event starts May 12)</span></li>
+                    <li><strong>May 07</strong> – NC Fire Chiefs Mid Winter <span class="subline">(North Carolina · event starts May 12)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W7<div class="rng">May 13–May 19</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w7-fire-prospect" target="_blank">May 19 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w7-fire-prospect-resend" target="_blank">May 22</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">May 14 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>May 14</strong> – CRRL Conference <span class="subline">(Arizona · event starts May 19)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>May 15</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W8<div class="rng">May 20–May 26</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w8-fire-prospect" target="_blank">May 26 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w8-fire-prospect-resend" target="_blank">May 29</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q2-w8-backflow-r4" target="_blank">May 26 – Backflow Region 4 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w8-backflow-r4-resend" target="_blank">May 29</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W9<div class="rng">May 27–Jun 02</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q2-w9-fire-prospect" target="_blank">Jun 02 – Efficiency outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w9-fire-prospect-resend" target="_blank">Jun 05</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">May 28 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>May 29</strong> – MO Valley Chiefs <span class="subline">(Nebraska · event starts Jun 03)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>May 30</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W10<div class="rng">Jun 03–Jun 09</div></td>
+                <td class="col-fire">No new prospect send (optimize / resend winners)</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q2-w10-backflow-r5" target="_blank">Jun 09 – Backflow Region 5 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q2-w10-backflow-r5-resend" target="_blank">Jun 12</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Jun 03 – Monthly touch</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jun 03</strong> – Metro Fire Chiefs <span class="subline">(Wisconsin · event starts Jun 07)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W11<div class="rng">Jun 10–Jun 16</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Jun 11 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">Fire Efficiency drip + Backflow drip (Cold / Warm / High Intent)</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Jun 15</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W12<div class="rng">Jun 17–Jun 23</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">
+                  <ul class="cell-list">
+                    <li><strong>Jun 23</strong> – MO Fire Districts <span class="subline">(Missouri · event starts Jun 26)</span></li>
+                  </ul>
+                </td>
+                <td class="col-drip">Continue drips + last-chance CTA</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W13<div class="rng">Jun 24–Jun 30</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Jun 25 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip muted">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Jun 30</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">Jun 30 – Quarterly Newsletter</td>
+                <td class="col-social">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <!-- ===================== Q3 ===================== -->
+    <details>
+      <summary>
+        <span>Q3 – Compliance Outcomes</span>
+        <span class="qmeta">
+          <span>Prospecting Weeks 1–9</span>
+          <span>Drips Week 11–12</span>
+          <span>Newsletter Sep 30</span>
+        </span>
+      </summary>
+
+      <div class="content">
+        <div class="qhead">
+          <div class="qtitle">
+            <div class="qtheme">
+              <span class="qbadge q3">Theme: Compliance</span>
+              <span class="qquote">Better data creates safer communities.</span>
+            </div>
+            <div class="qtagline">
+              Drive outcomes that reduce lack of compliance: higher completion rates, fewer overdue items, and clearer accountability across stakeholders.
             </div>
           </div>
-
-          <div class="sheet-wrap">
-            <table class="sheet" aria-label="Q3 Sheet View">
-              <thead>
-                <tr>
-                  <th>Week</th>
-                  <th class="col-fire">Fire Prospects</th>
-                  <th class="col-backflow">Backflow Prospects</th>
-                  <th class="col-upsell">Upsells</th>
-                  <th class="col-sp">Service Providers</th>
-                  <th class="col-conf">Conferences</th>
-                  <th class="col-drip">Drips</th>
-                  <th class="col-news">Quarterly Newsletter</th>
-                  <th class="col-social">Social</th>
-                  <th class="col-press">Press Releases</th>
-                  <th class="col-customer">Customer Comms</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="wk">W1<div class="rng">Jul 01–Jul 07</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w1-fire-prospect" target="_blank">Jul 07 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w1-fire-prospect-resend" target="_blank">Jul 10</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q3-w1-backflow-r1" target="_blank">Jul 07 – Backflow Region 1 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w1-backflow-r1-resend" target="_blank">Jul 10</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">Jul 01 – Monthly touch</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jul 01</strong> – AZ Fire Chiefs <span class="subline">(Arizona · event starts Jul 06)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Jul 15</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                      <li><strong>Jul 30</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W2<div class="rng">Jul 08–Jul 14</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w2-fire-prospect" target="_blank">Jul 14 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w2-fire-prospect-resend" target="_blank">Jul 17</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">Jul 09 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Jul 08</strong> – Fire Chiefs Summit <span class="subline">(Arizona · event starts Jul 13)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W3<div class="rng">Jul 15–Jul 21</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w3-fire-prospect" target="_blank">Jul 21 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w3-fire-prospect-resend" target="_blank">Jul 24</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q3-w3-backflow-r2" target="_blank">Jul 21 – Backflow Region 2 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w3-backflow-r2-resend" target="_blank">Jul 24</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W4<div class="rng">Jul 22–Jul 28</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w4-fire-prospect" target="_blank">Jul 28 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w4-fire-prospect-resend" target="_blank">Jul 31</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">Jul 23 – Upsell: RR</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W5<div class="rng">Jul 29–Aug 04</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w5-fire-prospect" target="_blank">Aug 04 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w5-fire-prospect-resend" target="_blank">Aug 07</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Aug 15</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                      <li><strong>Aug 30</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W6<div class="rng">Aug 05–Aug 11</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w6-fire-prospect" target="_blank">Aug 11 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w6-fire-prospect-resend" target="_blank">Aug 14</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q3-w6-backflow-r3" target="_blank">Aug 11 – Backflow Region 3 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w6-backflow-r3-resend" target="_blank">Aug 14</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">Aug 05 – Monthly touch</td>
-                  <td class="col-conf">
-                    <ul class="cell-list">
-                      <li><strong>Aug 07</strong> – FRI <span class="subline">(Missouri · event starts Aug 12)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W7<div class="rng">Aug 12–Aug 18</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w7-fire-prospect" target="_blank">Aug 18 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w7-fire-prospect-resend" target="_blank">Aug 21</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">Aug 13 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W8<div class="rng">Aug 19–Aug 25</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w8-fire-prospect" target="_blank">Aug 25 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w8-fire-prospect-resend" target="_blank">Aug 28</a></span>
-                  </td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q3-w8-backflow-r4" target="_blank">Aug 25 – Backflow Region 4 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w8-backflow-r4-resend" target="_blank">Aug 28</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W9<div class="rng">Aug 26–Sep 01</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q3-w9-fire-prospect" target="_blank">Sep 01 – Compliance outreach (5–6 states)</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w9-fire-prospect-resend" target="_blank">Sep 04</a></span>
-                  </td>
-                  <td class="col-backflow">—</td>
-                  <td class="col-upsell">Aug 27 – Upsell: RR</td>
-                  <td class="col-sp">Sep 02 – Monthly touch</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">
-                    <ul class="cell-list">
-                      <li><strong>Sep 15</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                      <li><strong>Sep 30</strong> – Press Release <span class="subline">(Placeholder)</span></li>
-                    </ul>
-                  </td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W10<div class="rng">Sep 02–Sep 08</div></td>
-                  <td class="col-fire">No new prospect send (optimize / resend winners)</td>
-                  <td class="col-backflow">
-                    <a class="email-link" href="email.html?id=2026-q3-w10-backflow-r5" target="_blank">Sep 08 – Backflow Region 5 outreach</a>
-                    <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w10-backflow-r5-resend" target="_blank">Sep 11</a></span>
-                  </td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">—</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W11<div class="rng">Sep 09–Sep 15</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">Sep 10 – Upsell: FE</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">Fire Compliance drip + Backflow drip (Cold / Warm / High Intent)</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W12<div class="rng">Sep 16–Sep 22</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">—</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip">Continue drips + last-chance CTA</td>
-                  <td class="col-news">—</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-
-                <tr>
-                  <td class="wk">W13<div class="rng">Sep 23–Sep 30</div></td>
-                  <td class="col-fire muted">—</td>
-                  <td class="col-backflow muted">—</td>
-                  <td class="col-upsell">Sep 24 – Upsell: RR</td>
-                  <td class="col-sp">—</td>
-                  <td class="col-conf">—</td>
-                  <td class="col-drip muted">—</td>
-                  <td class="col-news">Sep 30 – Quarterly Newsletter</td>
-                  <td class="col-social">—</td>
-                  <td class="col-press">—</td>
-                  <td class="col-customer">—</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
-      </details>
 
-      <!-- ===================== Q4 ===================== -->
-      <details>
-        <summary>
-          <span>Q4 – Modernization</span>
-          <span class="qmeta">
-            <span>Prospecting Weeks 1–9</span>
-            <span>Drips Week 11–12</span>
-            <span>Newsletter Dec 31</span>
-          </span>
-        </summary>
+        <div class="sheet-wrap">
+          <table class="sheet" aria-label="Q3 Sheet View">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th class="col-fire">Fire Prospects</th>
+                <th class="col-backflow">Backflow Prospects</th>
+                <th class="col-upsell">Upsells</th>
+                <th class="col-sp">Service Providers</th>
+                <th class="col-conf">Conferences</th>
+                <th class="col-drip">Drips</th>
+                <th class="col-cust">Customer Comms</th>
+                <th class="col-pr">Press Releases</th>
+                <th class="col-news">Quarterly Newsletter</th>
+                <th class="col-social">Social</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="wk">W1<div class="rng">Jul 01–Jul 07</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w1-fire-prospect" target="_blank">Jul 07 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w1-fire-prospect-resend" target="_blank">Jul 10</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q3-w1-backflow-r1" target="_blank">Jul 07 – Backflow Region 1 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w1-backflow-r1-resend" target="_blank">Jul 10</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Jul 01 – Monthly touch</td>
+                <td class="col-conf"><ul class="cell-list"><li><strong>Jul 01</strong> – AZ Fire Chiefs <span class="subline">(Arizona · event starts Jul 06)</span></li></ul></td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
 
-        <div class="content">
-          <div class="qhead">
-            <div class="qtitle">
-              <div class="qtheme">
-                <span class="qbadge q4">Theme: Modernization</span>
-                <span class="qquote">Prepare your compliance program for next year.</span>
-              </div>
-              <div class="qtagline">
-                Modernize processes that fuel lack of compliance: standardize submissions, tighten timelines, and make compliance easier to sustain with the team you already have.
-              </div>
+              <tr>
+                <td class="wk">W2<div class="rng">Jul 08–Jul 14</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w2-fire-prospect" target="_blank">Jul 14 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w2-fire-prospect-resend" target="_blank">Jul 17</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Jul 09 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf"><ul class="cell-list"><li><strong>Jul 08</strong> – Fire Chiefs Summit <span class="subline">(Arizona · event starts Jul 13)</span></li></ul></td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W3<div class="rng">Jul 15–Jul 21</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w3-fire-prospect" target="_blank">Jul 21 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w3-fire-prospect-resend" target="_blank">Jul 24</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q3-w3-backflow-r2" target="_blank">Jul 21 – Backflow Region 2 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w3-backflow-r2-resend" target="_blank">Jul 24</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Jul 15</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W4<div class="rng">Jul 22–Jul 28</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w4-fire-prospect" target="_blank">Jul 28 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w4-fire-prospect-resend" target="_blank">Jul 31</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Jul 23 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W5<div class="rng">Jul 29–Aug 04</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w5-fire-prospect" target="_blank">Aug 04 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w5-fire-prospect-resend" target="_blank">Aug 07</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Jul 30</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W6<div class="rng">Aug 05–Aug 11</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w6-fire-prospect" target="_blank">Aug 11 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w6-fire-prospect-resend" target="_blank">Aug 14</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q3-w6-backflow-r3" target="_blank">Aug 11 – Backflow Region 3 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w6-backflow-r3-resend" target="_blank">Aug 14</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">Aug 05 – Monthly touch</td>
+                <td class="col-conf"><ul class="cell-list"><li><strong>Aug 07</strong> – FRI <span class="subline">(Missouri · event starts Aug 12)</span></li></ul></td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W7<div class="rng">Aug 12–Aug 18</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w7-fire-prospect" target="_blank">Aug 18 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w7-fire-prospect-resend" target="_blank">Aug 21</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Aug 13 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Aug 15</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W8<div class="rng">Aug 19–Aug 25</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w8-fire-prospect" target="_blank">Aug 25 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w8-fire-prospect-resend" target="_blank">Aug 28</a></span>
+                </td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q3-w8-backflow-r4" target="_blank">Aug 25 – Backflow Region 4 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w8-backflow-r4-resend" target="_blank">Aug 28</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W9<div class="rng">Aug 26–Sep 01</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q3-w9-fire-prospect" target="_blank">Sep 01 – Compliance outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w9-fire-prospect-resend" target="_blank">Sep 04</a></span>
+                </td>
+                <td class="col-backflow">—</td>
+                <td class="col-upsell">Aug 27 – Upsell: RR</td>
+                <td class="col-sp">Sep 02 – Monthly touch</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Aug 30</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W10<div class="rng">Sep 02–Sep 08</div></td>
+                <td class="col-fire">No new prospect send (optimize / resend winners)</td>
+                <td class="col-backflow">
+                  <a class="email-link" href="email.html?id=2026-q3-w10-backflow-r5" target="_blank">Sep 08 – Backflow Region 5 outreach</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q3-w10-backflow-r5-resend" target="_blank">Sep 11</a></span>
+                </td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W11<div class="rng">Sep 09–Sep 15</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Sep 10 – Upsell: FE</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">Fire Compliance drip + Backflow drip (Cold / Warm / High Intent)</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Sep 15</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W12<div class="rng">Sep 16–Sep 22</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">—</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip">Continue drips + last-chance CTA</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr">—</td>
+                <td class="col-news">—</td>
+                <td class="col-social">—</td>
+              </tr>
+
+              <tr>
+                <td class="wk">W13<div class="rng">Sep 23–Sep 30</div></td>
+                <td class="col-fire muted">—</td>
+                <td class="col-backflow muted">—</td>
+                <td class="col-upsell">Sep 24 – Upsell: RR</td>
+                <td class="col-sp">—</td>
+                <td class="col-conf">—</td>
+                <td class="col-drip muted">—</td>
+                <td class="col-cust">—</td>
+                <td class="col-pr"><ul class="cell-list"><li><strong>Sep 30</strong> – Press Release (TBD)</li></ul></td>
+                <td class="col-news">Sep 30 – Quarterly Newsletter</td>
+                <td class="col-social">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <!-- ===================== Q4 ===================== -->
+    <details>
+      <summary>
+        <span>Q4 – Modernization</span>
+        <span class="qmeta">
+          <span>Prospecting Weeks 1–9</span>
+          <span>Drips Week 11–12</span>
+          <span>Newsletter Dec 31</span>
+        </span>
+      </summary>
+
+      <div class="content">
+        <div class="qhead">
+          <div class="qtitle">
+            <div class="qtheme">
+              <span class="qbadge q4">Theme: Modernization</span>
+              <span class="qquote">Prepare your compliance program for next year.</span>
+            </div>
+            <div class="qtagline">
+              Modernize processes that fuel lack of compliance: standardize submissions, tighten timelines, and make compliance easier to sustain with the team you already have.
             </div>
           </div>
+        </div>
 
-          <div class="sheet-wrap">
-            <table class="sheet" aria-label="Q4 Sheet View">
-              <thead>
-                <tr>
-                  <th>Week</th>
-                  <th class="col-fire">Fire Prospects</th>
-                  <th class="col-backflow">Backflow Prospects</th>
-                  <th class="col-upsell">Upsells</th>
-                  <th class="col-sp">Service Providers</th>
-                  <th class="col-conf">Conferences</th>
-                  <th class="col-drip">Drips</th>
-                  <th class="col-news">Quarterly Newsletter</th>
-                  <th class="col-social">Social</th>
-                  <th class="col-press">Press Releases</th>
-                  <th class="col-customer">Customer Comms</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="wk">W1<div class="rng">Oct 01–Oct 07</div></td>
-                  <td class="col-fire">
-                    <a class="email-link" href="email.html?id=2026-q4-w1-fire-prospect" target="_blank">Oct 06 – Modernization_ <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w1-fire-prospect-resend" target="_blank">Oct 09</a></span>
+        <div class="sheet-wrap">
+          <table class="sheet" aria-label="Q4 Sheet View">
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th class="col-fire">Fire Prospects</th>
+                <th class="col-backflow">Backflow Prospects</th>
+                <th class="col-upsell">Upsells</th>
+                <th class="col-sp">Service Providers</th>
+                <th class="col-conf">Conferences</th>
+                <th class="col-drip">Drips</th>
+                <th class="col-cust">Customer Comms</th>
+                <th class="col-pr">Press Releases</th>
+                <th class="col-news">Quarterly Newsletter</th>
+                <th class="col-social">Social</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="wk">W1<div class="rng">Oct 01–Oct 07</div></td>
+                <td class="col-fire">
+                  <a class="email-link" href="email.html?id=2026-q4-w1-fire-prospect" target="_blank">Oct 06 – Modernization outreach (5–6 states)</a>
+                  <span class="resend">Resend to unopens: <a class="resend-link" href="email.html?id=2026-q4-w1-fire-prospect-resend" target="_blank">Oct 09</a></span>
                 </td>
                 <td class="col-backflow">
                   <a class="email-link" href="email.html?id=2026-q4-w1-backflow-r1" target="_blank">Oct 06 – Backflow Region 1 outreach</a>
@@ -2153,3 +1831,9 @@
             'show-fire','show-backflow','show-upsell','show-sp','show-drip','show-news','show-conf','show-social','show-pr','show-cust',
             'highlight-resends'
           );
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
