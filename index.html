@@ -1,7 +1,3 @@
-
-Brycer full 2026 calendar · HTML
-Copy
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +5,6 @@ Copy
   <title>BRYCER 2026 Full Year Calendar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
-
   <style>
     :root{
       --brycer-navy:#03233d;
@@ -26,7 +21,6 @@ Copy
       --focus:#0b5cff;
       --focus-soft:rgba(11,92,255,.12);
     }
-
     *{ box-sizing:border-box; }
     body{
       margin:0;
@@ -35,7 +29,6 @@ Copy
       color:var(--text);
       padding:28px 14px 60px;
     }
-
     .page{
       max-width:1600px;
       margin:0 auto;
@@ -45,13 +38,11 @@ Copy
       box-shadow:var(--shadow);
       padding:18px 18px 22px;
     }
-
     header{
       border-bottom:1px solid var(--border);
       padding-bottom:12px;
       margin-bottom:14px;
     }
-
     .eyebrow{
       font-size:.78rem;
       font-weight:800;
@@ -59,7 +50,6 @@ Copy
       text-transform:uppercase;
       color:var(--brycer-orange);
     }
-
     h1{
       margin:0;
       font-size:1.65rem;
@@ -67,14 +57,12 @@ Copy
       letter-spacing:-.02em;
       color:var(--brycer-navy);
     }
-
     .sub{
       color:var(--muted);
       font-size:.92rem;
       line-height:1.45;
       margin-top:6px;
     }
-
     .toolbar{
       display:flex;
       flex-wrap:wrap;
@@ -87,14 +75,12 @@ Copy
       border-radius:14px;
       background:linear-gradient(180deg, #ffffff, #f8fafc);
     }
-
     .toolbar-left{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
       align-items:center;
     }
-
     .btn{
       border:1px solid var(--border);
       background:#fff;
@@ -120,7 +106,6 @@ Copy
       background:var(--focus-soft);
       color:var(--focus);
     }
-
     .dot{
       width:10px; height:10px;
       border-radius:999px;
@@ -134,7 +119,6 @@ Copy
     .dot.irol-social{ background:#ec4899; }
     .dot.irol-customer{ background:#64748b; }
     .dot.holiday{ background:#10b981; }
-
     .cal-shell{
       margin-top:14px;
       border:1px solid var(--border);
@@ -147,7 +131,6 @@ Copy
     @media (max-width:1100px){
       .cal-shell{ grid-template-columns:1fr; }
     }
-
     .cal-left{
       border-right:1px solid var(--border);
       padding:16px;
@@ -156,7 +139,6 @@ Copy
     @media (max-width:1100px){
       .cal-left{ border-right:none; border-bottom:1px solid var(--border); }
     }
-
     .cal-brand{ margin-bottom:14px; }
     .cal-eyebrow{
       font-size:.75rem;
@@ -179,7 +161,6 @@ Copy
       font-size:.84rem;
       line-height:1.35;
     }
-
     .cal-monthbox{
       border:1px solid var(--border);
       border-radius:14px;
@@ -215,7 +196,6 @@ Copy
       cursor:pointer;
     }
     .navbtn:hover{ border-color:rgba(2,6,23,.25); }
-
     .cal-legendbox{
       margin-top:14px;
       border:1px solid var(--border);
@@ -247,7 +227,6 @@ Copy
       border-radius:999px;
       border:2px solid rgba(2,6,23,.10);
     }
-
     .tag-dot.t-email{ background:#dc2626; }
     .tag-dot.t-conf{ background:#0f172a; }
     .tag-dot.t-social{ background:#f59e0b; }
@@ -255,7 +234,6 @@ Copy
     .tag-dot.t-irol-social{ background:#ec4899; }
     .tag-dot.t-irol-customer{ background:#64748b; }
     .tag-dot.t-holiday{ background:#10b981; }
-
     .cal-note{
       margin-top:12px;
       color:var(--muted);
@@ -263,11 +241,8 @@ Copy
       font-size:.82rem;
       line-height:1.35;
     }
-
     .cal-right{ padding:16px; background:#fff; }
-
     .cal-grid{ width:100%; }
-
     .cal-dow{
       display:grid;
       grid-template-columns:repeat(7,1fr);
@@ -288,7 +263,6 @@ Copy
       text-align:center;
     }
     .cal-dow > div:last-child{ border-right:none; }
-
     .cal-days{
       display:grid;
       grid-template-columns:repeat(7,1fr);
@@ -296,7 +270,6 @@ Copy
       border-radius:0 0 14px 14px;
       overflow:hidden;
     }
-
     .day{
       min-height:120px;
       padding:10px;
@@ -307,7 +280,6 @@ Copy
     .day:nth-child(7n){ border-right:none; }
     .day.muted{ background:#f8fafc; color:var(--muted); }
     .day.holiday-day{ background:#f0fdf4; }
-
     .daynum{
       display:flex;
       justify-content:space-between;
@@ -317,7 +289,6 @@ Copy
       margin-bottom:8px;
       font-size:.9rem;
     }
-
     .event{
       display:flex;
       gap:8px;
@@ -342,7 +313,6 @@ Copy
       color:var(--text);
       font-weight:700;
     }
-
     .event[data-col="email"] .evdot{ background:#dc2626; }
     .event[data-col="conf"] .evdot{ background:#0f172a; }
     .event[data-col="social"] .evdot{ background:#f59e0b; }
@@ -350,7 +320,6 @@ Copy
     .event[data-col="irol-social"] .evdot{ background:#ec4899; }
     .event[data-col="irol-customer"] .evdot{ background:#64748b; }
     .event[data-col="holiday"] .evdot{ background:#10b981; }
-
     .cols-filtering .event{ display:none; }
     .show-email .event[data-col="email"]{ display:flex; }
     .show-conf .event[data-col="conf"]{ display:flex; }
@@ -359,7 +328,6 @@ Copy
     .show-irol-social .event[data-col="irol-social"]{ display:flex; }
     .show-irol-customer .event[data-col="irol-customer"]{ display:flex; }
     .show-holiday .event[data-col="holiday"]{ display:flex; }
-
     footer{
       margin-top:16px;
       padding-top:12px;
@@ -374,7 +342,6 @@ Copy
     footer strong{ color:var(--brycer-navy); font-weight:900; }
   </style>
 </head>
-
 <body>
   <div class="page" id="pageRoot">
     <header>
@@ -384,7 +351,6 @@ Copy
         Complete 2026 - Social, Emails, Conferences & Holidays
       </div>
     </header>
-
     <div class="toolbar">
       <div class="toolbar-left">
         <button class="btn" data-col="email"><span class="dot email"></span>📧 All Emails</button>
@@ -397,7 +363,6 @@ Copy
         <button class="btn" data-action="reset">Reset Filters</button>
       </div>
     </div>
-
     <section id="viewCalendar">
       <div class="cal-shell">
         <div class="cal-left">
@@ -406,7 +371,6 @@ Copy
             <div class="cal-title">Content Calendar</div>
             <div class="cal-sub">Navigate months and filter by category to see your scheduled campaigns.</div>
           </div>
-
           <div class="cal-monthbox">
             <div class="cal-monthname" id="calMonthName">January</div>
             <div class="cal-year">2026</div>
@@ -415,7 +379,6 @@ Copy
               <button class="navbtn" id="nextMonth">Next →</button>
             </div>
           </div>
-
           <div class="cal-legendbox">
             <div class="cal-h">Categories</div>
             <div class="cal-legend">
@@ -430,7 +393,6 @@ Copy
             <div class="cal-note">📧 <strong>Email category includes:</strong> Fire Prospects, Backflow, Upsells, Service Providers, Drip Campaigns, Newsletters, Customer Comms, and Conference Emails</div>
           </div>
         </div>
-
         <div class="cal-right">
           <div class="cal-grid">
             <div class="cal-dow">
@@ -448,14 +410,11 @@ Copy
         </div>
       </div>
     </section>
-
     <footer>
       <div><strong>BRYCER 2026 Full Year Calendar</strong> · Complete planning for all 12 months</div>
       <div>Quarterly themes: Q1 Visibility, Q2 Efficiency, Q3 Compliance, Q4 Risk Management</div>
     </footer>
-
   </div>
-
   <script>
 const calendarEvents = {
   '2025-12-31': [
@@ -509,7 +468,7 @@ const calendarEvents = {
   ],
   '2026-01-14': [
     {col: 'social', text: 'case study '},
-    {col: 'social', text: 'Tewksbury Fire Department  MA'},
+    {col: 'social', text: 'Tewksbury Fire Department  MA'},
     {col: 'email', text: 'Fire Prospect: West Region AHJ prospects'},
     {col: 'email', text: 'Conference Email: Utah Fire Marshals'},
   ],
@@ -593,9 +552,11 @@ const calendarEvents = {
   '2026-02-04': [
     {col: 'conf', text: 'Conference: TN Fire Chiefs Winter Conf'},
     {col: 'email', text: 'Conference Email: Cross Connection Control'},
+    {col: 'irol-customer', text: 'IROL Customer: Notification Letter - Contractor pricing changes (70 impacted)'},
   ],
   '2026-02-05': [
     {col: 'email', text: 'Conference Email: AL Fire Professional Development '},
+    {col: 'irol-customer', text: 'IROL Customer: Notification Letter - Email switch + Enhanced Preplan solution'},
   ],
   '2026-02-06': [
     {col: 'email', text: 'Fire Prospect: Visibility resend'},
@@ -608,10 +569,14 @@ const calendarEvents = {
     {col: 'email', text: 'Backflow: Region 3'},
     {col: 'conf', text: 'Conference: AL Fire Professional Development '},
   ],
+  '2026-02-11': [
+    {col: 'irol-customer', text: 'IROL Customer: Letter to AHJs - vision/benefits/SLA contract changes'},
+  ],
   '2026-02-13': [
     {col: 'email', text: 'Fire Prospect: Visibility resend'},
     {col: 'email', text: 'Backflow: Region 3 resend'},
     {col: 'email', text: 'Conference Email: Tech Summit Indiana'},
+    {col: 'irol-customer', text: 'IROL Customer: Employee Letter - Comms updates, training, payroll updates'},
   ],
   '2026-02-16': [
     {col: 'holiday', text: '🎉 Presidents\' Day'},
@@ -632,6 +597,9 @@ const calendarEvents = {
   ],
   '2026-02-23': [
     {col: 'email', text: 'Conference Email: MO Fire Chiefs'},
+    {col: 'irol-customer', text: 'IROL Customer: Notification w/ copy of SLA; encourage conversations'},
+    {col: 'irol-customer', text: 'IROL Customer: Letter to ALL IROL contractors - pricing changes'},
+    {col: 'email', text: 'BRYCER SPs: Notification letter - new features ONLY'},
   ],
   '2026-02-24': [
     {col: 'email', text: 'Fire Prospect: Visibility outreach'},
@@ -654,6 +622,8 @@ const calendarEvents = {
   '2026-03-02': [
     {col: 'conf', text: 'Conference: CFPI'},
     {col: 'conf', text: 'Conference: OH Life Safety Forum'},
+    {col: 'irol-customer', text: 'IROL Customer: Individual followups re: new SLAs'},
+    {col: 'irol-customer', text: 'IROL Customer: Notification to vendors - payment details/shared inboxes'},
   ],
   '2026-03-03': [
     {col: 'email', text: 'Fire Prospect: Visibility outreach'},
@@ -665,6 +635,9 @@ const calendarEvents = {
   '2026-03-06': [
     {col: 'email', text: 'Fire Prospect: Visibility resend'},
     {col: 'email', text: 'Conference Email: WFCA Ignite '},
+  ],
+  '2026-03-09': [
+    {col: 'irol-customer', text: 'IROL Customer: Updated features, benefits & customer service excellence'},
   ],
   '2026-03-10': [
     {col: 'email', text: 'Backflow: Region 5'},
@@ -690,6 +663,9 @@ const calendarEvents = {
   ],
   '2026-03-22': [
     {col: 'conf', text: 'Conference: IL Fire/Life Safety '},
+  ],
+  '2026-03-23': [
+    {col: 'irol-customer', text: 'IROL Customer: More features/benefits, timing for conversion scheduling'},
   ],
   '2026-03-24': [
     {col: 'email', text: 'Backflow: Region 6'},
@@ -1053,18 +1029,14 @@ const calendarEvents = {
 };
     let activeFilters = new Set();
     let currentMonth = 0;
-
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
                        'July', 'August', 'September', 'October', 'November', 'December'];
-
     function getDaysInMonth(month, year) {
       return new Date(year, month + 1, 0).getDate();
     }
-
     function getFirstDayOfMonth(month, year) {
       return new Date(year, month, 1).getDay();
     }
-
     function renderCalendar() {
       const year = 2026;
       const daysInMonth = getDaysInMonth(currentMonth, year);
@@ -1106,7 +1078,6 @@ const calendarEvents = {
         container.appendChild(day);
       }
     }
-
     function updateFilters() {
       const root = document.getElementById('pageRoot');
       
@@ -1120,7 +1091,6 @@ const calendarEvents = {
         root.className = classes;
       }
     }
-
     function toggleFilter(col) {
       if (activeFilters.has(col)) {
         activeFilters.delete(col);
@@ -1138,7 +1108,6 @@ const calendarEvents = {
         }
       });
     }
-
     function resetView() {
       activeFilters.clear();
       updateFilters();
@@ -1146,25 +1115,20 @@ const calendarEvents = {
         btn.classList.remove('active');
       });
     }
-
     document.querySelectorAll('.btn[data-col]').forEach(btn => {
       btn.addEventListener('click', () => {
         toggleFilter(btn.getAttribute('data-col'));
       });
     });
-
     document.querySelector('.btn[data-action="reset"]').addEventListener('click', resetView);
-
     document.getElementById('prevMonth').addEventListener('click', () => {
       currentMonth = (currentMonth - 1 + 12) % 12;
       renderCalendar();
     });
-
     document.getElementById('nextMonth').addEventListener('click', () => {
       currentMonth = (currentMonth + 1) % 12;
       renderCalendar();
     });
-
     renderCalendar();
   </script>
 </body>
