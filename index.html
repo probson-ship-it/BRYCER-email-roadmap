@@ -23,6 +23,13 @@
       --irol-training:#8b5cf6;
       --podcast:#06b6d4;
       --irol-speaking:#f97316;
+      --fire-prospect:#dc2626;
+      --backflow:#ef4444;
+      --conference-email:#f97316;
+      --drip:#fb923c;
+      --newsletter:#fdba74;
+      --customer-comms:#fcd34d;
+      --brycer-sp:#fde68a;
     }
     *{ box-sizing:border-box; }
     body{
@@ -125,6 +132,13 @@
     .dot.irol-training{ background:#8b5cf6; }
     .dot.podcast{ background:#06b6d4; }
     .dot.irol-speaking{ background:#f97316; }
+    .dot.fire-prospect{ background:#dc2626; }
+    .dot.backflow{ background:#ef4444; }
+    .dot.conference-email{ background:#f97316; }
+    .dot.drip{ background:#fb923c; }
+    .dot.newsletter{ background:#fdba74; }
+    .dot.customer-comms{ background:#fcd34d; }
+    .dot.brycer-sp{ background:#fde68a; }
     .cal-shell{
       margin-top:14px;
       border:1px solid var(--border);
@@ -243,6 +257,13 @@
     .tag-dot.t-irol-training{ background:#8b5cf6; }
     .tag-dot.t-podcast{ background:#06b6d4; }
     .tag-dot.t-irol-speaking{ background:#f97316; }
+    .tag-dot.t-fire-prospect{ background:#dc2626; }
+    .tag-dot.t-backflow{ background:#ef4444; }
+    .tag-dot.t-conference-email{ background:#f97316; }
+    .tag-dot.t-drip{ background:#fb923c; }
+    .tag-dot.t-newsletter{ background:#fdba74; }
+    .tag-dot.t-customer-comms{ background:#fcd34d; }
+    .tag-dot.t-brycer-sp{ background:#fde68a; }
     .cal-note{
       margin-top:12px;
       color:var(--muted);
@@ -347,6 +368,13 @@
     .event[data-col="irol-training"] .evdot{ background:#8b5cf6; }
     .event[data-col="podcast"] .evdot{ background:#06b6d4; }
     .event[data-col="irol-speaking"] .evdot{ background:#f97316; }
+    .event[data-col="fire-prospect"] .evdot{ background:#dc2626; }
+    .event[data-col="backflow"] .evdot{ background:#ef4444; }
+    .event[data-col="conference-email"] .evdot{ background:#f97316; }
+    .event[data-col="drip"] .evdot{ background:#fb923c; }
+    .event[data-col="newsletter"] .evdot{ background:#fdba74; }
+    .event[data-col="customer-comms"] .evdot{ background:#fcd34d; }
+    .event[data-col="brycer-sp"] .evdot{ background:#fde68a; }
     .cols-filtering .event{ display:none; }
     .show-email .event[data-col="email"]{ display:flex; }
     .show-conf .event[data-col="conf"]{ display:flex; }
@@ -358,6 +386,13 @@
     .show-irol-training .event[data-col="irol-training"]{ display:flex; }
     .show-podcast .event[data-col="podcast"]{ display:flex; }
     .show-irol-speaking .event[data-col="irol-speaking"]{ display:flex; }
+    .show-fire-prospect .event[data-col="fire-prospect"]{ display:flex; }
+    .show-backflow .event[data-col="backflow"]{ display:flex; }
+    .show-conference-email .event[data-col="conference-email"]{ display:flex; }
+    .show-drip .event[data-col="drip"]{ display:flex; }
+    .show-newsletter .event[data-col="newsletter"]{ display:flex; }
+    .show-customer-comms .event[data-col="customer-comms"]{ display:flex; }
+    .show-brycer-sp .event[data-col="brycer-sp"]{ display:flex; }
     footer{
       margin-top:16px;
       padding-top:12px;
@@ -383,16 +418,21 @@
     </header>
     <div class="toolbar">
       <div class="toolbar-left">
-        <button class="btn" data-col="email"><span class="dot email"></span>📧 All Emails</button>
+        <button class="btn" data-col="fire-prospect"><span class="dot fire-prospect"></span>Fire Prospects</button>
+        <button class="btn" data-col="backflow"><span class="dot backflow"></span>Backflow</button>
+        <button class="btn" data-col="conference-email"><span class="dot conference-email"></span>Conf Emails</button>
+        <button class="btn" data-col="drip"><span class="dot drip"></span>Drip</button>
+        <button class="btn" data-col="newsletter"><span class="dot newsletter"></span>Newsletter</button>
+        <button class="btn" data-col="customer-comms"><span class="dot customer-comms"></span>Customer Comms</button>
         <button class="btn" data-col="conf"><span class="dot conf"></span>Conferences</button>
         <button class="btn" data-col="social"><span class="dot social"></span>Social</button>
-        <button class="btn" data-col="press"><span class="dot press"></span>Press</button>
         <button class="btn" data-col="irol-social"><span class="dot irol-social"></span>IROL Social</button>
         <button class="btn" data-col="irol-customer"><span class="dot irol-customer"></span>IROL Customer</button>
         <button class="btn" data-col="irol-training"><span class="dot irol-training"></span>IROL Training</button>
         <button class="btn" data-col="podcast"><span class="dot podcast"></span>Podcasts</button>
         <button class="btn" data-col="irol-speaking"><span class="dot irol-speaking"></span>IROL Speaking</button>
-        <button class="btn" data-col="holiday"><span class="dot holiday"></span>🎉 Holidays</button>
+        <button class="btn" data-col="press"><span class="dot press"></span>Press</button>
+        <button class="btn" data-col="holiday"><span class="dot holiday"></span>Holidays</button>
         <button class="btn" data-action="reset">Reset Filters</button>
       </div>
     </div>
@@ -415,18 +455,22 @@
           <div class="cal-legendbox">
             <div class="cal-h">Categories</div>
             <div class="cal-legend">
-              <div class="tag-row"><span class="tag-dot t-email"></span> All Emails</div>
+              <div class="tag-row"><span class="tag-dot t-fire-prospect"></span> Fire Prospects</div>
+              <div class="tag-row"><span class="tag-dot t-backflow"></span> Backflow</div>
+              <div class="tag-row"><span class="tag-dot t-conference-email"></span> Conf Emails</div>
+              <div class="tag-row"><span class="tag-dot t-drip"></span> Drip Campaigns</div>
+              <div class="tag-row"><span class="tag-dot t-newsletter"></span> Newsletters</div>
+              <div class="tag-row"><span class="tag-dot t-customer-comms"></span> Customer Comms</div>
               <div class="tag-row"><span class="tag-dot t-conf"></span> Conferences</div>
               <div class="tag-row"><span class="tag-dot t-social"></span> Social Media</div>
-              <div class="tag-row"><span class="tag-dot t-press"></span> Press Releases</div>
               <div class="tag-row"><span class="tag-dot t-irol-social"></span> IROL Social</div>
               <div class="tag-row"><span class="tag-dot t-irol-customer"></span> IROL Customer</div>
               <div class="tag-row"><span class="tag-dot t-irol-training"></span> IROL Training</div>
               <div class="tag-row"><span class="tag-dot t-podcast"></span> Podcasts</div>
               <div class="tag-row"><span class="tag-dot t-irol-speaking"></span> IROL Speaking</div>
+              <div class="tag-row"><span class="tag-dot t-press"></span> Press Releases</div>
               <div class="tag-row"><span class="tag-dot t-holiday"></span> U.S. Holidays</div>
             </div>
-            <div class="cal-note">📧 <strong>Email category includes:</strong> Fire Prospects, Backflow, Upsells, Service Providers, Drip Campaigns, Newsletters, Customer Comms, and Conference Emails</div>
           </div>
         </div>
         <div class="cal-right">
@@ -454,54 +498,54 @@
   <script>
 const calendarEvents = {
   '2025-12-31': [
-    {col: 'email', text: 'Conference Email: Fire Rescue East'},
+    {col: 'conference-email', text: 'Conference Email: Fire Rescue East'},
   ],
   '2026-01-01': [
     {col: 'social', text: 'Office Closed - Back 1/2/26', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7412553208671305728'},
   ],
   '2026-01-02': [
     {col: 'social', text: 'Catch us @ these conferences', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7412919362258386944'},
-    {col: 'email', text: 'Fire Prospect: South Region AHJ prospects'},
+    {col: 'fire-prospect', text: 'Fire Prospect: South Region AHJ prospects'},
   ],
   '2026-01-05': [
     {col: 'social', text: 'Partnership: Encinitas, CA', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7414002762708914176'},
     {col: 'conf', text: 'Conference: Fire Rescue East'},
   ],
   '2026-01-06': [
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
-    {col: 'email', text: 'Backflow: Region 1'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'backflow', text: 'Backflow: Region 1'},
   ],
   '2026-01-07': [
-    {col: 'email', text: 'Fire Prospect: Mountain Region AHJ prospects'},
-    {col: 'email', text: 'Conference Email: Chiefs Summit'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Mountain Region AHJ prospects'},
+    {col: 'conference-email', text: 'Conference Email: Chiefs Summit'},
   ],
   '2026-01-08': [
     {col: 'social', text: 'Irol Powered by BRYCER annoucnement ', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7415116566985539584'},
   ],
   '2026-01-09': [
     {col: 'social', text: 'Partnership: Rocky River OH', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7415452317174407168'},
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
-    {col: 'email', text: 'Backflow: Region 1 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
+    {col: 'backflow', text: 'Backflow: Region 1 resend'},
   ],
   '2026-01-12': [
     {col: 'social', text: 'Importance of data maintenance', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7415452317174407168'},
     {col: 'conf', text: 'Conference: Chiefs Summit'},
   ],
   '2026-01-13': [
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
     {col: 'social', text: 'Partnership: Fort Atkinson, Wisconsin', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7416901902103232514'},
   ],
   '2026-01-14': [
     {col: 'social', text: 'Case Study: Tewksbury Fire Department, MA', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7417264240643747840'},
-    {col: 'email', text: 'Fire Prospect: West Region AHJ prospects'},
-    {col: 'email', text: 'Conference Email: Utah Fire Marshals'},
+    {col: 'fire-prospect', text: 'Fire Prospect: West Region AHJ prospects'},
+    {col: 'conference-email', text: 'Conference Email: Utah Fire Marshals'},
   ],
   '2026-01-15': [
     {col: 'social', text: 'Partnership: Molalla, Oregon', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7417626642883244032'},
   ],
   '2026-01-16': [
-    {col: 'email', text: 'Conference Email: Utah Fire Chiefs'},
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
+    {col: 'conference-email', text: 'Conference Email: Utah Fire Chiefs'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
   ],
   '2026-01-18': [
     {col: 'conf', text: 'Conference: Utah Fire Marshals'},
@@ -512,64 +556,64 @@ const calendarEvents = {
   ],
   '2026-01-20': [
     {col: 'social', text: 'Partnership: Enid, Oklahoma', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7419438576641368064'},
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
-    {col: 'email', text: 'Backflow: Region 2'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'backflow', text: 'Backflow: Region 2'},
   ],
   '2026-01-21': [
     {col: 'social', text: 'Case Study: Olathe Fire Department, KS', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7419801018542055424'},
-    {col: 'email', text: 'Fire Prospect: Midwest Region AHJ prospects'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Midwest Region AHJ prospects'},
     {col: 'conf', text: 'Conference: Utah Fire Chiefs'},
   ],
   '2026-01-22': [
-    {col: 'email', text: 'Conference Email: Heart of America '},
+    {col: 'conference-email', text: 'Conference Email: Heart of America '},
     {col: 'social', text: 'Partnership: Baugo, Indiana', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7420163352078962689'},
   ],
   '2026-01-23': [
-    {col: 'email', text: 'Backflow: Region 2 resend'},
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
+    {col: 'backflow', text: 'Backflow: Region 2 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
   ],
   '2026-01-27': [
     {col: 'social', text: 'Partnership: Lampasas, Texas', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7421975294619820032'},
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
     {col: 'conf', text: 'Conference: Heart of America '},
-    {col: 'email', text: 'Conference Email: Long Island Metro Fire/EMS'},
+    {col: 'conference-email', text: 'Conference Email: Long Island Metro Fire/EMS'},
   ],
   '2026-01-28': [
     {col: 'social', text: 'Case Study: Seattle, WA', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7422337673530630144'},
-    {col: 'email', text: 'Fire Prospect: Northeast Region AHJ prospects'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Northeast Region AHJ prospects'},
   ],
   '2026-01-29': [
     {col: 'social', text: 'Partnership: Attalla, Alabama', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7422700118514089984'},
-    {col: 'email', text: 'Conference Email: CAFAA'},
+    {col: 'conference-email', text: 'Conference Email: CAFAA'},
   ],
   '2026-01-30': [
-    {col: 'email', text: 'Conference Email: TN Fire Chiefs Winter Conf'},
+    {col: 'conference-email', text: 'Conference Email: TN Fire Chiefs Winter Conf'},
     {col: 'conf', text: 'Conference: Long Island Metro Fire/EMS'},
     {col: 'social', text: 'FE Launch', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7423062449991434240'},
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
   ],
   '2026-02-02': [
     {col: 'social', text: 'Conference: Catch us @ these conferences', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7424153497232809984'},
   ],
   '2026-02-03': [
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
     {col: 'conf', text: 'Conference: CAFAA'},
     {col: 'social', text: 'Partnership: Win-Bur-Sew, IL', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7424512080898220033'},
   ],
   '2026-02-04': [
     {col: 'irol-customer', text: 'IROL Customer: Notification Letter - Contractor pricing changes (70 impacted)'},
-    {col: 'email', text: 'Conference Email: Cross Connection Control'},
+    {col: 'conference-email', text: 'Conference Email: Cross Connection Control'},
     {col: 'social', text: 'Case Study: Bay City, TX', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7424874463340544000'},
     {col: 'conf', text: 'Conference: TN Fire Chiefs Winter Conf'},
   ],
   '2026-02-05': [
     {col: 'social', text: 'Enhanced Preplan', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7425236783656878081'},
-    {col: 'email', text: 'Conference Email: AL Fire Professional Development '},
+    {col: 'conference-email', text: 'Conference Email: AL Fire Professional Development '},
     {col: 'irol-customer', text: 'IROL Customer: Notification Letter - Email switch + Enhanced Preplan solution'},
   ],
   '2026-02-06': [
     {col: 'social', text: 'Partnership: Northborough MA', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7425599191868923904'},
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
   ],
   '2026-02-08': [
     {col: 'conf', text: 'Conference: Cross Connection Control'},
@@ -579,8 +623,8 @@ const calendarEvents = {
   ],
   '2026-02-10': [
     {col: 'social', text: 'Partnership: Springfield, IL', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7427048712864030721'},
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
-    {col: 'email', text: 'Backflow: Region 3'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'backflow', text: 'Backflow: Region 3'},
     {col: 'conf', text: 'Conference: AL Fire Professional Development '},
   ],
   '2026-02-11': [
@@ -592,17 +636,17 @@ const calendarEvents = {
   ],
   '2026-02-13': [
     {col: 'irol-customer', text: 'IROL Customer: Employee Letter - Comms updates, training, payroll updates'},
-    {col: 'email', text: 'Conference Email: Tech Summit Indiana'},
+    {col: 'conference-email', text: 'Conference Email: Tech Summit Indiana'},
     {col: 'social', text: 'Video: "Why do you love...?"'},
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
-    {col: 'email', text: 'Backflow: Region 3 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
+    {col: 'backflow', text: 'Backflow: Region 3 resend'},
   ],
   '2026-02-16': [
     {col: 'social', text: 'Link to VWT PR: Virtual Walkthrough educational post'},
   ],
   '2026-02-17': [
     {col: 'social', text: 'Partnership: Nueces County (TX) ESD #1'},
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
   ],
   '2026-02-18': [
     {col: 'social', text: 'Case Study: San Luis Obispo, CA'},
@@ -612,33 +656,33 @@ const calendarEvents = {
   '2026-02-19': [
     {col: 'social', text: 'Partnership: Little Elm Fire Department (TX)'},
     {col: 'irol-training', text: 'IROL Training: 10-Noon Best Practices', link: 'https://example.com/training-materials'},
-    {col: 'email', text: 'Conference Email: Vision 20/20'},
-    {col: 'email', text: 'Conference Email: FCAM'},
+    {col: 'conference-email', text: 'Conference Email: Vision 20/20'},
+    {col: 'conference-email', text: 'Conference Email: FCAM'},
   ],
   '2026-02-20': [
     {col: 'social', text: 'Conference Pic'},
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
-    {col: 'email', text: 'Conference Email: AL Fire Marshals'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
+    {col: 'conference-email', text: 'Conference Email: AL Fire Marshals'},
   ],
   '2026-02-23': [
     {col: 'irol-customer', text: 'IROL Customer: Notification w/ copy of SLA; encourage conversations'},
-    {col: 'email', text: 'BRYCER SPs: Notification letter - new features ONLY'},
+    {col: 'brycer-sp', text: 'BRYCER SPs: Notification letter - new features ONLY'},
     {col: 'social', text: 'Quiz: FEs'},
-    {col: 'email', text: 'Conference Email: MO Fire Chiefs'},
+    {col: 'conference-email', text: 'Conference Email: MO Fire Chiefs'},
     {col: 'irol-customer', text: 'IROL Customer: Letter to ALL IROL contractors - pricing changes'},
   ],
   '2026-02-24': [
     {col: 'social', text: 'Partnership: Brawley Fire-Rescue (CA)'},
     {col: 'irol-social', text: 'IROL Socials are migrating to BRYCER'},
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
-    {col: 'email', text: 'Backflow: Region 4'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'backflow', text: 'Backflow: Region 4'},
     {col: 'conf', text: 'Conference: Vision 20/20'},
     {col: 'conf', text: 'Conference: FCAM'},
   ],
   '2026-02-25': [
-    {col: 'email', text: 'Conference Email: OH Life Safety Forum'},
+    {col: 'conference-email', text: 'Conference Email: OH Life Safety Forum'},
     {col: 'conf', text: 'Conference: AL Fire Marshals'},
-    {col: 'email', text: 'Conference Email: CFPI'},
+    {col: 'conference-email', text: 'Conference Email: CFPI'},
     {col: 'social', text: 'Case Study: Westmont, IL'},
   ],
   '2026-02-26': [
@@ -646,8 +690,8 @@ const calendarEvents = {
     {col: 'conf', text: 'Conference: MO Fire Chiefs'},
   ],
   '2026-02-27': [
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
-    {col: 'email', text: 'Backflow: Region 4 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
+    {col: 'backflow', text: 'Backflow: Region 4 resend'},
   ],
   '2026-03-02': [
     {col: 'irol-customer', text: 'IROL Customer: Notification to vendors - payment details/shared inboxes'},
@@ -656,24 +700,24 @@ const calendarEvents = {
     {col: 'conf', text: 'Conference: CFPI *Jill speaking'},
     {col: 'social', text: 'Data Entry announcement'},
     {col: 'social', text: 'Monthly Conferences'},
-    {col: 'email', text: 'Customer Comms: New BRYCER Features - Pre-plan & Compliance Management Data Services'},
+    {col: 'customer-comms', text: 'Customer Comms: New BRYCER Features - Pre-plan & Compliance Management Data Services'},
   ],
   '2026-03-03': [
     {col: 'social', text: 'Partnership: Kitsap County, WA'},
-    {col: 'email', text: 'Fire Prospect: Visibility outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility outreach'},
   ],
   '2026-03-04': [
     {col: 'social', text: 'Case Study: South King, WA'},
   ],
   '2026-03-05': [
     {col: 'social', text: 'Partnership: Sharon (PA) Fire Dept'},
-    {col: 'email', text: 'Conference Email: CPSE'},
-    {col: 'email', text: 'Conference Email: MI Fire Inspectors'},
+    {col: 'conference-email', text: 'Conference Email: CPSE'},
+    {col: 'conference-email', text: 'Conference Email: MI Fire Inspectors'},
   ],
   '2026-03-06': [
     {col: 'social', text: 'Email Tie-In'},
-    {col: 'email', text: 'Fire Prospect: Visibility resend'},
-    {col: 'email', text: 'Conference Email: WFCA Ignite '},
+    {col: 'fire-prospect', text: 'Fire Prospect: Visibility resend'},
+    {col: 'conference-email', text: 'Conference Email: WFCA Ignite '},
   ],
   '2026-03-09': [
     {col: 'social', text: 'Data Entry announcement'},
@@ -684,7 +728,7 @@ const calendarEvents = {
     {col: 'conf', text: 'Conference: CPSE'},
     {col: 'conf', text: 'Conference: MI Fire Inspectors'},
     {col: 'social', text: 'Partnership: Chanute (KS) Fire Department'},
-    {col: 'email', text: 'Backflow: Region 5'},
+    {col: 'backflow', text: 'Backflow: Region 5'},
   ],
   '2026-03-11': [
     {col: 'social', text: 'Case Study: Independence, OH'},
@@ -692,12 +736,12 @@ const calendarEvents = {
   ],
   '2026-03-12': [
     {col: 'social', text: 'Partnership: Central Joint Fire District (OH)'},
-    {col: 'email', text: 'Conference Email: Fire in the Sky'},
-    {col: 'email', text: 'Conference Email: IN Fire Inspectors'},
+    {col: 'conference-email', text: 'Conference Email: Fire in the Sky'},
+    {col: 'conference-email', text: 'Conference Email: IN Fire Inspectors'},
   ],
   '2026-03-13': [
     {col: 'social', text: 'PR Graphic'},
-    {col: 'email', text: 'Backflow: Region 5 resend'},
+    {col: 'backflow', text: 'Backflow: Region 5 resend'},
   ],
   '2026-03-16': [
     {col: 'social', text: 'Partnership: Fruitport Township (MI) Fire Department'},
@@ -711,7 +755,7 @@ const calendarEvents = {
   '2026-03-18': [
     {col: 'social', text: 'Case Study: Urbana, IL'},
     {col: 'irol-speaking', text: 'IROL Speaking: CFSI'},
-    {col: 'email', text: 'Conference Email: IL Fire/Life Safety '},
+    {col: 'conference-email', text: 'Conference Email: IL Fire/Life Safety '},
   ],
   '2026-03-19': [
     {col: 'social', text: 'Partnership: Village of Olympia Fields (IL) Building Department'},
@@ -729,20 +773,20 @@ const calendarEvents = {
   ],
   '2026-03-24': [
     {col: 'social', text: 'Partnership: Fresno (CA) Fire Department'},
-    {col: 'email', text: 'Backflow: Region 6'},
-    {col: 'email', text: 'Drip: High Intent Campaign'},
+    {col: 'backflow', text: 'Backflow: Region 6'},
+    {col: 'drip', text: 'Drip: High Intent Campaign'},
   ],
   '2026-03-25': [
     {col: 'social', text: 'Case Study'},
-    {col: 'email', text: 'Drip: Warm Campaign'},
+    {col: 'drip', text: 'Drip: Warm Campaign'},
   ],
   '2026-03-26': [
     {col: 'social', text: 'Partnership: Robertson (MO) Fire Protection District'},
-    {col: 'email', text: 'Drip: Cold Campaign'},
+    {col: 'drip', text: 'Drip: Cold Campaign'},
   ],
   '2026-03-27': [
-    {col: 'email', text: 'Conference Email: MO Valley Force'},
-    {col: 'email', text: 'Backflow: Region 6 resend'},
+    {col: 'conference-email', text: 'Conference Email: MO Valley Force'},
+    {col: 'backflow', text: 'Backflow: Region 6 resend'},
     {col: 'social', text: 'Visibility Poll Answer'},
   ],
   '2026-03-30': [
@@ -750,150 +794,150 @@ const calendarEvents = {
   ],
   '2026-03-31': [
     {col: 'social', text: 'Partnership: New Brighton (MN) Public Works'},
-    {col: 'email', text: 'Newsletter: Q1 Newsletter'},
+    {col: 'newsletter', text: 'Newsletter: Q1 Newsletter'},
   ],
   '2026-04-01': [
     {col: 'conf', text: 'Conference: MO Valley Force'},
   ],
   '2026-04-06': [
-    {col: 'email', text: 'Conference Email: CT Fire Marshals'},
+    {col: 'conference-email', text: 'Conference Email: CT Fire Marshals'},
   ],
   '2026-04-07': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
-    {col: 'email', text: 'Backflow: Region 1'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'backflow', text: 'Backflow: Region 1'},
   ],
   '2026-04-08': [
-    {col: 'email', text: 'Conference Email: TX Fire Chief'},
+    {col: 'conference-email', text: 'Conference Email: TX Fire Chief'},
   ],
   '2026-04-09': [
     {col: 'conf', text: 'Conference: CT Fire Marshals'},
   ],
   '2026-04-10': [
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
-    {col: 'email', text: 'Backflow: Region 1 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'backflow', text: 'Backflow: Region 1 resend'},
   ],
   '2026-04-13': [
     {col: 'conf', text: 'Conference: TX Fire Chief'},
   ],
   '2026-04-14': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
   ],
   '2026-04-16': [
     {col: 'irol-speaking', text: 'IROL Speaking: AFAA (Automatic Fire Alarm Assoc. Annual Conference)'},
   ],
   '2026-04-17': [
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
   ],
   '2026-04-21': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
-    {col: 'email', text: 'Backflow: Region 2'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'backflow', text: 'Backflow: Region 2'},
     {col: 'irol-speaking', text: 'IROL Speaking: FDIC (week of April 20)'},
   ],
   '2026-04-22': [
-    {col: 'email', text: 'Conference Email: LA Fire Chiefs'},
+    {col: 'conference-email', text: 'Conference Email: LA Fire Chiefs'},
   ],
   '2026-04-24': [
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
-    {col: 'email', text: 'Backflow: Region 2 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'backflow', text: 'Backflow: Region 2 resend'},
   ],
   '2026-04-27': [
     {col: 'conf', text: 'Conference: LA Fire Chiefs'},
-    {col: 'email', text: 'Conference Email: Idaho Fire Chiefs'},
+    {col: 'conference-email', text: 'Conference Email: Idaho Fire Chiefs'},
   ],
   '2026-04-28': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
   ],
   '2026-04-30': [
     {col: 'conf', text: 'Conference: Idaho Fire Chiefs'},
   ],
   '2026-05-01': [
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
-    {col: 'email', text: 'Conference Email: TN Fire Chiefs Spring Conference'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'conference-email', text: 'Conference Email: TN Fire Chiefs Spring Conference'},
   ],
   '2026-05-05': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
   ],
   '2026-05-06': [
     {col: 'conf', text: 'Conference: TN Fire Chiefs Spring Conference'},
   ],
   '2026-05-07': [
-    {col: 'email', text: 'Conference Email: OR Fire Chiefs'},
-    {col: 'email', text: 'Conference Email: NC Fire Chiefs Mid Winter'},
+    {col: 'conference-email', text: 'Conference Email: OR Fire Chiefs'},
+    {col: 'conference-email', text: 'Conference Email: NC Fire Chiefs Mid Winter'},
   ],
   '2026-05-08': [
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
   ],
   '2026-05-12': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
-    {col: 'email', text: 'Backflow: Region 3'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'backflow', text: 'Backflow: Region 3'},
     {col: 'conf', text: 'Conference: OR Fire Chiefs'},
     {col: 'conf', text: 'Conference: NC Fire Chiefs Mid Winter'},
   ],
   '2026-05-14': [
-    {col: 'email', text: 'Conference Email: CRRL Conference'},
+    {col: 'conference-email', text: 'Conference Email: CRRL Conference'},
   ],
   '2026-05-15': [
-    {col: 'email', text: 'Backflow: Region 3 resend'},
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'backflow', text: 'Backflow: Region 3 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
   ],
   '2026-05-19': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
     {col: 'conf', text: 'Conference: CRRL Conference *Jill speaking'},
   ],
   '2026-05-22': [
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
   ],
   '2026-05-25': [
     {col: 'holiday', text: '🎉 Memorial Day'},
   ],
   '2026-05-26': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
-    {col: 'email', text: 'Backflow: Region 4'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'backflow', text: 'Backflow: Region 4'},
   ],
   '2026-05-29': [
-    {col: 'email', text: 'Backflow: Region 4 resend'},
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
-    {col: 'email', text: 'Conference Email: MO Valley Chiefs'},
+    {col: 'backflow', text: 'Backflow: Region 4 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'conference-email', text: 'Conference Email: MO Valley Chiefs'},
   ],
   '2026-06-02': [
-    {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency outreach'},
   ],
   '2026-06-03': [
-    {col: 'email', text: 'Conference Email: Metro Fire Chiefs '},
+    {col: 'conference-email', text: 'Conference Email: Metro Fire Chiefs '},
     {col: 'conf', text: 'Conference: MO Valley Chiefs'},
   ],
   '2026-06-05': [
-    {col: 'email', text: 'Fire Prospect: Efficiency resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Efficiency resend'},
   ],
   '2026-06-07': [
     {col: 'conf', text: 'Conference: Metro Fire Chiefs '},
   ],
   '2026-06-09': [
-    {col: 'email', text: 'Backflow: Region 5'},
+    {col: 'backflow', text: 'Backflow: Region 5'},
   ],
   '2026-06-12': [
-    {col: 'email', text: 'Backflow: Region 5 resend'},
+    {col: 'backflow', text: 'Backflow: Region 5 resend'},
   ],
   '2026-06-23': [
-    {col: 'email', text: 'Backflow: Region 6'},
-    {col: 'email', text: 'Drip: High Intent Campaign'},
-    {col: 'email', text: 'Conference Email: MO Fire Districts'},
+    {col: 'backflow', text: 'Backflow: Region 6'},
+    {col: 'drip', text: 'Drip: High Intent Campaign'},
+    {col: 'conference-email', text: 'Conference Email: MO Fire Districts'},
   ],
   '2026-06-24': [
-    {col: 'email', text: 'Drip: Warm Campaign'},
+    {col: 'drip', text: 'Drip: Warm Campaign'},
   ],
   '2026-06-25': [
-    {col: 'email', text: 'Drip: Cold Campaign'},
+    {col: 'drip', text: 'Drip: Cold Campaign'},
   ],
   '2026-06-26': [
-    {col: 'email', text: 'Backflow: Region 6 resend'},
+    {col: 'backflow', text: 'Backflow: Region 6 resend'},
     {col: 'conf', text: 'Conference: MO Fire Districts'},
   ],
   '2026-06-30': [
-    {col: 'email', text: 'Newsletter: Q2 Newsletter'},
+    {col: 'newsletter', text: 'Newsletter: Q2 Newsletter'},
   ],
   '2026-07-01': [
-    {col: 'email', text: 'Conference Email: AZ Fire Chiefs'},
+    {col: 'conference-email', text: 'Conference Email: AZ Fire Chiefs'},
   ],
   '2026-07-03': [
     {col: 'holiday', text: '🎉 Independence Day (observed)'},
@@ -905,198 +949,198 @@ const calendarEvents = {
     {col: 'conf', text: 'Conference: AZ Fire Chiefs'},
   ],
   '2026-07-07': [
-    {col: 'email', text: 'Backflow: Region 1'},
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'backflow', text: 'Backflow: Region 1'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
   ],
   '2026-07-08': [
-    {col: 'email', text: 'Conference Email: Fire Chiefs Summit'},
+    {col: 'conference-email', text: 'Conference Email: Fire Chiefs Summit'},
   ],
   '2026-07-10': [
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
-    {col: 'email', text: 'Backflow: Region 1 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
+    {col: 'backflow', text: 'Backflow: Region 1 resend'},
   ],
   '2026-07-13': [
     {col: 'conf', text: 'Conference: Fire Chiefs Summit'},
   ],
   '2026-07-14': [
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
   ],
   '2026-07-17': [
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
   ],
   '2026-07-21': [
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
-    {col: 'email', text: 'Backflow: Region 2'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'backflow', text: 'Backflow: Region 2'},
   ],
   '2026-07-24': [
-    {col: 'email', text: 'Backflow: Region 2 resend'},
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
+    {col: 'backflow', text: 'Backflow: Region 2 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
   ],
   '2026-07-28': [
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
   ],
   '2026-07-31': [
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
   ],
   '2026-08-04': [
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
   ],
   '2026-08-07': [
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
-    {col: 'email', text: 'Conference Email: FRI'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
+    {col: 'conference-email', text: 'Conference Email: FRI'},
   ],
   '2026-08-11': [
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
-    {col: 'email', text: 'Backflow: Region 3'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'backflow', text: 'Backflow: Region 3'},
   ],
   '2026-08-12': [
     {col: 'conf', text: 'Conference: FRI'},
   ],
   '2026-08-14': [
-    {col: 'email', text: 'Backflow: Region 3 resend'},
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
+    {col: 'backflow', text: 'Backflow: Region 3 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
   ],
   '2026-08-18': [
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
   ],
   '2026-08-21': [
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
   ],
   '2026-08-25': [
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
-    {col: 'email', text: 'Backflow: Region 4'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'backflow', text: 'Backflow: Region 4'},
   ],
   '2026-08-28': [
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
-    {col: 'email', text: 'Backflow: Region 4 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
+    {col: 'backflow', text: 'Backflow: Region 4 resend'},
   ],
   '2026-09-01': [
-    {col: 'email', text: 'Fire Prospect: Compliance outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance outreach'},
   ],
   '2026-09-04': [
-    {col: 'email', text: 'Fire Prospect: Compliance resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Compliance resend'},
   ],
   '2026-09-07': [
     {col: 'holiday', text: '🎉 Labor Day'},
   ],
   '2026-09-08': [
-    {col: 'email', text: 'Backflow: Region 5'},
+    {col: 'backflow', text: 'Backflow: Region 5'},
   ],
   '2026-09-11': [
-    {col: 'email', text: 'Backflow: Region 5 resend'},
+    {col: 'backflow', text: 'Backflow: Region 5 resend'},
   ],
   '2026-09-22': [
-    {col: 'email', text: 'Backflow: Region 6'},
-    {col: 'email', text: 'Drip: High Intent Campaign'},
+    {col: 'backflow', text: 'Backflow: Region 6'},
+    {col: 'drip', text: 'Drip: High Intent Campaign'},
   ],
   '2026-09-23': [
-    {col: 'email', text: 'Drip: Warm Campaign'},
+    {col: 'drip', text: 'Drip: Warm Campaign'},
   ],
   '2026-09-24': [
-    {col: 'email', text: 'Drip: Cold Campaign'},
+    {col: 'drip', text: 'Drip: Cold Campaign'},
   ],
   '2026-09-25': [
-    {col: 'email', text: 'Backflow: Region 6 resend'},
+    {col: 'backflow', text: 'Backflow: Region 6 resend'},
   ],
   '2026-09-29': [
-    {col: 'email', text: 'Newsletter: Q3 Newsletter'},
+    {col: 'newsletter', text: 'Newsletter: Q3 Newsletter'},
   ],
   '2026-10-06': [
-    {col: 'email', text: 'Backflow: Region 1'},
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'backflow', text: 'Backflow: Region 1'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
   ],
   '2026-10-09': [
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
-    {col: 'email', text: 'Backflow: Region 1 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
+    {col: 'backflow', text: 'Backflow: Region 1 resend'},
   ],
   '2026-10-12': [
     {col: 'holiday', text: '🎉 Columbus Day'},
   ],
   '2026-10-13': [
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
   ],
   '2026-10-16': [
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
   ],
   '2026-10-20': [
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
-    {col: 'email', text: 'Backflow: Region 2'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'backflow', text: 'Backflow: Region 2'},
   ],
   '2026-10-23': [
-    {col: 'email', text: 'Backflow: Region 2 resend'},
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
+    {col: 'backflow', text: 'Backflow: Region 2 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
   ],
   '2026-10-27': [
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
   ],
   '2026-10-30': [
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
   ],
   '2026-11-03': [
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
   ],
   '2026-11-06': [
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
   ],
   '2026-11-10': [
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
-    {col: 'email', text: 'Backflow: Region 3'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'backflow', text: 'Backflow: Region 3'},
   ],
   '2026-11-11': [
     {col: 'holiday', text: '🎉 Veterans Day'},
   ],
   '2026-11-13': [
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
-    {col: 'email', text: 'Backflow: Region 3 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
+    {col: 'backflow', text: 'Backflow: Region 3 resend'},
   ],
   '2026-11-17': [
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
   ],
   '2026-11-20': [
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
   ],
   '2026-11-24': [
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
-    {col: 'email', text: 'Backflow: Region 4'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'backflow', text: 'Backflow: Region 4'},
   ],
   '2026-11-26': [
-    {col: 'email', text: 'Conference Email: TN Fire Inspectors Annual Conf'},
+    {col: 'conference-email', text: 'Conference Email: TN Fire Inspectors Annual Conf'},
     {col: 'holiday', text: '🎉 Thanksgiving'},
   ],
   '2026-11-27': [
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
-    {col: 'email', text: 'Backflow: Region 4 resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
+    {col: 'backflow', text: 'Backflow: Region 4 resend'},
     {col: 'holiday', text: '🎉 Day After Thanksgiving'},
   ],
   '2026-12-01': [
     {col: 'conf', text: 'Conference: TN Fire Inspectors Annual Conf'},
-    {col: 'email', text: 'Fire Prospect: Modernization outreach'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization outreach'},
   ],
   '2026-12-04': [
-    {col: 'email', text: 'Fire Prospect: Modernization resend'},
+    {col: 'fire-prospect', text: 'Fire Prospect: Modernization resend'},
   ],
   '2026-12-08': [
-    {col: 'email', text: 'Backflow: Region 5'},
+    {col: 'backflow', text: 'Backflow: Region 5'},
   ],
   '2026-12-11': [
-    {col: 'email', text: 'Backflow: Region 5 resend'},
+    {col: 'backflow', text: 'Backflow: Region 5 resend'},
   ],
   '2026-12-22': [
-    {col: 'email', text: 'Backflow: Region 6'},
-    {col: 'email', text: 'Drip: High Intent Campaign'},
+    {col: 'backflow', text: 'Backflow: Region 6'},
+    {col: 'drip', text: 'Drip: High Intent Campaign'},
   ],
   '2026-12-23': [
-    {col: 'email', text: 'Drip: Warm Campaign'},
+    {col: 'drip', text: 'Drip: Warm Campaign'},
   ],
   '2026-12-24': [
-    {col: 'email', text: 'Drip: Cold Campaign'},
+    {col: 'drip', text: 'Drip: Cold Campaign'},
   ],
   '2026-12-25': [
     {col: 'holiday', text: '🎉 Christmas Day'},
-    {col: 'email', text: 'Backflow: Region 6 resend'},
+    {col: 'backflow', text: 'Backflow: Region 6 resend'},
   ],
   '2026-12-30': [
-    {col: 'email', text: 'Newsletter: Q4 Newsletter'},
+    {col: 'newsletter', text: 'Newsletter: Q4 Newsletter'},
   ],
 };
     let activeFilters = new Set();
