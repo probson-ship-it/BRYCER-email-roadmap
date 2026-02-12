@@ -146,63 +146,63 @@
       overflow:hidden;
       background:#fff;
       display:grid;
-      grid-template-columns:320px 1fr;
+      grid-template-columns:240px 1fr;
     }
     @media (max-width:1100px){
       .cal-shell{ grid-template-columns:1fr; }
     }
     .cal-left{
       border-right:1px solid var(--border);
-      padding:16px;
+      padding:12px;
       background:#fff;
     }
     @media (max-width:1100px){
       .cal-left{ border-right:none; border-bottom:1px solid var(--border); }
     }
-    .cal-brand{ margin-bottom:14px; }
+    .cal-brand{ margin-bottom:10px; }
     .cal-eyebrow{
-      font-size:.75rem;
+      font-size:.7rem;
       font-weight:900;
-      letter-spacing:.18em;
+      letter-spacing:.16em;
       text-transform:uppercase;
       color:var(--brycer-orange);
     }
     .cal-title{
-      margin-top:6px;
-      font-size:1.12rem;
+      margin-top:4px;
+      font-size:.95rem;
       font-weight:900;
       color:var(--brycer-navy);
       letter-spacing:-.01em;
     }
     .cal-sub{
-      margin-top:6px;
+      margin-top:4px;
       color:var(--muted);
       font-weight:600;
-      font-size:.84rem;
-      line-height:1.35;
+      font-size:.75rem;
+      line-height:1.3;
     }
     .cal-monthbox{
       border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
+      border-radius:12px;
+      padding:10px;
       background:linear-gradient(180deg,#ffffff,#f8fafc);
     }
     .cal-monthname{
-      font-size:1.8rem;
+      font-size:1.4rem;
       font-weight:900;
       color:var(--brycer-orange);
       line-height:1.05;
     }
     .cal-year{
-      margin-top:6px;
-      font-size:1.1rem;
+      margin-top:4px;
+      font-size:.95rem;
       font-weight:900;
       color:var(--brycer-navy);
     }
     .cal-nav{
       display:flex;
-      gap:8px;
-      margin-top:12px;
+      gap:6px;
+      margin-top:8px;
       flex-wrap:wrap;
     }
     .navbtn{
@@ -210,42 +210,43 @@
       background:#fff;
       color:var(--brycer-navy);
       font-weight:900;
-      font-size:.8rem;
-      padding:8px 10px;
-      border-radius:10px;
+      font-size:.75rem;
+      padding:6px 8px;
+      border-radius:8px;
       cursor:pointer;
     }
     .navbtn:hover{ border-color:rgba(2,6,23,.25); }
     .cal-legendbox{
-      margin-top:14px;
+      margin-top:10px;
       border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
+      border-radius:12px;
+      padding:10px;
       background:#fff;
     }
     .cal-h{
-      font-size:.95rem;
+      font-size:.85rem;
       font-weight:900;
       color:var(--brycer-navy);
-      margin-bottom:10px;
+      margin-bottom:8px;
     }
     .cal-legend{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px 12px;
+      grid-template-columns:1fr;
+      gap:6px;
     }
     .tag-row{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:6px;
       font-weight:800;
-      font-size:.82rem;
+      font-size:.7rem;
       color:var(--muted);
     }
     .tag-dot{
-      width:12px; height:12px;
+      width:10px; height:10px;
       border-radius:999px;
       border:2px solid rgba(2,6,23,.10);
+      flex-shrink:0;
     }
     .tag-dot.t-email{ background:#dc2626; }
     .tag-dot.t-conf{ background:#0f172a; }
@@ -301,7 +302,7 @@
       overflow:hidden;
     }
     .day{
-      min-height:120px;
+      min-height:140px;
       padding:10px;
       border-right:1px solid var(--border);
       border-bottom:1px solid var(--border);
