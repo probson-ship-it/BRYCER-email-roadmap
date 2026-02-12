@@ -20,6 +20,9 @@
       --sticky-shadow:0 10px 24px rgba(2,6,23,.08);
       --focus:#0b5cff;
       --focus-soft:rgba(11,92,255,.12);
+      --irol-training:#8b5cf6;
+      --podcast:#06b6d4;
+      --irol-speaking:#f97316;
     }
     *{ box-sizing:border-box; }
     body{
@@ -119,6 +122,9 @@
     .dot.irol-social{ background:#ec4899; }
     .dot.irol-customer{ background:#64748b; }
     .dot.holiday{ background:#10b981; }
+    .dot.irol-training{ background:#8b5cf6; }
+    .dot.podcast{ background:#06b6d4; }
+    .dot.irol-speaking{ background:#f97316; }
     .cal-shell{
       margin-top:14px;
       border:1px solid var(--border);
@@ -234,6 +240,9 @@
     .tag-dot.t-irol-social{ background:#ec4899; }
     .tag-dot.t-irol-customer{ background:#64748b; }
     .tag-dot.t-holiday{ background:#10b981; }
+    .tag-dot.t-irol-training{ background:#8b5cf6; }
+    .tag-dot.t-podcast{ background:#06b6d4; }
+    .tag-dot.t-irol-speaking{ background:#f97316; }
     .cal-note{
       margin-top:12px;
       color:var(--muted);
@@ -298,6 +307,15 @@
       border-radius:12px;
       background:#fff;
       margin-bottom:8px;
+      transition:all .12s ease;
+    }
+    .event.clickable{
+      cursor:pointer;
+    }
+    .event.clickable:hover{
+      transform:translateY(-1px);
+      box-shadow:0 4px 12px rgba(2,6,23,.12);
+      border-color:rgba(2,6,23,.20);
     }
     .evdot{
       width:10px; height:10px;
@@ -312,6 +330,12 @@
       line-height:1.25;
       color:var(--text);
       font-weight:700;
+      flex:1;
+    }
+    .event.clickable .evtxt::after{
+      content:" 🔗";
+      font-size:.7rem;
+      opacity:.6;
     }
     .event[data-col="email"] .evdot{ background:#dc2626; }
     .event[data-col="conf"] .evdot{ background:#0f172a; }
@@ -320,6 +344,9 @@
     .event[data-col="irol-social"] .evdot{ background:#ec4899; }
     .event[data-col="irol-customer"] .evdot{ background:#64748b; }
     .event[data-col="holiday"] .evdot{ background:#10b981; }
+    .event[data-col="irol-training"] .evdot{ background:#8b5cf6; }
+    .event[data-col="podcast"] .evdot{ background:#06b6d4; }
+    .event[data-col="irol-speaking"] .evdot{ background:#f97316; }
     .cols-filtering .event{ display:none; }
     .show-email .event[data-col="email"]{ display:flex; }
     .show-conf .event[data-col="conf"]{ display:flex; }
@@ -328,6 +355,9 @@
     .show-irol-social .event[data-col="irol-social"]{ display:flex; }
     .show-irol-customer .event[data-col="irol-customer"]{ display:flex; }
     .show-holiday .event[data-col="holiday"]{ display:flex; }
+    .show-irol-training .event[data-col="irol-training"]{ display:flex; }
+    .show-podcast .event[data-col="podcast"]{ display:flex; }
+    .show-irol-speaking .event[data-col="irol-speaking"]{ display:flex; }
     footer{
       margin-top:16px;
       padding-top:12px;
@@ -359,6 +389,9 @@
         <button class="btn" data-col="press"><span class="dot press"></span>Press</button>
         <button class="btn" data-col="irol-social"><span class="dot irol-social"></span>IROL Social</button>
         <button class="btn" data-col="irol-customer"><span class="dot irol-customer"></span>IROL Customer</button>
+        <button class="btn" data-col="irol-training"><span class="dot irol-training"></span>IROL Training</button>
+        <button class="btn" data-col="podcast"><span class="dot podcast"></span>Podcasts</button>
+        <button class="btn" data-col="irol-speaking"><span class="dot irol-speaking"></span>IROL Speaking</button>
         <button class="btn" data-col="holiday"><span class="dot holiday"></span>🎉 Holidays</button>
         <button class="btn" data-action="reset">Reset Filters</button>
       </div>
@@ -388,6 +421,9 @@
               <div class="tag-row"><span class="tag-dot t-press"></span> Press Releases</div>
               <div class="tag-row"><span class="tag-dot t-irol-social"></span> IROL Social</div>
               <div class="tag-row"><span class="tag-dot t-irol-customer"></span> IROL Customer</div>
+              <div class="tag-row"><span class="tag-dot t-irol-training"></span> IROL Training</div>
+              <div class="tag-row"><span class="tag-dot t-podcast"></span> Podcasts</div>
+              <div class="tag-row"><span class="tag-dot t-irol-speaking"></span> IROL Speaking</div>
               <div class="tag-row"><span class="tag-dot t-holiday"></span> U.S. Holidays</div>
             </div>
             <div class="cal-note">📧 <strong>Email category includes:</strong> Fire Prospects, Backflow, Upsells, Service Providers, Drip Campaigns, Newsletters, Customer Comms, and Conference Emails</div>
@@ -586,6 +622,7 @@ const calendarEvents = {
   ],
   '2026-02-19': [
     {col: 'social', text: 'Partnership: Little Elm Fire Department (TX)'},
+    {col: 'irol-training', text: 'IROL Training: 10-Noon Best Practices', link: 'https://example.com/training-materials'},
     {col: 'email', text: 'Conference Email: Vision 20/20'},
     {col: 'email', text: 'Conference Email: FCAM'},
   ],
@@ -627,7 +664,7 @@ const calendarEvents = {
     {col: 'social', text: 'Monthly Conferences'},
     {col: 'social', text: 'Data Entry announcement'},
     {col: 'email', text: 'Customer Comms: New BRYCER Features - Pre-plan & Compliance Management Data Services'},
-    {col: 'conf', text: 'Conference: CFPI'},
+    {col: 'conf', text: 'Conference: CFPI *Jill speaking'},
     {col: 'conf', text: 'Conference: OH Life Safety Forum'},
     {col: 'irol-customer', text: 'IROL Customer: Individual followups re: new SLAs'},
     {col: 'irol-customer', text: 'IROL Customer: Notification to vendors - payment details/shared inboxes'},
@@ -650,6 +687,8 @@ const calendarEvents = {
     {col: 'email', text: 'Conference Email: WFCA Ignite '},
   ],
   '2026-03-09': [
+    {col: 'social', text: 'Data Entry announcement'},
+    {col: 'irol-training', text: 'IROL Training'},
     {col: 'irol-customer', text: 'IROL Customer: Updated features, benefits & customer service excellence'},
   ],
   '2026-03-10': [
@@ -676,11 +715,13 @@ const calendarEvents = {
   ],
   '2026-03-17': [
     {col: 'social', text: 'St. Paddys Day - Its Not Luck, Awareness'},
+    {col: 'podcast', text: 'Tech Tuesday Podcast'},
     {col: 'conf', text: 'Conference: Fire in the Sky'},
     {col: 'conf', text: 'Conference: IN Fire Inspectors'},
   ],
   '2026-03-18': [
     {col: 'social', text: 'Case Study: Urbana, IL'},
+    {col: 'irol-speaking', text: 'IROL Speaking: CFSI'},
     {col: 'email', text: 'Conference Email: IL Fire/Life Safety '},
   ],
   '2026-03-19': [
@@ -694,6 +735,7 @@ const calendarEvents = {
   ],
   '2026-03-23': [
     {col: 'social', text: 'Visibility Poll'},
+    {col: 'irol-training', text: 'IROL Training'},
     {col: 'irol-customer', text: 'IROL Customer: More features/benefits, timing for conversion scheduling'},
   ],
   '2026-03-24': [
@@ -747,12 +789,16 @@ const calendarEvents = {
   '2026-04-14': [
     {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
   ],
+  '2026-04-16': [
+    {col: 'irol-speaking', text: 'IROL Speaking: AFAA (Automatic Fire Alarm Assoc. Annual Conference)'},
+  ],
   '2026-04-17': [
     {col: 'email', text: 'Fire Prospect: Efficiency resend'},
   ],
   '2026-04-21': [
     {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
     {col: 'email', text: 'Backflow: Region 2'},
+    {col: 'irol-speaking', text: 'IROL Speaking: FDIC (week of April 20)'},
   ],
   '2026-04-22': [
     {col: 'email', text: 'Conference Email: LA Fire Chiefs'},
@@ -803,7 +849,7 @@ const calendarEvents = {
   ],
   '2026-05-19': [
     {col: 'email', text: 'Fire Prospect: Efficiency outreach'},
-    {col: 'conf', text: 'Conference: CRRL Conference'},
+    {col: 'conf', text: 'Conference: CRRL Conference *Jill speaking'},
   ],
   '2026-05-22': [
     {col: 'email', text: 'Fire Prospect: Efficiency resend'},
@@ -1108,6 +1154,15 @@ const calendarEvents = {
           const eventDiv = document.createElement('div');
           eventDiv.className = 'event';
           eventDiv.setAttribute('data-col', ev.col);
+          
+          // Add clickable class and link if event has a link
+          if (ev.link) {
+            eventDiv.classList.add('clickable');
+            eventDiv.addEventListener('click', () => {
+              window.open(ev.link, '_blank');
+            });
+          }
+          
           eventDiv.innerHTML = `<span class="evdot"></span><span class="evtxt">${ev.text}</span>`;
           day.appendChild(eventDiv);
         });
