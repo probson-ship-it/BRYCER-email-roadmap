@@ -166,6 +166,7 @@ select:focus{border-color:var(--orange);}
   </div>
   <div class="hdr-right">
     <div class="total-pill" id="totalPill">— items</div>
+    <button class="btn-refresh" onclick="refreshSheets()" id="btnRefresh" title="Reload from Google Sheets" style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;padding:7px 12px;border:1px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.7);border-radius:8px;cursor:pointer;letter-spacing:.04em;transition:all .15s;">&#8635; Sync</button>
     <button class="btn-export" onclick="exportHTML()">&#8681; Export HTML</button>
     <button class="btn-add" onclick="openAddModal()">+ Add Event</button>
     <div class="view-seg">
@@ -497,6 +498,131 @@ function setView(v){
   document.getElementById('btnList').classList.toggle('active',v==='list');
   render();
 }
+
+// ── Google Sheets Config ──────────────────────────────────────────────────────
+// Replace these two values with your own (see setup instructions)
+const SHEETS_API_KEY   = 'AIzaSyDuo8wPa0vieHW9HWzfZgXaGTMAImBxJGw';
+const SHEETS_SHEET_ID  = '10xa91Ua-Gay_zUeWDpXPnPjACBLlFU4luZNgS4m7nOI';
+const SHEETS_RANGE     = 'Sheet1!A2:G'; // skip header row
+
+let EVENTS_SOURCE = 'local'; // 'sheets' or 'local'
+let _loadError = false;
+
+async function loadFromSheets() {
+  if (SHEETS_API_KEY === 'AIzaSyDuo8wPa0vieHW9HWzfZgXaGTMAImBxJGw' || SHEETS_SHEET_ID === '10xa91Ua-Gay_zUeWDpXPnPjACBLlFU4luZNgS4m7nOI') {
+    return false; // not configured yet
+  }
+  try {
+    showLoadingBanner('Loading from Google Sheets...');
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_SHEET_ID}/values/${SHEETS_RANGE}?key=${SHEETS_API_KEY}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Sheets API error: ' + res.status);
+    const data = await res.json();
+    const rows = data.values || [];
+    // Columns: date | bucket | type | title | audience | notes | status
+    const parsed = rows
+      .filter(r => r[0] && r[3]) // must have date + title
+      .map(r => ({
+        date:     (r[0] || '').trim(),
+        bucket:   (r[1] || 'General').trim(),
+        type:     (r[2] || 'Email').trim(),
+        title:    (r[3] || '').trim(),
+        audience: (r[4] || '—').trim(),
+        notes:    (r[5] || '').trim(),
+        status:   (r[6] || 'Planned').trim(),
+      }));
+    if (parsed.length === 0) throw new Error('No data rows found');
+    // Replace the EVENTS array in place
+    EVENTS.length = 0;
+    parsed.forEach(e => EVENTS.push(e));
+    EVENTS_SOURCE = 'sheets';
+    hideLoadingBanner();
+    showSourceBadge('sheets');
+    return true;
+  } catch(err) {
+    console.warn('Sheets load failed:', err);
+    hideLoadingBanner();
+    showSourceBadge('local');
+    _loadError = true;
+    return false;
+  }
+}
+
+function showLoadingBanner(msg) {
+  let b = document.getElementById('loadBanner');
+  if (!b) {
+    b = document.createElement('div');
+    b.id = 'loadBanner';
+    b.style.cssText = 'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-family:DM Mono,monospace;font-size:.72rem;padding:8px 20px;border-radius:99px;z-index:9999;letter-spacing:.06em;box-shadow:0 4px 20px rgba(2,6,23,.2);';
+    document.body.appendChild(b);
+  }
+  b.textContent = msg;
+  b.style.display = 'block';
+}
+function hideLoadingBanner() {
+  const b = document.getElementById('loadBanner');
+  if (b) b.style.display = 'none';
+}
+function showSourceBadge(source) {
+  let badge = document.getElementById('sourceBadge');
+  if (!badge) {
+    badge = document.createElement('div');
+    badge.id = 'sourceBadge';
+    badge.style.cssText = 'font-family:DM Mono,monospace;font-size:.62rem;padding:4px 10px;border-radius:999px;border:1px solid;letter-spacing:.06em;cursor:default;';
+    document.querySelector('.hdr-right').prepend(badge);
+  }
+  if (source === 'sheets') {
+    badge.textContent = '⬤ Live — Google Sheets';
+    badge.style.background = 'rgba(5,150,105,.15)';
+    badge.style.color = '#34d399';
+    badge.style.borderColor = 'rgba(52,211,153,.3)';
+    badge.title = 'Data loaded from Google Sheets. Refresh to sync latest changes.';
+  } else {
+    badge.textContent = '⬤ Local data';
+    badge.style.background = 'rgba(100,116,139,.15)';
+    badge.style.color = '#94a3b8';
+    badge.style.borderColor = 'rgba(148,163,184,.3)';
+    badge.title = _loadError
+      ? 'Could not reach Google Sheets. Showing local fallback data.'
+      : 'Google Sheets not configured. Showing local data.';
+  }
+}
+
+async function init(){
+  await loadFromSheets();
+  const buckets=[...new Set(EVENTS.map(e=>e.bucket).filter(Boolean))].sort();
+  const types=[...new Set(EVENTS.map(e=>e.type).filter(Boolean))].sort();
+  const tc=document.getElementById('typeChips');
+  types.forEach(t=>{
+    const col=TYPE_COLOR[t]||DEFAULT_COLOR;
+    const chip=document.createElement('button');
+    chip.className='fchip'; chip.dataset.type=t;
+    chip.innerHTML=`<span class="chip-dot" style="background:${col}"></span><span style="overflow:hidden;text-overflow:ellipsis;">${t}</span>`;
+    chip.onclick=()=>toggleType(t,col,chip);
+    tc.appendChild(chip);
+  });
+  const bc=document.getElementById('bucketChips');
+  buckets.forEach(b=>{
+    const chip=document.createElement('button');
+    chip.className='fchip-type'; chip.dataset.bucket=b;
+    chip.textContent=b;
+    chip.onclick=()=>toggleBucket(b,chip);
+    bc.appendChild(chip);
+  });
+  render();
+}
+
+async function refreshSheets() {
+  const btn = document.getElementById('btnRefresh');
+  if (btn) { btn.textContent = '↻ Syncing...'; btn.disabled = true; }
+  // Clear sidebar chips so they rebuild with fresh data
+  document.getElementById('typeChips').innerHTML = '';
+  document.getElementById('bucketChips').innerHTML = '';
+  activeBuckets.clear(); activeTypes.clear();
+  await init();
+  if (btn) { btn.textContent = '↻ Sync'; btn.disabled = false; }
+}
+
 init();
 
 let _editIndex = -1;
